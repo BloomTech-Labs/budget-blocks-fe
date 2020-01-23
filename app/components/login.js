@@ -1,11 +1,18 @@
 import React, { useState } from "react"
 import { connect } from "react-redux"
+import { loginUser } from "../actions"
 
 const Login = (props)=>{
     const [user,setUser] = useState({ username: "" , password: "" });
 
     const handleChange= (e) =>{
         setUser({...user, [e.target.name]:e.target.value })
+    }
+
+    const handleSubmit = (e) =>{
+        e.preventDefault();
+        props.loginUser(user)
+        setUser({ username: "" , password: "" })
     }
 
     return(
@@ -38,4 +45,4 @@ function mapStateToProps(state){
     }
 }
 
-export default connect(mapStateToProps,{})(Login)
+export default connect(mapStateToProps,{ loginUser })(Login)

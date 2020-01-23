@@ -2,8 +2,11 @@ import React, { useState } from "react"
 import { connect } from "react-redux"
 
 const Login = (props)=>{
-    const [username,setUsername] = useState('');
-    const [password,setPassword] = useState('');
+    const [user,setUser] = useState({ username: "" , password: "" });
+
+    const handleChange= (e) =>{
+        setUser({...user, [e.target.name]:e.target.value })
+    }
 
     return(
 
@@ -13,13 +16,13 @@ const Login = (props)=>{
         <input type= "text" 
             name="username" 
             onChange={handleChange} 
-            value={username} 
+            value={user.username} 
             placeholder="Enter Username"
         />
         <input type= "text" 
             name="password" 
             onChange={handleChange} 
-            value={password} 
+            value={user.password} 
             placeholder="Enter Password"
         />
         <button>Login</button>

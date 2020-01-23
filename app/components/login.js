@@ -6,7 +6,9 @@ const Login = (props)=>{
 
     <div className="login">
         <h2>Login</h2>
-
+        <form className="LoginForm">
+            
+        </form>
     </div>
 
     )

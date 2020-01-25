@@ -27,3 +27,16 @@ export const loginUserFailure = error => ({
     type: LOGIN_USER_FAILED,
     payload: error
 });
+
+export function loginUser(user){
+    return function(dispatch) {
+        dispatch(loginUserLoading());
+        return axios.post('NEED_LOGIN_URL_AT_A_LATER_DATE',user)
+            .then(response=>{
+                dispatch(loginUserSuccess(response))
+            })
+            .catch(error=>{
+                dispatch(loginUserFailure(error)); 
+            })
+    }
+}

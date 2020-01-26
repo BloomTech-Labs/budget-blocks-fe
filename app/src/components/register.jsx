@@ -1,8 +1,8 @@
 import React, { useState } from "react"
 import { connect } from "react-redux"
-import { loginUser } from "../redux/actions"
+import { registerUser } from "../redux/actions"
 
-const Login = (props)=>{
+const Register = (props)=>{
     const [user,setUser] = useState({ email: "" , password: "" });
 
     const handleChange= (e) =>{
@@ -11,14 +11,14 @@ const Login = (props)=>{
 
     const handleSubmit = (e) =>{
         e.preventDefault();
-        props.loginUser(user)
+        props.registerUser(user)
         setUser({ email: "" , password: "" })
     }
 
     return(
 
     <div className="login" onSubmit={handleSubmit}>
-        <h2>Login</h2>
+        <h2>Register</h2>
         <form className="LoginForm">
         <input type= "text" 
             name="email" 
@@ -32,7 +32,7 @@ const Login = (props)=>{
             value={user.password} 
             placeholder="Enter Password"
         />
-        <button>Login</button>
+        <button>SignUp</button>
         </form>
     </div>
 
@@ -45,4 +45,4 @@ function mapStateToProps(state){
     }
 }
 
-export default connect(mapStateToProps,{ loginUser })(Login)
+export default connect(mapStateToProps,{ registerUser })(Register)

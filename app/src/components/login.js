@@ -14,7 +14,20 @@ const Login = (props)=>{
     const [user,setUser] = useState({ email: "" , password: "" });
 
     const handleChange= (e) =>{
-        setUser({...user, [e.target.name]:e.target.value })
+        setUser({...user, [e.target.name]:e.target.value.trim() });
+        if(e.target.value.trim() === ""){
+            setValues({...values, [e.target.name]:{
+                    error:true,
+                    helperText:`${e.target.name} is required`
+                } 
+            });
+        }else{
+            setValues({...values, [e.target.name]:{
+                    error:false,
+                    helperText:``
+                } 
+            });
+        }
     }
 
     const handleSubmit = (e) =>{
@@ -25,7 +38,18 @@ const Login = (props)=>{
 
     const [values, setValues] = useState({
         showPassword: false,
-        showConfirmPassword: false
+        showConfirmPassword: false,
+        password:{
+            error:false,
+            helperText:''
+        },
+        email:{
+            error:false,
+            helperText:''  
+        },
+        button:{
+            disabled:false
+        }
       });
 
     const handleClickShowPassword = () => {
@@ -44,6 +68,8 @@ const Login = (props)=>{
             <FormControl variant="filled">
                 <Typography className="label">E-Mail Address</Typography>
                 <TextField
+                    error={values.email.error}
+                    helperText={values.email.helperText}
                     placeholder="E-Mail Address"
                     type="text"
                     name="email" 
@@ -56,6 +82,8 @@ const Login = (props)=>{
             <FormControl variant="filled">
                 <Typography className="label">Password</Typography>
                 <TextField
+                    error={values.password.error}
+                    helperText={values.password.helperText}
                     placeholder="Password"
                     type={values.showPassword ? "text" : "password"}
                     onChange={handleChange}
@@ -83,7 +111,7 @@ const Login = (props)=>{
                 />
             </FormControl>
 
-            <Button variant="outlined" className="signInBtn" type="submit">
+            <Button variant="outlined" className="signInBtn" type="submit" disabled={values.button.disabled}>
                 Sign In
             </Button>
         </form>

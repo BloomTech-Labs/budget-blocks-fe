@@ -1,6 +1,13 @@
-import React, { useState } from "react"
-import { connect } from "react-redux"
-import { loginUser } from "../redux/actions"
+import React, { useState } from "react";
+import { connect } from "react-redux";
+import { loginUser } from "../redux/actions";
+import Typography from "@material-ui/core/Typography";
+import TextField from "@material-ui/core/TextField";
+import FormControl from "@material-ui/core/FormControl";
+import Visibility from "@material-ui/icons/Visibility";
+import VisibilityOff from "@material-ui/icons/VisibilityOff";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import IconButton from "@material-ui/core/IconButton";
 
 const Login = (props)=>{
     const [user,setUser] = useState({ email: "" , password: "" });
@@ -15,24 +22,61 @@ const Login = (props)=>{
         setUser({ email: "" , password: "" })
     }
 
+    const [values, setValues] = useState({
+        showPassword: false,
+        showConfirmPassword: false
+      });
+
+    const handleClickShowPassword = () => {
+        setValues({ ...values, showPassword: !values.showPassword });
+    };
+    const handleMouseDownPassword = event => {
+        event.preventDefault();
+    };
+
     return(
 
-    <div className="login" onSubmit={handleSubmit}>
-        <h2>Login</h2>
-        <form className="LoginForm">
+    <div className="SignIn" onSubmit={handleSubmit}>
+        <h2>Sign In</h2>
+        <form className="SignInForm">
         <input type= "text" 
             name="email" 
             onChange={handleChange} 
             value={user.email} 
             placeholder="Enter email"
         />
-        <input type= "text" 
-            name="password" 
-            onChange={handleChange} 
-            value={user.password} 
-            placeholder="Enter Password"
-        />
-        <button>Login</button>
+        
+        <FormControl variant="filled">
+            <Typography className="label">Password</Typography>
+            <TextField
+                placeholder="password"
+                type={values.showPassword ? "text" : "password"}
+                onChange={handleChange}
+                value={user.password}
+                name="password"
+                variant="outlined"
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <IconButton
+                        aria-label="toggle password visibility"
+                        onClick={handleClickShowPassword}
+                        onMouseDown={handleMouseDownPassword}
+                        edge="end"
+                      >
+                        {values.showPassword ? (
+                          <Visibility />
+                        ) : (
+                          <VisibilityOff />
+                        )}
+                      </IconButton>
+                    </InputAdornment>
+                  )
+                }}
+              />
+        </FormControl>
+
+        <button>Sign In</button>
         </form>
     </div>
 

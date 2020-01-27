@@ -76,4 +76,7 @@
 }
 .links{
   text-decoration: none;
+  font-family: "Exo", sans-serif !important;
+  color: #282c34;
+
 }

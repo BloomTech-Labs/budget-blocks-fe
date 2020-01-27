@@ -54,3 +54,10 @@
     border: 1px solid #1890ff !important;
     color: #1890ff !important;
   }
+  .account{
+    text-align: center !important;
+    display: flex;
+    flex-direction: row;
+    font-family: "Exo", sans-serif !important;
+
+  }

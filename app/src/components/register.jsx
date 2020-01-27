@@ -13,6 +13,7 @@ import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import IconButton from "@material-ui/core/IconButton";
+import { Link } from "react-router-dom";
 
 const Register = props => {
   const [user, setUser] = useState({ email: "", password: "" });
@@ -53,8 +54,8 @@ const Register = props => {
       setUser({ email: "", password: "" });
       setConfirmPass({ confirmPassword: "" });
       setMismatch({ errorText: "", change: false });
-    //TODO work on this part for proper redirection if account successfully created
-      // props.history.push("/")
+      //TODO work on this part for proper redirection if account successfully created
+      // props.history.push("/login")
     }
   };
 
@@ -146,7 +147,10 @@ const Register = props => {
                 }}
                 helperText={mismatch.errorText}
               />
-
+              <div className="account">
+                <Typography className="account">Already have an account?</Typography>
+                <Link to="/login" className="links">Click <strong> here!</strong></Link>
+              </div>
               <Button variant="outlined" className="signUpBtn" type="submit">
                 Sign Up
               </Button>

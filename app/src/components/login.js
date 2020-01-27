@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { loginUser } from "../redux/actions";
 import Typography from "@material-ui/core/Typography";
@@ -32,8 +32,44 @@ const Login = (props)=>{
 
     const handleSubmit = (e) =>{
         e.preventDefault();
-        props.loginUser(user)
-        setUser({ email: "" , password: "" })
+        if(user.email.trim() === "" && user.password.trim() === ""){
+            setValues({...values, 
+                email:{
+                    error:true,
+                    helperText:`email is required`
+                },
+                password:{
+                    error:true,
+                    helperText:`password is required`
+                },
+                button:{
+                    disabled:true
+                }
+            }); 
+        }else if(user.email.trim() === ""){
+            setValues({...values, 
+                email:{
+                    error:true,
+                    helperText:`email is required`
+                },
+                button:{
+                    disabled:true
+                }
+            }); 
+        }else if(user.password.trim()===""){
+            setValues({...values, 
+                password:{
+                    error:true,
+                    helperText:`password is required`
+                },
+                button:{
+                    disabled:true
+                }
+            }); 
+        }else{
+            props.loginUser(user)
+            setUser({ email: "" , password: "" });
+        }
     }
 
     const [values, setValues] = useState({
@@ -58,6 +94,14 @@ const Login = (props)=>{
     const handleMouseDownPassword = event => {
         event.preventDefault();
     };
+
+    useEffect(()=>{
+        if(values.password.error === false && values.email.error === false){
+            setValues({...values, button:{disabled:false}})
+        }else{
+            setValues({...values, button:{disabled:true}})
+        }
+    },[user])
 
     return(
 

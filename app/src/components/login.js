@@ -8,6 +8,7 @@ import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import IconButton from "@material-ui/core/IconButton";
+import Button from "@material-ui/core/Button";
 
 const Login = (props)=>{
     const [user,setUser] = useState({ email: "" , password: "" });
@@ -82,7 +83,9 @@ const Login = (props)=>{
                 />
             </FormControl>
 
-            <button>Sign In</button>
+            <Button variant="outlined" className="signInBtn" type="submit">
+                Sign In
+            </Button>
         </form>
     </div>
 

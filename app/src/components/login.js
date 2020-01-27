@@ -39,44 +39,50 @@ const Login = (props)=>{
     <div className="SignIn" onSubmit={handleSubmit}>
         <h2>Sign In</h2>
         <form className="SignInForm">
-        <input type= "text" 
-            name="email" 
-            onChange={handleChange} 
-            value={user.email} 
-            placeholder="Enter email"
-        />
         
-        <FormControl variant="filled">
-            <Typography className="label">Password</Typography>
-            <TextField
-                placeholder="password"
-                type={values.showPassword ? "text" : "password"}
-                onChange={handleChange}
-                value={user.password}
-                name="password"
-                variant="outlined"
-                InputProps={{
-                  endAdornment: (
-                    <InputAdornment position="end">
-                      <IconButton
-                        aria-label="toggle password visibility"
-                        onClick={handleClickShowPassword}
-                        onMouseDown={handleMouseDownPassword}
-                        edge="end"
-                      >
-                        {values.showPassword ? (
-                          <Visibility />
-                        ) : (
-                          <VisibilityOff />
-                        )}
-                      </IconButton>
-                    </InputAdornment>
-                  )
-                }}
-              />
-        </FormControl>
+            <FormControl variant="filled">
+                <Typography className="label">E-Mail Address</Typography>
+                <TextField
+                    placeholder="E-Mail Address"
+                    type="text"
+                    name="email" 
+                    onChange={handleChange} 
+                    value={user.email} 
+                    variant="outlined"
+                />
+            </FormControl>
 
-        <button>Sign In</button>
+            <FormControl variant="filled">
+                <Typography className="label">Password</Typography>
+                <TextField
+                    placeholder="Password"
+                    type={values.showPassword ? "text" : "password"}
+                    onChange={handleChange}
+                    value={user.password}
+                    name="password"
+                    variant="outlined"
+                    InputProps={{
+                    endAdornment: (
+                        <InputAdornment position="end">
+                        <IconButton
+                            aria-label="toggle password visibility"
+                            onClick={handleClickShowPassword}
+                            onMouseDown={handleMouseDownPassword}
+                            edge="end"
+                        >
+                            {values.showPassword ? (
+                            <Visibility />
+                            ) : (
+                            <VisibilityOff />
+                            )}
+                        </IconButton>
+                        </InputAdornment>
+                    )
+                    }}
+                />
+            </FormControl>
+
+            <button>Sign In</button>
         </form>
     </div>
 

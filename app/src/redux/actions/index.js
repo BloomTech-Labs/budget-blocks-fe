@@ -29,11 +29,13 @@ export const loginUserFailure = error => ({
 });
 
 export function loginUser(user){
+    console.log("user",user);
     return function(dispatch) {
         dispatch(loginUserLoading());
         return axios.post('https://lambda-budget-blocks.herokuapp.com/api/auth/login',user)
             .then(response=>{
-                dispatch(loginUserSuccess(response))
+                sessionStorage.setItem("token",response.data.token);
+                dispatch(loginUserSuccess(response.data))
             })
             .catch(error=>{
                 dispatch(loginUserFailure(error)); 

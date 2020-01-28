@@ -27,3 +27,28 @@ export const loginUserFailure = error => ({
     type: LOGIN_USER_FAILED,
     payload: error
 });
+
+export function loginUser(user){
+    return function(dispatch) {
+        dispatch(loginUserLoading());
+        return axios.post('https://lambda-budget-blocks.herokuapp.com/api/auth/login',user)
+            .then(response=>{
+                dispatch(loginUserSuccess(response))
+            })
+            .catch(error=>{
+                dispatch(loginUserFailure(error)); 
+            })
+    }
+}
+export function registerUser(data){
+    return function(dispatch) {
+        dispatch(registerUserLoading());
+        return axios.post('https://lambda-budget-blocks.herokuapp.com/api/auth/register',data)
+            .then(response=>{
+                dispatch(registerUserSuccess(response))
+            })
+            .catch(error=>{
+                dispatch(registerUserFailure(error)); 
+            })
+    }
+}

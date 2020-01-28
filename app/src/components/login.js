@@ -9,6 +9,10 @@ import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import IconButton from "@material-ui/core/IconButton";
 import Button from "@material-ui/core/Button";
+import "../style/loginStyle.css";
+import logo from "../media/image/logo.jpg";
+import budgetImg from "../media/image/budget_blocks.png";
+import { Link } from "react-router-dom";
 
 const Login = (props)=>{
     const [user,setUser] = useState({ email: "" , password: "" });
@@ -103,11 +107,20 @@ const Login = (props)=>{
         }
     },[user])
 
+
     return(
 
-    <div className="SignIn" onSubmit={handleSubmit}>
-        <h2>Sign In</h2>
-        <form className="SignInForm">
+    <div className="SignIn" >
+
+        <div className="logo_name">
+            <img src={logo} className="logo-reg" alt="logo" />
+            <img src={budgetImg} className="name-reg" alt="budget_blocks" />
+            <Typography variant="h2" className="sign">
+              Sign In
+            </Typography>
+        </div>
+
+        <form className="SignInForm" onSubmit={handleSubmit}>
         
             <FormControl variant="filled">
                 <Typography className="label">E-Mail Address</Typography>
@@ -155,6 +168,11 @@ const Login = (props)=>{
                 />
             </FormControl>
 
+            <div className="account">
+                <Typography className="account">Need an account?</Typography>
+                <Link to="/register" className="links">Click <strong> here!</strong></Link>
+            </div>
+
             <Button variant="outlined" className="signInBtn" type="submit" disabled={values.button.disabled}>
                 Sign In
             </Button>
@@ -166,7 +184,7 @@ const Login = (props)=>{
 
 function mapStateToProps(state){
     return {
-
+        error:state.error
     }
 }
 

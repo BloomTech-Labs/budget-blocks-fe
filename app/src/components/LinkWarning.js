@@ -6,6 +6,8 @@ import { Link } from "react-router-dom";
 import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
 import Button from "@material-ui/core/Button";
 import PlaidLink from 'react-plaid-link';
+import { connect } from "react-redux";
+import { sendLinkToken } from "../redux/actions";
 
 const LinkWarning = (props)=>{
 
@@ -52,4 +54,11 @@ const LinkWarning = (props)=>{
     )
 }
 
-export default LinkWarning;
+
+function mapStateToProps(state){
+    return {
+        error:state.error
+    }
+}
+
+export default connect(mapStateToProps,{ sendLinkToken })(LinkWarning)

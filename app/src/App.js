@@ -6,7 +6,7 @@ import Login from "./components/login";
 import Register from "./components/register";
 import { Switch, Route } from "react-router-dom";
 import LinkWarning from "./components/LinkWarning";
-import LinkAccount from './components/LinkAccount';
+
 
 function App() {
   return (
@@ -16,7 +16,6 @@ function App() {
         <Route path="/login" component={Login} />
         <Route path="/register" component={Register} />
         <Route path="/link/warning" component={LinkWarning}/>
-        <Route path="/link" component={LinkAccount}/>
         //TODO make dashboard private route 
 
       </Switch>

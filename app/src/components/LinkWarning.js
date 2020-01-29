@@ -12,11 +12,13 @@ import { sendLinkToken } from "../redux/actions";
 const LinkWarning = (props)=>{
 
     function handleOnSuccess(token, metadata) {
-        // send token to client server
+        props.sendLinkToken(token,props.user.id)
       }
     function handleOnExit() {
         // handle the case when your user exits Link
       }
+
+      console.log(props.user)
 
     return(
         <div className="LinkWarning">
@@ -57,7 +59,8 @@ const LinkWarning = (props)=>{
 
 function mapStateToProps(state){
     return {
-        error:state.error
+        error:state.error,
+        user:state.user
     }
 }
 

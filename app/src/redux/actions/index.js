@@ -42,7 +42,7 @@ export const sendLinkFailed = error => ({
     payload: error
 });
 
-export function loginUser(user){
+export function loginUser(user,history){
     console.log("user",user);
     return function(dispatch) {
         dispatch(loginUserLoading());
@@ -50,6 +50,7 @@ export function loginUser(user){
             .then(response=>{
                 sessionStorage.setItem("token",response.data.token);
                 dispatch(loginUserSuccess(response.data))
+                history.push("/link/warning");
             })
             .catch(error=>{
                 dispatch(loginUserFailure(error)); 
@@ -72,8 +73,10 @@ export function registerUser(data){
 export function sendLinkToken(token,userID){
     return function(dispatch) {
         dispatch(sendLinkLoading());
+        console.log({publicToken:token, user_id:userID});
         return axios.post('https://lambda-budget-blocks.herokuapp.com/plaid/token_exchange',{publicToken:token, userid:userID})
             .then(response=>{
+                console.log(response);
                 dispatch(sendLinkSuccess(response.data))
             })
             .catch(error=>{

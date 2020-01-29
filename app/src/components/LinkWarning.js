@@ -5,31 +5,48 @@ import "../style/linkWarningStyle.css";
 import { Link } from "react-router-dom";
 import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
 import Button from "@material-ui/core/Button";
+import PlaidLink from 'react-plaid-link';
 
 const LinkWarning = (props)=>{
 
+    function handleOnSuccess(token, metadata) {
+        // send token to client server
+      }
+    function handleOnExit() {
+        // handle the case when your user exits Link
+      }
+
     return(
         <div className="LinkWarning">
-            <Typography variant="body1" className="WarningTitle">Budget Blocks uses Plaid to link your bank</Typography>
-            <div className="confirmed">
-                <CheckCircleOutlineIcon/>
-                <Typography variant="body1" className="WarningInfo">Secure Transfer of your information is encrypted end-to-end </Typography>
+            <div className="info">
+                <Typography variant="body1" className="WarningTitle">Budget Blocks uses Plaid to link your bank</Typography>
+                <div className="confirmed">
+                    <CheckCircleOutlineIcon/>
+                    <Typography variant="body1" className="WarningInfo">Secure Transfer of your information is encrypted end-to-end </Typography>
+                </div>
+                <div className="confirmed">
+                    <CheckCircleOutlineIcon/>
+                    <Typography variant="body1" className="WarningInfo">Private Your credentials will never be made accessible to Budget Blocks </Typography>
+                </div>
             </div>
-            <div className="confirmed">
-                <CheckCircleOutlineIcon/>
-                <Typography variant="body1" className="WarningInfo">Private Your credentials will never be made accessible to Budget Blocks </Typography>
-            </div>
+            <div className="buttons">
+                <PlaidLink
+                    clientName="Budget Blocks"
+                    env="sandbox"
+                    product={["auth", "transactions"]}
+                    publicKey={process.env.REACT_APP_PUBLIC_KEY}
+                    onExit={handleOnExit}
+                    onSuccess={handleOnSuccess}
+                    className="plaidButton">
+                    Connect
+                </PlaidLink> 
 
-            <Link to="/login" className="links">
-                <Button variant="outlined" className="signin">
-                Continue
-                </Button>
-            </Link>
-            <Link to="/login" className="links">
-                <Button variant="outlined" className="signin">
-                Add Manual Income
-                </Button>
-            </Link>
+                <Link to="/link" className="links">
+                    <Button variant="outlined" className="signin">
+                    Add Manual Income
+                    </Button>
+                </Link>
+            </div>
 
         </div>
     )

@@ -9,8 +9,7 @@
         top: 179px;
     }
     .WarningTitle {
-        width: 222px;
-        height: 48px;
+    
 
         /* Semibold / 16px | 24px */
         font-family: Exo;
@@ -27,6 +26,13 @@
 
     .confirmed{
         display: flex;
+    }
+    .plaidButton{
+        color:blue;
+    }
+
+    .info{
+        
     }
 
     

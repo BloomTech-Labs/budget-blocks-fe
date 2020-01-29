@@ -28,6 +28,20 @@ export const loginUserFailure = error => ({
     payload: error
 });
 
+export const SEND_LINK_TOKEN_LOADING = "SEND_LINK_TOKEN_LOADING";
+export const SEND_LINK_TOKEN_SUCCESS = "SEND_LINK_TOKEN_SUCCESS";
+export const SEND_LINK_TOKEN_FAILED = "SEND_LINK_TOKEN_FAILED";
+
+export const sendLinkLoading = () => ({ type: SEND_LINK_TOKEN_LOADING });
+export const sendLinkSuccess = data => ({
+    type: SEND_LINK_TOKEN_SUCCESS,
+    payload: data
+  });
+export const sendLinkFailed = error => ({
+    type: SEND_LINK_TOKEN_FAILED,
+    payload: error
+});
+
 export function loginUser(user){
     console.log("user",user);
     return function(dispatch) {

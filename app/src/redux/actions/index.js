@@ -68,3 +68,16 @@ export function registerUser(data){
             })
     }
 }
+
+export function sendLinkToken(token,userID){
+    return function(dispatch) {
+        dispatch(sendLinkLoading());
+        return axios.post('https://lambda-budget-blocks.herokuapp.com/plaid/token_exchange',{publicToken:token, userid:userID})
+            .then(response=>{
+                dispatch(sendLinkSuccess(response.data))
+            })
+            .catch(error=>{
+                dispatch(sendLinkFailed(error)); 
+            })
+    }
+}

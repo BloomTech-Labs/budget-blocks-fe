@@ -71,7 +71,7 @@ const Login = (props)=>{
                 }
             }); 
         }else{
-            props.loginUser(user)
+            props.loginUser(user, props.history)
             setUser({ email: "" , password: "" });
         }
     }

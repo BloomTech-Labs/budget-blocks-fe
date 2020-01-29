@@ -1,7 +1,7 @@
 import React from "react";
 import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
-import "../style/linkWarningStyle.css";
+import "../style/linkAccountStyle.css";
 import { Link } from "react-router-dom";
 import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
 import Button from "@material-ui/core/Button";

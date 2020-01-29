@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import logo from '../media/images/logo.jpg';
+// import logo from '../media/images/logo.jpg';
 import budget from '../media/images/budget_blocks.png';
 
 const useStyles = makeStyles({
@@ -36,7 +36,7 @@ export default function CenteredTabs() {
 				>
 					<Tab label='My Dashboard' />
 					<Tab label='My Profile' />
-					<Tab label='Sing Out' />
+					<Tab label='Sign Out' />
 				</Tabs>
 			</Paper>
 		</div>

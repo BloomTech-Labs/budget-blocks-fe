@@ -98,11 +98,14 @@ export function sendLinkToken(token,userID){
             .catch(error=>{
                 dispatch(sendLinkFailed(error)); 
             })
+    
+    }
+}
       
 export function createProfile(data){
     return function(dispatch) {
         dispatch(createProfileLoading());
-        return 
+        return "Hello"
         // axios.post('https://lambda-budget-blocks.herokuapp.com/api/auth/register',data)
             // .then(response=>{
             //     dispatch(createProfileSuccess(response))

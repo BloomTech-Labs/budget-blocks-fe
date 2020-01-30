@@ -31,7 +31,12 @@ export const reducer = (state = initialState, action) => {
 }
 
 const initialState = {
-    user:{},
+    user:{
+        id:null,
+        token:"",
+        message:"",
+        LinkedAccount:false
+    },
     error:null,
     isFetching:false
 };

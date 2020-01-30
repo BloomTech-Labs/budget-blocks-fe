@@ -1,9 +1,12 @@
 import React,{useEffect,useState} from 'react';
+import { connect } from "react-redux";
 import styled from 'styled-components'
 import Bootstrap from 'bootstrap/dist/css/bootstrap.min.css';
 import {Row,Col} from 'react-bootstrap'
 import { Progress,Container,Table } from "reactstrap";
 import './table.css';
+import LinkedComponent from "./Balance/LinkedComponent";
+import UnlinkedComponent from "./Balance/UnlinkedComponent";
 function Dashboard(props) {
  const Div = styled.div`
 background-color:lightgrey;
@@ -29,6 +32,14 @@ font-size:1.2rem;
 color:white;
 margin-left:2rem;
 ` 
+
+function AddBalance(){
+  if(props.LinkedAccount){
+    return(<LinkedComponent/>)
+  }else{
+    return(<UnlinkedComponent/>)
+  }
+}
   return (
    
    <Container>
@@ -113,19 +124,19 @@ margin-left:2rem;
       </Div>
       <div className="subheading">
       <Row>
-      <Col sm={7}><p>Connect With the Plaid Api</p></Col><Col sm={3}><p>Api</p></Col>
-    </Row>
-    </div>
-    <div>
-    <div className="subheading">
-    <Row>
-      <Col sm={9}>Upcoming Due Dates </Col>
-    </Row>
-    <Row>
-      <Col sm={7}><p>Rent</p></Col><Col sm={3}><p>-$760.00</p><p>03/01/2020</p></Col>
-    </Row>
-    </div>
-    </div>
+        {AddBalance()}
+      </Row>
+      </div>
+      <div>
+      <div className="subheading">
+      <Row>
+        <Col sm={9}>Upcoming Due Dates </Col>
+      </Row>
+      <Row>
+        <Col sm={7}><p>Rent</p></Col><Col sm={3}><p>-$760.00</p><p>03/01/2020</p></Col>
+      </Row>
+      </div>
+      </div>
 </div></Col>
   </Row>
   
@@ -171,4 +182,10 @@ margin-left:2rem;
   );
 }
 
-export default Dashboard;
+function mapStateToProps(state){
+  return {
+      LinkedAccount: state.loginReducer.user.LinkedAccount
+  }
+}
+
+export default connect(mapStateToProps,{})(Dashboard)

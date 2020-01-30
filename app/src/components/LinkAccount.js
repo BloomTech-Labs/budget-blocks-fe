@@ -4,7 +4,7 @@ import PlaidLink from 'react-plaid-link';
 import { connect } from "react-redux";
 import { sendLinkToken } from "../redux/actions/PlaidActions";
 
-const LinkWarning = (props)=>{
+const LinkAccount = (props)=>{
 
     function handleOnSuccess(token, metadata) {
         props.sendLinkToken(token,props.user.id)
@@ -38,4 +38,4 @@ function mapStateToProps(state){
     }
 }
 
-export default connect(mapStateToProps,{ sendLinkToken })(LinkWarning)
+export default connect(mapStateToProps,{ sendLinkToken })(LinkAccount)

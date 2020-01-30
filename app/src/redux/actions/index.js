@@ -29,19 +29,6 @@ export const createProfileFailure = error => ({
     payload: error
 });
 
-export const LOGIN_USER_LOADING = "LOGIN_USER_LOADING";
-export const LOGIN_USER_SUCCESS = "LOGIN_USER_SUCCESS";
-export const LOGIN_USER_FAILED = "LOGIN_USER_FAILED";
-
-export const loginUserLoading = () => ({ type: LOGIN_USER_LOADING });
-export const loginUserSuccess = data => ({
-    type: LOGIN_USER_SUCCESS,
-    payload: data
-  });
-export const loginUserFailure = error => ({
-    type: LOGIN_USER_FAILED,
-    payload: error
-});
 
 export const SEND_LINK_TOKEN_LOADING = "SEND_LINK_TOKEN_LOADING";
 export const SEND_LINK_TOKEN_SUCCESS = "SEND_LINK_TOKEN_SUCCESS";
@@ -57,21 +44,6 @@ export const sendLinkFailed = error => ({
     payload: error
 });
 
-export function loginUser(user,history){
-    console.log("user",user);
-    return function(dispatch) {
-        dispatch(loginUserLoading());
-        return axios.post('https://lambda-budget-blocks.herokuapp.com/api/auth/login',user)
-            .then(response=>{
-                sessionStorage.setItem("token",response.data.token);
-                dispatch(loginUserSuccess(response.data))
-                history.push("/link");
-            })
-            .catch(error=>{
-                dispatch(loginUserFailure(error)); 
-            })
-    }
-}
 export function registerUser(data){
     return function(dispatch) {
         dispatch(registerUserLoading());

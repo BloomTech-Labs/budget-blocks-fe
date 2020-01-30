@@ -3,7 +3,7 @@ import {
     REGISTER_USER_LOADING,
     REGISTER_USER_FAILED,
     REGISTER_USER_SUCCESS
-    } from "../actions"
+    } from "../actions/RegisterActions"
 export const reducer = (state = initialState, action) => {
     switch(action.type){
         case REGISTER_USER_LOADING:

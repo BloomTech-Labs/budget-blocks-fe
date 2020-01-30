@@ -3,7 +3,7 @@ import {
     LOGIN_USER_LOADING,
     LOGIN_USER_FAILED,
     LOGIN_USER_SUCCESS, 
-    } from "../actions"
+    } from "../actions/LoginActions"
 export const reducer = (state = initialState, action) => {
     switch(action.type){
         case LOGIN_USER_LOADING:

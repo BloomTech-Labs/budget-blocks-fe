@@ -18,8 +18,7 @@ function App() {
         <Route path="/register" component={Register} />
         <Route path="/link" component={LinkAccount}/>
         <Route path="/profile" component={Profile} />
-
-        //TODO make dashboard private route 
+        <Route path="/dashboard" component={Dashboard} />
 
       </Switch>
     </div>

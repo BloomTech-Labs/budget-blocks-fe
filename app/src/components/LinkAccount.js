@@ -7,7 +7,7 @@ import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
 import Button from "@material-ui/core/Button";
 import PlaidLink from 'react-plaid-link';
 import { connect } from "react-redux";
-import { sendLinkToken } from "../redux/actions";
+import { sendLinkToken } from "../redux/actions/PlaidActions";
 
 const LinkWarning = (props)=>{
 
@@ -17,8 +17,6 @@ const LinkWarning = (props)=>{
     function handleOnExit() {
         // handle the case when your user exits Link
       }
-
-      console.log(props.user)
 
     return(
         <div className="LinkWarning">
@@ -42,7 +40,7 @@ const LinkWarning = (props)=>{
                     onExit={handleOnExit}
                     onSuccess={handleOnSuccess}
                     className="plaidButton">
-                    Connect
+                    Connect Bank Account
                 </PlaidLink> 
 
                 <Link to="/link" className="links">
@@ -59,8 +57,8 @@ const LinkWarning = (props)=>{
 
 function mapStateToProps(state){
     return {
-        error:state.error,
-        user:state.user
+        error:state.plaidReducer.error,
+        user:state.loginReducer.user
     }
 }
 

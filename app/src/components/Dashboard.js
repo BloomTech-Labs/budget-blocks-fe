@@ -4,6 +4,7 @@ import Bootstrap from 'bootstrap/dist/css/bootstrap.min.css';
 import {Row,Col} from 'react-bootstrap'
 import { Progress,Container,Table } from "reactstrap";
 import "./table.css"
+import DashboardBlocks from "./DashboardBlocks"
 function Dashboard(props) {
  const Div = styled.div`
 background-color:lightgrey;
@@ -30,7 +31,7 @@ color:white;
 margin-left:2rem;
 ` 
   return (
-   
+   <div>
    <Container>
   <Row >
     <Col sm={9}> <div>
@@ -40,52 +41,7 @@ margin-left:2rem;
       <Col sm={4}>KS</Col>
       </Row>   
   </Div>
-  <Table responsive>
-  <thead>
-    <tr>
-      <th></th>
-      <th>Block</th>
-      <th>Current status</th>
-      <th></th>
-      <th>Total Expenses</th>
-      <th>Limit</th>
-      <th>Action</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td></td>
-      <td>Title</td>
-      <td>
-          <Progress value={90} />
-     </td>
-      <td>&#9989;</td>
-      <td>$0.00</td>
-      <td>$500.00</td>
-      <td>Edit</td>
-    </tr>
-    <tr>
-      <td></td>
-      <td>Title</td>
-      <td>
-          <Progress value={90} /></td>
-      <td>&#9989;</td>
-      <td>$0.00</td>
-      <td>$500.00</td>
-      <td>Edit</td>
-    </tr>
-    <tr>
-      <td></td>
-      <td>Title</td>
-      <td>
-          <Progress value={90} /></td>
-      <td>&#9989;</td>
-      <td>$0.00</td>
-      <td>$500.00</td>
-      <td>Edit</td>
-    </tr>
-  </tbody>
-</Table>
+{/* <Dashboard /> */}
   </div></Col>
     <Col sm={3}> <div>
       <Div>
@@ -167,7 +123,7 @@ margin-left:2rem;
     </Col>
   </Row>
 </Container> 
-  
+</div>
   );
 }
 

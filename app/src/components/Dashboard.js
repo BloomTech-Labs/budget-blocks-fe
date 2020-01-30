@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import Bootstrap from 'bootstrap/dist/css/bootstrap.min.css';
 import {Row,Col} from 'react-bootstrap'
 import { Progress,Container,Table } from "reactstrap";
-import './table.css';
+import "./table.css"
 function Dashboard(props) {
  const Div = styled.div`
 background-color:lightgrey;

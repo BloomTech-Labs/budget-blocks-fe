@@ -1,16 +1,7 @@
 import React from 'react';
-import Link from '@material-ui/core/Link';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
 import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
 // Generate Order Data
@@ -24,23 +15,24 @@ const useStyles = makeStyles(theme => ({
 		border: 'black',
 		flexDirection: 'row',
 		margin: '1%',
-		background: '#FAFAFA;'
+		background: '#FAFAFA;',
+		justifyContent: 'space-between'
 	},
 	details: {
-		display: 'flex',
-		alignItems: 'flex-start'
+		display: 'flex'
 	},
 	content: {
-		// flex: '1 0 auto',
+		flex: '1 0 auto',
 		alignItems: 'flex-start',
-		textAlign: 'left'
+		textAlign: 'left',
+		paddingLeft: theme.spacing(5)
 	},
 	controls: {
 		display: 'flex',
 		alignItems: 'center',
-		paddingLeft: theme.spacing(10),
-		paddingRight: theme.spacing(10),
-		paddingBottom: theme.spacing(1)
+		textAlign: 'right',
+		alignContent: 'flex-end',
+		paddingRight: theme.spacing(5)
 	}
 }));
 

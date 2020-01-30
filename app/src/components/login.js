@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
-import { loginUser } from "../redux/actions";
+import { loginUser } from "../redux/actions/LoginActions";
 import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
 import FormControl from "@material-ui/core/FormControl";
@@ -183,6 +183,7 @@ const Login = (props)=>{
 }
 
 function mapStateToProps(state){
+    console.log(state);
     return {
         error:state.error
     }

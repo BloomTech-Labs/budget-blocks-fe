@@ -1,14 +1,13 @@
 import React,{useEffect,useState} from 'react';
 import styled from 'styled-components'
+import Bootstrap from 'bootstrap/dist/css/bootstrap.min.css';
 import {Row,Col} from 'react-bootstrap'
 import { Progress,Container,Table } from "reactstrap";
-import axios from "axios"
 import './table.css';
 function Dashboard(props) {
  const Div = styled.div`
 background-color:lightgrey;
 padding:25px;
-border:solid 5px red;
 `
 const GreenButton = styled.button`
 width: 2.5rem; 
@@ -29,19 +28,14 @@ border-color:red;
 font-size:1.2rem;
 color:white;
 margin-left:2rem;
-`
- useEffect(() => {
-  axios.get('https://lambda-budget-blocks.herokuapp.com/plaid/token_exchange',{
-headers:{authorization:"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo4LCJlbWFpbCI6Imtlc2hhd25Ac3R1ZGVudG1iYS5vcmciLCJpYXQiOjE1ODAzMzkyMjMsImV4cCI6MTU4MDM1MzYyM30.9hLAB-lXLS5lvD0r_6dl-n_iWjx8vCF3_AQ-pifBhKI"}}).then(res => console.log(res))
-},[])
-
+` 
   return (
    
    <Container>
   <Row >
     <Col sm={9}> <div>
-    <Div className="border">
-      <Row>    
+    <Div>
+      <Row>
       <Col sm={8}> <h1>Hi, First Name </h1><p>Ksharper@studentmba.org</p> </Col>
       <Col sm={4}>KS</Col>
       </Row>   
@@ -117,7 +111,7 @@ headers:{authorization:"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo4LCJ
  
       </div>
       </Div>
-      <div className="subheading border">
+      <div className="subheading">
       <Row>
       <Col sm={7}><p>Connect With the Plaid Api</p></Col><Col sm={3}><p>Api</p></Col>
     </Row>

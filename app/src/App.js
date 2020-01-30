@@ -7,7 +7,7 @@ import Register from "./components/register";
 import Profile from "./components/CreateProfile"
 import { Switch, Route } from "react-router-dom";
 import LinkAccount from "./components/LinkAccount";
-
+import Dashboard from "./components/Dashboard"
 
 function App() {
   return (

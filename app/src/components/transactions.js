@@ -5,7 +5,6 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
-import Fab from '@material-ui/core/Fab';
 
 // Generate Order Data
 function createData(id, date, description, category, paymentMethod, amount) {
@@ -53,6 +52,7 @@ const useStyles = makeStyles(theme => ({
 	}
 }));
 
+//dummy data
 const rows = [
 	createData(
 		0,

@@ -68,7 +68,7 @@ const useStyles = makeStyles(theme => ({
 export default function Transactions() {
 	const classes = useStyles();
 	return (
-		<React.Fragment>
+		<React.Fragment className='transaction'>
 			<h1>Recent Transactions</h1>
 			<Table size='small'>
 				<TableHead>

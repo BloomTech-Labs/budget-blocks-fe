@@ -18,8 +18,6 @@ const LinkWarning = (props)=>{
         // handle the case when your user exits Link
       }
 
-      console.log(props.user)
-
     return(
         <div className="LinkWarning">
             <div className="info">
@@ -42,7 +40,7 @@ const LinkWarning = (props)=>{
                     onExit={handleOnExit}
                     onSuccess={handleOnSuccess}
                     className="plaidButton">
-                    Connect
+                    Connect Bank Account
                 </PlaidLink> 
 
                 <Link to="/link" className="links">
@@ -59,8 +57,8 @@ const LinkWarning = (props)=>{
 
 function mapStateToProps(state){
     return {
-        error:state.error,
-        user:state.user
+        error:state.plaidReducer.error,
+        user:state.loginReducer.user
     }
 }
 

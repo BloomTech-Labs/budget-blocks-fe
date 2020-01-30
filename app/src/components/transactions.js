@@ -3,6 +3,9 @@ import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+import AddIcon from '@material-ui/icons/Add';
+import Fab from '@material-ui/core/Fab';
 
 // Generate Order Data
 function createData(id, date, description, category, paymentMethod, amount) {
@@ -10,6 +13,16 @@ function createData(id, date, description, category, paymentMethod, amount) {
 }
 
 const useStyles = makeStyles(theme => ({
+	root: {
+		'& > *': {
+			margin: theme.spacing(1)
+		}
+	},
+	topcontent: {
+		display: 'flex',
+		alignItems: 'center',
+		justifyContent: 'space-between'
+	},
 	card: {
 		display: 'flex',
 		border: 'black',
@@ -33,6 +46,10 @@ const useStyles = makeStyles(theme => ({
 		textAlign: 'right',
 		alignContent: 'flex-end',
 		paddingRight: theme.spacing(5)
+	},
+	text: {
+		textAlign: 'left',
+		paddingLeft: theme.spacing(5)
 	}
 }));
 
@@ -40,7 +57,7 @@ const rows = [
 	createData(
 		0,
 		'Jan 20, 2020',
-		'Walmart',
+		'Puchase Authorized on 01/01 Storage Company For USER 6A7BC81524XY1524',
 		'Grocery',
 		'VISA ⠀•••• 1234',
 		312.44
@@ -89,12 +106,25 @@ export default function Transactions() {
 
 	return (
 		<React.Fragment className='transaction'>
-			<h1>Recent Transactions:</h1>
+			<div className={classes.topcontent}>
+				<h1 className={classes.text}>Recent Transactions:</h1>
+				<div className={classes.root}>
+					<Button variant='contained'>
+						<AddIcon />
+						Add Transactions
+					</Button>
+					<Button variant='contained' color='primary'>
+						<AddIcon />
+						Add Income
+					</Button>
+				</div>
+			</div>
+
 			{rows.map(row => (
 				<Card className={classes.card} key={row.id}>
 					<div className={classes.details}>
 						<CardContent className={classes.content}>
-							<Typography component='h5' variant='h5'>
+							<Typography component='p' variant='p'>
 								{row.description}
 							</Typography>
 							<Typography variant='subtitle1' color='textSecondary'>

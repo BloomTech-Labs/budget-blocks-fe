@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { createProfile } from "../redux/actions";
+import { createProfile } from "../redux/actions/ProfileActions";
 import logo from "../media/image/logo.jpg";
 import budgetImg from "../media/image/budget_blocks.png";
 import Typography from "@material-ui/core/Typography";

@@ -7,7 +7,7 @@ import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
 import Button from "@material-ui/core/Button";
 import PlaidLink from 'react-plaid-link';
 import { connect } from "react-redux";
-import { sendLinkToken } from "../redux/actions";
+import { sendLinkToken } from "../redux/actions/PlaidActions";
 
 const LinkWarning = (props)=>{
 

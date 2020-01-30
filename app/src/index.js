@@ -6,13 +6,13 @@ import { applyMiddleware, createStore, combineReducers } from "redux";
 import thunk from "redux-thunk";
 import logger from "redux-logger";
 import { Provider } from "react-redux";
-import { loginReducer } from "./redux/reducers/LoginReducer";
-import { plaidReducer } from "./redux/reducers/PlaidReducer";
-import { registerReducer } from "./redux/reducers/RegisterReducer";
-import { profileReducer } from "./redux/reducers/ProfileReducer";
+import { reducer as loginReducer } from "./redux/reducers/LoginReducer";
+import { reducer as plaidReducer } from "./redux/reducers/PlaidReducer";
+import { reducer as registerReducer } from "./redux/reducers/RegisterReducer";
+import { reducer as profileReducer } from "./redux/reducers/ProfileReducer";
 import { BrowserRouter as Router } from "react-router-dom";
 
-const store = createStore(combineReducers(loginReducer,plaidReducer,registerReducer,profileReducer), applyMiddleware(thunk, logger));
+const store = createStore(combineReducers({loginReducer,plaidReducer,registerReducer,profileReducer}), applyMiddleware(thunk, logger));
 
 ReactDOM.render(
   <Provider store={store}>

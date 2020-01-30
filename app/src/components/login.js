@@ -183,7 +183,6 @@ const Login = (props)=>{
 }
 
 function mapStateToProps(state){
-    console.log(state);
     return {
         error:state.error
     }

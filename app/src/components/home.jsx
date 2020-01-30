@@ -17,13 +17,15 @@ const Home = props => {
         
         <div className="buttons">
           <Link to="/register" className="links">
-          <Button variant="outlined" className="signup">
-            Sign Up
-          </Button>
+            <Button variant="outlined" className="signup">
+              Sign Up
+            </Button>
           </Link>
-          <Button variant="outlined" className="signin">
-            Sign In
-          </Button>
+          <Link to="/login" className="links">
+            <Button variant="outlined" className="signin">
+              Sign In
+            </Button>
+          </Link>
          
         </div>
       </div>

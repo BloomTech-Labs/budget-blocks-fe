@@ -8,7 +8,7 @@ import axios from "axios"
 import immutable from "immutable"
   function DashboardBlocks (){
     let [categories,setCategories] = useState([])
-    const [click,setClick] = useState(false)
+    const [click,setClick] = useState(true)
     const [filter,setFilter] = useState([])
     const[results,setResults] = useState([])
 

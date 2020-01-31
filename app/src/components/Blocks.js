@@ -5,7 +5,6 @@ import {Row,Col} from 'react-bootstrap'
 import { Progress,Container,Table } from "reactstrap";
 import "./table.css"
 import axios from "axios"
-import immutable from "immutable"
   function DashboardBlocks (){
     let [categories,setCategories] = useState([])
     const [click,setClick] = useState(true)

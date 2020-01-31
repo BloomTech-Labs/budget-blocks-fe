@@ -7,7 +7,10 @@ import { Progress,Container,Table } from "reactstrap";
 import './table.css';
 import LinkedComponent from "./Balance/LinkedComponent";
 import UnlinkedComponent from "./Balance/UnlinkedComponent";
+import axios from "axios"
+import Blocks from "./Blocks"
 function Dashboard(props) {
+ 
  const Div = styled.div`
 background-color:lightgrey;
 padding:25px;
@@ -51,52 +54,9 @@ function AddBalance(){
       <Col sm={4}>KS</Col>
       </Row>   
   </Div>
-  <Table responsive>
-  <thead>
-    <tr>
-      <th></th>
-      <th>Block</th>
-      <th>Current status</th>
-      <th></th>
-      <th>Total Expenses</th>
-      <th>Limit</th>
-      <th>Action</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td></td>
-      <td>Title</td>
-      <td>
-          <Progress value={90} />
-     </td>
-      <td>&#9989;</td>
-      <td>$0.00</td>
-      <td>$500.00</td>
-      <td>Edit</td>
-    </tr>
-    <tr>
-      <td></td>
-      <td>Title</td>
-      <td>
-          <Progress value={90} /></td>
-      <td>&#9989;</td>
-      <td>$0.00</td>
-      <td>$500.00</td>
-      <td>Edit</td>
-    </tr>
-    <tr>
-      <td></td>
-      <td>Title</td>
-      <td>
-          <Progress value={90} /></td>
-      <td>&#9989;</td>
-      <td>$0.00</td>
-      <td>$500.00</td>
-      <td>Edit</td>
-    </tr>
-  </tbody>
-</Table>
+   
+      <Blocks />
+   
   </div></Col>
     <Col sm={3}> <div>
       <Div>

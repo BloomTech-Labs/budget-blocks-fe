@@ -28,7 +28,7 @@ export const reducer = (state = initialState, action) => {
                 isFetching: false,
                 error: null
             }
-        case LOGIN_USER_SUCCESS:
+        case SEND_LINK_TOKEN_SUCCESS:
             return {
                 ...state,
                 user: {

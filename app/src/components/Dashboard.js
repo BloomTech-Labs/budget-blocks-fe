@@ -3,9 +3,11 @@ import styled from 'styled-components'
 import Bootstrap from 'bootstrap/dist/css/bootstrap.min.css';
 import {Row,Col} from 'react-bootstrap'
 import { Progress,Container,Table } from "reactstrap";
-import "./table.css"
-import DashboardBlocks from "./DashboardBlocks"
+import './table.css';
+import axios from "axios"
+import Blocks from "./Blocks"
 function Dashboard(props) {
+ 
  const Div = styled.div`
 background-color:lightgrey;
 padding:25px;
@@ -31,7 +33,7 @@ color:white;
 margin-left:2rem;
 ` 
   return (
-   <div>
+   
    <Container>
   <Row >
     <Col sm={9}> <div>
@@ -41,7 +43,9 @@ margin-left:2rem;
       <Col sm={4}>KS</Col>
       </Row>   
   </Div>
-{/* <Dashboard /> */}
+   
+      <Blocks />
+   
   </div></Col>
     <Col sm={3}> <div>
       <Div>
@@ -123,8 +127,8 @@ margin-left:2rem;
     </Col>
   </Row>
 </Container> 
-</div>
+  
   );
 }
 
-export default Dashboard;
+export default Dashboard

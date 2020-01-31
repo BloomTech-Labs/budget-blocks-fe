@@ -7,7 +7,11 @@ import Transactions from '../src/components/transactions';
 import Saving from './components/saving';
 
 function App() {
-	return <div className='App'></div>;
+	return (
+		<div className='App'>
+			<Transactions />
+		</div>
+	);
 }
 
 export default App;

@@ -141,3 +141,7 @@ export default function Transactions() {
 		</React.Fragment>
 	);
 }
+
+// export const Tran = props => { }
+//const mapStateToProps = state =>{return{ }}
+//export default connect(mapStateToProps, {}(trans  ))

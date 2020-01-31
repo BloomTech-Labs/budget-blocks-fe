@@ -22,7 +22,7 @@ import immutable from "immutable"
     
     console.log(filter)
     const handleClick = () => {
-        setClick(!click
+        setClick(!click)
     }
     console.log(categories)
     

@@ -1,13 +1,19 @@
-<<<<<<< HEAD
 import React,{useState,useEffect} from "react"
 import Grid from '@material-ui/core/Grid'
 import Blocks from "./Blocks"
 import SavingsGoal from "./SavingsGoal"
 import Header from "./Header"
+import { connect } from "react-redux";
 import LinkedComponent from "./Balance/LinkedComponent";
 import UnlinkedComponent from "./Balance/UnlinkedComponent";
 function Dashboard(props) {
-
+  function AddBalance(){
+    if(props.LinkedAccount){
+      return(<LinkedComponent/>)
+    }else{
+      return(<UnlinkedComponent/>)
+    }
+  }
   
     return (
         <Grid container spacing={3}>
@@ -28,7 +34,7 @@ function Dashboard(props) {
              <Grid item sm={8} xs={12}>Total Budget</Grid>
          </Grid>
          <Grid container>
-             <Grid item sm={8} xs={12}>Balance</Grid>
+             <Grid item sm={8} xs={12}>{AddBalance()}</Grid>
          </Grid>
          <Grid container>
              <Grid item sm={8} xs={12}>Due </Grid>
@@ -41,7 +47,7 @@ function Dashboard(props) {
     )
 }
 
-export default Dashboard
+
 
 
 function mapStateToProps(state){

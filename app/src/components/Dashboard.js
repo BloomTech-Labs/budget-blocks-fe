@@ -1,10 +1,13 @@
+<<<<<<< HEAD
 import React,{useState,useEffect} from "react"
 import Grid from '@material-ui/core/Grid'
 import Blocks from "./Blocks"
 import SavingsGoal from "./SavingsGoal"
 import Header from "./Header"
-
+import LinkedComponent from "./Balance/LinkedComponent";
+import UnlinkedComponent from "./Balance/UnlinkedComponent";
 function Dashboard(props) {
+
   
     return (
         <Grid container spacing={3}>
@@ -37,4 +40,14 @@ function Dashboard(props) {
 </Grid>
     )
 }
+
 export default Dashboard
+
+
+function mapStateToProps(state){
+  return {
+      LinkedAccount: state.loginReducer.user.LinkedAccount
+  }
+}
+
+export default connect(mapStateToProps,{})(Dashboard)

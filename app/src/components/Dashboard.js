@@ -1,134 +1,40 @@
-import React,{useEffect,useState} from 'react';
-import styled from 'styled-components'
-import Bootstrap from 'bootstrap/dist/css/bootstrap.min.css';
-import {Row,Col} from 'react-bootstrap'
-import { Progress,Container,Table } from "reactstrap";
-import './table.css';
-import axios from "axios"
+import React,{useState,useEffect} from "react"
+import Grid from '@material-ui/core/Grid'
 import Blocks from "./Blocks"
-function Dashboard(props) {
- 
- const Div = styled.div`
-background-color:lightgrey;
-padding:25px;
-`
-const GreenButton = styled.button`
-width: 2.5rem; 
-height: 2.5rem;
-border-radius: 50%;
-background-color:lightgreen;
-border-color:lightgreen;
-font-size:1.2rem;
-color:white;
-margin-left:2rem;
-`
-const RedButton = styled.button`
-width: 2.5rem; 
-height: 2.5rem;
-border-radius: 50%;
-background-color:red;
-border-color:red;
-font-size:1.2rem;
-color:white;
-margin-left:2rem;
-` 
-  return (
-   
-   <Container>
-  <Row >
-    <Col sm={9}> <div>
-    <Div>
-      <Row>
-      <Col sm={8}> <h1>Hi, First Name </h1><p>Ksharper@studentmba.org</p> </Col>
-      <Col sm={4}>KS</Col>
-      </Row>   
-  </Div>
-   
-      <Blocks />
-   
-  </div></Col>
-    <Col sm={3}> <div>
-      <Div>
-    <Container>
-        <div className="center">
-          <h3>Total Budget</h3>
-          <h3>$200.00</h3>
-          <Progress value={90} />
-        </div>
-      </Container>
-  <div className="buttons">
- 
-    <div className="green-button">
-    <Row>
-      <Col sm={6}><b>+$1250.67</b><h5>Income</h5><GreenButton>+</GreenButton></Col><Col sm={6}><b>-$567.56</b><h5>Expenses</h5><RedButton>-</RedButton></Col>
-    </Row>
-    {/* <Row>
-      <Col sm={6}><h5>Income</h5></Col><Col sm={6}><h5>Expenses</h5></Col>
-    </Row> */}
-   
-   
-  </div>
- 
-      </div>
-      </Div>
-      <div className="subheading">
-      <Row>
-      <Col sm={7}><p>Connect With the Plaid Api</p></Col><Col sm={3}><p>Api</p></Col>
-    </Row>
-    </div>
-    <div>
-    <div className="subheading">
-    <Row>
-      <Col sm={9}>Upcoming Due Dates </Col>
-    </Row>
-    <Row>
-      <Col sm={7}><p>Rent</p></Col><Col sm={3}><p>-$760.00</p><p>03/01/2020</p></Col>
-    </Row>
-    </div>
-    </div>
-</div></Col>
-  </Row>
-  
-  <Row>
-    <Col sm={9}> 
-    <h2>Recent Transactions</h2>
-    <Div className="border">
-    <Row>
-      <Col sm={9}>Purchase Authorized on 01/01 Storage Comapany for User </Col>
-      
-    </Row>
-    <Row>
-      <Col sm={9}><p>01/01/2020</p></Col><Col sm={3}><p>-$50.00</p></Col>
-    </Row>
-    <Row>
-      <Col sm={9}><p>Category</p></Col><Col sm={3}><p>Utilities</p></Col>
-    </Row>
-    </Div>
-    <Div className="border">
-    <Row>
-      <Col sm={9}>Purchase Authorized on 01/01 Storage Comapany for User </Col>
-      
-    </Row>
-    <Row>
-      <Col sm={9}><p>01/01/2020</p></Col><Col sm={3}><p>-$50.00</p></Col>
-    </Row>
-    <Row>
-      <Col sm={9}><p>Category</p></Col><Col sm={3}><p>Utilities</p></Col>
-    </Row>
-    </Div>
-    </Col>
-    <Col sm={3}><div className="subheading">  <Row>
-      <Col sm={10}><p>Savings Goals</p></Col>
-    </Row>
-    <Row>
-      <Col sm={7}><p>Emergency Funds</p></Col><Col sm={3}><p>$2750.00</p><p>01/01/2020</p></Col>
-    </Row>
-    </div>
-    </Col>
-  </Row>
-</Container> 
-  
-  );
-}
+import SavingsGoal from "./SavingsGoal"
+import Header from "./Header"
 
+function Dashboard(props) {
+  
+    return (
+        <Grid container spacing={3}>
+     <Grid item sm={8} xs={12}> 
+         
+         <Grid container>
+             <Grid item xs={12} lg={12} sm={12}><Header/></Grid>
+         </Grid>
+         <Grid container>
+             <Grid item xs={12} sm={12}><Blocks /></Grid>  
+         </Grid>
+         <Grid container>
+             <Grid item xs={12} sm={12}>Recent Transactions</Grid> 
+         </Grid>
+     </Grid>
+     <Grid item sm={4} xs={12}>
+     <Grid container>
+             <Grid item sm={8} xs={12}>Total Budget</Grid>
+         </Grid>
+         <Grid container>
+             <Grid item sm={8} xs={12}>Balance</Grid>
+         </Grid>
+         <Grid container>
+             <Grid item sm={8} xs={12}>Due </Grid>
+         </Grid>
+         <Grid container>
+             <Grid item sm={8} xs={12}><SavingsGoal/></Grid>
+         </Grid>
+     </Grid>
+</Grid>
+    )
+}
 export default Dashboard

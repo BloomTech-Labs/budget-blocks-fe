@@ -19,7 +19,7 @@ function App() {
         <Route path="/link" component={LinkAccount}/>
         <Route path="/profile" component={Profile} />
         <Route path="/dashboard" component={Dashboard} />
-<Route path="/test" component={Test} />
+
       </Switch>
     </div>
   );

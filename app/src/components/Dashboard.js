@@ -6,6 +6,7 @@ import Header from "./Header"
 import { connect } from "react-redux";
 import LinkedComponent from "./Balance/LinkedComponent";
 import UnlinkedComponent from "./Balance/UnlinkedComponent";
+import Transactions from "./transactions"
 function Dashboard(props) {
   function AddBalance(){
     if(props.LinkedAccount){
@@ -26,7 +27,7 @@ function Dashboard(props) {
              <Grid item xs={12} sm={12}><Blocks /></Grid>  
          </Grid>
          <Grid container>
-             <Grid item xs={12} sm={12}>Recent Transactions</Grid> 
+             <Grid item xs={12} sm={12}><Transactions/></Grid> 
          </Grid>
      </Grid>
      <Grid item sm={4} xs={12}>

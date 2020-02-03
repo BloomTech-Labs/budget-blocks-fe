@@ -27,7 +27,7 @@ const useStyles = makeStyles(theme => ({
 		border: 'black',
 		flexDirection: 'row',
 		margin: '1%',
-		background: '#FAFAFA;',
+		background: 'lightgrey',
 		justifyContent: 'space-between'
 	},
 	details: {
@@ -107,7 +107,7 @@ export default function Transactions() {
 	return (
 		<React.Fragment className='transaction'>
 			<div className={classes.topcontent}>
-				<h1 className={classes.text}>Recent Transactions:</h1>
+				<b className={classes.text}>Recent Transactions:</b>
 				<div className={classes.root}>
 					<Button variant='contained'>
 						<AddIcon />

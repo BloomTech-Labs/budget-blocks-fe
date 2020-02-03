@@ -1,6 +1,5 @@
 import React from "react";
-import { withStyles,makeStyles 
-} from "@material-ui/core/styles";
+import { withStyles, makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import MuiDialogTitle from "@material-ui/core/DialogTitle";
@@ -9,18 +8,20 @@ import MuiDialogActions from "@material-ui/core/DialogActions";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 import Typography from "@material-ui/core/Typography";
-import Slider from '@material-ui/core/Slider';
-import Tooltip from '@material-ui/core/Tooltip';
+import Slider from "@material-ui/core/Slider";
+import TextField from '@material-ui/core/TextField';
+import InputAdornment from '@material-ui/core/InputAdornment';
 
+import "../style/modalStyle.css";
 const useStyles = makeStyles(theme => ({
-    root: {
-      width: 300 + theme.spacing(3) * 2,
-    },
-    margin: {
-      height: theme.spacing(3),
-    },
-  }));
-  
+  root: {
+    width: 300 + theme.spacing(3) * 2
+  },
+  margin: {
+    height: theme.spacing(3)
+  }
+}));
+
 const styles = theme => ({
   root: {
     margin: 0,
@@ -76,54 +77,68 @@ export default function BudgetGoal() {
   };
   const PrettoSlider = withStyles({
     root: {
-      color: '#52af77',
-      height: 8,
+      color: "#91D5FF",
+      height: 8
     },
     thumb: {
       height: 24,
       width: 24,
-      backgroundColor: '#fff',
-      border: '2px solid currentColor',
+      backgroundColor: "#fff",
+      border: "2px solid currentColor",
       marginTop: -8,
       marginLeft: -12,
-      '&:focus,&:hover,&$active': {
-        boxShadow: 'inherit',
-      },
+      "&:focus,&:hover,&$active": {
+        boxShadow: "inherit"
+      }
     },
     active: {},
     valueLabel: {
-      left: 'calc(-50% + 4px)',
+      left: "calc(-50% + 4px)"
     },
     track: {
       height: 8,
-      borderRadius: 4,
+      borderRadius: 4
     },
     rail: {
       height: 8,
-      borderRadius: 4,
-    },
+      borderRadius: 4
+    }
   })(Slider);
- function changeSlider(event, value) {
+  function changeSlider(event, value) {
     console.log(value);
   }
+
+  
   return (
     <div>
       <Button variant="outlined" color="primary" onClick={handleClickOpen}>
         Open dialog
       </Button>
-      <Dialog className="dialogModal"
+      <Dialog
+        className="dialogModal"
         onClose={handleClose}
         aria-labelledby="customized-dialog-title"
         open={open}
       >
         <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-          Total goal
+          <Typography className="customized-dialog-title">
+            Total goal
+          </Typography>
         </DialogTitle>
         <DialogContent>
-          <Typography variant="h5">What is your spending goal?</Typography>
-          <Typography variant="h4">$0.00</Typography>
-          <div className="divider">Divider here</div>
-          <select name="budgetTime">
+          <Typography className="what" variant="h5">
+            What is your spending goal?
+          </Typography>
+         <Typography variant="h4" className="goal">
+             $0.00
+         </Typography>
+          {/* <TextField className="goal" placeholder="0.00" type="number" InputProps={{
+            startAdornment: <InputAdornment position="start">$</InputAdornment>,
+          }} /> */}
+
+        
+          <div className="divider"></div>
+          <select className="plan" name="budgetTime">
             <option value="1" selected="selected">
               Daily
             </option>
@@ -134,22 +149,39 @@ export default function BudgetGoal() {
           <Typography className="valueEdit">
             This value can be edited later
           </Typography>
-          <Typography gutterBottom>
+          <Typography className="suggest">
             It is suggested that your monthly expenses do not exceed 80% of your
             earnings, but feel free to set your own limits.
           </Typography>
-          <Typography gutterBottom>40%</Typography>
-          <div className ="slider">
-      <PrettoSlider valueLabelDisplay="off" aria-label="pretto slider" defaultValue={0}   onChange={(event, value) => changeSlider(event, value)}/>
-<Typography className="spendind">$0.00</Typography>
-<Typography className="budgeted">$0.00</Typography>
+          <Typography className="percent">40%</Typography>
+          <div className="slider">
+            <PrettoSlider
+              valueLabelDisplay="off"
+              aria-label="pretto slider"
+              defaultValue={0}
+              onChange={(event, value) => changeSlider(event, value)}
+            />
+            <div className="figures">
+              <Typography className="spending">$0.00</Typography>
+              <Typography className="budgeted">$0.00</Typography>
+            </div>
           </div>
         </DialogContent>
-        <DialogActions>
-        <Button className="backBtn" onClick={handleClose} variant="outlined" color="primary">
+        <DialogActions className="figures" >
+          <Button
+            className="backBtn"
+            onClick={handleClose}
+            variant="outlined"
+            color="primary"
+          >
             BACK
           </Button>
-          <Button  className=contBtn onClick={handleClose} variant="outlined"color="primary">
+          <Button
+            className="contBtn"
+            onClick={handleClose}
+            variant="outlined"
+            color="primary"
+          >
             CONTINUE
           </Button>
         </DialogActions>

@@ -34,4 +34,5 @@ const initialState = {
     error:null,
     isFetching:false,
     transactions:[],
+    Balance:0.00
 };

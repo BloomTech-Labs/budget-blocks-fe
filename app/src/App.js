@@ -8,8 +8,12 @@ import Profile from "./components/CreateProfile"
 import { Switch, Route } from "react-router-dom";
 import LinkAccount from "./components/LinkAccount";
 import Dashboard from "./components/Dashboard"
+<<<<<<< HEAD
 import BudgetGoal from "./components/BudgetGoal";
 
+=======
+import Test from "./components/test"
+>>>>>>> 4920a1d246e62e17b463abc29e3cb2d1d2bf10e0
 function App() {
   return (
     <div className="App">

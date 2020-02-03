@@ -21,7 +21,7 @@ export function loginUser(user,history){
             .then(response=>{
                 sessionStorage.setItem("token",response.data.token);
                 dispatch(loginUserSuccess(response.data))
-                history.push("/link");
+                history.push("/dashboard");
             })
             .catch(error=>{
                 dispatch(loginUserFailure(error)); 

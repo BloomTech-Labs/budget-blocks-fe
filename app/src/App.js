@@ -9,7 +9,8 @@ import { Switch, Route } from "react-router-dom";
 import LinkAccount from "./components/LinkAccount";
 import Dashboard from "./components/Dashboard"
 import BudgetGoal from "./components/BudgetGoal";
-
+import Test from "./components/test"
+ development
 function App() {
   return (
     <div className="App">

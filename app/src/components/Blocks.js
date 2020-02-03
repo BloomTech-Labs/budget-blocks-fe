@@ -14,7 +14,7 @@ import { Progress,Container} from "reactstrap";
 
 const useStyles = makeStyles({
   table: {
-    minWidth: 650,
+    minWidth: 649,
   },
 });
 

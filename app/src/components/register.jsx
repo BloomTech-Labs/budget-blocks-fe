@@ -15,7 +15,7 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import IconButton from "@material-ui/core/IconButton";
 import { Link } from "react-router-dom";
 
-const Register = props => {
+export const Register = props => {
   const [user, setUser] = useState({ email: "", password: "" });
   const [confirmPass, setConfirmPass] = useState({ confirmPassword: "" });
   const [mismatch, setMismatch] = useState({ errorText: "", change: false });

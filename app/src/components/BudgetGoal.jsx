@@ -9,8 +9,7 @@ import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 import Typography from "@material-ui/core/Typography";
 import Slider from "@material-ui/core/Slider";
-import TextField from '@material-ui/core/TextField';
-import InputAdornment from '@material-ui/core/InputAdornment';
+
 
 import "../style/modalStyle.css";
 const useStyles = makeStyles(theme => ({
@@ -119,13 +118,15 @@ export default function BudgetGoal() {
         onClose={handleClose}
         aria-labelledby="customized-dialog-title"
         open={open}
+        fullWidth={true}
+        maxWidth="md"
       >
-        <DialogTitle id="customized-dialog-title" onClose={handleClose}>
+        <DialogTitle className="customized-dialog-title" onClose={handleClose}>
           <Typography className="customized-dialog-title">
             Total goal
           </Typography>
         </DialogTitle>
-        <DialogContent>
+        <DialogContent className="content">
           <Typography className="what" variant="h5">
             What is your spending goal?
           </Typography>
@@ -139,7 +140,7 @@ export default function BudgetGoal() {
         
           <div className="divider"></div>
           <select className="plan" name="budgetTime">
-            <option value="1" selected="selected">
+            <option value="1" >
               Daily
             </option>
             <option value="2">Monthly</option>
@@ -167,7 +168,7 @@ export default function BudgetGoal() {
             </div>
           </div>
         </DialogContent>
-        <DialogActions className="figures" >
+        <DialogActions className="buttons" >
           <Button
             className="backBtn"
             onClick={handleClose}

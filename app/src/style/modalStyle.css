@@ -8,6 +8,8 @@
   font-size: 30px !important;
   line-height: 38px !important;
   text-align: left !important;
+  margin-top: 25px !important;
+  margin-left: 25px !important;
 }
 .what {
   font-family: Exo !important;
@@ -78,6 +80,14 @@
 .figures {
   display: flex !important;
   justify-content: space-between !important;
+  width: 80% !important;
+  margin: 0px auto !important;
+}
+.buttons {
+  display: flex !important;
+  justify-content: space-between !important;
+  width: 80% !important;
+  margin: 0px auto 40px !important;
 }
 
 .backBtn {
@@ -90,18 +100,66 @@
   font-size: 16px !important;
   line-height: 24px !important;
   color: #546e7a !important;
-  width: 30% !important; 
+  width: 20% !important;
 }
-.contBtn{
-    border: 1px solid #546e7a !important;
-    box-sizing: border-box !important;
-    border-radius: 4px !important;
-    background: #546E7A !important;
+.contBtn {
+  border: 1px solid #546e7a !important;
+  box-sizing: border-box !important;
+  border-radius: 4px !important;
+  background: #546e7a !important;
+  font-family: Exo !important;
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-size: 16px !important;
+  line-height: 24px !important;
+  color: #ffffff !important;
+  width: 20% !important;
+}
+
+.cat-select {
+  height: 300px;
+  width: 100%;
+  padding: 20px;
+  overflow-y: scroll;
+}
+.radios {
+  text-align: left;
+  width: 100% !important;
+}
+.select {
+  display: flex;
+  flex-direction: row;
+  text-align: left;
+  padding: 10px;
+  background: #fafafa;
+  width: 100% !important;
+}
+.content {
+  width: 75% !important;
+  margin: 0px auto !important;
+}
+@media only screen and (max-width: 400px) {
+  .plan {
+    width: 150px;
+  }
+  .contBtn {
+    
+    font-size: 10px !important;
+    line-height: 20px !important;
+   
+  }
+  .backBtn {
+    font-size: 10px !important;
+    line-height: 20px !important;
+  }
+  .customized-dialog-title {
     font-family: Exo !important;
     font-style: normal !important;
-    font-weight: normal !important;
-    font-size: 16px !important;
-    line-height: 24px !important;
-    color: #ffffff !important;
-    width: 30% !important; 
+    font-weight: 600 !important;
+    font-size: 30px !important;
+    line-height: 38px !important;
+    text-align: left !important;
+    margin-top: 0px !important;
+    margin-left: 0px !important;
+  }
 }

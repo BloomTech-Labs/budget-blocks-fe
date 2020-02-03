@@ -1,7 +1,12 @@
 import React from "react";
 import { Login } from "../login";
-import { render, fireEvent } from "@testing-library/react";
+import { render, fireEvent, getByPlaceholderText, getAllByPlaceholderText } from "@testing-library/react";
 import {BrowserRouter as Router } from "react-router-dom"
+import { configure } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+import { shallow, mount, render as enzymeRender } from 'enzyme';
+
+configure({ adapter: new Adapter() });
 
 test('Login renders correctly',()=>{
     expect(render(
@@ -12,9 +17,10 @@ test('Login renders correctly',()=>{
 });
 
 test('When fields are empty and press sign in, sign in button disables',()=>{
+    const callAPI = jest.fn();
     const { getAllByText, getByText } = render(
         <Router>
-            <Login/>
+            <Login loginUser={callAPI} />
         </Router>
     );
     const signInButton = getAllByText(/Sign In/i)[1];
@@ -24,5 +30,28 @@ test('When fields are empty and press sign in, sign in button disables',()=>{
     expect(passHelpTxt.innerHTML).toBe("password is required");
     const emailHelpTxt = getByText(/email is required/i);
     expect(emailHelpTxt.innerHTML).toBe("email is required");
+    expect(callAPI).not.toHaveBeenCalled();
     
+});
+
+test('Changing the text inputs changes the values on screen',()=>{
+    const callAPI = jest.fn();
+    const wrapper = mount(
+    <Router>
+        <Login loginUser={callAPI} />
+    </Router>
+    );
+
+
+    let passInput = wrapper.find("input").get(1);
+    let emailInput = wrapper.find("input").get(0);
+
+    wrapper.find("input").last().simulate('change',{ target: { value: 'test',name:"password" } });
+    wrapper.find("input").first().simulate('change',{ target: { value: 'sendhelp@gmail.com',name:"email" } });
+
+    passInput = wrapper.find("input").get(1);
+    emailInput = wrapper.find("input").get(0);
+
+    expect(passInput.props.value).toBe("test");
+    expect(emailInput.props.value).toBe("sendhelp@gmail.com");
 });

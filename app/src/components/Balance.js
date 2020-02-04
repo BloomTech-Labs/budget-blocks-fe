@@ -1,6 +1,6 @@
 import React from "react";
-import LinkAccount from "../LinkAccount";
-import plaidImg from "../../media/image/PlaidIcon.png";
+import LinkAccount from "./LinkAccount";
+import plaidImg from "../media/image/PlaidIcon.png";
 import { connect } from "react-redux";
 
 const Balance = (props)=>{

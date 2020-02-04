@@ -45,19 +45,3 @@ test('Dashboard renders correctly',()=>{
         </Provider>
     )).toMatchSnapshot();
 });
-
-test("Dashboard renders the Unlinked Component when there is no bank account linked",()=>{
-    const wrapper = mount(
-        <Router>
-            <Dashboard />
-        </Router>,
-        {loginReducer:{LinkedAccount:false}}
-    
-    );
-
-    let component = wrapper.find("div").at(42);
-    console.log(wrapper.props());
-    expect(component).toBe("NoBalance")
-
-
-});

@@ -8,8 +8,9 @@ import Profile from "./components/CreateProfile"
 import { Switch, Route } from "react-router-dom";
 import LinkAccount from "./components/LinkAccount";
 import Dashboard from "./components/Dashboard"
-import Test from "./components/test"
+import BudgetGoal from "./components/BudgetGoal";
 function App() {
+  
   return (
     <div className="App">
       <Switch>
@@ -19,6 +20,7 @@ function App() {
         <Route path="/link" component={LinkAccount}/>
         <Route path="/profile" component={Profile} />
         <Route path="/dashboard" component={Dashboard} />
+        <Route path="/budgetModal" component={BudgetGoal}/>
 
       </Switch>
     </div>

@@ -14,7 +14,7 @@ import logo from "../media/image/logo.jpg";
 import budgetImg from "../media/image/budget_blocks.png";
 import { Link } from "react-router-dom";
 
-const Login = (props)=>{
+export const Login = (props)=>{
     const [user,setUser] = useState({ email: "" , password: "" });
 
     const handleChange= (e) =>{
@@ -105,7 +105,7 @@ const Login = (props)=>{
         }else{
             setValues({...values, button:{disabled:true}})
         }
-    },[user])
+    },[user]);
 
 
     return(

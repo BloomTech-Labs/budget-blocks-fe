@@ -8,6 +8,9 @@
   margin-top: 1rem;
   padding:10px;
 }
+.gray{
+    width:100%;
+    background-color: lightgray;}
 
 .columnsContainer, footer, header { position: relative; margin: .5em; }
 

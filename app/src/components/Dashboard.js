@@ -4,21 +4,11 @@ import Blocks from "./Blocks"
 import SavingsGoal from "./SavingsGoal"
 import Header from "./Header"
 import { connect } from "react-redux";
-import LinkedComponent from "./Balance/LinkedComponent";
-import UnlinkedComponent from "./Balance/UnlinkedComponent";
+import Balance from "./Balance"
 import Transactions from "./transactions"
 
 
 export function Dashboard(props) {
-  
-    console.log(props.LinkedAccount);
-    function AddBalance(){
-    if(props.LinkedAccount===true){
-        return(<LinkedComponent/>)
-    }else{
-        return(<UnlinkedComponent/>)
-        }
-    }
     
     return (
     <Grid container spacing={3}>
@@ -39,7 +29,7 @@ export function Dashboard(props) {
                 <Grid item sm={8} xs={12}>Total Budget</Grid>
             </Grid>
             <Grid container>
-                <Grid item sm={8} xs={12}>{AddBalance()}</Grid>
+                <Grid item sm={8} xs={12}><Balance/></Grid>
             </Grid>
             <Grid container>
                 <Grid item sm={8} xs={12}>Due </Grid>

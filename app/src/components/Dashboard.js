@@ -11,6 +11,15 @@ import Transactions from "./transactions"
 
 function Dashboard(props) {
   
+
+    function AddBalance(){
+    if(props.LinkedAccount){
+        return(<LinkedComponent/>)
+    }else{
+        return(<UnlinkedComponent/>)
+        }
+    }
+    
     return (
         <Grid container spacing={3}>
      <Grid item sm={8} xs={12}> 

@@ -9,11 +9,11 @@ import UnlinkedComponent from "./Balance/UnlinkedComponent";
 import Transactions from "./transactions"
 
 
-function Dashboard(props) {
+export function Dashboard(props) {
   
-
+    console.log(props.LinkedAccount);
     function AddBalance(){
-    if(props.LinkedAccount){
+    if(props.LinkedAccount===true){
         return(<LinkedComponent/>)
     }else{
         return(<UnlinkedComponent/>)
@@ -21,34 +21,34 @@ function Dashboard(props) {
     }
     
     return (
-        <Grid container spacing={3}>
-     <Grid item sm={8} xs={12}> 
-         
-         <Grid container>
-             <Grid item xs={12} lg={12} sm={12}><Header/></Grid>
-         </Grid>
-         <Grid container>
-             <Grid item xs={12} sm={12}><Blocks /></Grid>  
-         </Grid>
-         <Grid container>
-             <Grid item xs={12} sm={12}><Transactions/></Grid> 
-         </Grid>
-     </Grid>
-     <Grid item sm={4} xs={12}>
-     <Grid container>
-             <Grid item sm={8} xs={12}>Total Budget</Grid>
-         </Grid>
-         <Grid container>
-             <Grid item sm={8} xs={12}>{AddBalance()}</Grid>
-         </Grid>
-         <Grid container>
-             <Grid item sm={8} xs={12}>Due </Grid>
-         </Grid>
-         <Grid container>
-             <Grid item sm={8} xs={12}><SavingsGoal/></Grid>
-         </Grid>
-     </Grid>
-</Grid>
+    <Grid container spacing={3}>
+        <Grid item sm={8} xs={12}> 
+            
+            <Grid container>
+                <Grid item xs={12} lg={12} sm={12}><Header/></Grid>
+            </Grid>
+            <Grid container>
+                <Grid item xs={12} sm={12}><Blocks /></Grid>  
+            </Grid>
+            <Grid container>
+                <Grid item xs={12} sm={12}><Transactions/></Grid> 
+            </Grid>
+        </Grid>
+        <Grid item sm={4} xs={12}>
+        <Grid container>
+                <Grid item sm={8} xs={12}>Total Budget</Grid>
+            </Grid>
+            <Grid container>
+                <Grid item sm={8} xs={12}>{AddBalance()}</Grid>
+            </Grid>
+            <Grid container>
+                <Grid item sm={8} xs={12}>Due </Grid>
+            </Grid>
+            <Grid container>
+                <Grid item sm={8} xs={12}><SavingsGoal/></Grid>
+            </Grid>
+        </Grid>
+    </Grid>
     )
 }
 

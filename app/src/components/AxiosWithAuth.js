@@ -3,7 +3,9 @@ import axios from "axios";
 export const axiosWithAuth = () =>{
     return axios.create({
         headers: {
-          Authorization: `Bearer ${sessionStorage.getItem("token")}`
+          Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+          [`Access-Control-Allow-Origin`]: '*',
+          [`Access-Control-Allow-Methods`]: 'GET,PUSH,POST,PATCH,DELETE,OPTIONS,PUT'
         }
       });
 }

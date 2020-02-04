@@ -74,6 +74,7 @@ Object {
                       </legend>
                     </fieldset>
                   </div>
+                  
                 </div>
                 <div
                   class="password"
@@ -330,6 +331,7 @@ Object {
                     </legend>
                   </fieldset>
                 </div>
+                
               </div>
               <div
                 class="password"

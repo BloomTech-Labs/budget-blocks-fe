@@ -1,28 +1,28 @@
 import axios from "axios";
 
-export const REGISTER_USER_LOADING = "REGISTER_USER_LOADING";
-export const REGISTER_USER_SUCCESS = "REGISTER_USER_SUCCESS";
-export const REGISTER_USER_FAILED = "REGISTER_USER_FAILED";
+export const BLOCKS_CATEGORY_LOADING = "BLOCKS_CATEGORY_LOADING";
+export const BLOCKS_CATEGORY_SUCCESS = "BLOCKS_CATEGORY_SUCCESS";
+export const BLOCKS_CATEGORY_FAILED = "BLOCKS_CATEGORY_FAILED";
 
-export const registerUserLoading = () => ({ type: REGISTER_USER_LOADING });
-export const registerUserSuccess = data => ({
-    type: REGISTER_USER_SUCCESS,
+export const blocksLoading = () => ({ type: BLOCKS_CATEGORY_LOADING });
+export const blocksSuccess = data => ({
+    type: BLOCKS_CATEGORY_SUCCESS,
     payload: data
 });
-export const registerUserFailure = error => ({
-    type: REGISTER_USER_FAILED,
+export const blocksFailure = error => ({
+    type: BLOCKS_CATEGORY_FAILED,
     payload: error
 });
 
-export function registerUser(data){
+export function blocksData(data){
     return function(dispatch) {
-        dispatch(registerUserLoading());
-        return axios.post('https://lambda-budget-blocks.herokuapp.com/api/auth/register',data)
-            .then(response=>{
-                dispatch(registerUserSuccess(response))
+        dispatch(blocksLoading());
+        return axios.get('https://rickandmortyapi.com/api/character')
+            .then(response => {
+                dispatch(blocksSuccess(response.data.results))
             })
             .catch(error=>{
-                dispatch(registerUserFailure(error)); 
+                dispatch(blocksFailure(error)); 
             })
     }
 }

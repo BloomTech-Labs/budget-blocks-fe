@@ -42,7 +42,7 @@ test('Form errors when passwords do not match',()=>{
     expect(callAPI).not.toHaveBeenCalled();
 });
 
-test('When fields are empty and press sign in, sign up button disables',()=>{
+test('When fields are empty and press sign up, sign up button disables',()=>{
     const callAPI = jest.fn();
     const { getAllByText, getByText } = render(
         <Router>

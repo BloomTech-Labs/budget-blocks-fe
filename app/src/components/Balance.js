@@ -3,7 +3,7 @@ import LinkAccount from "./LinkAccount";
 import plaidImg from "../media/image/PlaidIcon.png";
 import { connect } from "react-redux";
 
-const Balance = (props)=>{
+export const Balance = (props)=>{
     if(props.LinkedAccount ===true ){
         return(
             <div className="Balance">

@@ -8,9 +8,23 @@ import { shallow, mount, render as enzymeRender } from 'enzyme';
 
 configure({ adapter: new Adapter() });
 
-test('Register renders correctly',()=>{
+test('Balance renders correctly',()=>{
     const wrapper = shallow(<Balance LinkedAccount={false} balance={0.00}/>)
         
     expect(wrapper).toMatchSnapshot();
+});
+
+test('Balance renders Link account component when Linked Account is false',()=>{
+    const wrapper = shallow(<Balance LinkedAccount={false} balance={0.00}/>)
+        
+    const component = wrapper.find("div").at(0);
+    expect(component.props().className).toBe("NoBalance");
+});
+
+test('Balance renders Balance when Linked Account is true',()=>{
+    const wrapper = shallow(<Balance LinkedAccount={true} balance={10.00}/>)
+        
+    const component = wrapper.find("div").at(0);
+    expect(component.props().className).toBe("Balance");
 });
 

@@ -18,10 +18,11 @@ const LinkAccount = (props)=>{
                 <PlaidLink
                     clientName="Budget Blocks"
                     env="sandbox"
-                    product={["auth", "transactions"]}
+                    product={["auth","transactions","identity",]}
                     publicKey={process.env.REACT_APP_PUBLIC_KEY}
                     onExit={handleOnExit}
                     onSuccess={handleOnSuccess}
+                    webhook="https://lambda-budget-blocks.herokuapp.com/plaid/webhook"
                     className="plaidButton">
                     Connect Bank Account
                 </PlaidLink> 

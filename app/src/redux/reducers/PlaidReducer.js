@@ -21,7 +21,6 @@ export const reducer = (state = initialState, action) => {
         case SEND_LINK_TOKEN_SUCCESS:
             return {
                 ...state,
-                transactions: action.payload.TransactionsInserted,
                 isFetching: false,
                 error: null
             }

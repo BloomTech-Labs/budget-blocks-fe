@@ -17,7 +17,7 @@ export const blocksFailure = error => ({
 export function blocksData(data){
     return function(dispatch) {
         dispatch(blocksLoading());
-        return axios.get('https://rickandmortyapi.com/api/character')
+        return axios.get('https://lambda-budget-blocks.herokuapp.com/plaid/transactions/1')
             .then(response => {
                 dispatch(blocksSuccess(response.data.results))
             })

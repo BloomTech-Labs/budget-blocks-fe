@@ -13,7 +13,8 @@ import {Row,Col} from 'react-bootstrap'
 import { Progress,Container} from "reactstrap";
 import { blocksData } from "../redux/actions/userBlocks";
 import { connect } from "react-redux";
-import AddBlockModal from "."
+import AddBlockModal from "./Modals/addBlockModal"
+import PresetModal from "./PresetModal"
 
 const useStyles = makeStyles({
   table: {
@@ -53,7 +54,7 @@ const Blocks = props => {
               <TableCell >&#9989;</TableCell>
               <TableCell >${i.total}</TableCell>
               <TableCell >${i.budget}</TableCell>
-              <TableCell ><AddBlockModal /></TableCell>
+              <TableCell ><PresetModal /></TableCell>
             </TableRow>
           ))}
         </TableBody>

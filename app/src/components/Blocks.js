@@ -11,6 +11,8 @@ import axios from "axios"
 import Bootstrap from 'bootstrap/dist/css/bootstrap.min.css';
 import {Row,Col} from 'react-bootstrap'
 import { Progress,Container} from "reactstrap";
+import { getTransactions } from "../redux/actions/PlaidActions";
+import { connect } from "react-redux";
 
 const useStyles = makeStyles({
   table: {
@@ -19,17 +21,13 @@ const useStyles = makeStyles({
 });
 
 
-export default function Blocks() {
+export function Blocks(props) {
   const classes = useStyles();
   let [categories,setCategories] = useState([])
   const [filter,setFilter] = useState([])
   useEffect(() => {
-          axios.get("https://lambda-budget-blocks.herokuapp.com/api/users/categories/1")
-          .then(i => {
-              setCategories(i.data)
-             setFilter(i.data.slice(Math.max(i.data.length - 5, 1)))
-          })
-        },[])
+          props.getTransactions(props.userID);
+        },[props.LinkedAccount])
   return (
     <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="simple table">
@@ -61,3 +59,13 @@ export default function Blocks() {
     </TableContainer>
   );
 }
+
+
+function mapStateToProps(state){
+  return {
+      userID:state.loginReducer.user.id,
+      LinkedAccount:state.loginReducer.user.LinkedAccount
+  }
+}
+
+export default connect(mapStateToProps,{ getTransactions })(Blocks)

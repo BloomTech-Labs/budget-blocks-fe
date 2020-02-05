@@ -7,15 +7,19 @@ import { connect } from "react-redux";
 import LinkedComponent from "./Balance/LinkedComponent";
 import UnlinkedComponent from "./Balance/UnlinkedComponent";
 import Transactions from "./transactions"
+
+
 function Dashboard(props) {
-  function AddBalance(){
-    if(props.LinkedAccount){
-      return(<LinkedComponent/>)
-    }else{
-      return(<UnlinkedComponent/>)
-    }
-  }
   
+
+    function AddBalance(){
+    if(props.LinkedAccount){
+        return(<LinkedComponent/>)
+    }else{
+        return(<UnlinkedComponent/>)
+        }
+    }
+    
     return (
         <Grid container spacing={3}>
      <Grid item sm={8} xs={12}> 

@@ -23,7 +23,6 @@ export function sendLinkToken(token,userID){
         dispatch(sendLinkLoading());
         return axiosWithAuth().post('https://cors-anywhere.herokuapp.com/https://lambda-budget-blocks.herokuapp.com/plaid/token_exchange',{publicToken:token, userid:userID})
             .then(response=>{
-                console.log(response);
                 dispatch(sendLinkSuccess(response.data))
                 dispatch(sendLoginSuccess());
             })

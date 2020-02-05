@@ -4,13 +4,25 @@ import thunk from 'redux-thunk'
 import logger from "redux-logger";
 var MockAdapter = require('axios-mock-adapter');
 import axios from "axios"
-
+import { reducer } from "../../redux/reducers/LoginReducer"
+ 
 const middlewares = [thunk, logger];
 const mockStore = configureMockStore(middlewares);
 var mock = new MockAdapter(axios);
 const history = {
     push: (string)=>{console.log(`Go to ${string}!`)}
 }
+
+const initialState = {
+    user:{
+        id:null,
+        token:"",
+        message:"",
+        LinkedAccount:false
+    },
+    error:null,
+    isFetching:false
+};
 
 
 
@@ -66,3 +78,75 @@ test('creates LOGIN_USER_SUCCESS when login is successful',()=>{
       expect(store.getActions()).toEqual(expectedActions)
     })
 })
+
+test('should return the initial state',()=>{
+    expect(reducer(undefined, {})).toEqual({
+        user:{
+            id:null,
+            token:"",
+            message:"",
+            LinkedAccount:false
+        },
+        error:null,
+        isFetching:false
+    })
+})
+
+test('should handle LOGIN_USER_SUCCESS',()=>{
+    const returnBody = {
+        "id": 1,
+        "token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJlbWFpbCI6Ikt5bGUiLCJpYXQiOjE1ODAyMzU0NzMsImV4cCI6MTU4MDI0OTg3M30.vOU1ZbHcLxOgCtD50Pu7JqHiudEc-0VYtDfbtXeqvlU",
+        "message": "Welcome Yeet!",
+        "LinkedAccount": false
+    }
+
+    expect(
+        reducer(initialState, {
+          type: actions.LOGIN_USER_SUCCESS,
+          payload: returnBody
+        })
+      ).toEqual({
+            user:returnBody,
+            error:null,
+            isFetching:false
+        })
+});
+
+test('should handle LOGIN_USER_LOADING',()=>{
+
+    expect(
+        reducer(initialState, {
+          type: actions.LOGIN_USER_LOADING
+        })
+      ).toEqual({
+        user:{
+            id:null,
+            token:"",
+            message:"",
+            LinkedAccount:false
+        },
+            error:null,
+            isFetching:true
+        })
+});
+
+test('should handle LOGIN_USER_FAILED',()=>{
+    const returnBody = {error:'there is an error'}
+    const user = {
+        id:null,
+        token:"",
+        message:"",
+        LinkedAccount:false  
+    }
+
+    expect(
+        reducer(initialState, {
+          type: actions.LOGIN_USER_FAILED,
+          payload: returnBody
+        })
+      ).toEqual({
+            user: user,
+            error:returnBody,
+            isFetching:false
+        })
+});

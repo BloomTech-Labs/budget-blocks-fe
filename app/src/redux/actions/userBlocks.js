@@ -19,7 +19,7 @@ export function blocksData(data){
         dispatch(blocksLoading());
         return axios.get('https://lambda-budget-blocks.herokuapp.com/plaid/transactions/1')
             .then(response => {
-                dispatch(blocksSuccess(response.data.results))
+                dispatch(blocksSuccess(response.data.categories))
             })
             .catch(error=>{
                 dispatch(blocksFailure(error)); 

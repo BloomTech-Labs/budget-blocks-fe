@@ -13,8 +13,7 @@ import {Row,Col} from 'react-bootstrap'
 import { Progress,Container} from "reactstrap";
 import { blocksData } from "../redux/actions/userBlocks";
 import { connect } from "react-redux";
-import AddBlockModal from "./Modals/addBlockModal"
-import PresetModal from "./PresetModal"
+
 
 const useStyles = makeStyles({
   table: {
@@ -24,14 +23,18 @@ const useStyles = makeStyles({
 
 
 const Blocks = props => {
+  console.log(props)
   const classes = useStyles();
   const [filter,setFilter] = useState([])
-  useEffect(() => {
-          props.blocksData()
-        },[])
+  for (let i = 0; i < 100; i++){
+    useEffect(() => {
+      
+        props.blocksData()
+      
+      },[props])
   return (
-  
-  
+    <div>
+   {typeof(props.blocks) != "undefined" ? <p> Please wait</p> :
     <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
@@ -45,27 +48,30 @@ const Blocks = props => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {props.blocks.map(i => (
+          {filter.map(i => (
             <TableRow key={i.id}>
-              <TableCell >{i.name}</TableCell>
+              <TableCell >{i.category}</TableCell>
               <TableCell>
-<Progress value={i.budget + i.total ? 0 : i.budget/i.total * 100 > 100 ? 100 : i.budget/i.total} />
+<Progress value={i.id} />
                </TableCell>
               <TableCell >&#9989;</TableCell>
-              <TableCell >${i.total}</TableCell>
-              <TableCell >${i.budget}</TableCell>
-              <TableCell ><PresetModal /></TableCell>
+              <TableCell >$0.00</TableCell>
+              <TableCell >$500.00</TableCell>
+              <TableCell >Edit</TableCell>
             </TableRow>
           ))}
         </TableBody>
       </Table>
     </TableContainer> 
-  
+   }
+    </div>
   );
 }
 function mapStateToProps(state){
+  console.log(state)
   return {
-      blocks:state.blockReducer.blocks
+      blocks:state.blockReducer.blocks,
+      random:"hi"
   }
 }
 const mapDispatchToProps = {

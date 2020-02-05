@@ -7,7 +7,7 @@ import { connect } from "react-redux";
 import LinkedComponent from "./Balance/LinkedComponent";
 import UnlinkedComponent from "./Balance/UnlinkedComponent";
 import Transactions from "./transactions"
-
+import TotalBudget from "./TotalBudget"
 
 function Dashboard(props) {
   
@@ -36,7 +36,7 @@ function Dashboard(props) {
      </Grid>
      <Grid item sm={4} xs={12}>
      <Grid container>
-             <Grid item sm={8} xs={12}>Total Budget</Grid>
+             <Grid item sm={8} xs={12}><TotalBudget /></Grid>
          </Grid>
          <Grid container>
              <Grid item sm={8} xs={12}>{AddBalance()}</Grid>

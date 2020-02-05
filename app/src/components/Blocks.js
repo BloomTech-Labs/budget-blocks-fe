@@ -13,7 +13,7 @@ import {Row,Col} from 'react-bootstrap'
 import { Progress,Container} from "reactstrap";
 import { blocksData } from "../redux/actions/userBlocks";
 import { connect } from "react-redux";
-
+import AddBlockModal from "."
 
 const useStyles = makeStyles({
   table: {
@@ -26,10 +26,8 @@ const Blocks = props => {
   const classes = useStyles();
   const [filter,setFilter] = useState([])
   useEffect(() => {
-    axios.post("https://lambda-budget-blocks.herokuapp.com/plaid/transactions")
-    .then(i => console.log(i))
           props.blocksData()
-        },[props])
+        },[])
   return (
   
   
@@ -48,14 +46,14 @@ const Blocks = props => {
         <TableBody>
           {props.blocks.map(i => (
             <TableRow key={i.id}>
-              <TableCell >{i.category}</TableCell>
+              <TableCell >{i.name}</TableCell>
               <TableCell>
-<Progress value={i.id} />
+<Progress value={i.budget + i.total ? 0 : i.budget/i.total * 100 > 100 ? 100 : i.budget/i.total} />
                </TableCell>
               <TableCell >&#9989;</TableCell>
-              <TableCell >$0.00</TableCell>
-              <TableCell >$500.00</TableCell>
-              <TableCell >Edit</TableCell>
+              <TableCell >${i.total}</TableCell>
+              <TableCell >${i.budget}</TableCell>
+              <TableCell ><AddBlockModal /></TableCell>
             </TableRow>
           ))}
         </TableBody>

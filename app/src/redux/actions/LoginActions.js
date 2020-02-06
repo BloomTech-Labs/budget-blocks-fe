@@ -24,7 +24,8 @@ export function loginUser(user,history){
                 history.push("/dashboard");
             })
             .catch(error=>{
-                dispatch(loginUserFailure(error)); 
+                dispatch(loginUserFailure( error)); 
+                console.log("This is the error i am testing", error)
             })
     }
 }

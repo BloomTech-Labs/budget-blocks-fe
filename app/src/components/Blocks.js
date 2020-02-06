@@ -11,9 +11,8 @@ import axios from "axios"
 import Bootstrap from 'bootstrap/dist/css/bootstrap.min.css';
 import {Row,Col} from 'react-bootstrap'
 import { Progress,Container} from "reactstrap";
-import { blocksData } from "../redux/actions/userBlocks";
+import { getTransactions } from "../redux/actions/PlaidActions";
 import { connect } from "react-redux";
-
 
 const useStyles = makeStyles({
   table: {
@@ -22,16 +21,12 @@ const useStyles = makeStyles({
 });
 
 
-const Blocks = props => {
-  console.log(props)
+export function Blocks(props) {
   const classes = useStyles();
   const [filter,setFilter] = useState([])
-  for (let i = 0; i < 100; i++){
-    useEffect(() => {
-      
-        props.blocksData()
-      
-      },[props])
+  useEffect(() => {
+          props.getTransactions(props.userID);
+        },[props.LinkedAccount])
   return (
     <div>
    {typeof(props.blocks) != "undefined" ? <p> Please wait</p> :
@@ -67,15 +62,13 @@ const Blocks = props => {
     </div>
   );
 }
+
+
 function mapStateToProps(state){
-  console.log(state)
   return {
-      blocks:state.blockReducer.blocks,
-      random:"hi"
+      userID:state.loginReducer.user.id,
+      LinkedAccount:state.loginReducer.user.LinkedAccount
   }
 }
-const mapDispatchToProps = {
-  blocksData
-   }
 
-export default connect(mapStateToProps,mapDispatchToProps)(Blocks)
+export default connect(mapStateToProps,{ getTransactions })(Blocks)

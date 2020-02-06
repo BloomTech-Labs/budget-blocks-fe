@@ -20,7 +20,6 @@ const useStyles = makeStyles({
 
 export function Blocks(props) {
   const classes = useStyles();
-  let [categories,setCategories] = useState([])
   const [filter,setFilter] = useState([])
   useEffect(() => {
           props.getTransactions(props.userID);

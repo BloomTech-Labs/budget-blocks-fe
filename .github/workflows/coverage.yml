@@ -17,6 +17,9 @@ jobs:
     name: coverage
     runs-on: ubuntu-latest
     steps:
+      - uses: ./app/*
+      - run: yarn install
+      - run: yarn 
       - uses: paambaati/codeclimate-action@v2.4.0
         with:
           coverageCommand: yarn coverage

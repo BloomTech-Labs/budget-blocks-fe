@@ -4,9 +4,13 @@ on:
   push:
     branches: 
     - development
+    paths:
+      - app/*
   pull_request:
     branches: 
     - development
+    paths:
+      - app/*
 
 jobs:
   coverage:

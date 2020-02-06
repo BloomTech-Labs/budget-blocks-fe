@@ -105,7 +105,7 @@ export default function Transactions() {
 	const theme = useTheme();
 
 	return (
-		<React.Fragment className='transaction'>
+		<React.Fragment >
 			<div className={classes.topcontent}>
 				<b className={classes.text}>Recent Transactions:</b>
 				<div className={classes.root}>
@@ -124,7 +124,7 @@ export default function Transactions() {
 				<Card className={classes.card} key={row.id}>
 					<div className={classes.details}>
 						<CardContent className={classes.content}>
-							<Typography component='p' variant='p'>
+							<Typography component='p' variant='body1'>
 								{row.description}
 							</Typography>
 							<Typography variant='subtitle1' color='textSecondary'>

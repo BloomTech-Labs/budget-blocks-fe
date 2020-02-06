@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { withStyles, makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
@@ -13,15 +13,15 @@ import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormControl from "@material-ui/core/FormControl";
 import icon from "../media/image/icon.png";
+import axios from "axios";
 
 import "../style/modalStyle.css";
 const useStyles = makeStyles(theme => ({
   root: {
     width: "100%",
     display: "flex",
-    justifyContent: "space-between",
-  },
-
+    justifyContent: "space-between"
+  }
 }));
 
 const styles = theme => ({
@@ -70,20 +70,36 @@ const DialogActions = withStyles(theme => ({
 
 export default function PresetModal() {
   const [open, setOpen] = useState(false);
+  const [values, setValues] = useState({
+    categories: "",
+    selectedCategory: ""
+  });
+
   const classes = useStyles();
+
+  useEffect(() => {
+    axios
+      .get("https://lambda-budget-blocks.herokuapp.com/api/users/categories/2")
+      .then(response => {
+        setValues({ ...values, categories: response.data });
+      })
+      .catch(error => {
+        console.log(error.response);
+      });
+  }, []);
 
   const handleClickOpen = () => {
     setOpen(true);
+
   };
   const handleClose = () => {
     setOpen(false);
   };
 
-  const [values, setValue] = useState("");
-
   const handleChange = event => {
-    setValue(event.target.value);
+    setValues({...values,selectedCategory:event.target.value});
   };
+  const cat = Object.entries(values.categories);
 
   return (
     <div>
@@ -98,7 +114,6 @@ export default function PresetModal() {
         fullWidth={true}
         maxWidth="md"
       >
-        
         <DialogTitle className="customized-dialog-title" onClose={handleClose}>
           <Typography className="customized-dialog-title">
             Choose spending blocks
@@ -115,138 +130,26 @@ export default function PresetModal() {
               <RadioGroup
                 aria-label="position"
                 name="position"
-                value={values}
+                value={values.selectedCategory}
                 onChange={handleChange}
                 row
               >
-                <div className="select">
-                  <div>
-                    <img src={icon} alt="icon"></img>
+                {cat.map(([key, value]) => (
+                  <div className="select" key={key}>
+                    <div>
+                      <img src={icon} alt="icon"></img>
+                    </div>
+                    <div className="radios">
+                      <FormControlLabel
+                        value={value.name}
+                        control={<Radio color="primary" />}
+                        label={value.name}
+                        labelPlacement="start"
+                        classes={classes}
+                      />
+                    </div>
                   </div>
-                  <div className="radios">
-                    <FormControlLabel
-                      value="start"
-                      control={<Radio color="primary" />}
-                      label="Start"
-                      labelPlacement="start"
-                      classes={classes}
-                    />
-                  </div>
-                </div>
-
-                <div className="select">
-                  <div>
-                    <img src={icon} alt="icon"></img>
-                  </div>
-                  <div className="radios">
-                    <FormControlLabel
-                      value="1"
-                      control={<Radio color="primary" />}
-                      label="Start"
-                      labelPlacement="start"
-                      classes={classes}
-                    />
-                  </div>
-                </div>
-                <div className="select">
-                  <div>
-                    <img src={icon} alt="icon"></img>
-                  </div>
-                  <div className="radios">
-                    <FormControlLabel
-                      value="2"
-                      control={<Radio color="primary" />}
-                      label="Start"
-                      labelPlacement="start"
-                      classes={classes}
-                    />
-                  </div>
-                </div>
-                <div className="select">
-                  <div>
-                    <img src={icon} alt="icon"></img>
-                  </div>
-                  <div className="radios">
-                    <FormControlLabel
-                      value="3"
-                      control={<Radio color="primary" />}
-                      label="Start"
-                      labelPlacement="start"
-                      classes={classes}
-                    />
-                  </div>
-                </div>
-                <div className="select">
-                  <div>
-                    <img src={icon} alt="icon"></img>
-                  </div>
-                  <div className="radios">
-                    <FormControlLabel
-                      value="4"
-                      control={<Radio color="primary" />}
-                      label="Start"
-                      labelPlacement="start"
-                      classes={classes}
-                    />
-                  </div>
-                </div>
-                <div className="select">
-                  <div>
-                    <img src={icon} alt="icon"></img>
-                  </div>
-                  <div className="radios">
-                    <FormControlLabel
-                      value="5"
-                      control={<Radio color="primary" />}
-                      label="Start"
-                      labelPlacement="start"
-                      classes={classes}
-                    />
-                  </div>
-                </div>
-                <div className="select">
-                  <div>
-                    <img src={icon} alt="icon"></img>
-                  </div>
-                  <div className="radios">
-                    <FormControlLabel
-                      value="6"
-                      control={<Radio color="primary" />}
-                      label="Start"
-                      labelPlacement="start"
-                      classes={classes}
-                    />
-                  </div>
-                </div>
-                <div className="select">
-                  <div>
-                    <img src={icon} alt="icon"></img>
-                  </div>
-                  <div className="radios">
-                    <FormControlLabel
-                      value="7"
-                      control={<Radio color="primary" />}
-                      label="Start"
-                      labelPlacement="start"
-                      classes={classes}
-                    />
-                  </div>
-                </div>
-                <div className="select">
-                  <div>
-                    <img src={icon} alt="icon"></img>
-                  </div>
-                  <div className="radios">
-                    <FormControlLabel
-                      value="8"
-                      control={<Radio color="primary" />}
-                      label="Start"
-                      labelPlacement="start"
-                      classes={classes}
-                    />
-                  </div>
-                </div>
-
+                ))}
               </RadioGroup>
             </FormControl>
           </div>

@@ -116,7 +116,7 @@ export const Register = props => {
         } 
       });
     } else {
-      props.registerUser(user);
+      props.registerUser(user, props.history);
       setUser({ email: "", password: "" });
       setConfirmPass({ confirmPassword: "" });
       setValues({...values, password:{

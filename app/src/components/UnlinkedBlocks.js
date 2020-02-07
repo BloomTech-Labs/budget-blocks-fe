@@ -11,7 +11,7 @@ import axios from "axios"
 import Bootstrap from 'bootstrap/dist/css/bootstrap.min.css';
 import {Row,Col} from 'react-bootstrap'
 import { Progress,Container} from "reactstrap";
-import { getTransactions } from "../redux/actions/PlaidActions";
+import { getTransactions } from '../redux/actions/PlaidActions';
 import { connect } from "react-redux";
 
 const useStyles = makeStyles({
@@ -21,15 +21,15 @@ const useStyles = makeStyles({
 });
 
 
-export function Blocks(props) {
+export function UnlinkedBlocks(props) {
   const classes = useStyles();
+  let [categories,setCategories] = useState([])
   const [filter,setFilter] = useState([])
   useEffect(() => {
           props.getTransactions(props.userID);
         },[props.LinkedAccount])
   return (
-    <div>
-   {typeof(props.blocks) != "undefined" ? <p> Please wait</p> :
+   
     <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
@@ -43,23 +43,21 @@ export function Blocks(props) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {filter.map(i => (
-            <TableRow key={i.id}>
-              <TableCell >{i.category}</TableCell>
+          
+            <TableRow >
+              <TableCell >title</TableCell>
               <TableCell>
-<Progress value={i.id} />
+<Progress value={70} />
                </TableCell>
               <TableCell >&#9989;</TableCell>
-              <TableCell >$0.00</TableCell>
-              <TableCell >$500.00</TableCell>
+              <TableCell >${0.00}</TableCell>
+              <TableCell >${0.00}</TableCell>
               <TableCell >Edit</TableCell>
             </TableRow>
-          ))}
+          
         </TableBody>
       </Table>
-    </TableContainer> 
-   }
-    </div>
+    </TableContainer>
   );
 }
 
@@ -67,8 +65,9 @@ export function Blocks(props) {
 function mapStateToProps(state){
   return {
       userID:state.loginReducer.user.id,
-      LinkedAccount:state.loginReducer.user.LinkedAccount
+      LinkedAccount:state.loginReducer.user.LinkedAccount,
+      blocks:state.plaidReducer.categories
   }
 }
 
-export default connect(mapStateToProps,{ getTransactions })(Blocks)
+export default connect(mapStateToProps,{ getTransactions })(UnlinkedBlocks)

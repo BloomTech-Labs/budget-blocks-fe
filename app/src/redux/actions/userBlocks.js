@@ -13,16 +13,3 @@ export const blocksFailure = error => ({
     type: BLOCKS_CATEGORY_FAILED,
     payload: error
 });
-
-export function blocksData(data){
-    return function(dispatch) {
-        dispatch(blocksLoading());
-        return axios.get('https://lambda-budget-blocks.herokuapp.com/plaid/transactions/1')
-            .then(response => {
-                dispatch(blocksSuccess(response.data.categories))
-            })
-            .catch(error=>{
-                dispatch(blocksFailure(error)); 
-            })
-    }
-}

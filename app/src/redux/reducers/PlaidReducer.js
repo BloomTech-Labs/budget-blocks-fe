@@ -45,7 +45,8 @@ export const reducer = (state = initialState, action) => {
                 isFetching: false,
                 error: null,
                 accounts:action.payload.accounts,
-                categories:action.payload.categories
+                categories:action.payload.categories,
+                
             }
         default:
             return state;
@@ -58,5 +59,7 @@ const initialState = {
     transactions:[],
     Balance:0.00,
     categories:[],
-    accounts:[]
+    accounts:[],
+    
+    
 };

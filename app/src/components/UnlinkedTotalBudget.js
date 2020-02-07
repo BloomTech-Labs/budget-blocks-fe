@@ -65,30 +65,22 @@ console.log(props.expenses.reduce(function (a,b){
          Total Budget
        </Grid>
         <Grid item xs={12}>
-           <h5>${props.budget.reduce(function (a,b){
-  return a + b 
-},0)}</h5>
+           <h5>$0.00</h5>
           </Grid>
         
           <Grid item xs={12}>
-           <Progress color="success" className="progress" value={props.expenses.reduce(function (a,b){
-  return a + b 
-},0) / props.budget.reduce(function (a,b){
-  return a + b 
-},0) * 100}/>
+           <Progress color="success" className="progress" value="0.00"/>
           </Grid>
           <Grid item xs={6}>
            <p>Income</p>
-           <p>+ $200.00</p>
+           <p>+ $00.00</p>
            <Icon className="icons green"icon={chevronCircleUp} />
            
            
           </Grid>
           <Grid item xs={6}>
            <p>Expenses</p>
-           <p>- ${Math.round(100*props.expenses.reduce(function (a,b){
-  return a + b 
-},0))/100}</p>
+           <p>- $0.00</p>
            <Icon className="icons red"icon={chevronCircleDown} />
           </Grid>
       </Grid> 

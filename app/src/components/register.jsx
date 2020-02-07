@@ -18,7 +18,6 @@ import { Link } from "react-router-dom";
 export const Register = props => {
   const [user, setUser] = useState({ email: "", password: "" });
   const [confirmPass, setConfirmPass] = useState({ confirmPassword: "" });
-  //const [mismatch, setMismatch] = useState({ errorText: "", change: false });
   const [values, setValues] = useState({
     showPassword: false,
     showConfirmPassword: false,
@@ -36,7 +35,6 @@ export const Register = props => {
   });
 
   const handleChange = e => {
-    //setMismatch({ errorText: "", change: false });
 
     setUser({ ...user, [e.target.name]: e.target.value });
     if(e.target.value.trim() === ""){
@@ -55,7 +53,6 @@ export const Register = props => {
   };
 
   const handleConfirm = e => {
-    //setMismatch({ errorText: "", change: false });
     setValues({...values, password:{
       error:false,
       helperText:``
@@ -113,7 +110,6 @@ export const Register = props => {
           }
       }); 
     }else if (confirmPass.confirmPassword !== user.password) {
-      //setMismatch({ errorText: "Password Mismatch", change: true });
       setValues({...values, password:{
           error:true,
           helperText:`Password Mismatch`
@@ -123,14 +119,11 @@ export const Register = props => {
       props.registerUser(user);
       setUser({ email: "", password: "" });
       setConfirmPass({ confirmPassword: "" });
-      //setMismatch({ errorText: "", change: false });
       setValues({...values, password:{
           error:false,
           helperText:``
         } 
       });
-      //TODO work on this part for proper redirection if account successfully created
-      // props.history.push("/login")
     }
   };
 

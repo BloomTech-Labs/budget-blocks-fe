@@ -1,0 +1,21 @@
+name: Code Climate Coverage Action
+
+on: 
+  push:
+    branches: 
+    - development
+  pull_request:
+    branches: 
+    - development
+
+jobs:
+  coverage:
+    name: coverage
+    runs-on: ubuntu-latest
+    steps:
+      - uses: paambaati/codeclimate-action@v2.4.0
+        with:
+          coverageCommand: yarn coverage
+          debug: false 
+    
+ 

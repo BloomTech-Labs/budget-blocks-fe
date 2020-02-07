@@ -11,6 +11,7 @@ import { connect } from "react-redux";
 import { Icon, InlineIcon } from '@iconify/react';
 import chevronCircleUp from '@iconify/icons-fa/chevron-circle-up';
 import chevronCircleDown from '@iconify/icons-fa/chevron-circle-down';
+import { getUserInfo } from "../redux/actions/ProfileActions";
 
 import "./table.css"
 
@@ -43,7 +44,7 @@ const TotalBudget = props => {
   const classes = useStyles();
   const bull = <span className={classes.bullet}>•</span>;
   const [categories,setCategories] = useState([])
-    
+   
 const P = styled.p`
   color:green;
   `
@@ -79,7 +80,7 @@ console.log(props.expenses.reduce(function (a,b){
           </Grid>
           <Grid item xs={6}>
            <p>Income</p>
-           <p>+ $200.00</p>
+           <p>+ ${props.user.income === null ? 0 : props.user.income}</p>
            <Icon className="icons green"icon={chevronCircleUp} />
            
            
@@ -100,6 +101,7 @@ function mapStateToProps(state){
   return {
       budget:state.plaidReducer.categories.map(i => Math.round(100*i.budget)/100),
       expenses:state.plaidReducer.categories.map(i =>Math.round(100*i.total)/100 ),
+      user:state.profileReducer.user
   }
 
 }

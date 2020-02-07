@@ -114,7 +114,7 @@ border:lightgrey;
     // Turn your strings into dates, and then subtract them
     // to get a value that is either negative, positive, or zero.
     return new Date(b.payment_date) - new Date(a.payment_date);
-  }))
+  })
   return(
     <Card className={classes.card} variant="outlined">
       <CardContent>

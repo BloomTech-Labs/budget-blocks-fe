@@ -1,7 +1,10 @@
 import {
     CREATE_PROFILE_LOADING,
     CREATE_PROFILE_SUCCESS,
-    CREATE_PROFILE_FAILED
+    CREATE_PROFILE_FAILED,
+    USER_INFO_LOADING,
+    USER_INFO_FAILED,
+    USER_INFO_SUCCESS
     } from "../actions/ProfileActions"
 
 export const reducer = (state = initialState, action) => {
@@ -25,6 +28,25 @@ export const reducer = (state = initialState, action) => {
                 isFetching: false,
                 error: null
             }
+            case USER_INFO_LOADING:
+                return {
+                    ...state,
+                    isFetching: true,
+                    error: null
+                };
+            case USER_INFO_FAILED:
+                return {
+                    ...state,
+                    isFetching: false,
+                    error: action.payload
+                }
+            case USER_INFO_SUCCESS:
+                return {
+                    ...state,
+                    user: action.payload,
+                    isFetching: false,
+                    error: null
+                }
         default:
             return state;
     }
@@ -33,5 +55,6 @@ export const reducer = (state = initialState, action) => {
 const initialState = {
     error:null,
     isFetching:false,
-    profile:{}
+    profile:{},
+    user:{}
 };

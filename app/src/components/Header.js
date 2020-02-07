@@ -6,6 +6,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid'
+import { connect } from "react-redux";
 
 const useStyles = makeStyles({
   card: {
@@ -24,7 +25,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function Header() {
+const Header = props =>{
   const classes = useStyles();
   const bull = <span className={classes.bullet}>•</span>;
 
@@ -35,7 +36,7 @@ export default function Header() {
       <Grid  container spacing={3}>
       <Grid  item xs={7}>
          <h3>Hi, First Name</h3>
-         <p>username@gmail.com</p>
+         <p>{props.user.email}</p>
        </Grid>
         <Grid item xs={5}>
            <p>FN</p>
@@ -48,3 +49,14 @@ export default function Header() {
     </div>
   );
 }
+function mapStateToProps(state){
+  return {
+      budget:state.plaidReducer.categories.map(i => Math.round(100*i.budget)/100),
+      expenses:state.plaidReducer.categories.map(i =>Math.round(100*i.total)/100 ),
+      user:state.profileReducer.user
+  }
+
+}
+
+
+export default connect(mapStateToProps)(Header)

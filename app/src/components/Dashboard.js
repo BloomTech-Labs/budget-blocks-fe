@@ -10,12 +10,14 @@ import LinkedTransactions from "./LinkedTransactions"
 import UnlinkedTransactions from "./UnlinkedTransactions"
 import LinkedTotalBudget from "./LinkedTotalBudget"
 import UnlinkedTotalBudget from "./UnlinkedTotalBudget"
-
+import { getUserInfo } from "../redux/actions/ProfileActions";
 import { getTransactions } from "../redux/actions/PlaidActions";
+
 
 const Dashboard = props => {
   useEffect(() => {
     props.getTransactions(props.userID);
+    props.getUserInfo(props.userID);
   },[props.LinkedAccount])
     console.log(props)
     return (
@@ -63,4 +65,4 @@ function mapStateToProps(state){
   }
 }
 
-export default connect(mapStateToProps,{ getTransactions })(Dashboard)
+export default connect(mapStateToProps,{ getTransactions,getUserInfo },)(Dashboard)

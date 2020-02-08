@@ -31,7 +31,7 @@
 
 ## Project Overview
 
-1️⃣ [Trello Board](🚫add link to trello board here)
+[Trello Board] https://trello.com/b/emmxnHtH/labs-20-budget-blocks
 
 1️⃣ [Product Canvas](🚫add link to product canvas here)
 

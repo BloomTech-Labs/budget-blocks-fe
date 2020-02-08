@@ -3,6 +3,8 @@ import axios from "axios"
 import Grid from '@material-ui/core/Grid';
 import styled from 'styled-components'
 
+import { getTransactions } from "../redux/actions/PlaidActions";
+import { connect } from "react-redux";
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
@@ -27,16 +29,14 @@ const useStyles = makeStyles({
   },
 });
 
-export default function OutlinedCard() {
+const SavingsGoal = props =>
+{
   const classes = useStyles();
   const bull = <span className={classes.bullet}>•</span>;
   const [categories,setCategories] = useState([])
-      useEffect(() => {
-          axios.get("https://lambda-budget-blocks.herokuapp.com/api/users/categories/1")
-          .then(i => {
-             setCategories(i.data.slice(Math.max(i.data.length - 3, 1)))
-          })
-        },[])
+  useEffect(() => {
+    props.getTransactions(props.userID);
+  },[props.LinkedAccount])
 const P = styled.p`
   color:green;
   `
@@ -45,7 +45,14 @@ background:lightgrey;
 border:lightgrey;
 
   `
-  return (
+  let transactions = []
+  console.log(props.transactions.map(i => i.transactions.map(i => transactions.push(i))))
+  transactions = transactions.sort(function(a,b){
+    // Turn your strings into dates, and then subtract them
+    // to get a value that is either negative, positive, or zero.
+    return new Date(b.payment_date) - new Date(a.payment_date);
+  })
+  return(
     <Card className={classes.card} variant="outlined">
       <CardContent>
       <Typography variant="subtitle1" gutterBottom>
@@ -81,3 +88,12 @@ border:lightgrey;
     </Card>
   );
 }
+function mapStateToProps(state){
+  return {
+      userID:state.loginReducer.user.id,
+      LinkedAccount:state.loginReducer.user.LinkedAccount,
+      transactions:state.plaidReducer.categories.filter(i => i.transactions.length > 0)
+  }
+}
+
+export default connect(mapStateToProps,{ getTransactions })(SavingsGoal)

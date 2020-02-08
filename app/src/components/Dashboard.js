@@ -1,16 +1,27 @@
 import React,{useState,useEffect} from "react"
 import Grid from '@material-ui/core/Grid'
-import Blocks from "./Blocks"
+import UnlinkedBlocks from "./UnlinkedBlocks"
+import LinkedBlocks from "./LinkedBlocks"
 import SavingsGoal from "./SavingsGoal"
 import Header from "./Header"
 import { connect } from "react-redux";
 import Balance from "./Balance"
-import Transactions from "./transactions"
+import LinkedTransactions from "./LinkedTransactions"
+import UnlinkedTransactions from "./UnlinkedTransactions"
+import LinkedTotalBudget from "./LinkedTotalBudget"
+import UnlinkedTotalBudget from "./UnlinkedTotalBudget"
+import { getUserInfo } from "../redux/actions/ProfileActions";
+import { getTransactions } from "../redux/actions/PlaidActions";
 
 
-export function Dashboard(props) {
-    
+const Dashboard = props => {
+  useEffect(() => {
+    props.getTransactions(props.userID);
+    props.getUserInfo(props.userID);
+  },[props.LinkedAccount])
+    console.log(props)
     return (
+     
     <Grid container spacing={3}>
         <Grid item sm={8} xs={12}> 
             
@@ -18,15 +29,15 @@ export function Dashboard(props) {
                 <Grid item xs={12} lg={12} sm={12}><Header/></Grid>
             </Grid>
             <Grid container>
-                <Grid item xs={12} sm={12}><Blocks /></Grid>  
+        <Grid item xs={12} sm={12}>{props.blocks.length > 0 ? <LinkedBlocks /> : <UnlinkedBlocks />}</Grid>  
             </Grid>
             <Grid container>
-                <Grid item xs={12} sm={12}><Transactions/></Grid> 
+                <Grid item xs={12} sm={12}>{props.blocks.length > 0 ? <LinkedTransactions /> : <UnlinkedTransactions />}</Grid> 
             </Grid>
         </Grid>
         <Grid item sm={4} xs={12}>
         <Grid container>
-                <Grid item sm={8} xs={12}>Total Budget</Grid>
+                <Grid item sm={8} xs={12}>{props.blocks.length > 0 ? <LinkedTotalBudget /> : <UnlinkedTotalBudget />}</Grid>
             </Grid>
             <Grid container>
                 <Grid item sm={8} xs={12}><Balance/></Grid>
@@ -39,6 +50,7 @@ export function Dashboard(props) {
             </Grid>
         </Grid>
     </Grid>
+   
     )
 }
 
@@ -47,8 +59,10 @@ export function Dashboard(props) {
 
 function mapStateToProps(state){
   return {
-      LinkedAccount: state.loginReducer.user.LinkedAccount
+      userID:state.loginReducer.user.id,
+      LinkedAccount:state.loginReducer.user.LinkedAccount,
+      blocks:state.plaidReducer.categories
   }
 }
 
-export default connect(mapStateToProps,{})(Dashboard)
+export default connect(mapStateToProps,{ getTransactions,getUserInfo },)(Dashboard)

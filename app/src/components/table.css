@@ -68,6 +68,19 @@
   text-align:center; 
   background-color: red;
 }
+.icons{
+  width:3rem;
+  height:3rem;
+}
+.green{color:green}
+.red{color:red
+
+}
+
+.progress{
+  
+height:2.5rem;
+}
 /* MEDIA QUERIES */
 @media screen and (min-width: 47.5em ) {
   .leftColumn { margin-right: 19.5em; }

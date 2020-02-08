@@ -127,22 +127,7 @@ const  Transactions = props =>  {
 				</div>
 			</div>
 
-			{transactions.map(i => (
-				<Card className={classes.card} key={i.id}>
-					<div className={classes.details}>
-						<CardContent className={classes.content}>
-							<Typography component='p' variant='body1'>
-								{i.name}
-							</Typography>
-							<Typography variant='subtitle1' color='textSecondary'>
-								{i.payment_date}
-							</Typography>
-							
-						</CardContent>
-					</div>
-					<div className={classes.controls}>${Math.round(10 * i.amount)/100}</div>
-				</Card>
-			))}
+			<p>Nothing yet</p>
 		</React.Fragment>
 	);
 }

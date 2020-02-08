@@ -13,6 +13,7 @@ jobs:
     name: running front end tests
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
       - run: npm install -g yarn
       - run: yarn install
       - run: yarn test
@@ -21,6 +22,7 @@ jobs:
     name: coverage
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
       - run: npm install -g yarn
       - run: yarn install
       - uses: paambaati/codeclimate-action@v2.4.0

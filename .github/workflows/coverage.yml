@@ -9,6 +9,13 @@ on:
     - development
 
 jobs:
+  test:
+    name: running front end tests
+    runs-on: ubuntu-latest
+    steps:
+      - run: npm install -g yarn
+      - run: yarn install
+      - run: yarn test
   coverage:
     name: coverage
     runs-on: ubuntu-latest

@@ -1,0 +1,37 @@
+name: Code Climate Coverage Action
+
+on: 
+  push:
+    branches: 
+    - development
+  pull_request:
+    branches: 
+    - development
+
+jobs:
+  test:
+    name: running front end tests
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@master
+        with:
+          ref: development
+      - run: npm install -g yarn
+      - run: yarn install
+      - run: yarn test
+  coverage:
+    needs: [ test ]
+    name: coverage
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@master
+        with:
+          ref: development
+      - run: npm install -g yarn
+      - run: yarn install
+      - uses: paambaati/codeclimate-action@v2.4.0
+        with:
+          coverageCommand: yarn coverage
+          debug: false 
+    
+ 

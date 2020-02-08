@@ -7,6 +7,8 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import AddIcon from '@material-ui/icons/Add';
 import Fab from '@material-ui/core/Fab';
+import { getTransactions } from "../redux/actions/PlaidActions";
+import { connect } from "react-redux";
 
 const useStyles = makeStyles({
 	card: {
@@ -30,10 +32,13 @@ const savingData = [
 	createData(1, 'Jan 21, 2020', 'Emergency Fund', 1000.0)
 ];
 
-export default function Saving() {
+const Saving = props => {
 	const classes = useStyles();
 	const bull = <span className={classes.bullet}>•</span>;
-
+	useEffect(() => {
+		props.getTransactions(props.userID);
+	  },[props.LinkedAccount])
+console.log(props.blocks.transactions)
 	return (
 		<Card className={classes.card} variant='outlined'>
 			<div className={classes.textContent}>
@@ -61,3 +66,12 @@ export default function Saving() {
 		</Card>
 	);
 }
+function mapStateToProps(state){
+	return {
+		userID:state.loginReducer.user.id,
+		LinkedAccount:state.loginReducer.user.LinkedAccount,
+		blocks:state.plaidReducer.categories
+	}
+  }
+  
+  export default connect(mapStateToProps,{ getTransactions })(Saving)

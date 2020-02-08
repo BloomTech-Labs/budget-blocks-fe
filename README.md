@@ -1,10 +1,8 @@
-🚫 Note: All lines that start with 🚫 are instructions and should be deleted before this is posted to your portfolio. This is intended to be a guideline, feel free to add your own flare to it.
-
 🚫 The numbers 1️⃣ through 5️⃣ next to each item represent the week that part of the docs needs to be comepleted by.  Make sure to delete the numbers by the end of Labs.
 
 🚫 Each student has a required minimum number of meaningful PRs each week per the rubric. Contributing to docs does NOT count as a PR to meet your weekly requirements.
 
-# 1️⃣ Title of project goes here
+# Budget Blocks
 
 1️⃣ You can find the deployed project at [🚫URL NAME GOES HERE](🚫copy and paste URL here).
 
@@ -33,9 +31,9 @@
 
 ## Project Overview
 
-1️⃣ [Trello Board](🚫add link to trello board here)
+[Trello Board] https://trello.com/b/emmxnHtH/labs-20-budget-blocks
 
-1️⃣ [Product Canvas](🚫add link to product canvas here)
+[Product Canvas] https://www.notion.so/Budget-Blocks-6251cc75b71c4988af56529409f6f07f
 
 1️⃣ [UX Design files](🚫add link to design files here) - 🚫 delete if not applicable
 

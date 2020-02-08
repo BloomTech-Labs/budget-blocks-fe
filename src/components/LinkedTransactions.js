@@ -5,7 +5,8 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
-
+import { getTransactions } from "../redux/actions/PlaidActions";
+import { connect } from "react-redux";
 // Generate Order Data
 function createData(id, date, description, category, paymentMethod, amount) {
 	return { id, date, description, category, paymentMethod, amount };
@@ -100,10 +101,16 @@ function preventDefault(event) {
 	event.preventDefault();
 }
 
-export default function Transactions() {
+const  Transactions = props =>  {
 	const classes = useStyles();
 	const theme = useTheme();
-
+	
+	let transactions = []
+	props.transactions.map(i => i.transactions.map(i => transactions.push(i)))
+	console.log(transactions)
+	transactions = transactions.sort(function(a,b){
+	  return new Date(b.payment_date) - new Date(a.payment_date)
+	})
 	return (
 		<React.Fragment >
 			<div className={classes.topcontent}>
@@ -120,27 +127,34 @@ export default function Transactions() {
 				</div>
 			</div>
 
-			{rows.map(row => (
-				<Card className={classes.card} key={row.id}>
+			{transactions.map(i => (
+				<Card className={classes.card} key={i.id}>
 					<div className={classes.details}>
 						<CardContent className={classes.content}>
 							<Typography component='p' variant='body1'>
-								{row.description}
+								{i.name}
 							</Typography>
 							<Typography variant='subtitle1' color='textSecondary'>
-								{row.date}
+								{i.payment_date}
 							</Typography>
-							<Typography variant='subtitle1' color='textSecondary'>
-								Category: {row.category}
-							</Typography>
+							
 						</CardContent>
 					</div>
-					<div className={classes.controls}>$ {row.amount}</div>
+					<div className={classes.controls}>${Math.round(10 * i.amount)/100}</div>
 				</Card>
 			))}
 		</React.Fragment>
 	);
 }
+function mapStateToProps(state){
+	return {
+		userID:state.loginReducer.user.id,
+		LinkedAccount:state.loginReducer.user.LinkedAccount,
+		transactions:state.plaidReducer.categories.filter(i => i.transactions.length > 0)
+	}
+  }
+  
+  export default connect(mapStateToProps,{ getTransactions })(Transactions)
 
 // export const Tran = props => { }
 //const mapStateToProps = state =>{return{ }}

@@ -11,7 +11,7 @@ on:
 jobs:
   test:
     name: running front end tests
-    runs-on: [ubuntu-latest, macos-latest]
+    runs-on:  macos-latest
     strategy:
       matrix:
         node-version: [8, 10, 12]

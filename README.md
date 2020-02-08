@@ -33,7 +33,7 @@
 
 [Trello Board] https://trello.com/b/emmxnHtH/labs-20-budget-blocks
 
-1️⃣ [Product Canvas](🚫add link to product canvas here)
+[Product Canvas] https://www.notion.so/Budget-Blocks-6251cc75b71c4988af56529409f6f07f
 
 1️⃣ [UX Design files](🚫add link to design files here) - 🚫 delete if not applicable
 

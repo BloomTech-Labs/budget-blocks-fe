@@ -14,9 +14,12 @@ jobs:
     runs-on:  macos-latest
     strategy:
       matrix:
-        node-version: [8, 10, 12]
+        node-version: [12]
     steps:
       - uses: actions/checkout@master
+        with:
+          ref: development
+          fetch_depth: 0
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:

@@ -14,7 +14,7 @@ import { getUserInfo } from "../redux/actions/ProfileActions";
 import { getTransactions } from "../redux/actions/PlaidActions";
 
 
-const Dashboard = props => {
+export const Dashboard = props => {
   useEffect(() => {
     props.getTransactions(props.userID);
     props.getUserInfo(props.userID);

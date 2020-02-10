@@ -56,6 +56,12 @@ const TotalBudget = props => {
 			return a + b;
 		}, 0)
 	);
+	console.log(
+		'budget',
+		props.budget.reduce(function(a, b) {
+			return a + b;
+		}, 0)
+	);
 	return (
 		<Card className={classes.card} variant='outlined'>
 			<CardContent>
@@ -69,7 +75,7 @@ const TotalBudget = props => {
 							$ <span></span>
 							{Math.round(
 								100 *
-									props.expenses.reduce(function(a, b) {
+									props.total.reduce(function(a, b) {
 										return a + b;
 									}, 0)
 							) / 100}
@@ -122,6 +128,10 @@ function mapStateToProps(state) {
 		expenses: state.plaidReducer.categories.map(
 			i => Math.round(100 * i.total) / 100
 		),
+		total: state.plaidReducer.categories.map(
+			i => Math.round(100 * i.total) / 100
+		),
+
 		user: state.profileReducer.user
 	};
 }

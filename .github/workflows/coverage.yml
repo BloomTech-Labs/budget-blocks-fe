@@ -9,6 +9,23 @@ on:
     - development
 
 jobs:
+  test:
+    name: running front end tests
+    runs-on:  macos-latest
+    strategy:
+      matrix:
+        node-version: [12]
+    steps:
+      - uses: actions/checkout@master
+        with:
+          ref: development
+          fetch-depth: 0
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: yarn install
+      - run: yarn test
   coverage:
     name: coverage
     runs-on: macos-latest

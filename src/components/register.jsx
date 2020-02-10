@@ -3,7 +3,9 @@ import { connect } from "react-redux";
 import { registerUser } from "../redux/actions/RegisterActions";
 import Title from "./Form_Components/Title";
 import PasswordField from "./Form_Components/PasswordField";
-import Account from "./Form_Components/Account"
+import Account from "./Form_Components/Account";
+import { CheckEmptyFields } from "./Form_Components/CheckEmpyFields";
+import { ChangeCheckField } from "./Form_Components/ChangeCheckField";
 
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
@@ -33,19 +35,7 @@ export const Register = props => {
   const handleChange = e => {
 
     setUser({ ...user, [e.target.name]: e.target.value });
-    if(e.target.value.trim() === ""){
-      setValues({...values, [e.target.name]:{
-              error:true,
-              helperText:`${e.target.name} is required`
-          } 
-      });
-    }else{
-      setValues({...values, [e.target.name]:{
-              error:false,
-              helperText:``
-          } 
-      });
-    }
+    setValues(ChangeCheckField(e, values));
   };
 
   const handleConfirm = e => {
@@ -61,40 +51,9 @@ export const Register = props => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    if(user.email.trim() === "" && user.password.trim() === ""){
-      setValues({...values, 
-          email:{
-              error:true,
-              helperText:`email is required`
-          },
-          password:{
-              error:true,
-              helperText:`password is required`
-          },
-          button:{
-              disabled:true
-          }
-      }); 
-    }else if(user.email.trim() === ""){
-      setValues({...values, 
-          email:{
-              error:true,
-              helperText:`email is required`
-          },
-          button:{
-              disabled:true
-          }
-      }); 
-    }else if(user.password.trim()===""){
-      setValues({...values, 
-          password:{
-              error:true,
-              helperText:`password is required`
-          },
-          button:{
-              disabled:true
-          }
-      }); 
+    const check = CheckEmptyFields(user, values);
+    if(check instanceof Object){
+      setValues({...check});
     }else if (confirmPass.confirmPassword !== user.password) {
       setValues({...values, password:{
           error:true,
@@ -150,6 +109,7 @@ export const Register = props => {
                 error={values.password.error}
                 value={user.password}
                 handleChange={handleChange}
+                helperText={values.password.helperText}
                 />
 
               <PasswordField 

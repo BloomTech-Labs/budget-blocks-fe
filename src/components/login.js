@@ -5,6 +5,7 @@ import Title from "./Form_Components/Title";
 import PasswordField from "./Form_Components/PasswordField";
 import Account from "./Form_Components/Account";
 import { CheckEmptyFields } from "./Form_Components/CheckEmpyFields";
+import { ChangeCheckField } from "./Form_Components/ChangeCheckField";
 
 import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
@@ -18,19 +19,8 @@ export const Login = (props)=>{
 
     const handleChange= (e) =>{
         setUser({...user, [e.target.name]:e.target.value.trim() });
-        if(e.target.value.trim() === ""){
-            setValues({...values, [e.target.name]:{
-                    error:true,
-                    helperText:`${e.target.name} is required`
-                } 
-            });
-        }else{
-            setValues({...values, [e.target.name]:{
-                    error:false,
-                    helperText:``
-                } 
-            });
-        }
+        
+        setValues(ChangeCheckField(e, values));
     }
 
     const handleSubmit = (e) =>{
@@ -60,7 +50,6 @@ export const Login = (props)=>{
       });
 
     useEffect(()=>{
-        console.log(values);
         if(values.password.error === false && values.email.error === false){
             setValues({...values, button:{disabled:false}})
         }else{

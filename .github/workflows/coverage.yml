@@ -11,7 +11,7 @@ on:
 jobs:
   test:
     name: running front end tests
-    runs-on:  macos-latest
+    runs-on:  ubuntu-latest
     strategy:
       matrix:
         node-version: [12]
@@ -27,8 +27,8 @@ jobs:
       - run: yarn install
       - run: yarn test
   coverage:
-    needs: [ test ]
     name: coverage
+    needs: [ test ]
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@master

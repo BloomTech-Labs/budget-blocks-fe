@@ -77,7 +77,9 @@ test('should return the initial state',()=>{
         error:null,
         isFetching:false,
         transactions:[],
-        Balance:0.00
+        Balance:0.00,
+        accounts: [],
+        categories: []
     })
 })
 

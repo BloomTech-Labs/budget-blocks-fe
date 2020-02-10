@@ -6,7 +6,7 @@ import Button from "@material-ui/core/Button";
 import {Link} from "react-router-dom"
 
 
-const Home = props => {
+const Home = () => {
 
   return (
     <div className="home" >

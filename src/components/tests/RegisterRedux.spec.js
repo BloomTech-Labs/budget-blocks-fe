@@ -64,7 +64,7 @@ test('creates REGISTER_USER_SUCCESS when register is successful',()=>{
     ]
 
     const store = mockStore({ user:{} })
-    return store.dispatch(actions.registerUser({})).then(() => {
+    return store.dispatch(actions.registerUser({}, history)).then(() => {
       // return of async actions
       expect(store.getActions()).toEqual(expectedActions)
     })

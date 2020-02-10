@@ -1,0 +1,44 @@
+name: Code Climate Coverage Action
+
+on: 
+  push:
+    branches: 
+    - development
+  pull_request:
+    branches: 
+    - development
+
+jobs:
+  test:
+    name: running front end tests
+    runs-on:  ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [12]
+    steps:
+      - uses: actions/checkout@master
+        with:
+          ref: development
+          fetch-depth: 0
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: yarn install
+      - run: yarn test
+  coverage:
+    name: coverage
+    needs: [ test ]
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@master
+        with:
+          ref: development
+      - run: npm install -g yarn
+      - run: yarn install
+      - uses: paambaati/codeclimate-action@v2.4.0
+        with:
+          coverageCommand: yarn coverage
+          debug: false 
+    
+ 

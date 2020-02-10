@@ -2,14 +2,12 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { loginUser } from "../redux/actions/LoginActions";
 import Title from "./Form_Components/Title";
+import PasswordField from "./Form_Components/PasswordField";
+import Account from "./Form_Components/Account";
 
 import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
 import FormControl from "@material-ui/core/FormControl";
-import Visibility from "@material-ui/icons/Visibility";
-import VisibilityOff from "@material-ui/icons/VisibilityOff";
-import InputAdornment from "@material-ui/core/InputAdornment";
-import IconButton from "@material-ui/core/IconButton";
 import Button from "@material-ui/core/Button";
 import "../style/loginStyle.css";
 
@@ -93,13 +91,6 @@ export const Login = (props)=>{
         }
       });
 
-    const handleClickShowPassword = () => {
-        setValues({ ...values, showPassword: !values.showPassword });
-    };
-    const handleMouseDownPassword = event => {
-        event.preventDefault();
-    };
-
     useEffect(()=>{
         if(values.password.error === false && values.email.error === false){
             setValues({...values, button:{disabled:false}})
@@ -131,43 +122,15 @@ export const Login = (props)=>{
                 />
             </FormControl>
 
-            <FormControl variant="filled">
-                <Typography className="label">Password</Typography>
-                <TextField
-                    error={values.password.error}
-                    helperText={values.password.helperText}
-                    placeholder="Password"
-                    type={values.showPassword ? "text" : "password"}
-                    onChange={handleChange}
-                    value={user.password}
-                    name="password"
-                    variant="outlined"
-                    InputProps={{
-                    endAdornment: (
-                        <InputAdornment position="end">
-                        <IconButton
-                            aria-label="toggle password visibility"
-                            onClick={handleClickShowPassword}
-                            onMouseDown={handleMouseDownPassword}
-                            edge="end"
-                        >
-                            {values.showPassword ? (
-                            <Visibility />
-                            ) : (
-                            <VisibilityOff />
-                            )}
-                        </IconButton>
-                        </InputAdornment>
-                    )
-                    }}
+            <PasswordField 
+                name="password" 
+                placeholder="Password" 
+                label="Password" 
+                error={values.password.error}
+                value={user.password}
+                handleChange={handleChange}
                 />
-            </FormControl>
-
-            <div className="account">
-                <Typography className="account">Need an account?</Typography>
-                <Link to="/register" className="links">Click <strong> here!</strong></Link>
-            </div>
-
+            <Account message="Need an account?" link="/register"/>
             <Button variant="outlined" className="signInBtn" type="submit" disabled={values.button.disabled}>
                 Sign In
             </Button>

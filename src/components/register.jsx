@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { registerUser } from "../redux/actions/RegisterActions";
 import Title from "./Form_Components/Title";
+import PasswordField from "./Form_Components/PasswordField";
+import Account from "./Form_Components/Account"
 
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
@@ -9,10 +11,6 @@ import Button from "@material-ui/core/Button";
 import "../style/registerStyle.css";
 import TextField from "@material-ui/core/TextField";
 import FormControl from "@material-ui/core/FormControl";
-import Visibility from "@material-ui/icons/Visibility";
-import VisibilityOff from "@material-ui/icons/VisibilityOff";
-import InputAdornment from "@material-ui/core/InputAdornment";
-import IconButton from "@material-ui/core/IconButton";
 
 import { Link } from "react-router-dom";
 
@@ -20,8 +18,6 @@ export const Register = props => {
   const [user, setUser] = useState({ email: "", password: "" });
   const [confirmPass, setConfirmPass] = useState({ confirmPassword: "" });
   const [values, setValues] = useState({
-    showPassword: false,
-    showConfirmPassword: false,
     password:{
       error:false,
       helperText:''
@@ -64,16 +60,6 @@ export const Register = props => {
 
   };
 
-  const handleClickShowPassword = () => {
-    setValues({ ...values, showPassword: !values.showPassword });
-  };
-  const handleClickShowConfirm = () => {
-    setValues({ ...values, showConfirmPassword: !values.showConfirmPassword });
-  };
-
-  const handleMouseDownPassword = event => {
-    event.preventDefault();
-  };
   const handleSubmit = e => {
     e.preventDefault();
     if(user.email.trim() === "" && user.password.trim() === ""){
@@ -157,74 +143,26 @@ export const Register = props => {
                 value={user.email}
                 error={values.email.error}
               />
-              <div className="password">
-                <Typography className="label">Password</Typography>
-              </div>
 
-              <TextField
-                placeholder="password"
-                type={values.showPassword ? "text" : "password"}
-                onChange={handleChange}
+              <PasswordField 
+                name="password" 
+                placeholder="Password" 
+                label="Password" 
+                error={values.password.error}
                 value={user.password}
-                name="password"
-                variant="outlined"
-                helperText={values.password.helperText}
-                error={values.password.error}
-                InputProps={{
-                  endAdornment: (
-                    <InputAdornment position="end">
-                      <IconButton
-                        aria-label="toggle password visibility"
-                        onClick={handleClickShowPassword}
-                        onMouseDown={handleMouseDownPassword}
-                        edge="end"
-                      >
-                        {values.showPassword ? (
-                          <Visibility />
-                        ) : (
-                          <VisibilityOff />
-                        )}
-                      </IconButton>
-                    </InputAdornment>
-                  )
-                }}
-              />
-              <div className="confirmPassword">
-                <Typography className="label">Confirm Password</Typography>
-              </div>
+                handleChange={handleChange}
+                />
 
-              <TextField
-                variant="outlined"
-                placeholder=" Confirm password"
-                type={values.showConfirmPassword ? "text" : "password"}
-                onChange={handleConfirm}
-                value={confirmPass.confirmPassword}
-                name="confirmPassword"
+              <PasswordField 
+                name="confirmPassword" 
+                placeholder="Confirm Password" 
+                label="Confirm Password" 
                 error={values.password.error}
-                InputProps={{
-                  endAdornment: (
-                    <InputAdornment position="end">
-                      <IconButton
-                        aria-label="toggle password visibility"
-                        onClick={handleClickShowConfirm}
-                        onMouseDown={handleMouseDownPassword}
-                        edge="end"
-                      >
-                        {values.showConfirmPassword ? (
-                          <Visibility />
-                        ) : (
-                          <VisibilityOff />
-                        )}
-                      </IconButton>
-                    </InputAdornment>
-                  )
-                }}
-                helperText={values.password.helperText}
-              />
-              <div className="account">
-                <Typography className="account">Already have an account?</Typography>
-                <Link to="/login" className="links">Click <strong> here!</strong></Link>
-              </div>
+                value={confirmPass.confirmPassword}
+                handleChange={handleConfirm}
+                />
+
+              <Account message="Already have an account?" link="/login"/>
               <Button variant="outlined" className="signUpBtn" type="submit" disabled={values.button.disabled}>
                 Sign Up
               </Button>

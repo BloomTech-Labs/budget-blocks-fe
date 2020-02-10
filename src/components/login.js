@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { loginUser } from "../redux/actions/LoginActions";
+import Title from "./Form_Components/Title";
+
 import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
 import FormControl from "@material-ui/core/FormControl";
@@ -10,8 +12,7 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import IconButton from "@material-ui/core/IconButton";
 import Button from "@material-ui/core/Button";
 import "../style/loginStyle.css";
-import logo from "../media/image/logo.jpg";
-import budgetImg from "../media/image/budget_blocks.png";
+
 import { Link } from "react-router-dom";
 
 export const Login = (props)=>{
@@ -112,13 +113,7 @@ export const Login = (props)=>{
 
     <div className="SignIn" >
 
-        <div className="logo_name">
-            <img src={logo} className="logo-reg" alt="logo" />
-            <img src={budgetImg} className="name-reg" alt="budget_blocks" />
-            <Typography variant="h2" className="sign">
-              Sign In
-            </Typography>
-        </div>
+        <Title title="Sign In"/>
 
         <form className="SignInForm" onSubmit={handleSubmit}>
         

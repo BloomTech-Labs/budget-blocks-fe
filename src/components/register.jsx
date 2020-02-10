@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { registerUser } from "../redux/actions/RegisterActions";
-import logo from "../media/image/logo.jpg";
-import budgetImg from "../media/image/budget_blocks.png";
+import Title from "./Form_Components/Title";
+
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 import Button from "@material-ui/core/Button";
@@ -13,6 +13,7 @@ import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import IconButton from "@material-ui/core/IconButton";
+
 import { Link } from "react-router-dom";
 
 export const Register = props => {
@@ -139,13 +140,8 @@ export const Register = props => {
     <div className="register">
       <Container maxWidth="sm">
         <div style={{ backgroundColor: "#ffffff" }}>
-          <div className="logo_name">
-            <img src={logo} className="logo-reg" alt="logo" />
-            <img src={budgetImg} className="name-reg" alt="budget_blocks" />
-            <Typography variant="h2" className="sign">
-              Sign Up
-            </Typography>
-          </div>
+          
+          <Title title="Sign Up"/>
 
           <form className="RegisterForm" onSubmit={handleSubmit}>
             <FormControl variant="outlined">

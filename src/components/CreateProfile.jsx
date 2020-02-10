@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { createProfile } from "../redux/actions/ProfileActions";
-import logo from "../media/image/logo.jpg";
-import budgetImg from "../media/image/budget_blocks.png";
+import Title from "./Form_Components/Title";
+
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 import Button from "@material-ui/core/Button";
@@ -46,13 +46,8 @@ const Profile = props => {
     <div onSubmit={handleSubmit}>
       <Container maxWidth="sm">
         <div style={{ backgroundColor: "#ffffff" }}>
-          <div className="logo_name">
-            <img src={logo} className="logo-reg" alt="logo" />
-            <img src={budgetImg} className="name-reg" alt="budget_blocks" />
-            <Typography variant="h2" className="sign">
-              Create Profile
-            </Typography>
-          </div>
+          
+          <Title title="Create Profile"/>
 
           <form className="ProfileForm">
             <FormControl variant="outlined">

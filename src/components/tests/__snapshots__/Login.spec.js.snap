@@ -76,7 +76,9 @@ Object {
             <p
               class="MuiTypography-root label MuiTypography-body1"
             >
+               
               Password
+               
             </p>
             <div
               class="MuiFormControl-root MuiTextField-root"
@@ -251,7 +253,9 @@ Object {
           <p
             class="MuiTypography-root label MuiTypography-body1"
           >
+             
             Password
+             
           </p>
           <div
             class="MuiFormControl-root MuiTextField-root"

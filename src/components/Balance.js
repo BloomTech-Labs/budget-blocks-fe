@@ -10,12 +10,12 @@ export const Balance = ({balance})=>{
     },[])
     const amounts = balance.accounts.map(e => e.balances.available)
     const sum = amounts.reduce((a,b) => {return a + b},0)
-    console.log(sum)
+
     return (
         
         <h1>
             ${sum}
-            </h1>
+        </h1>
          
     )
     // if(props.LinkedAccount ===true ){

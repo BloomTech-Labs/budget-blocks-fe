@@ -1,0 +1,89 @@
+@import url("https://fonts.googleapis.com/css?family=Exo&display=swap");
+.App {
+  text-align: center;
+  margin: 0, auto;
+}
+
+.App-logo {
+  margin-top: 30px;
+  height: 40vmin;
+  pointer-events: none;
+}
+@media screen and (max-width: 400px) {
+  .App-logo {
+    margin-top: 50px;
+  }
+}
+.budget_img {
+  margin-top: 10px;
+}
+
+/* @media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+} */
+
+.App-header {
+	background-color: #282c34;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	font-size: calc(10px + 2vmin);
+	color: white;
+}
+
+.App-link {
+	color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}
+.navbar {
+	background: black;
+	color: white;
+}
+.transaction {
+	width: 70%;
+}
+.buttons {
+  margin-top: 180px;
+}
+@media screen and (max-width: 400px) {
+  .buttons {
+    margin-top: 240px;
+  }
+}
+.signup {
+  font-family: "Exo", sans-serif !important;
+  text-transform: none !important;
+  font-size: 16px !important;
+  background: #1890ff !important ;
+  border: 1px solid #ffffff !important;
+  color: #ffffff !important;
+  width: 70% !important;
+  margin-bottom: 10px !important;
+}
+.signin {
+  font-family: "Exo", sans-serif !important;
+  text-transform: none !important;
+  font-size: 16px !important;
+  background: #ffffff !important ;
+  border: 1px solid #1890ff !important;
+  color: #1890ff !important;
+  width: 70% !important;
+}
+.links{
+  text-decoration: none;
+  font-family: "Exo", sans-serif !important;
+  color: #282c34;
+
+}

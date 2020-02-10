@@ -28,6 +28,7 @@ jobs:
       - run: yarn test
   coverage:
     name: coverage
+    needs: [ test ]
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@master

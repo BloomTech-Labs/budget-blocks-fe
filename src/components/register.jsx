@@ -12,7 +12,6 @@ import "../style/registerStyle.css";
 import TextField from "@material-ui/core/TextField";
 import FormControl from "@material-ui/core/FormControl";
 
-import { Link } from "react-router-dom";
 
 export const Register = props => {
   const [user, setUser] = useState({ email: "", password: "" });

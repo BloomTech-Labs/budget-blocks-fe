@@ -4,6 +4,7 @@ import { loginUser } from "../redux/actions/LoginActions";
 import Title from "./Form_Components/Title";
 import PasswordField from "./Form_Components/PasswordField";
 import Account from "./Form_Components/Account";
+import { CheckEmptyFields } from "./Form_Components/CheckEmpyFields";
 
 import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
@@ -11,7 +12,6 @@ import FormControl from "@material-ui/core/FormControl";
 import Button from "@material-ui/core/Button";
 import "../style/loginStyle.css";
 
-import { Link } from "react-router-dom";
 
 export const Login = (props)=>{
     const [user,setUser] = useState({ email: "" , password: "" });
@@ -35,40 +35,9 @@ export const Login = (props)=>{
 
     const handleSubmit = (e) =>{
         e.preventDefault();
-        if(user.email.trim() === "" && user.password.trim() === ""){
-            setValues({...values, 
-                email:{
-                    error:true,
-                    helperText:`email is required`
-                },
-                password:{
-                    error:true,
-                    helperText:`password is required`
-                },
-                button:{
-                    disabled:true
-                }
-            }); 
-        }else if(user.email.trim() === ""){
-            setValues({...values, 
-                email:{
-                    error:true,
-                    helperText:`email is required`
-                },
-                button:{
-                    disabled:true
-                }
-            }); 
-        }else if(user.password.trim()===""){
-            setValues({...values, 
-                password:{
-                    error:true,
-                    helperText:`password is required`
-                },
-                button:{
-                    disabled:true
-                }
-            }); 
+        const check = CheckEmptyFields(user, values);
+        if( check instanceof Object){
+            setValues({...check});
         }else{
             props.loginUser(user, props.history)
             setUser({ email: "" , password: "" });
@@ -77,7 +46,6 @@ export const Login = (props)=>{
 
     const [values, setValues] = useState({
         showPassword: false,
-        showConfirmPassword: false,
         password:{
             error:false,
             helperText:''
@@ -92,6 +60,7 @@ export const Login = (props)=>{
       });
 
     useEffect(()=>{
+        console.log(values);
         if(values.password.error === false && values.email.error === false){
             setValues({...values, button:{disabled:false}})
         }else{
@@ -129,6 +98,7 @@ export const Login = (props)=>{
                 error={values.password.error}
                 value={user.password}
                 handleChange={handleChange}
+                helperText={values.password.helperText}
                 />
             <Account message="Need an account?" link="/register"/>
             <Button variant="outlined" className="signInBtn" type="submit" disabled={values.button.disabled}>

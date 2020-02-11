@@ -1,25 +1,16 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import Paper from '@material-ui/core/Paper';
-import Divider from '@material-ui/core/Divider';
+import React from 'react';
 import Grid from '@material-ui/core/Grid';
-import styled from 'styled-components';
-import { Progress, Container } from 'reactstrap';
-import { blocksData } from '../redux/actions/userBlocks';
+import { Progress } from 'reactstrap';
 import { connect } from 'react-redux';
-// npm install --save-dev @iconify/react @iconify/icons-fa
-import { Icon, InlineIcon } from '@iconify/react';
+import { Icon } from '@iconify/react';
 import chevronCircleUp from '@iconify/icons-fa/chevron-circle-up';
 import chevronCircleDown from '@iconify/icons-fa/chevron-circle-down';
-import { getUserInfo } from '../redux/actions/ProfileActions';
 
 import './table.css';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 const useStyles = makeStyles({
   card: {
@@ -42,16 +33,6 @@ const useStyles = makeStyles({
 
 const TotalBudget = props => {
 	const classes = useStyles();
-	const bull = <span className={classes.bullet}>•</span>;
-	const [categories, setCategories] = useState([]);
-
-	const P = styled.p`
-		color: green;
-	`;
-	const Button = styled.button`
-		background: lightgrey;
-		border: lightgrey;
-	`;
 	console.log(
 		props.expenses.reduce(function(a, b) {
 			return a + b;

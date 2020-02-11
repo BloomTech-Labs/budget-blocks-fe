@@ -7,15 +7,11 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import axios from 'axios';
-import Bootstrap from 'bootstrap/dist/css/bootstrap.min.css';
-import {Row,Col} from 'react-bootstrap'
 import { Progress,Container} from "reactstrap";
 import { getTransactions } from "../redux/actions/PlaidActions";
 import { connect } from "react-redux";
 import "./table.css"
 import HeadsetIcon from '@material-ui/icons/Headset';
-import BlocksModal from "./BlocksModal"
 const useStyles = makeStyles({
 	table: {
 		minWidth: 649
@@ -24,7 +20,6 @@ const useStyles = makeStyles({
 
 export function Blocks(props) {
   const classes = useStyles();
-  let [categories,setCategories] = useState([])
   const [filter,setFilter] = useState([])
   useEffect(() => {
           props.getTransactions(props.userID);

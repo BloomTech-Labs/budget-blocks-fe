@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect} from "react";
 import { withStyles, makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
@@ -9,9 +9,10 @@ import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 import Typography from "@material-ui/core/Typography";
 import Slider from "@material-ui/core/Slider";
-
-
+import TextField from "@material-ui/core/TextField";
+import InputAdornment from "@material-ui/core/InputAdornment";
 import "../style/modalStyle.css";
+import axios from "axios";
 const useStyles = makeStyles(theme => ({
   root: {
     width: 300 + theme.spacing(3) * 2
@@ -65,14 +66,18 @@ const DialogActions = withStyles(theme => ({
   }
 }))(MuiDialogActions);
 
-export default function BudgetGoal() {
-  const [open, setOpen] = React.useState(false);
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-  const handleClose = () => {
-    setOpen(false);
+export default function BudgetGoal(props) {
+  
+  const [goals, setGoals] = useState({
+    categoryid: "",
+    budget: ""
+  });
+  useEffect(()=>{
+    setGoals({...goals, categoryid:props.values.catId})
+  },[props.values.catId])
+  const handleChange = e => {
+    e.preventDefault();
+    setGoals({ ...goals,budget: e.target.value });
   };
   const PrettoSlider = withStyles({
     root: {
@@ -106,22 +111,40 @@ export default function BudgetGoal() {
   function changeSlider(event, value) {
     console.log(value);
   }
+  const submit = e => {
+    e.preventDefault();
+    console.log(props.values.catId)
+    console.log(goals)
+    const array={ categoryid : 1 , budget :200}
 
-  
+    axios
+      .put(
+        // `https://lambda-budget-blocks.herokuapp.com/api/users/categories/${props.values.userId}`,
+        'https://lambda-budget-blocks.herokuapp.com/api/users/categories/2',
+        { categoryid : 1 , budget :200}
+      )
+      .then(response => {
+        console.log("i am response", response);
+        
+      })
+      .catch(error => {
+        console.log(error.response);
+      });
+  };
   return (
     <div>
-      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-        Open dialog
-      </Button>
       <Dialog
         className="dialogModal"
-        onClose={handleClose}
+        onClose={props.handleClose}
         aria-labelledby="customized-dialog-title"
-        open={open}
+        open={props.open}
         fullWidth={true}
         maxWidth="md"
       >
-        <DialogTitle className="customized-dialog-title" onClose={handleClose}>
+        <DialogTitle
+          className="customized-dialog-title"
+          onClose={props.handleClose}
+        >
           <Typography className="customized-dialog-title">
             Total goal
           </Typography>
@@ -130,19 +153,25 @@ export default function BudgetGoal() {
           <Typography className="what" variant="h5">
             What is your spending goal?
           </Typography>
-         <Typography variant="h4" className="goal">
+          {/* <Typography variant="h4" className="goal">
              $0.00
-         </Typography>
-          {/* <TextField className="goal" placeholder="0.00" type="number" InputProps={{
-            startAdornment: <InputAdornment position="start">$</InputAdornment>,
-          }} /> */}
+         </Typography> */}
+          <TextField
+            className="goal"
+            placeholder="0.00"
+            type="number"
+            value={goals.budget}
+            onChange={handleChange}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">$</InputAdornment>
+              )
+            }}
+          />
 
-        
           <div className="divider"></div>
           <select className="plan" name="budgetTime">
-            <option value="1" >
-              Daily
-            </option>
+            <option value="1">Daily</option>
             <option value="2">Monthly</option>
             <option value="3">Quarterly </option>
             <option value="4">Yearly</option>
@@ -168,10 +197,10 @@ export default function BudgetGoal() {
             </div>
           </div>
         </DialogContent>
-        <DialogActions className="buttons" >
+        <DialogActions className="buttons">
           <Button
             className="backBtn"
-            onClick={handleClose}
+            onClick={props.handleClose}
             variant="outlined"
             color="primary"
           >
@@ -179,7 +208,7 @@ export default function BudgetGoal() {
           </Button>
           <Button
             className="contBtn"
-            onClick={handleClose}
+            onClick={submit}
             variant="outlined"
             color="primary"
           >

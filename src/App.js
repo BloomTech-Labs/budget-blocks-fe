@@ -7,7 +7,7 @@ import Profile from "./components/CreateProfile"
 import { Switch, Route } from "react-router-dom";
 import Dashboard from "./components/Dashboard";
 import PrivateRoute from "./components/PrivateRoute";
-import BudgetGoal from "./components/PresetModal";
+import BudgetGoal from "./components/BudgetGoalModal";
 
 
 
@@ -21,7 +21,7 @@ function App() {
         <Route path="/register" component={Register} />
         <PrivateRoute path="/profile" component={Profile} />
         <PrivateRoute path="/dashboard" component={Dashboard} />
-        {/* <Route path="/budgetModal" component={Blocks}/> */}
+        <Route path="/budgetModal" component={BudgetGoal}/>
 
      
 

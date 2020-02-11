@@ -11,6 +11,12 @@ import logo from "../media/images/Background.png"
 import head from "../media/images/budget_blocks.png"
 import "./table.css"
 import Grid from '@material-ui/core/Grid'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -27,7 +33,10 @@ const useStyles = makeStyles(theme => ({
 
 export default function NavBar() {
   const classes = useStyles();
-
+const logOut = e => {
+localStorage.removeItem("id")
+sessionStorage.removeItem("token")
+}
   return (
     <div className="navbar">
        
@@ -37,7 +46,7 @@ export default function NavBar() {
        <img className="image" src={logo}/> <img className="heading" src={head}/>
        </div>
        </Grid> 
-       <Grid item={3}><div className="left">log out</div></Grid>
+       <Grid item={3}><div className="left"><Link onClick={logOut} to="/login">Log Out</Link></div></Grid>
        </Grid> 
     </div>
   );

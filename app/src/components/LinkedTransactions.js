@@ -26,7 +26,7 @@ const useStyles = makeStyles(theme => ({
 	},
 	card: {
 		width:"100%",
-		
+		marginBottom:"1rem",
 		height:"70%",
 		background: 'lightgrey',
 		
@@ -114,6 +114,9 @@ const  Transactions = props =>  {
 	const handleClick = e => {
 		setFilter(!filter)
 	}
+	var shuffled = props.transactions.sort(function(){return .5 - Math.random()});
+
+var selected=shuffled.slice(0,5);
 	return (
 		<div>
 	{filter ? 

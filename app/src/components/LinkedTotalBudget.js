@@ -57,7 +57,7 @@ const TotalBudget = props => {
 							$ <span></span>
 							{Math.round(
 								100 *
-									props.total.reduce(function(a, b) {
+									props.budget.reduce(function(a, b) {
 										return a + b;
 									}, 0)
 							) / 100}

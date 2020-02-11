@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -7,7 +7,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import axios from "axios"
+import axios from 'axios';
 import Bootstrap from 'bootstrap/dist/css/bootstrap.min.css';
 import {Row,Col} from 'react-bootstrap'
 import { Progress,Container} from "reactstrap";
@@ -17,11 +17,10 @@ import "./table.css"
 import HeadsetIcon from '@material-ui/icons/Headset';
 import BlocksModal from "./BlocksModal"
 const useStyles = makeStyles({
-  table: {
-    minWidth: 649,
-  },
+	table: {
+		minWidth: 649
+	}
 });
-
 
 export function Blocks(props) {
   const classes = useStyles();
@@ -112,13 +111,12 @@ export function Blocks(props) {
   );
 }
 
-
-function mapStateToProps(state){
-  return {
-      userID:state.loginReducer.user.id,
-      LinkedAccount:state.loginReducer.user.LinkedAccount,
-      blocks:state.plaidReducer.categories
-  }
+function mapStateToProps(state) {
+	return {
+		userID: state.loginReducer.user.id,
+		LinkedAccount: state.loginReducer.user.LinkedAccount,
+		blocks: state.plaidReducer.categories
+	};
 }
 
-export default connect(mapStateToProps,{ getTransactions })(Blocks)
+export default connect(mapStateToProps, { getTransactions })(Blocks);

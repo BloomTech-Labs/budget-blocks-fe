@@ -1,5 +1,4 @@
 import React,{useEffect,useState} from 'react';
-import axios from "axios"
 import Grid from '@material-ui/core/Grid';
 import styled from 'styled-components'
 
@@ -32,7 +31,6 @@ const useStyles = makeStyles({
 const SavingsGoal = props =>
 {
   const classes = useStyles();
-  const bull = <span className={classes.bullet}>•</span>;
   const [categories,setCategories] = useState([])
   useEffect(() => {
     props.getTransactions(props.userID);

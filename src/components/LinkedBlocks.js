@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import {TableHeads} from "./Blocks_Components/TableHead";
+
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -7,15 +9,11 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import axios from 'axios';
-import Bootstrap from 'bootstrap/dist/css/bootstrap.min.css';
-import {Row,Col} from 'react-bootstrap'
-import { Progress,Container} from "reactstrap";
+import { Progress } from "reactstrap";
 import { getTransactions } from "../redux/actions/PlaidActions";
 import { connect } from "react-redux";
 import "./table.css"
 import HeadsetIcon from '@material-ui/icons/Headset';
-import BlocksModal from "./BlocksModal"
 const useStyles = makeStyles({
 	table: {
 		minWidth: 649
@@ -24,7 +22,6 @@ const useStyles = makeStyles({
 
 export function Blocks(props) {
   const classes = useStyles();
-  let [categories,setCategories] = useState([])
   const [filter,setFilter] = useState([])
   useEffect(() => {
           props.getTransactions(props.userID);
@@ -39,17 +36,7 @@ export function Blocks(props) {
       <div>
       <TableContainer className="table" component={Paper}>
       <Table className={classes.table} aria-label="simple table">
-        <TableHead>
-          <TableRow  className="lightgrey">
-          <TableCell></TableCell>
-            <TableCell>Block</TableCell>
-            <TableCell>Current status</TableCell>
-            <TableCell></TableCell>
-            <TableCell>Total Expenses</TableCell>
-            <TableCell >Limit</TableCell>
-            <TableCell>Action</TableCell>
-          </TableRow>
-        </TableHead>
+      <TableHeads CellNames={["Block","Current Status", "", "Total Expenses", "Limit", "Action"]}/>
         <TableBody>
           {props.blocks.filter(i => i.id <= 5).map(i => (
             <TableRow key={i.id}>
@@ -74,17 +61,7 @@ export function Blocks(props) {
     <div>
     <TableContainer className="table" component={Paper}>
       <Table className={classes.table} aria-label="simple table">
-        <TableHead>
-          <TableRow  className="lightgrey">
-          <TableCell></TableCell>
-            <TableCell>Block</TableCell>
-            <TableCell>Current status</TableCell>
-            <TableCell></TableCell>
-            <TableCell>Total Expenses</TableCell>
-            <TableCell >Limit</TableCell>
-            <TableCell>Action</TableCell>
-          </TableRow>
-        </TableHead>
+      <TableHeads CellNames={["","Block","Current Status", "", "Total Expenses", "Limit", "Action"]} className="lightgrey"/>
         <TableBody>
           {props.blocks.map(i => (
             <TableRow key={i.id}>

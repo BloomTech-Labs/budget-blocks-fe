@@ -41,6 +41,10 @@
   margin-top: 30px;
   text-align: left;
   }
+.confirmPassword {
+  margin-top: 30px;
+  text-align: left;
+  }
   .signInBtn{
     margin-top: 20px !important;
     font-family: "Exo", sans-serif !important;
@@ -48,7 +52,7 @@
     font-size: 16px !important;
     background: #ffffff !important ;
     border: 1px solid #1890ff !important;
-    color: #1890FF !important;
+    color: #1890ff !important;
   }
   .account{
     text-align: center !important;

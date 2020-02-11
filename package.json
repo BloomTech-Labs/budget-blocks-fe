@@ -38,7 +38,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "CI=true react-scripts test --watchAll=false",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "coverage": "react-scripts test --coverage --watchAll=false"
   },
   "eslintConfig": {
     "extends": "react-app"

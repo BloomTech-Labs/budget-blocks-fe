@@ -114,7 +114,7 @@ const  Transactions = props =>  {
 	return (
 		<React.Fragment >
 			<div className={classes.topcontent}>
-				<b className={classes.text}>Recent Transactions:</b>
+				<h2 className={classes.text}>Recent Transactions:</h2>
 				<div className={classes.root}>
 					<Button variant='contained'>
 						<AddIcon />

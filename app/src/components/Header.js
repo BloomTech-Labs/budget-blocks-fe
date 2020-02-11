@@ -10,7 +10,8 @@ import { connect } from "react-redux";
 
 const useStyles = makeStyles({
   card: {
-    minWidth: 275,
+    minWidth: 270,
+    background:"#E0E0E0"
   },
   bullet: {
     display: 'inline-block',
@@ -39,7 +40,7 @@ const Header = props =>{
          <p>{props.user.email}</p>
        </Grid>
         <Grid item xs={5}>
-           <p>FN</p>
+           <p className="square">FN</p>
            </Grid>
            </Grid>
          

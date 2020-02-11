@@ -9,12 +9,14 @@ import { Switch, Route } from "react-router-dom";
 import LinkAccount from "./components/LinkAccount";
 import Dashboard from "./components/Dashboard";
 import BudgetGoal from "./components/PresetModal";
-
+import Navbar from "./components/NavBar"
 
 
 function App() {
   
   return (
+    <div>
+    <Navbar /> 
     <div className="App">
       <Switch>
         <Route exact path="/" component={Home} />
@@ -29,6 +31,7 @@ function App() {
 
 
       </Switch>
+    </div>
     </div>
   );
 }

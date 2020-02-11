@@ -7,10 +7,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import axios from "axios"
-import Bootstrap from 'bootstrap/dist/css/bootstrap.min.css';
-import {Row,Col} from 'react-bootstrap'
-import { Progress,Container} from "reactstrap";
+import { Progress } from "reactstrap";
 import { getTransactions } from '../redux/actions/PlaidActions';
 import { connect } from "react-redux";
 
@@ -23,8 +20,6 @@ const useStyles = makeStyles({
 
 export function UnlinkedBlocks(props) {
   const classes = useStyles();
-  let [categories,setCategories] = useState([])
-  const [filter,setFilter] = useState([])
   useEffect(() => {
           props.getTransactions(props.userID);
         },[props.LinkedAccount])

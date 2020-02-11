@@ -28,15 +28,11 @@ export function UnlinkedBlocks(props) {
    
     <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="simple table">
-        <TableHeads CellNames={["Block","Current Status", "", "Total Expenses", "Limit", "Action"]}/>
+        <TableHeads CellNames={["Block", "Total Expenses", "Limit", "Action"]}/>
         <TableBody>
           
             <TableRow >
               <TableCell >title</TableCell>
-              <TableCell>
-<Progress value={70} />
-               </TableCell>
-              <TableCell >&#9989;</TableCell>
               <TableCell >${0.00}</TableCell>
               <TableCell >${0.00}</TableCell>
               <TableCell >Edit</TableCell>

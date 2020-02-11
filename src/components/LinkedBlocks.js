@@ -45,29 +45,17 @@ export function Blocks(props) {
 						<Table className={classes.table} aria-label='simple table'>
 							<TableHeads
 								CellNames={[
-									'',
 									'Block',
-									'Current Status',
-									'',
 									'Total Expenses',
 									'Limit',
-									'Action'
+									''
 								]}
 								className='lightgrey'
 							/>
 							<TableBody>
 								{selected.map(i => (
 									<TableRow key={i.id}>
-										<TableCell>
-											<HeadsetIcon className='head-icon' />
-										</TableCell>
 										<TableCell>{i.name}</TableCell>
-										<TableCell>
-											<Container>
-												<Progress value={90} />
-											</Container>
-										</TableCell>
-										<TableCell>&#9989;</TableCell>
 										<TableCell>
 											${i.total === null ? 0 : Math.round(100 * i.total) / 100}
 										</TableCell>
@@ -91,27 +79,17 @@ export function Blocks(props) {
 						<Table className={classes.table} aria-label='simple table'>
 							<TableHeads
 								CellNames={[
-									'',
 									'Block',
-									'Current Status',
-									'',
 									'Total Expenses',
 									'Limit',
-									'Action'
+									''
 								]}
 								className='lightgrey'
 							/>
 							<TableBody>
 								{props.blocks.map(i => (
 									<TableRow key={i.id}>
-										<TableCell>
-											<HeadsetIcon className='head-icon' />
-										</TableCell>
 										<TableCell>{i.name}</TableCell>
-										<TableCell>
-											<Progress value={(i.total / i.budget) * 100} />
-										</TableCell>
-										<TableCell>&#9989;</TableCell>
 										<TableCell>
 											${i.total === null ? 0 : Math.round(100 * i.total) / 100}
 										</TableCell>

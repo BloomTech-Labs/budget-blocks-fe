@@ -48,13 +48,6 @@ export const Dashboard = props => {
             <Grid container>
                 <Grid item sm={8} xs={12}><Balance/></Grid>
             </Grid>
-            <Grid container>
-                <Grid item sm={8} xs={12}>Due </Grid>
-            </Grid>
-            <Grid container>
-                <Grid item sm={8} xs={12}><SavingsGoal/></Grid>
-                
-            </Grid>
         </Grid>
     </Grid>
    

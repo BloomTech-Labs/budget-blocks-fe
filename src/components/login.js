@@ -12,6 +12,7 @@ import TextField from "@material-ui/core/TextField";
 import FormControl from "@material-ui/core/FormControl";
 import Button from "@material-ui/core/Button";
 import "../style/loginStyle.css";
+import Container from "@material-ui/core/Container";
 
 
 export const Login = (props)=>{
@@ -61,39 +62,40 @@ export const Login = (props)=>{
     return(
 
     <div className="SignIn" >
+        <Container maxWidth="sm">
+            <Title title="Sign In"/>
 
-        <Title title="Sign In"/>
+            <form className="SignInForm" onSubmit={handleSubmit}>
+            
+                <FormControl variant="filled">
+                    <Typography className="label">E-Mail Address</Typography>
+                    <TextField
+                        error={values.email.error}
+                        helperText={values.email.helperText}
+                        placeholder="E-Mail Address"
+                        type="text"
+                        name="email" 
+                        onChange={handleChange} 
+                        value={user.email} 
+                        variant="outlined"
+                    />
+                </FormControl>
 
-        <form className="SignInForm" onSubmit={handleSubmit}>
-        
-            <FormControl variant="filled">
-                <Typography className="label">E-Mail Address</Typography>
-                <TextField
-                    error={values.email.error}
-                    helperText={values.email.helperText}
-                    placeholder="E-Mail Address"
-                    type="text"
-                    name="email" 
-                    onChange={handleChange} 
-                    value={user.email} 
-                    variant="outlined"
-                />
-            </FormControl>
-
-            <PasswordField 
-                name="password" 
-                placeholder="Password" 
-                label="Password" 
-                error={values.password.error}
-                value={user.password}
-                handleChange={handleChange}
-                helperText={values.password.helperText}
-                />
-            <Account message="Need an account?" link="/register"/>
-            <Button variant="outlined" className="signInBtn" type="submit" disabled={values.button.disabled}>
-                Sign In
-            </Button>
-        </form>
+                <PasswordField 
+                    name="password" 
+                    placeholder="Password" 
+                    label="Password" 
+                    error={values.password.error}
+                    value={user.password}
+                    handleChange={handleChange}
+                    helperText={values.password.helperText}
+                    />
+                <Account message="Need an account?" link="/register"/>
+                <Button variant="outlined" className="signInBtn" type="submit" disabled={values.button.disabled}>
+                    Sign In
+                </Button>
+            </form>
+        </Container>
     </div>
 
     )

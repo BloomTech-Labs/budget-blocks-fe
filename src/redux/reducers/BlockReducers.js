@@ -4,6 +4,11 @@ import {
     BLOCKS_CATEGORY_FAILED,
     BLOCKS_CATEGORY_SUCCESS
     } from "../actions/userBlocks"
+
+    import {
+        CLEAR_BLOCKS
+    } from "../actions/LogoutAction";
+
 export const initialState = {
         blocks:[],
         error:null,
@@ -30,6 +35,10 @@ export const reducer = (state=initialState, action) => {
                 isFetching: false,
                 blocks:action.payload,
                 error: null
+            }
+        case CLEAR_BLOCKS:
+            return {
+                ...initialState
             }
         default:
             return state;

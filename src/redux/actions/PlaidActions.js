@@ -51,8 +51,7 @@ export function sendLinkToken(token,userID){
 export function getTransactions(userID){
     return function(dispatch) {
         dispatch(getTransLoading());
-        return axios.get(`https://lambda-budget-blocks.herokuapp.com/plaid/transactions/${userID}`,
-        )
+        return axios.get(`https://lambda-budget-blocks.herokuapp.com/plaid/transactions/${userID}`)
             .then(response=>{
                 dispatch(getTransSuccess(response.data))
             })

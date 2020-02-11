@@ -30,17 +30,17 @@ export const Dashboard = props => {
                 <Grid item xs={12} lg={12} sm={12}><Header/></Grid>
             </Grid>
             <Grid container>
-        <Grid item xs={12} sm={12}>{props.blocks.length > 0 ? <LinkedBlocks /> : <UnlinkedBlocks />}</Grid>  
+        <Grid item xs={12} sm={12}>{props.LinkedAccount ? <LinkedBlocks /> : <UnlinkedBlocks />}</Grid>  
             </Grid>
             <Grid container>
-                <Grid item xs={12} sm={12}>{props.blocks.length > 0 ? <LinkedTransactions /> : <UnlinkedTransactions />}</Grid> 
+                <Grid item xs={12} sm={12}>{props.LinkedAccount ? <LinkedTransactions /> : <UnlinkedTransactions />}</Grid> 
             </Grid>
             </div>
         </Grid>
         <Grid item sm={4} xs={12}>
           
         <Grid container>
-                <Grid item sm={8} xs={12}>{props.blocks.length > 0 ? <LinkedTotalBudget /> : <UnlinkedTotalBudget />}</Grid>
+                <Grid item sm={8} xs={12}>{props.LinkedAccount ? <LinkedTotalBudget /> : <UnlinkedTotalBudget />}</Grid>
             </Grid>
             <Grid container>
                 <Grid item sm={8} xs={12}><Balance/></Grid>

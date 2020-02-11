@@ -45,7 +45,7 @@ export const reducer = (state = initialState, action) => {
                 isFetching: false,
                 error: null,
                 accounts:action.payload.accounts,
-                categories:action.payload.categories,
+                categories:action.payload.Categories,
                 
             }
         default:

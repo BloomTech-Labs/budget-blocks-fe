@@ -64,7 +64,15 @@ const TotalBudget = props => {
 						Total Budget
 					</Grid>
 					<Grid item xs={12}>
-						<h5>$</h5>
+						<h3>
+							$ <span></span>
+							{Math.round(
+								100 *
+									props.budget.reduce(function(a, b) {
+										return a + b;
+									}, 0)
+							) / 100}
+						</h3>
 					</Grid>
 
 					<Grid item xs={12}>

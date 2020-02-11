@@ -23,7 +23,7 @@ function App() {
         <Route path="/register" component={Register} />
         <PrivateRoute path="/profile" component={Profile} />
         <PrivateRoute path="/dashboard" component={Dashboard} />
-        {/* <Route path="/budgetModal" component={Blocks}/> */}
+        <Route path="/budgetModal" component={BudgetGoal}/>
 
      
 

@@ -68,12 +68,14 @@ const DialogActions = withStyles(theme => ({
 
 export default function BudgetGoal(props) {
   
+  const [userID, setUserID]=useState("")
   const [goals, setGoals] = useState({
     categoryid: "",
     budget: ""
   });
   useEffect(()=>{
     setGoals({...goals, categoryid:props.values.catId})
+    setUserID(props.values.userId);
   },[props.values.catId])
   const handleChange = e => {
     e.preventDefault();
@@ -115,13 +117,10 @@ export default function BudgetGoal(props) {
     e.preventDefault();
     console.log(props.values.catId)
     console.log(goals)
-    const array={ categoryid : 1 , budget :200}
 
     axios
       .put(
-        // `https://lambda-budget-blocks.herokuapp.com/api/users/categories/${props.values.userId}`,
-        'https://lambda-budget-blocks.herokuapp.com/api/users/categories/2',
-        { categoryid : 1 , budget :200}
+        `https://lambda-budget-blocks.herokuapp.com/api/users/categories/${userID}`,goals
       )
       .then(response => {
         console.log("i am response", response);

@@ -38,6 +38,8 @@ jobs:
           ref: development
       - run: yarn install
       - uses: paambaati/codeclimate-action@v2.4.0
+        env:
+          CC_TEST_REPORTER_ID: ${{ secrets.CodeClimateReporterId }} 
         with:
           coverageCommand: yarn coverage
           debug: false 

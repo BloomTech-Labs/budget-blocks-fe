@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
+import { Back_Continue } from "./Modal_Components/Back_Continue";
+import { Modal_Title } from "./Modal_Components/Modal_Title";
+
 import { withStyles, makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
-import MuiDialogTitle from "@material-ui/core/DialogTitle";
 import MuiDialogContent from "@material-ui/core/DialogContent";
-import MuiDialogActions from "@material-ui/core/DialogActions";
-import IconButton from "@material-ui/core/IconButton";
-import CloseIcon from "@material-ui/icons/Close";
 import Typography from "@material-ui/core/Typography";
 import Radio from "@material-ui/core/Radio";
 import RadioGroup from "@material-ui/core/RadioGroup";
@@ -24,49 +23,12 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const styles = theme => ({
-  root: {
-    margin: 0,
-    padding: theme.spacing(2)
-  },
-  closeButton: {
-    position: "absolute",
-    right: theme.spacing(1),
-    top: theme.spacing(1),
-    color: "#00000"
-  }
-});
-
-const DialogTitle = withStyles(styles)(props => {
-  const { children, classes, onClose, ...other } = props;
-  return (
-    <MuiDialogTitle disableTypography className={classes.root} {...other}>
-      <Typography variant="h6">{children}</Typography>
-      {onClose ? (
-        <IconButton
-          aria-label="close"
-          className={classes.closeButton}
-          onClick={onClose}
-        >
-          <CloseIcon />
-        </IconButton>
-      ) : null}
-    </MuiDialogTitle>
-  );
-});
 
 const DialogContent = withStyles(theme => ({
   root: {
     padding: theme.spacing(2)
   }
 }))(MuiDialogContent);
-
-const DialogActions = withStyles(theme => ({
-  root: {
-    margin: 0,
-    padding: theme.spacing(1)
-  }
-}))(MuiDialogActions);
 
 export default function PresetModal() {
   const [open, setOpen] = useState(false);
@@ -114,11 +76,7 @@ export default function PresetModal() {
         fullWidth={true}
         maxWidth="md"
       >
-        <DialogTitle className="customized-dialog-title" onClose={handleClose}>
-          <Typography className="customized-dialog-title">
-            Choose spending blocks
-          </Typography>
-        </DialogTitle>
+        <Modal_Title handleClose={handleClose} title="Choose spending blocks"/>
         <DialogContent className="content">
           <Typography className="what" variant="h6">
             Choose which category you would like to set budget for
@@ -154,24 +112,7 @@ export default function PresetModal() {
             </FormControl>
           </div>
         </DialogContent>
-        <DialogActions className="buttons">
-          <Button
-            className="backBtn"
-            onClick={handleClose}
-            variant="outlined"
-            color="primary"
-          >
-            BACK
-          </Button>
-          <Button
-            className="contBtn"
-            onClick={handleClose}
-            variant="outlined"
-            color="primary"
-          >
-            CONTINUE
-          </Button>
-        </DialogActions>
+        <Back_Continue BackClick={handleClose} ContClick={handleClose}/>
       </Dialog>
     </div>
   );

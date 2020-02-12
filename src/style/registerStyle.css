@@ -61,3 +61,7 @@
     font-family: "Exo", sans-serif !important;
 
   }
+  .errorMessage{
+    color: red;
+    display: none;
+  }

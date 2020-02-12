@@ -23,7 +23,7 @@ export function registerUser(data, history){
                 history.push("/login");
             })
             .catch(error=>{
-                dispatch(registerUserFailure(error)); 
+                dispatch(registerUserFailure(error.response.data.error)); 
             })
     }
 }

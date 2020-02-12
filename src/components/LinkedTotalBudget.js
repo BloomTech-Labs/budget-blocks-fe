@@ -14,7 +14,9 @@ import { ProgressBar } from 'react-bootstrap';
 
 const useStyles = makeStyles({
 	card: {
+
 		minWidth: 350,
+
 		background: '#F0F0F0'
 	},
 	bullet: {

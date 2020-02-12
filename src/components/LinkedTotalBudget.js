@@ -10,10 +10,12 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 
+import { ProgressBar } from 'react-bootstrap';
+
 const useStyles = makeStyles({
 	card: {
-		minWidth: 275,
-		background: '#E0E0E0'
+		minWidth: 350,
+		background: '#F0F0F0'
 	},
 	bullet: {
 		display: 'inline-block',
@@ -31,6 +33,7 @@ const useStyles = makeStyles({
 const TotalBudget = props => {
 	const classes = useStyles();
 	console.log(
+		'expense',
 		props.expenses.reduce(function(a, b) {
 			return a + b;
 		}, 0)
@@ -42,25 +45,38 @@ const TotalBudget = props => {
 		}, 0)
 	);
 	return (
-		<Card className={classes.card} variant='outlined'>
+		<Card className={classes.card}>
 			<CardContent>
 				<Typography variant='subtitle1' gutterBottom></Typography>
 				<Grid container spacing={3}>
 					<Grid item xs={6}>
-						<h3>Total Expenses</h3>
-						<p>
-							$
+						<h2 className={classes.textHeader}>
+							Total<br></br>Expenses
+						</h2>
+						<h3>
+							$<span> </span>
 							{Math.round(
 								100 *
 									props.expenses.reduce(function(a, b) {
 										return a + b;
 									}, 0)
 							) / 100}
-						</p>
+						</h3>
 					</Grid>
 					<Grid item xs={6}>
-						<h3>Goal</h3>
-						<p>total limit</p>
+						<h2>
+							Budget
+							<br /> Goal
+						</h2>
+						<h3>
+							$<span> </span>
+							{Math.round(
+								100 *
+									props.budget.reduce(function(a, b) {
+										return a + b;
+									}, 0)
+							) / 100}
+						</h3>
 					</Grid>
 				</Grid>
 			</CardContent>

@@ -143,7 +143,7 @@ export const Register = props => {
                 type="submit"
                 disabled={values.button.disabled}
               >
-                
+                SignUp
               </Button>
             </FormControl>
           </form>

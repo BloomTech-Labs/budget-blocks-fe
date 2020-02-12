@@ -1,7 +1,6 @@
 import React, { useState, useEffect} from "react";
 import { Back_Continue } from "./Modal_Components/Back_Continue";
 import { Modal_Title } from "./Modal_Components/Modal_Title";
-
 import { withStyles, makeStyles } from "@material-ui/core/styles";
 import Dialog from "@material-ui/core/Dialog";
 import MuiDialogContent from "@material-ui/core/DialogContent";
@@ -40,7 +39,6 @@ const DialogContent = withStyles(theme => ({
 }))(MuiDialogContent);
 
 export default function BudgetGoal(props) {
-  
   const [userID, setUserID]=useState("")
   const [goals, setGoals] = useState({
     categoryid: "",
@@ -88,21 +86,22 @@ export default function BudgetGoal(props) {
   }
   const submit = e => {
     e.preventDefault();
-    console.log(props.values.catId)
-    console.log(goals)
 
     axios
       .put(
         `https://lambda-budget-blocks.herokuapp.com/api/users/categories/${userID}`,goals
       )
       .then(response => {
-        console.log("i am response", response);
+        setGoals({ ...goals,budget:"" });
+        props.handleClose()
+
         
       })
       .catch(error => {
         console.log(error.response);
       });
   };
+ 
   return (
     <div>
       <Dialog
@@ -119,9 +118,7 @@ export default function BudgetGoal(props) {
           <Typography className="what" variant="h5">
             What is your spending goal?
           </Typography>
-          {/* <Typography variant="h4" className="goal">
-             $0.00
-         </Typography> */}
+       
           <TextField
             className="goal"
             placeholder="0.00"

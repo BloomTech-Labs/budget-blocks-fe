@@ -9,6 +9,9 @@ import Paper from '@material-ui/core/Paper';
 import { getTransactions } from '../redux/actions/PlaidActions';
 import { connect } from 'react-redux';
 import './table.css';
+
+import BudgetGoal from "../components/BudgetGoalModal"
+
 const useStyles = makeStyles({
 	table: {
 		minWidth: 649
@@ -16,10 +19,15 @@ const useStyles = makeStyles({
 });
 
 export function Blocks(props) {
+
 	const classes = useStyles();
 	const [filter, setFilter] = useState([]);
+	const [open, setOpen] = useState(false);
+
+
 	useEffect(() => {
 		props.getTransactions(props.userID);
+
 	}, [props.LinkedAccount]);
 	const handleClick = e => {
 		setFilter(!filter);
@@ -30,8 +38,21 @@ export function Blocks(props) {
 		return 0.5 - Math.random();
 	});
 
+	const [values,setValues]=useState({
+		userId:"",
+		catId:""
+	})
+	useEffect(()=>{
+	},[])
 	var selected = shuffled.slice(0, 5);
-	console.log(selected);
+	const handleClickOpen = (id) => {
+		setValues({...values,userId:localStorage.id, catId:id})
+		setOpen(true);
+	
+	  };
+	  const handleClose = () => {
+		setOpen(false);
+	  };
 	return (
 		<div>
 			{filter ? (
@@ -47,8 +68,27 @@ export function Blocks(props) {
 								]}
 								className='lightgrey'
 							/>
-							<DisplayBlocks arr={selected}/>
+
+							<TableBody>
+								{selected.map(i => (
+									<TableRow key={i.id}>
+										<TableCell>{i.name}</TableCell>
+										<TableCell>
+											${i.total === null ? 0 : Math.round(100 * i.total) / 100}
+										</TableCell>
+										<TableCell>
+											$
+											{i.budget === null ? 0 : Math.round(100 * i.budget) / 100}
+										</TableCell>
+										<TableCell onClick={()=>handleClickOpen(i.id)}>
+											Edit
+										</TableCell>
+									</TableRow>
+								))}
+							</TableBody>
+
 						</Table>
+						<BudgetGoal open={open} values={values} handleClose={handleClose}/>
 					</TableContainer>
 					<button onClick={handleClick}>View All</button>
 				</div>
@@ -65,8 +105,28 @@ export function Blocks(props) {
 								]}
 								className='lightgrey'
 							/>
-							<DisplayBlocks arr={props.blocks}/>
+
+							<TableBody>
+								{props.blocks.map(i => (
+									<TableRow key={i.id}>
+										<TableCell>{i.name}</TableCell>
+										<TableCell>
+											${i.total === null ? 0 : Math.round(100 * i.total) / 100}
+										</TableCell>
+										<TableCell>
+											$
+											{i.budget === null ? 0 : Math.round(100 * i.budget) / 100}
+										</TableCell>
+										<TableCell onClick={()=>handleClickOpen(i.id)}>
+											Edit
+										</TableCell>
+									</TableRow>
+								))}
+							</TableBody>
+
 						</Table>
+						<BudgetGoal open={open} values={values} handleClose={handleClose}/>
+
 					</TableContainer>
 					<button onClick={handleClick}>View Less</button>
 				</div>

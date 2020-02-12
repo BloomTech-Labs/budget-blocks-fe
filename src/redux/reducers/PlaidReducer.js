@@ -6,7 +6,12 @@ import {
     GET_TRANS_LOADING,
     GET_TRANS_SUCCESS,
     GET_TRANS_FAILED
-    } from "../actions/PlaidActions"
+    } from "../actions/PlaidActions";
+
+import {
+    CLEAR_PLAID
+} from "../actions/LogoutAction";
+
 export const reducer = (state = initialState, action) => {
     switch(action.type){
         case SEND_LINK_TOKEN_LOADING:
@@ -47,6 +52,10 @@ export const reducer = (state = initialState, action) => {
                 accounts:action.payload.accounts,
                 categories:action.payload.Categories,
                 
+            }
+        case CLEAR_PLAID:
+            return {
+                ...initialState
             }
         default:
             return state;

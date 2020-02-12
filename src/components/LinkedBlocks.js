@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { TableHeads } from './Blocks_Components/TableHead';
-import  DisplayBlocks  from "./Blocks_Components/DisplayBlocks";
+import DisplayBlocks from './Blocks_Components/DisplayBlocks';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -13,7 +13,10 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
 
-import BudgetGoal from "../components/BudgetGoalModal"
+import BudgetGoal from '../components/BudgetGoalModal';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableRow from '@material-ui/core/TableRow';
 
 const useStyles = makeStyles({
 	table: {
@@ -22,15 +25,12 @@ const useStyles = makeStyles({
 });
 
 export function Blocks(props) {
-
 	const classes = useStyles();
 	const [filter, setFilter] = useState([]);
 	const [open, setOpen] = useState(false);
 
-
 	useEffect(() => {
 		props.getTransactions(props.userID);
-
 	}, [props.LinkedAccount]);
 	const handleClick = e => {
 		setFilter(!filter);
@@ -41,21 +41,19 @@ export function Blocks(props) {
 		return 0.5 - Math.random();
 	});
 
-	const [values,setValues]=useState({
-		userId:"",
-		catId:""
-	})
-	useEffect(()=>{
-	},[])
+	const [values, setValues] = useState({
+		userId: '',
+		catId: ''
+	});
+	useEffect(() => {}, []);
 	var selected = shuffled.slice(0, 5);
-	const handleClickOpen = (id) => {
-		setValues({...values,userId:localStorage.id, catId:id})
+	const handleClickOpen = id => {
+		setValues({ ...values, userId: localStorage.id, catId: id });
 		setOpen(true);
-	
-	  };
-	  const handleClose = () => {
+	};
+	const handleClose = () => {
 		setOpen(false);
-	  };
+	};
 	return (
 		<div>
 			{filter ? (
@@ -63,12 +61,7 @@ export function Blocks(props) {
 					<TableContainer className='table' component={Paper}>
 						<Table className={classes.table} aria-label='simple table'>
 							<TableHeads
-								CellNames={[
-									'Block',
-									'Total Expenses',
-									'Limit',
-									''
-								]}
+								CellNames={['Block', 'Total Expenses', 'Limit', '']}
 								className='lightgrey'
 							/>
 
@@ -83,15 +76,14 @@ export function Blocks(props) {
 											$
 											{i.budget === null ? 0 : (Math.round(100 * i.budget) / 100).toFixed(2)}
 										</TableCell>
-										<TableCell onClick={()=>handleClickOpen(i.id)}>
+										<TableCell onClick={() => handleClickOpen(i.id)}>
 											Edit
 										</TableCell>
 									</TableRow>
 								))}
 							</TableBody>
-
 						</Table>
-						<BudgetGoal open={open} values={values} handleClose={handleClose}/>
+						<BudgetGoal open={open} values={values} handleClose={handleClose} />
 					</TableContainer>
 					<button onClick={handleClick}>View All</button>
 				</div>
@@ -100,12 +92,7 @@ export function Blocks(props) {
 					<TableContainer className='table' component={Paper}>
 						<Table className={classes.table} aria-label='simple table'>
 							<TableHeads
-								CellNames={[
-									'Block',
-									'Total Expenses',
-									'Limit',
-									''
-								]}
+								CellNames={['Block', 'Total Expenses', 'Limit', '']}
 								className='lightgrey'
 							/>
 
@@ -120,16 +107,14 @@ export function Blocks(props) {
 											$
 											{i.budget === null ? 0 : (Math.round(100 * i.budget) / 100).toFixed(2)}
 										</TableCell>
-										<TableCell onClick={()=>handleClickOpen(i.id)}>
+										<TableCell onClick={() => handleClickOpen(i.id)}>
 											Edit
 										</TableCell>
 									</TableRow>
 								))}
 							</TableBody>
-
 						</Table>
-						<BudgetGoal open={open} values={values} handleClose={handleClose}/>
-
+						<BudgetGoal open={open} values={values} handleClose={handleClose} />
 					</TableContainer>
 					<button onClick={handleClick}>View Less</button>
 				</div>

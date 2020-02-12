@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 
 import Grid from '@material-ui/core/Grid';
 import styled from 'styled-components';
 
-import { blocksData } from '../redux/actions/userBlocks';
 import { connect } from 'react-redux';
-// npm install --save-dev @iconify/react @iconify/icons-fa
 
 import './table.css';
 
@@ -19,7 +16,7 @@ import Typography from '@material-ui/core/Typography';
 const useStyles = makeStyles({
 	card: {
 		minWidth: 275,
-		background: '#E0E0E0'
+		background: '#F0F0F0'
 	},
 	bullet: {
 		display: 'inline-block',
@@ -46,32 +43,59 @@ const TotalBudget = props => {
 		background: lightgrey;
 		border: lightgrey;
 	`;
-	console.log('total budget');
+
 	console.log(
 		props.expenses.reduce(function(a, b) {
 			return a + b;
 		}, 0)
 	);
 	return (
-		<Card className={classes.card} variant='outlined'>
+		<Card className={classes.card}>
 			<CardContent>
 				<Typography variant='subtitle1' gutterBottom></Typography>
 				<Grid container spacing={3}>
 					<Grid item xs={6}>
-						<h3>Total Expenses</h3>
-						<p>
-							$
+						<h2>
+							Total<br></br>Expenses
+						</h2>
+						<h3>
+							$<span> </span>
 							{Math.round(
 								100 *
 									props.expenses.reduce(function(a, b) {
 										return a + b;
 									}, 0)
 							) / 100}
-						</p>
+						</h3>
 					</Grid>
 					<Grid item xs={6}>
-						<h3>Goal</h3>
-						<p>total limit</p>
+						<h2>
+							Budget<br></br>Goal
+						</h2>
+						<h3>
+							$<span> </span>
+							{Math.round(
+								100 *
+									props.budget.reduce(function(a, b) {
+										return a + b;
+									}, 0)
+							) / 100}
+						</h3>
+					</Grid>
+					<Grid item xs={12}>
+						<Progress
+							color='success'
+							className='progress'
+							value={
+								(props.expenses.reduce(function(a, b) {
+									return a + b;
+								}, 0) /
+									props.budget.reduce(function(a, b) {
+										return a + b;
+									}, 0)) *
+								100
+							}
+						/>
 					</Grid>
 				</Grid>
 			</CardContent>

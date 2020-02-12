@@ -6,86 +6,101 @@ import PasswordField from "./Form_Components/PasswordField";
 import Account from "./Form_Components/Account";
 import { CheckEmptyFields } from "./Form_Components/CheckEmpyFields";
 import { ChangeCheckField } from "./Form_Components/ChangeCheckField";
-
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 import Button from "@material-ui/core/Button";
 import "../style/registerStyle.css";
 import TextField from "@material-ui/core/TextField";
 import FormControl from "@material-ui/core/FormControl";
-
+import Loader from "react-loader-spinner";
 
 export const Register = props => {
+  console.log(props)
   const [user, setUser] = useState({ email: "", password: "" });
   const [confirmPass, setConfirmPass] = useState({ confirmPassword: "" });
   const [values, setValues] = useState({
-    password:{
-      error:false,
-      helperText:''
+    password: {
+      error: false,
+      helperText: ""
     },
-    email:{
-      error:false,
-      helperText:''  
+    email: {
+      error: false,
+      helperText: ""
     },
-    button:{
-      disabled:false
+    button: {
+      disabled: false
     }
   });
 
   const handleChange = e => {
-
     setUser({ ...user, [e.target.name]: e.target.value });
     setValues(ChangeCheckField(e, values));
   };
 
   const handleConfirm = e => {
-    setValues({...values, password:{
-      error:false,
-      helperText:``
-      } 
+    setValues({
+      ...values,
+      password: {
+        error: false,
+        helperText: ``
+      }
     });
 
     setConfirmPass({ ...confirmPass, [e.target.name]: e.target.value });
-
   };
 
   const handleSubmit = e => {
     e.preventDefault();
     const check = CheckEmptyFields(user, values);
-    if(check instanceof Object){
-      setValues({...check});
-    }else if (confirmPass.confirmPassword !== user.password) {
-      setValues({...values, password:{
-          error:true,
-          helperText:`Password Mismatch`
-        } 
+    if (check instanceof Object) {
+      setValues({ ...check });
+    } else if (confirmPass.confirmPassword !== user.password) {
+      setValues({
+        ...values,
+        password: {
+          error: true,
+          helperText: `Password Mismatch`
+        }
       });
     } else {
       props.registerUser(user, props.history);
       setUser({ email: "", password: "" });
       setConfirmPass({ confirmPassword: "" });
-      setValues({...values, password:{
-          error:false,
-          helperText:``
-        } 
+      setValues({
+        ...values,
+        password: {
+          error: false,
+          helperText: ``
+        }
       });
     }
   };
 
-  useEffect(()=>{
-    if(values.password.error === false && values.email.error === false){
-        setValues({...values, button:{disabled:false}})
-    }else{
-        setValues({...values, button:{disabled:true}})
+  useEffect(() => {
+    if (values.password.error === false && values.email.error === false) {
+      setValues({ ...values, button: { disabled: false } });
+    } else {
+      setValues({ ...values, button: { disabled: true } });
     }
-},[user]);
+  }, [user]);
 
   return (
     <div className="register">
+     {console.log(props.isFetching)}
+     {props.isFetching? <Loader
+          type="Puff"
+          color="#00BFFF"
+          height={100}
+          width={100}
+          timeout={10000} //3 secs
+        />: <p>dsds</p>
+      }
+       
+     
       <Container maxWidth="sm">
         <div style={{ backgroundColor: "#ffffff" }}>
-          
-          <Title title="Sign Up"/>
+          <Title title="Sign Up" />
 
           <form className="RegisterForm" onSubmit={handleSubmit}>
             <FormControl variant="outlined">
@@ -102,28 +117,33 @@ export const Register = props => {
                 error={values.email.error}
               />
 
-              <PasswordField 
-                name="password" 
-                placeholder="Password" 
-                label="Password" 
+              <PasswordField
+                name="password"
+                placeholder="Password"
+                label="Password"
                 error={values.password.error}
                 value={user.password}
                 handleChange={handleChange}
                 helperText={values.password.helperText}
-                />
+              />
 
-              <PasswordField 
-                name="confirmPassword" 
-                placeholder="Confirm Password" 
-                label="Confirm Password" 
+              <PasswordField
+                name="confirmPassword"
+                placeholder="Confirm Password"
+                label="Confirm Password"
                 error={values.password.error}
                 value={confirmPass.confirmPassword}
                 handleChange={handleConfirm}
-                />
+              />
 
-              <Account message="Already have an account?" link="/login"/>
-              <Button variant="outlined" className="signUpBtn" type="submit" disabled={values.button.disabled}>
-                Sign Up
+              <Account message="Already have an account?" link="/login" />
+              <Button
+                variant="outlined"
+                className="signUpBtn"
+                type="submit"
+                disabled={values.button.disabled}
+              >
+                SignUp
               </Button>
             </FormControl>
           </form>
@@ -134,7 +154,9 @@ export const Register = props => {
 };
 
 function mapStateToProps(state) {
-  return {};
+  return {
+    isFetching: state.registerReducer.isFetching
+  };
 }
 
 export default connect(mapStateToProps, { registerUser })(Register);

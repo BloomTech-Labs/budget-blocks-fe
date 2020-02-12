@@ -102,9 +102,11 @@ export const Login = (props)=>{
 }
 
 function mapStateToProps(state){
-    return {
-        error:state.error
-    }
+console.log(state)
+return {
+    
+    error:state.error}
+    
 }
 
 export default connect(mapStateToProps,{ loginUser })(Login)

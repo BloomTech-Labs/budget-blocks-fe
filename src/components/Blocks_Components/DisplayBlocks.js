@@ -11,11 +11,10 @@ const DisplayBlocks = ({arr, handleClick}) =>{
             <TableRow key={i.id}>
                 <TableCell>{i.name}</TableCell>
                 <TableCell>
-                    ${i.total === null ? 0 : Math.round(100 * i.total) / 100}
+                    ${i.total === null ? 0 : (Math.round(100 * i.total) / 100).toFixed(2)}
                 </TableCell>
                 <TableCell>
-                    $
-                    {i.budget === null ? 0 : Math.round(100 * i.budget) / 100}
+                    ${i.budget === null ? 0 : (Math.round(100 * i.budget) / 100).toFixed(2)}
                 </TableCell>
                 <TableCell onClick={()=>handleClick(i.id, i.budget)}>
 					Edit

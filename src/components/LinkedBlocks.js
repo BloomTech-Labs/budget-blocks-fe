@@ -9,6 +9,9 @@ import Paper from '@material-ui/core/Paper';
 import { getTransactions } from '../redux/actions/PlaidActions';
 import { connect } from 'react-redux';
 import './table.css';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableRow from '@material-ui/core/TableRow';
 
 import BudgetGoal from "../components/BudgetGoalModal"
 
@@ -34,19 +37,20 @@ export function Blocks(props) {
 	};
 
 	// [0,10,20,30,...,490]
-	var shuffled = props.blocks.sort(function() {
-		return 0.5 - Math.random();
+	var shuffled = props.blocks.sort(function(a,b) {
+		return a-b;
 	});
 
 	const [values,setValues]=useState({
 		userId:"",
-		catId:""
+		catId:"",
+		budget:0.00
 	})
 	useEffect(()=>{
 	},[])
 	var selected = shuffled.slice(0, 5);
-	const handleClickOpen = (id) => {
-		setValues({...values,userId:localStorage.id, catId:id})
+	const handleClickOpen = (id, budget) => {
+		setValues({...values,userId:localStorage.id, catId:id, budget});
 		setOpen(true);
 	
 	  };
@@ -68,24 +72,7 @@ export function Blocks(props) {
 								]}
 								className='lightgrey'
 							/>
-
-							<TableBody>
-								{selected.map(i => (
-									<TableRow key={i.id}>
-										<TableCell>{i.name}</TableCell>
-										<TableCell>
-											${i.total === null ? 0 : Math.round(100 * i.total) / 100}
-										</TableCell>
-										<TableCell>
-											$
-											{i.budget === null ? 0 : Math.round(100 * i.budget) / 100}
-										</TableCell>
-										<TableCell onClick={()=>handleClickOpen(i.id)}>
-											Edit
-										</TableCell>
-									</TableRow>
-								))}
-							</TableBody>
+							<DisplayBlocks arr={selected} handleClick={handleClickOpen}/>
 
 						</Table>
 						<BudgetGoal open={open} values={values} handleClose={handleClose}/>
@@ -105,24 +92,7 @@ export function Blocks(props) {
 								]}
 								className='lightgrey'
 							/>
-
-							<TableBody>
-								{props.blocks.map(i => (
-									<TableRow key={i.id}>
-										<TableCell>{i.name}</TableCell>
-										<TableCell>
-											${i.total === null ? 0 : Math.round(100 * i.total) / 100}
-										</TableCell>
-										<TableCell>
-											$
-											{i.budget === null ? 0 : Math.round(100 * i.budget) / 100}
-										</TableCell>
-										<TableCell onClick={()=>handleClickOpen(i.id)}>
-											Edit
-										</TableCell>
-									</TableRow>
-								))}
-							</TableBody>
+							<DisplayBlocks arr={props.blocks} handleClick={handleClickOpen}/>
 
 						</Table>
 						<BudgetGoal open={open} values={values} handleClose={handleClose}/>

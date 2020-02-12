@@ -1,4 +1,5 @@
 import React, { useState, useEffect} from "react";
+import { connect } from "react-redux"
 import { Back_Continue } from "./Modal_Components/Back_Continue";
 import { Modal_Title } from "./Modal_Components/Modal_Title";
 import { withStyles, makeStyles } from "@material-ui/core/styles";
@@ -10,6 +11,7 @@ import TextField from "@material-ui/core/TextField";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import "../style/modalStyle.css";
 import axios from "axios";
+import { updateBlocks } from "../redux/actions/userBlocks";
 const useStyles = makeStyles(theme => ({
   root: {
     width: 300 + theme.spacing(3) * 2
@@ -38,20 +40,26 @@ const DialogContent = withStyles(theme => ({
   }
 }))(MuiDialogContent);
 
-export default function BudgetGoal(props) {
+export function BudgetGoal(props) {
   const [userID, setUserID]=useState("")
   const [goals, setGoals] = useState({
     categoryid: "",
     budget: ""
   });
+
   useEffect(()=>{
-    setGoals({...goals, categoryid:props.values.catId})
+    if(props.values.budget === null){
+      props.values.budget = 0
+    }
+    setGoals({...goals, categoryid:props.values.catId, budget:props.values.budget})
     setUserID(props.values.userId);
   },[props.values.catId])
+
   const handleChange = e => {
     e.preventDefault();
     setGoals({ ...goals,budget: e.target.value });
   };
+
   const PrettoSlider = withStyles({
     root: {
       color: "#91D5FF",
@@ -81,25 +89,17 @@ export default function BudgetGoal(props) {
       borderRadius: 4
     }
   })(Slider);
+
   function changeSlider(event, value) {
     console.log(value);
   }
   const submit = e => {
+
     e.preventDefault();
+    props.updateBlocks(userID, goals);
+    setGoals({ ...goals,budget:"" });
+    props.handleClose();
 
-    axios
-      .put(
-        `https://lambda-budget-blocks.herokuapp.com/api/users/categories/${userID}`,goals
-      )
-      .then(response => {
-        setGoals({ ...goals,budget:"" });
-        props.handleClose()
-
-        
-      })
-      .catch(error => {
-        console.log(error.response);
-      });
   };
  
   return (
@@ -165,3 +165,11 @@ export default function BudgetGoal(props) {
     </div>
   );
 }
+
+function mapStateToProps(state){
+  return {
+      
+  }
+}
+
+export default connect(mapStateToProps,{ updateBlocks })(BudgetGoal)

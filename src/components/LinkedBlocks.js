@@ -9,9 +9,6 @@ import Paper from '@material-ui/core/Paper';
 import { getTransactions } from '../redux/actions/PlaidActions';
 import { connect } from 'react-redux';
 import './table.css';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableRow from '@material-ui/core/TableRow';
 
 import BudgetGoal from "../components/BudgetGoalModal"
 

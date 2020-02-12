@@ -26,7 +26,7 @@ export const Balance = ({balance, LinkedAccount})=>{
         )
     }else{
         return (
-        <Card className="Balance">
+        <Card className={classes.NoBalance}>
             <h1>
                 ${sum}
             </h1>

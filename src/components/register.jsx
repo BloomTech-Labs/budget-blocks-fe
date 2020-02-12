@@ -16,7 +16,6 @@ import FormControl from "@material-ui/core/FormControl";
 import Loader from "react-loader-spinner";
 
 export const Register = props => {
-  console.log(props)
   const [user, setUser] = useState({ email: "", password: "" });
   const [confirmPass, setConfirmPass] = useState({ confirmPassword: "" });
   const [values, setValues] = useState({
@@ -87,17 +86,6 @@ export const Register = props => {
 
   return (
     <div className="register">
-     {console.log(props.isFetching)}
-     {props.isFetching? <Loader
-          type="Puff"
-          color="#00BFFF"
-          height={100}
-          width={100}
-          timeout={10000} //3 secs
-        />: <p>dsds</p>
-      }
-       
-     
       <Container maxWidth="sm">
         <div style={{ backgroundColor: "#ffffff" }}>
           <Title title="Sign Up" />
@@ -135,15 +123,27 @@ export const Register = props => {
                 value={confirmPass.confirmPassword}
                 handleChange={handleConfirm}
               />
-
               <Account message="Already have an account?" link="/login" />
+              {
+                props.error?<p style={{display: "inline"}} className="errorMessage">{props.error}</p>:<p className="errorMessage"></p>
+              }
               <Button
                 variant="outlined"
                 className="signUpBtn"
                 type="submit"
                 disabled={values.button.disabled}
               >
-                SignUp
+                {props.isFetching ? (
+                  <Loader
+                    type="Puff"
+                    color="#00BFFF"
+                    height={100}
+                    width={100}
+                    timeout={10000} //3 secs
+                  />
+                ) : (
+                  <p>SignUp</p>
+                )}
               </Button>
             </FormControl>
           </form>
@@ -155,7 +155,8 @@ export const Register = props => {
 
 function mapStateToProps(state) {
   return {
-    isFetching: state.registerReducer.isFetching
+    isFetching: state.registerReducer.isFetching,
+    error: state.registerReducer.error
   };
 }
 

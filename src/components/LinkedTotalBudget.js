@@ -1,10 +1,7 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
-import { Progress } from 'reactstrap';
+
 import { connect } from 'react-redux';
-import { Icon } from '@iconify/react';
-import chevronCircleUp from '@iconify/icons-fa/chevron-circle-up';
-import chevronCircleDown from '@iconify/icons-fa/chevron-circle-down';
 
 import './table.css';
 
@@ -12,6 +9,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
+
 const useStyles = makeStyles({
 	card: {
 		minWidth: 275,
@@ -48,45 +46,10 @@ const TotalBudget = props => {
 			<CardContent>
 				<Typography variant='subtitle1' gutterBottom></Typography>
 				<Grid container spacing={3}>
-					<Grid item xs={12}>
-						Total Budget
-					</Grid>
-					<Grid item xs={12}>
-						<h3>
-							$ <span></span>
-							{Math.round(
-								100 *
-									props.expenses.reduce(function(a, b) {
-										return a + b;
-									}, 0)
-							) / 100}
-						</h3>
-					</Grid>
-
-					<Grid item xs={12}>
-						<Progress
-							color='success'
-							className='progress'
-							value={
-								(props.expenses.reduce(function(a, b) {
-									return a + b;
-								}, 0) /
-									props.budget.reduce(function(a, b) {
-										return a + b;
-									}, 0)) *
-								100
-							}
-						/>
-					</Grid>
 					<Grid item xs={6}>
-						<p>Income</p>
-						<p>+ ${props.user.income === null ? 0 : props.user.income}</p>
-						<Icon className='icons green' icon={chevronCircleUp} />
-					</Grid>
-					<Grid item xs={6}>
-						<p>Expenses</p>
+						<h3>Total Expenses</h3>
 						<p>
-							- $
+							$
 							{Math.round(
 								100 *
 									props.expenses.reduce(function(a, b) {
@@ -94,7 +57,10 @@ const TotalBudget = props => {
 									}, 0)
 							) / 100}
 						</p>
-						<Icon className='icons red' icon={chevronCircleDown} />
+					</Grid>
+					<Grid item xs={6}>
+						<h3>Goal</h3>
+						<p>total limit</p>
 					</Grid>
 				</Grid>
 			</CardContent>

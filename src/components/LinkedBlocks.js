@@ -1,19 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { TableHeads } from './Blocks_Components/TableHead';
+import  DisplayBlocks  from "./Blocks_Components/DisplayBlocks";
 
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import { Progress, Container } from 'reactstrap';
 import { getTransactions } from '../redux/actions/PlaidActions';
 import { connect } from 'react-redux';
 import './table.css';
-import HeadsetIcon from '@material-ui/icons/Headset';
 const useStyles = makeStyles({
 	table: {
 		minWidth: 649
@@ -52,23 +47,7 @@ export function Blocks(props) {
 								]}
 								className='lightgrey'
 							/>
-							<TableBody>
-								{selected.map(i => (
-									<TableRow key={i.id}>
-										<TableCell>{i.name}</TableCell>
-										<TableCell>
-											${i.total === null ? 0 : Math.round(100 * i.total) / 100}
-										</TableCell>
-										<TableCell>
-											$
-											{i.budget === null ? 0 : Math.round(100 * i.budget) / 100}
-										</TableCell>
-										<TableCell>
-											<a href='google.com'>Edit</a>
-										</TableCell>
-									</TableRow>
-								))}
-							</TableBody>
+							<DisplayBlocks arr={selected}/>
 						</Table>
 					</TableContainer>
 					<button onClick={handleClick}>View All</button>
@@ -86,23 +65,7 @@ export function Blocks(props) {
 								]}
 								className='lightgrey'
 							/>
-							<TableBody>
-								{props.blocks.map(i => (
-									<TableRow key={i.id}>
-										<TableCell>{i.name}</TableCell>
-										<TableCell>
-											${i.total === null ? 0 : Math.round(100 * i.total) / 100}
-										</TableCell>
-										<TableCell>
-											$
-											{i.budget === null ? 0 : Math.round(100 * i.budget) / 100}
-										</TableCell>
-										<TableCell>
-											<a href='google.com'>Edit</a>
-										</TableCell>
-									</TableRow>
-								))}
-							</TableBody>
+							<DisplayBlocks arr={props.blocks}/>
 						</Table>
 					</TableContainer>
 					<button onClick={handleClick}>View Less</button>

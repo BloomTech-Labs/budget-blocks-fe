@@ -19,7 +19,7 @@ const useStyles = makeStyles(theme => ({
 		width: '100%',
 		marginBottom: '1rem',
 		height: '70%',
-		background: 'lightgrey'
+		background: '#F0F0F0'
 	},
 	details: {
 		display: 'flex'

@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from "react"
+import React,{ useEffect } from "react"
 import Grid from '@material-ui/core/Grid'
 import UnlinkedBlocks from "./UnlinkedBlocks"
 import LinkedBlocks from "./LinkedBlocks"
@@ -12,44 +12,42 @@ import LinkedTotalBudget from "./LinkedTotalBudget"
 import UnlinkedTotalBudget from "./UnlinkedTotalBudget"
 import { getUserInfo } from "../redux/actions/ProfileActions";
 import { getTransactions } from "../redux/actions/PlaidActions";
+import { Progress } from 'semantic-ui-react'
+import "../style/dashboardStyle.css";
 
-
-const Dashboard = props => {
+export const Dashboard = props => {
   useEffect(() => {
-    props.getTransactions(props.userID);
-    props.getUserInfo(props.userID);
+    props.getTransactions(localStorage.getItem("id"));
+    props.getUserInfo(localStorage.getItem("id"));
   },[props.LinkedAccount])
     console.log(props)
     return (
-     
-    <Grid container spacing={3}>
-        <Grid item sm={8} xs={12}> 
-            
-            <Grid container>
-                <Grid item xs={12} lg={12} sm={12}><Header/></Grid>
+     <div className="container">
+        <Grid container spacing={5}>
+            <Grid item sm={8} xs={12}> 
+                <div className="middle">
+                <Grid container>
+                    <Grid item xs={12} lg={12} sm={12}><Header/></Grid>
+                </Grid>
+                <Grid container>
+            <Grid item xs={12} sm={12}>{props.blocks.length > 0 ? <LinkedBlocks /> : <UnlinkedBlocks />}</Grid>  
+                </Grid>
+                <Grid container>
+                    <Grid item xs={12} sm={12}>{props.blocks.length ? <LinkedTransactions /> : <UnlinkedTransactions />}</Grid> 
+                </Grid>
+                </div>
             </Grid>
+            <Grid item sm={4} xs={12}>
+                
             <Grid container>
-        <Grid item xs={12} sm={12}>{props.blocks.length > 0 ? <LinkedBlocks /> : <UnlinkedBlocks />}</Grid>  
-            </Grid>
-            <Grid container>
-                <Grid item xs={12} sm={12}>{props.blocks.length > 0 ? <LinkedTransactions /> : <UnlinkedTransactions />}</Grid> 
+                    <Grid item sm={8} xs={12}>{props.blocks.length ? <LinkedTotalBudget /> : <UnlinkedTotalBudget />}</Grid>
+                </Grid>
+                <Grid container>
+                    <Grid item sm={8} xs={12}><Balance/></Grid>
+                </Grid>
             </Grid>
         </Grid>
-        <Grid item sm={4} xs={12}>
-        <Grid container>
-                <Grid item sm={8} xs={12}>{props.blocks.length > 0 ? <LinkedTotalBudget /> : <UnlinkedTotalBudget />}</Grid>
-            </Grid>
-            <Grid container>
-                <Grid item sm={8} xs={12}><Balance/></Grid>
-            </Grid>
-            <Grid container>
-                <Grid item sm={8} xs={12}>Due </Grid>
-            </Grid>
-            <Grid container>
-                <Grid item sm={8} xs={12}><SavingsGoal/></Grid>
-            </Grid>
-        </Grid>
-    </Grid>
+     </div>
    
     )
 }

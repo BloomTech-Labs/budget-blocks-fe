@@ -1,151 +1,94 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { registerUser } from "../redux/actions/RegisterActions";
-import logo from "../media/image/logo.jpg";
-import budgetImg from "../media/image/budget_blocks.png";
+import Title from "./Form_Components/Title";
+import PasswordField from "./Form_Components/PasswordField";
+import Account from "./Form_Components/Account";
+import { CheckEmptyFields } from "./Form_Components/CheckEmpyFields";
+import { ChangeCheckField } from "./Form_Components/ChangeCheckField";
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 import Button from "@material-ui/core/Button";
 import "../style/registerStyle.css";
 import TextField from "@material-ui/core/TextField";
 import FormControl from "@material-ui/core/FormControl";
-import Visibility from "@material-ui/icons/Visibility";
-import VisibilityOff from "@material-ui/icons/VisibilityOff";
-import InputAdornment from "@material-ui/core/InputAdornment";
-import IconButton from "@material-ui/core/IconButton";
-import { Link } from "react-router-dom";
+import Loader from "react-loader-spinner";
 
 export const Register = props => {
   const [user, setUser] = useState({ email: "", password: "" });
   const [confirmPass, setConfirmPass] = useState({ confirmPassword: "" });
   const [values, setValues] = useState({
-    showPassword: false,
-    showConfirmPassword: false,
-    password:{
-      error:false,
-      helperText:''
+    password: {
+      error: false,
+      helperText: ""
     },
-    email:{
-      error:false,
-      helperText:''  
+    email: {
+      error: false,
+      helperText: ""
     },
-    button:{
-      disabled:false
+    button: {
+      disabled: false
     }
   });
 
   const handleChange = e => {
-
     setUser({ ...user, [e.target.name]: e.target.value });
-    if(e.target.value.trim() === ""){
-      setValues({...values, [e.target.name]:{
-              error:true,
-              helperText:`${e.target.name} is required`
-          } 
-      });
-    }else{
-      setValues({...values, [e.target.name]:{
-              error:false,
-              helperText:``
-          } 
-      });
-    }
+    setValues(ChangeCheckField(e, values));
   };
 
   const handleConfirm = e => {
-    setValues({...values, password:{
-      error:false,
-      helperText:``
-      } 
+    setValues({
+      ...values,
+      password: {
+        error: false,
+        helperText: ``
+      }
     });
 
     setConfirmPass({ ...confirmPass, [e.target.name]: e.target.value });
-
   };
 
-  const handleClickShowPassword = () => {
-    setValues({ ...values, showPassword: !values.showPassword });
-  };
-  const handleClickShowConfirm = () => {
-    setValues({ ...values, showConfirmPassword: !values.showConfirmPassword });
-  };
-
-  const handleMouseDownPassword = event => {
-    event.preventDefault();
-  };
   const handleSubmit = e => {
     e.preventDefault();
-    if(user.email.trim() === "" && user.password.trim() === ""){
-      setValues({...values, 
-          email:{
-              error:true,
-              helperText:`email is required`
-          },
-          password:{
-              error:true,
-              helperText:`password is required`
-          },
-          button:{
-              disabled:true
-          }
-      }); 
-    }else if(user.email.trim() === ""){
-      setValues({...values, 
-          email:{
-              error:true,
-              helperText:`email is required`
-          },
-          button:{
-              disabled:true
-          }
-      }); 
-    }else if(user.password.trim()===""){
-      setValues({...values, 
-          password:{
-              error:true,
-              helperText:`password is required`
-          },
-          button:{
-              disabled:true
-          }
-      }); 
-    }else if (confirmPass.confirmPassword !== user.password) {
-      setValues({...values, password:{
-          error:true,
-          helperText:`Password Mismatch`
-        } 
+    const check = CheckEmptyFields(user, values);
+    if (check instanceof Object) {
+      setValues({ ...check });
+    } else if (confirmPass.confirmPassword !== user.password) {
+      setValues({
+        ...values,
+        password: {
+          error: true,
+          helperText: `Password Mismatch`
+        }
       });
     } else {
       props.registerUser(user, props.history);
       setUser({ email: "", password: "" });
       setConfirmPass({ confirmPassword: "" });
-      setValues({...values, password:{
-          error:false,
-          helperText:``
-        } 
+      setValues({
+        ...values,
+        password: {
+          error: false,
+          helperText: ``
+        }
       });
     }
   };
 
-  useEffect(()=>{
-    if(values.password.error === false && values.email.error === false){
-        setValues({...values, button:{disabled:false}})
-    }else{
-        setValues({...values, button:{disabled:true}})
+  useEffect(() => {
+    if (values.password.error === false && values.email.error === false) {
+      setValues({ ...values, button: { disabled: false } });
+    } else {
+      setValues({ ...values, button: { disabled: true } });
     }
-},[user]);
+  }, [user]);
 
   return (
     <div className="register">
       <Container maxWidth="sm">
         <div style={{ backgroundColor: "#ffffff" }}>
-          <div className="logo_name">
-            <img src={logo} className="logo-reg" alt="logo" />
-            <img src={budgetImg} className="name-reg" alt="budget_blocks" />
-            <Typography variant="h2" className="sign">
-              Sign Up
-            </Typography>
-          </div>
+          <Title title="Sign Up" />
 
           <form className="RegisterForm" onSubmit={handleSubmit}>
             <FormControl variant="outlined">
@@ -161,76 +104,46 @@ export const Register = props => {
                 value={user.email}
                 error={values.email.error}
               />
-              <div className="password">
-                <Typography className="label">Password</Typography>
-              </div>
 
-              <TextField
-                placeholder="password"
-                type={values.showPassword ? "text" : "password"}
-                onChange={handleChange}
-                value={user.password}
+              <PasswordField
                 name="password"
-                variant="outlined"
-                helperText={values.password.helperText}
+                placeholder="Password"
+                label="Password"
                 error={values.password.error}
-                InputProps={{
-                  endAdornment: (
-                    <InputAdornment position="end">
-                      <IconButton
-                        aria-label="toggle password visibility"
-                        onClick={handleClickShowPassword}
-                        onMouseDown={handleMouseDownPassword}
-                        edge="end"
-                      >
-                        {values.showPassword ? (
-                          <Visibility />
-                        ) : (
-                          <VisibilityOff />
-                        )}
-                      </IconButton>
-                    </InputAdornment>
-                  )
-                }}
+                value={user.password}
+                handleChange={handleChange}
+                helperText={values.password.helperText}
               />
-              <div className="confirmPassword">
-                <Typography className="label">Confirm Password</Typography>
-              </div>
 
-              <TextField
-                variant="outlined"
-                placeholder=" Confirm password"
-                type={values.showConfirmPassword ? "text" : "password"}
-                onChange={handleConfirm}
-                value={confirmPass.confirmPassword}
+              <PasswordField
                 name="confirmPassword"
+                placeholder="Confirm Password"
+                label="Confirm Password"
                 error={values.password.error}
-                InputProps={{
-                  endAdornment: (
-                    <InputAdornment position="end">
-                      <IconButton
-                        aria-label="toggle password visibility"
-                        onClick={handleClickShowConfirm}
-                        onMouseDown={handleMouseDownPassword}
-                        edge="end"
-                      >
-                        {values.showConfirmPassword ? (
-                          <Visibility />
-                        ) : (
-                          <VisibilityOff />
-                        )}
-                      </IconButton>
-                    </InputAdornment>
-                  )
-                }}
-                helperText={values.password.helperText}
+                value={confirmPass.confirmPassword}
+                handleChange={handleConfirm}
               />
-              <div className="account">
-                <Typography className="account">Already have an account?</Typography>
-                <Link to="/login" className="links">Click <strong> here!</strong></Link>
-              </div>
-              <Button variant="outlined" className="signUpBtn" type="submit" disabled={values.button.disabled}>
-                Sign Up
+              <Account message="Already have an account?" link="/login" />
+              {
+                props.error?<p style={{display: "inline"}} className="errorMessage">{props.error}</p>:<p className="errorMessage"></p>
+              }
+              <Button
+                variant="outlined"
+                className="signUpBtn"
+                type="submit"
+                disabled={values.button.disabled}
+              >
+                {props.isFetching ? (
+                  <Loader
+                    type="Puff"
+                    color="#00BFFF"
+                    height={100}
+                    width={100}
+                    timeout={10000} //3 secs
+                  />
+                ) : (
+                  <p>SignUp</p>
+                )}
               </Button>
             </FormControl>
           </form>
@@ -241,7 +154,10 @@ export const Register = props => {
 };
 
 function mapStateToProps(state) {
-  return {};
+  return {
+    isFetching: state.registerReducer.isFetching,
+    error: state.registerReducer.error
+  };
 }
 
 export default connect(mapStateToProps, { registerUser })(Register);

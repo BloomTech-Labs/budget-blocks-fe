@@ -1,23 +1,85 @@
+.lightgrey{
+  background-color: #F0F0F0;
+  padding:10px;
+}
+.table{
+  margin-top: 1rem;
+}
+.cardheader{
+margin-left:0rem;
+}
+.image{
+  height:10%;
+  width:10%;
+  display: inline-block;
+}
+.heading{
+  height:25%;
+  width:25%;
+  display: inline-block;
+}
+.bottom-content{
+  margin-left:25rem;
+}
+.images-container{
+  
+  margin-left: 3rem;
+  width:70%;
+  
+}
+.left-header-content{
+  margin-top:1.7rem;
+  margin-left:22rem;
+  height: 40px;
+  width: 30px;
+  background-color: lightgray;
+  padding-left:15px;
+  padding-right: 15px;
+  padding-top: 10px;
+  padding-bottom:10px;
+}
+.right-header-email{
+  margin-right:7rem;
+}
+.navbar{
+  background-color: #66aabc;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  width:102%;
+}
+@media screen and (max-width: 600px) {
+  .image {
+    width:30%;
+  }
+}
 .border{
   border:solid 5px red;
 }
-.subheading{
+/* .subheading{
   background-color: lightgray;
   width:100%;
   font-size:15px;
   margin-top: 1rem;
   padding:10px;
-}
+} */
 .gray{
     width:100%;
     background-color: lightgray;}
-
+   
+.middle{
+margin-left: 5rem;}
 .columnsContainer, footer, header { position: relative; margin: .5em; }
 
 .leftColumn, .rightColumn, footer, header {  border: 1px solid  #ccc; padding: 1.25em; }
 
 .leftColumn { margin-bottom: .5em; }
-
+.square {
+  padding:1rem;
+  height:3.7rem;
+  width: 50px;
+  margin-left: 12rem;
+  background-color: #B0B0B0;
+}
 .nav {
   list-style: none;
   margin-left: 0;
@@ -76,17 +138,31 @@
 .red{color:red
 
 }
+.head-icon{color:#0099FF
+  ;
+  border-radius: 50%;
+background-color:lightgrey;
+width:20%;}
 
-.progress{
-  
-height:2.5rem;
-}
 /* MEDIA QUERIES */
-@media screen and (min-width: 47.5em ) {
-  .leftColumn { margin-right: 19.5em; }
-
-	.rightColumn { position: absolute; margin-top:-23rem; right: 0; width: 18.75em; }   
+@media screen and (max-width: 600px ) {
+  .middle { margin:0px; }
+.square{margin-left:5rem}
+  .rightColumn { position: absolute; margin-top:-23rem; right: 0; width: 18.75em; }   
+  .left{
+    margin-left: 10rem;
+  }
+  .heading{
+    width:60%;
+  }
+  .bottom-content{
+margin-left: 10rem;
+  }
 }
-
-
-
+.progress{
+  width:100%
+}
+.card{
+  margin-bottom:2rem;
+  background-color: #B0B0B0
+}

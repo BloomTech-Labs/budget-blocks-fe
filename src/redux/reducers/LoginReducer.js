@@ -3,7 +3,11 @@ import {
     LOGIN_USER_LOADING,
     LOGIN_USER_FAILED,
     LOGIN_USER_SUCCESS, 
-    } from "../actions/LoginActions"
+    } from "../actions/LoginActions";
+
+import {
+    LOGOUT_USER
+} from "../actions/LogoutAction";
 
 import { SEND_LINK_TOKEN_SUCCESS } from "../actions/PlaidActions"
 
@@ -35,6 +39,10 @@ export const reducer = (state = initialState, action) => {
                     ...state.user,
                     LinkedAccount:true
                 },
+            }
+        case LOGOUT_USER:
+            return {
+                ...initialState
             }
         default:
             return state;

@@ -37,11 +37,7 @@ const store = createStore(combineReducers({loginReducer,plaidReducer,registerRed
 configure({ adapter: new Adapter() });
 
 test('Dashboard renders correctly',()=>{
-    expect(render(
-        <Provider store={store}>
-            <Router>
-                <Dashboard/>
-            </Router>
-        </Provider>
-    )).toMatchSnapshot();
+    const wrapper = shallow(<Dashboard LinkedAccount={false} blocks={[]}/>)
+        
+    expect(wrapper).toMatchSnapshot();
 });

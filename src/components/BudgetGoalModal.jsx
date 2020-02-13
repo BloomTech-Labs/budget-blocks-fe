@@ -1,17 +1,17 @@
-import React from "react";
+import React, { useState, useEffect} from "react";
+import { connect } from "react-redux"
+import { Back_Continue } from "./Modal_Components/Back_Continue";
+import { Modal_Title } from "./Modal_Components/Modal_Title";
 import { withStyles, makeStyles } from "@material-ui/core/styles";
-import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
-import MuiDialogTitle from "@material-ui/core/DialogTitle";
 import MuiDialogContent from "@material-ui/core/DialogContent";
-import MuiDialogActions from "@material-ui/core/DialogActions";
-import IconButton from "@material-ui/core/IconButton";
-import CloseIcon from "@material-ui/icons/Close";
 import Typography from "@material-ui/core/Typography";
 import Slider from "@material-ui/core/Slider";
-
-
+import TextField from "@material-ui/core/TextField";
+import InputAdornment from "@material-ui/core/InputAdornment";
 import "../style/modalStyle.css";
+import axios from "axios";
+import { updateBlocks } from "../redux/actions/userBlocks";
 const useStyles = makeStyles(theme => ({
   root: {
     width: 300 + theme.spacing(3) * 2
@@ -34,46 +34,32 @@ const styles = theme => ({
   }
 });
 
-const DialogTitle = withStyles(styles)(props => {
-  const { children, classes, onClose, ...other } = props;
-  return (
-    <MuiDialogTitle disableTypography className={classes.root} {...other}>
-      <Typography variant="h6">{children}</Typography>
-      {onClose ? (
-        <IconButton
-          aria-label="close"
-          className={classes.closeButton}
-          onClick={onClose}
-        >
-          <CloseIcon />
-        </IconButton>
-      ) : null}
-    </MuiDialogTitle>
-  );
-});
-
 const DialogContent = withStyles(theme => ({
   root: {
     padding: theme.spacing(2)
   }
 }))(MuiDialogContent);
 
-const DialogActions = withStyles(theme => ({
-  root: {
-    margin: 0,
-    padding: theme.spacing(1)
-  }
-}))(MuiDialogActions);
+export function BudgetGoal(props) {
+  const [userID, setUserID]=useState("")
+  const [goals, setGoals] = useState({
+    categoryid: "",
+    budget: ""
+  });
 
-export default function BudgetGoal() {
-  const [open, setOpen] = React.useState(false);
+  useEffect(()=>{
+    if(props.values.budget === null){
+      props.values.budget = 0
+    }
+    setGoals({...goals, categoryid:props.values.catId, budget:props.values.budget})
+    setUserID(props.values.userId);
+  },[props.values.catId])
 
-  const handleClickOpen = () => {
-    setOpen(true);
+  const handleChange = e => {
+    e.preventDefault();
+    setGoals({ ...goals,budget: e.target.value });
   };
-  const handleClose = () => {
-    setOpen(false);
-  };
+
   const PrettoSlider = withStyles({
     root: {
       color: "#91D5FF",
@@ -103,46 +89,52 @@ export default function BudgetGoal() {
       borderRadius: 4
     }
   })(Slider);
+
   function changeSlider(event, value) {
     console.log(value);
   }
+  const submit = e => {
 
-  
+    e.preventDefault();
+    props.updateBlocks(userID, goals);
+    setGoals({ ...goals,budget:"" });
+    props.handleClose();
+
+  };
+ 
   return (
     <div>
-      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-        Open dialog
-      </Button>
       <Dialog
         className="dialogModal"
-        onClose={handleClose}
+        onClose={props.handleClose}
         aria-labelledby="customized-dialog-title"
-        open={open}
+        open={props.open}
         fullWidth={true}
         maxWidth="md"
       >
-        <DialogTitle className="customized-dialog-title" onClose={handleClose}>
-          <Typography className="customized-dialog-title">
-            Total goal
-          </Typography>
-        </DialogTitle>
+        <Modal_Title handleClose={props.handleClose} title="Total Goal"/>
+  
         <DialogContent className="content">
           <Typography className="what" variant="h5">
             What is your spending goal?
           </Typography>
-         <Typography variant="h4" className="goal">
-             $0.00
-         </Typography>
-          {/* <TextField className="goal" placeholder="0.00" type="number" InputProps={{
-            startAdornment: <InputAdornment position="start">$</InputAdornment>,
-          }} /> */}
+       
+          <TextField
+            className="goal"
+            placeholder="0.00"
+            type="number"
+            value={goals.budget}
+            onChange={handleChange}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">$</InputAdornment>
+              )
+            }}
+          />
 
-        
           <div className="divider"></div>
           <select className="plan" name="budgetTime">
-            <option value="1" >
-              Daily
-            </option>
+            <option value="1">Daily</option>
             <option value="2">Monthly</option>
             <option value="3">Quarterly </option>
             <option value="4">Yearly</option>
@@ -168,25 +160,16 @@ export default function BudgetGoal() {
             </div>
           </div>
         </DialogContent>
-        <DialogActions className="buttons" >
-          <Button
-            className="backBtn"
-            onClick={handleClose}
-            variant="outlined"
-            color="primary"
-          >
-            BACK
-          </Button>
-          <Button
-            className="contBtn"
-            onClick={handleClose}
-            variant="outlined"
-            color="primary"
-          >
-            CONTINUE
-          </Button>
-        </DialogActions>
+        <Back_Continue BackClick={props.handleClose} ContClick={submit}/>
       </Dialog>
     </div>
   );
 }
+
+function mapStateToProps(state){
+  return {
+      
+  }
+}
+
+export default connect(mapStateToProps,{ updateBlocks })(BudgetGoal)

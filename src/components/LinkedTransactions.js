@@ -51,18 +51,19 @@ const Transactions = props => {
 	const [filter, setFilter] = useState(true);
 
 	let transactions = props.transactions.filter(i => i.transactions.length > 0);
-	console.log(transactions);
-	transactions = transactions.sort(function(a, b) {
-		return new Date(b.payment_date) - new Date(a.payment_date);
-	});
+	// console.log(transactions);
+	// transactions = transactions.sort(function(a, b) {
+	// 	return new Date(b.payment_date) - new Date(a.payment_date);
+	// });
 	const handleClick = e => {
 		setFilter(!filter);
 	};
-	var shuffled = props.transactions.sort(function() {
+	var shuffled = transactions.sort(function() {
 		return 0.5 - Math.random();
 	});
 
-	var selected = shuffled.slice(0, 5);
+	var selected = shuffled.slice(0, 3);
+	console.log(selected)
 	return (
 		<div>
 			{filter ? (
@@ -81,34 +82,32 @@ const Transactions = props => {
 			</div> */}
 					</div>
 
-					{transactions.map(i => {
+					{selected.map(i => {
 						const category = i.name;
-						return i.transactions
-							.filter(i => i.id <= 3)
-							.map(i => (
+						return (
 								<Card className={classes.card} key={i.id}>
-									<p className='cardheader'>{`Puchase Authorized on ${i.payment_date} from ${i.name}`}</p>
+									<p className='cardheader'>{`Puchase Authorized on ${i.transactions[0].payment_date} from ${i.transactions[0].name}`}</p>
 
 									<Grid container spacing={1}>
 										<Grid item xs={3}>
-											<p>{i.payment_date}</p>
+											<p>{i.transactions[0].payment_date}</p>
 											<b>Category</b>
 										</Grid>
 										<Grid item xs={9}>
 											<p
 												className={
-													i.amount < 0
+													i.transactions[0].amount < 0
 														? 'red bottom-content'
 														: 'green bottom-content'
 												}
 											>
-												${(Math.round(10 * i.amount) / 100).toFixed(2)}
+												${(Math.round(10 * i.transactions[0].amount) / 100).toFixed(2)}
 											</p>
 											<p className='bottom-content'>{category}</p>
 										</Grid>
 									</Grid>
 								</Card>
-							));
+						)
 					})}
 					<button onClick={handleClick}>View All</button>
 				</React.Fragment>
@@ -128,7 +127,7 @@ const Transactions = props => {
 	</div> */}
 					</div>
 
-					{transactions.map(i => {
+					{props.transactions.map(i => {
 						const category = i.name;
 						return i.transactions.map(i => (
 							<Card className={classes.card} key={i.id}>

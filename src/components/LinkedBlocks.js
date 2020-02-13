@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { TableHeads } from './Blocks_Components/TableHead';
-import  DisplayBlocks  from "./Blocks_Components/DisplayBlocks";
+import DisplayBlocks from './Blocks_Components/DisplayBlocks';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -10,7 +10,7 @@ import { getTransactions } from '../redux/actions/PlaidActions';
 import { connect } from 'react-redux';
 import './table.css';
 
-import BudgetGoal from "../components/BudgetGoalModal"
+import BudgetGoal from '../components/BudgetGoalModal';
 
 const useStyles = makeStyles({
 	table: {
@@ -19,15 +19,12 @@ const useStyles = makeStyles({
 });
 
 export function Blocks(props) {
-
 	const classes = useStyles();
 	const [filter, setFilter] = useState([]);
 	const [open, setOpen] = useState(false);
 
-
 	useEffect(() => {
 		props.getTransactions(props.userID);
-
 	}, [props.LinkedAccount]);
 	const handleClick = e => {
 		setFilter(!filter);
@@ -37,6 +34,7 @@ export function Blocks(props) {
 	var shuffled = props.blocks.sort(function(a,b) {
 		return a-b;
 	});
+
 
 	const [values,setValues]=useState({
 		userId:"",
@@ -48,12 +46,12 @@ export function Blocks(props) {
 	var selected = shuffled.slice(0, 5);
 	const handleClickOpen = (id, budget) => {
 		setValues({...values,userId:localStorage.id, catId:id, budget});
+
 		setOpen(true);
-	
-	  };
-	  const handleClose = () => {
+	};
+	const handleClose = () => {
 		setOpen(false);
-	  };
+	};
 	return (
 		<div>
 			{filter ? (
@@ -61,18 +59,15 @@ export function Blocks(props) {
 					<TableContainer className='table' component={Paper}>
 						<Table className={classes.table} aria-label='simple table'>
 							<TableHeads
-								CellNames={[
-									'Block',
-									'Total Expenses',
-									'Limit',
-									''
-								]}
+								CellNames={['Block', 'Total Expenses', 'Limit', '']}
 								className='lightgrey'
 							/>
+
 							<DisplayBlocks arr={selected} handleClick={handleClickOpen}/>
 
+
 						</Table>
-						<BudgetGoal open={open} values={values} handleClose={handleClose}/>
+						<BudgetGoal open={open} values={values} handleClose={handleClose} />
 					</TableContainer>
 					<button onClick={handleClick}>View All</button>
 				</div>
@@ -81,19 +76,14 @@ export function Blocks(props) {
 					<TableContainer className='table' component={Paper}>
 						<Table className={classes.table} aria-label='simple table'>
 							<TableHeads
-								CellNames={[
-									'Block',
-									'Total Expenses',
-									'Limit',
-									''
-								]}
+								CellNames={['Block', 'Total Expenses', 'Limit', '']}
 								className='lightgrey'
 							/>
+
 							<DisplayBlocks arr={props.blocks} handleClick={handleClickOpen}/>
 
 						</Table>
-						<BudgetGoal open={open} values={values} handleClose={handleClose}/>
-
+						<BudgetGoal open={open} values={values} handleClose={handleClose} />
 					</TableContainer>
 					<button onClick={handleClick}>View Less</button>
 				</div>

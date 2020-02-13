@@ -7,14 +7,14 @@ import "../style/balanceStyle.js";
 import { useStyles } from "../style/balanceStyle";
 import Card from '@material-ui/core/Card';
 
-export const Balance = ({balance, LinkedAccount})=>{
+export const Balance = ({balance,LinkedAccount})=>{
 
     useEffect(()=> {
         getUserInfo()
     },[])
 
-    const amounts = balance.accounts.map(e => e.balances.available)
-    const sum = amounts.reduce((a,b) => {return a + b},0)
+    // const amounts = balance.accounts.map(e => e.balances.available)
+    // const sum = amounts.reduce((a,b) => {return a + b},0)
     const classes = useStyles();
 
     if(LinkedAccount === false){
@@ -29,7 +29,7 @@ export const Balance = ({balance, LinkedAccount})=>{
         <Card className={classes.NoBalance}>
             <h3>Balance:</h3>
             <h3>
-                ${sum}
+                ${balance}
             </h3>
         </Card>
              
@@ -39,7 +39,7 @@ export const Balance = ({balance, LinkedAccount})=>{
 
 function mapStateToProps(state){
     return {
-        balance:state.plaidReducer,
+        balance:state.plaidReducer.Balance,
         LinkedAccount: state.loginReducer.user.LinkedAccount
     }
 }

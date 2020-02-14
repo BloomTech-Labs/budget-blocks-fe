@@ -2,7 +2,6 @@ import React,{ useEffect } from "react"
 import Grid from '@material-ui/core/Grid'
 import UnlinkedBlocks from "./UnlinkedBlocks"
 import LinkedBlocks from "./LinkedBlocks"
-import SavingsGoal from "./SavingsGoal"
 import Header from "./Header"
 import { connect } from "react-redux";
 import Balance from "./Balance"
@@ -12,7 +11,6 @@ import LinkedTotalBudget from "./LinkedTotalBudget"
 import UnlinkedTotalBudget from "./UnlinkedTotalBudget"
 import { getUserInfo } from "../redux/actions/ProfileActions";
 import { getTransactions } from "../redux/actions/PlaidActions";
-import { Progress } from 'semantic-ui-react'
 import "../style/dashboardStyle.css";
 
 export const Dashboard = props => {

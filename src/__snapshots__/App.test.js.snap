@@ -1,0 +1,280 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App renders correctly 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div>
+        <div
+          class="navbar"
+        >
+          <div
+            class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-3"
+          >
+            <div
+              class="MuiGrid-root MuiGrid-item"
+            >
+              <div
+                class="images-container"
+              >
+                <img
+                  class="image"
+                  src="Background.png"
+                />
+                 
+                <img
+                  class="heading"
+                  src="budget_blocks.png"
+                />
+              </div>
+            </div>
+            <div
+              class="MuiGrid-root MuiGrid-item"
+            >
+              <div
+                class="left"
+              >
+                <a
+                  href="/login"
+                >
+                  Log Out
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="App"
+        >
+          <div
+            class="home"
+          >
+            <div
+              class="MuiContainer-root MuiContainer-maxWidthSm"
+            >
+              <div
+                style="background-color: rgb(255, 255, 255); height: 100vh;"
+              >
+                <img
+                  alt="logo"
+                  class="App-logo"
+                  src="logo.jpg"
+                />
+                <img
+                  alt="budget_blocks"
+                  class="budget_img"
+                  src="budget_blocks.png"
+                />
+                <div
+                  class="buttons"
+                >
+                  <a
+                    class="links"
+                    href="/register"
+                  >
+                    <button
+                      class="MuiButtonBase-root MuiButton-root MuiButton-outlined signup"
+                      tabindex="0"
+                      type="button"
+                    >
+                      <span
+                        class="MuiButton-label"
+                      >
+                        Sign Up
+                      </span>
+                      <span
+                        class="MuiTouchRipple-root"
+                      />
+                    </button>
+                  </a>
+                  <a
+                    class="links"
+                    href="/login"
+                  >
+                    <button
+                      class="MuiButtonBase-root MuiButton-root MuiButton-outlined signin"
+                      tabindex="0"
+                      type="button"
+                    >
+                      <span
+                        class="MuiButton-label"
+                      >
+                        Sign In
+                      </span>
+                      <span
+                        class="MuiTouchRipple-root"
+                      />
+                    </button>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div>
+      <div
+        class="navbar"
+      >
+        <div
+          class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-3"
+        >
+          <div
+            class="MuiGrid-root MuiGrid-item"
+          >
+            <div
+              class="images-container"
+            >
+              <img
+                class="image"
+                src="Background.png"
+              />
+               
+              <img
+                class="heading"
+                src="budget_blocks.png"
+              />
+            </div>
+          </div>
+          <div
+            class="MuiGrid-root MuiGrid-item"
+          >
+            <div
+              class="left"
+            >
+              <a
+                href="/login"
+              >
+                Log Out
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="App"
+      >
+        <div
+          class="home"
+        >
+          <div
+            class="MuiContainer-root MuiContainer-maxWidthSm"
+          >
+            <div
+              style="background-color: rgb(255, 255, 255); height: 100vh;"
+            >
+              <img
+                alt="logo"
+                class="App-logo"
+                src="logo.jpg"
+              />
+              <img
+                alt="budget_blocks"
+                class="budget_img"
+                src="budget_blocks.png"
+              />
+              <div
+                class="buttons"
+              >
+                <a
+                  class="links"
+                  href="/register"
+                >
+                  <button
+                    class="MuiButtonBase-root MuiButton-root MuiButton-outlined signup"
+                    tabindex="0"
+                    type="button"
+                  >
+                    <span
+                      class="MuiButton-label"
+                    >
+                      Sign Up
+                    </span>
+                    <span
+                      class="MuiTouchRipple-root"
+                    />
+                  </button>
+                </a>
+                <a
+                  class="links"
+                  href="/login"
+                >
+                  <button
+                    class="MuiButtonBase-root MuiButton-root MuiButton-outlined signin"
+                    tabindex="0"
+                    type="button"
+                  >
+                    <span
+                      class="MuiButton-label"
+                    >
+                      Sign In
+                    </span>
+                    <span
+                      class="MuiTouchRipple-root"
+                    />
+                  </button>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;

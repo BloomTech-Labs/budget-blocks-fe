@@ -59,7 +59,7 @@ export const reducer = (state=initialState, action) => {
             return {
                 ...state,
                 isFetching: false,
-                error: null
+                error: action.payload
             }
         default:
             return state;

@@ -41,13 +41,9 @@ const useStyles = makeStyles(theme => ({
 	}
 }));
 
-function preventDefault(event) {
-	event.preventDefault();
-}
 
 const Transactions = props => {
 	const classes = useStyles();
-	const theme = useTheme();
 	const [filter, setFilter] = useState(true);
 
 	let transactions = props.transactions.filter(i => i.transactions.length > 0);

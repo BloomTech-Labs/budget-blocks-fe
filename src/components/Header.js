@@ -29,7 +29,6 @@ const Header = props => {
       <Grid container spacing={1}>
         <Grid item xs={5}>
           <div className="right-header-content">
-            <h1>Hi, [First Name] </h1>
             <p className="right-header-email">{props.user.email}</p>
           </div>
         </Grid>

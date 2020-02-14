@@ -62,5 +62,13 @@
   "devDependencies": {
     "axios-mock-adapter": "^1.17.0",
     "redux-mock-store": "^1.5.4"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "**/*.{js,jsx}",
+      "!**/node_modules/**",
+      "!**/vendor/**",
+      "!**/__tests__/**"
+    ]
   }
 }

@@ -6,6 +6,11 @@
 
 1️⃣ You can find the deployed project at [🚫URL NAME GOES HERE](🚫copy and paste URL here).
 
+## Badges
+
+[![Maintainability](https://api.codeclimate.com/v1/badges/8b04e4cce9d199b72a46/maintainability)](https://codeclimate.com/github/Lambda-School-Labs/budget-blocks-fe)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/8b04e4cce9d199b72a46/test_coverage)](https://codeclimate.com/github/Lambda-School-Labs/budget-blocks-fe)
+
 ## 4️⃣ Contributors
 
 🚫Add contributor info below, make sure add images and edit the social links for each member. Add to or delete these place-holders as needed

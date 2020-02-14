@@ -17,7 +17,9 @@ function initializeReactGA() {
 }
 
 function App() {
-	initializeReactGA();
+
+	initializeReactGA()
+
 	return (
 		<div>
 			<Navbar />

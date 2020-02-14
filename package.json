@@ -42,7 +42,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test --watchAll=false",
     "eject": "react-scripts eject",
-    "coverage": "react-scripts test --coverage --watchAll=false"
+    "coverage": "CI=true yarn test --coverage || true"
   },
   "eslintConfig": {
     "extends": "react-app"

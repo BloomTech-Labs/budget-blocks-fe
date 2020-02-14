@@ -12,12 +12,14 @@ import Navbar from './components/NavBar';
 import ReactGA from 'react-ga';
 
 function initializeReactGA() {
-	ReactGA.initialize('UA-158611259-1');
+	ReactGA.initialize('UA-158581736-1');
 	ReactGA.pageview('/homepage');
 }
 
 function App() {
+
 	initializeReactGA()
+
 	return (
 		<div>
 			<Navbar />

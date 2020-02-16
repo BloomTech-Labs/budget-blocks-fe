@@ -6,6 +6,7 @@ import PasswordField from "./Form_Components/PasswordField";
 import Account from "./Form_Components/Account";
 import { CheckEmptyFields } from "./Form_Components/CheckEmpyFields";
 import { ChangeCheckField } from "./Form_Components/ChangeCheckField";
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 
 import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
@@ -13,100 +14,113 @@ import FormControl from "@material-ui/core/FormControl";
 import Button from "@material-ui/core/Button";
 import "../style/loginStyle.css";
 import Container from "@material-ui/core/Container";
+import Loader from "react-loader-spinner";
 
+export const Login = props => {
+  const [user, setUser] = useState({ email: "", password: "" });
 
-export const Login = (props)=>{
-    const [user,setUser] = useState({ email: "" , password: "" });
+  const handleChange = e => {
+    setUser({ ...user, [e.target.name]: e.target.value.trim() });
 
-    const handleChange= (e) =>{
-        setUser({...user, [e.target.name]:e.target.value.trim() });
-        
-        setValues(ChangeCheckField(e, values));
+    setValues(ChangeCheckField(e, values));
+  };
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    const check = CheckEmptyFields(user, values);
+    if (check instanceof Object) {
+      setValues({ ...check });
+    } else {
+      props.loginUser(user, props.history);
+      setUser({ email: "", password: "" });
     }
+  };
 
-    const handleSubmit = (e) =>{
-        e.preventDefault();
-        const check = CheckEmptyFields(user, values);
-        if( check instanceof Object){
-            setValues({...check});
-        }else{
-            props.loginUser(user, props.history)
-            setUser({ email: "" , password: "" });
-        }
+  const [values, setValues] = useState({
+    showPassword: false,
+    password: {
+      error: false,
+      helperText: ""
+    },
+    email: {
+      error: false,
+      helperText: ""
+    },
+    button: {
+      disabled: false
     }
+  });
 
-    const [values, setValues] = useState({
-        showPassword: false,
-        password:{
-            error:false,
-            helperText:''
-        },
-        email:{
-            error:false,
-            helperText:''  
-        },
-        button:{
-            disabled:false
-        }
-      });
+  useEffect(() => {
+    if (values.password.error === false && values.email.error === false) {
+      setValues({ ...values, button: { disabled: false } });
+    } else {
+      setValues({ ...values, button: { disabled: true } });
+    }
+  }, [user]);
+  return (
+      
+    <div className="SignIn">
+      <Container maxWidth="sm">
+        <Title title="Sign In" />
 
-    useEffect(()=>{
-        if(values.password.error === false && values.email.error === false){
-            setValues({...values, button:{disabled:false}})
-        }else{
-            setValues({...values, button:{disabled:true}})
-        }
-    },[user]);
+        <form className="SignInForm" onSubmit={handleSubmit}>
+          <FormControl variant="filled">
+            <Typography className="label">E-Mail Address</Typography>
+            <TextField
+              error={values.email.error}
+              helperText={values.email.helperText}
+              placeholder="E-Mail Address"
+              type="text"
+              name="email"
+              onChange={handleChange}
+              value={user.email}
+              variant="outlined"
+            />
+          </FormControl>
 
-
-    return(
-
-    <div className="SignIn" >
-        <Container maxWidth="sm">
-            <Title title="Sign In"/>
-
-            <form className="SignInForm" onSubmit={handleSubmit}>
-            
-                <FormControl variant="filled">
-                    <Typography className="label">E-Mail Address</Typography>
-                    <TextField
-                        error={values.email.error}
-                        helperText={values.email.helperText}
-                        placeholder="E-Mail Address"
-                        type="text"
-                        name="email" 
-                        onChange={handleChange} 
-                        value={user.email} 
-                        variant="outlined"
-                    />
-                </FormControl>
-
-                <PasswordField 
-                    name="password" 
-                    placeholder="Password" 
-                    label="Password" 
-                    error={values.password.error}
-                    value={user.password}
-                    handleChange={handleChange}
-                    helperText={values.password.helperText}
-                    />
-                <Account message="Need an account?" link="/register"/>
-                <Button variant="outlined" className="signInBtn" type="submit" disabled={values.button.disabled}>
-                    Sign In
-                </Button>
-            </form>
-        </Container>
+          <PasswordField
+            name="password"
+            placeholder="Password"
+            label="Password"
+            error={values.password.error}
+            value={user.password}
+            handleChange={handleChange}
+            helperText={values.password.helperText}
+          />
+          <Account message="Need an account?" link="/register" />
+          {
+                props.error?<p style={{display: "inline"}} className="errorMessage">{props.error}</p>:<p className="errorMessage"></p>
+              }
+          <Button
+            variant="outlined"
+            className="signInBtn"
+            type="submit"
+            disabled={values.button.disabled}
+          >
+            {props.isFetching ? (
+              <Loader
+                type="Puff"
+                color="#00BFFF"
+                height={50}
+                width={50}
+                timeout={10000} //3 secs
+              />
+            ) : (
+              <p>SignIn</p>
+            )}
+          </Button>
+        </form>
+      </Container>
     </div>
+  );
+};
 
-    )
+function mapStateToProps(state) {
+  return {
+    isFetching: state.loginReducer.isFetching,
+    error: state.loginReducer.error
+  };
 }
 
-function mapStateToProps(state){
-console.log(state)
-return {
-    
-    error:state.error}
-    
-}
-
-export default connect(mapStateToProps,{ loginUser })(Login)
+export default connect(mapStateToProps, { loginUser })(Login);

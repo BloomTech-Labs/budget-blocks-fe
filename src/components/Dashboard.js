@@ -20,7 +20,6 @@ export const Dashboard = props => {
     props.getTransactions(localStorage.getItem("id"));
     props.getUserInfo(localStorage.getItem("id"));
   },[props.LinkedAccount])
-    console.log("I am props",props)
     return (
      <div className="container">
         <Grid container spacing={5}>

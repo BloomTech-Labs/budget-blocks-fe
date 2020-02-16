@@ -12,13 +12,14 @@ import UnlinkedTotalBudget from "./UnlinkedTotalBudget"
 import { getUserInfo } from "../redux/actions/ProfileActions";
 import { getTransactions } from "../redux/actions/PlaidActions";
 import "../style/dashboardStyle.css";
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+import Loader from "react-loader-spinner";
 
 export const Dashboard = props => {
   useEffect(() => {
     props.getTransactions(localStorage.getItem("id"));
     props.getUserInfo(localStorage.getItem("id"));
   },[props.LinkedAccount])
-    console.log(props)
     return (
      <div className="container">
         <Grid container spacing={5}>
@@ -27,6 +28,20 @@ export const Dashboard = props => {
                 <Grid container>
                     <Grid item xs={12} lg={12} sm={12}><Header/></Grid>
                 </Grid>
+                      {
+                          props.plaidFetching ||props.blockFetching||props.profileFetching?
+                          (
+                            <Loader
+                              type="ThreeDots"
+                              color="#66aabc"
+                              height={50}
+                              width={50}
+                              timeout={10000} //3 secs
+                            />
+                          ) : (
+                            <p></p>
+                          ) 
+                      }
                 <Grid container>
             <Grid item xs={12} sm={12}>{props.blocks.length > 0 ? <LinkedBlocks /> : <UnlinkedBlocks />}</Grid>  
                 </Grid>
@@ -57,7 +72,10 @@ function mapStateToProps(state){
   return {
       userID:state.loginReducer.user.id,
       LinkedAccount:state.loginReducer.user.LinkedAccount,
-      blocks:state.plaidReducer.categories
+      blocks:state.plaidReducer.categories,
+      plaidFetching:state.plaidReducer.isFetching,
+      blockFetching:state.blockReducer.isFetching,
+      profileFetching:state.profileReducer.isFetching
   }
 }
 

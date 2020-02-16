@@ -83,7 +83,6 @@ export const Register = props => {
       setValues({ ...values, button: { disabled: true } });
     }
   }, [user]);
-
   return (
     <div className="register">
       <Container maxWidth="sm">

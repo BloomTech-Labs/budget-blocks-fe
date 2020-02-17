@@ -1,9 +1,9 @@
 import React from 'react';
 import './App.css';
 import Home from './components/Home';
-import Login from './components/Form_Components/Login';
-import Register from './components/Form_Components/Register';
-import Profile from './components/CreateProfile';
+import Login from './components/Form_Components/Login/Login';
+import Register from './components/Form_Components/Register/Register';
+import Profile from './components/Form_Components/Create_Profile/CreateProfile';
 import { Switch, Route } from 'react-router-dom';
 import Dashboard from './components/Dashboard';
 import PrivateRoute from './components/PrivateRoute';

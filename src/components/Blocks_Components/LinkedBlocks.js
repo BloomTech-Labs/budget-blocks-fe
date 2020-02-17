@@ -10,7 +10,7 @@ import { getTransactions } from '../../redux/actions/PlaidActions';
 import { connect } from 'react-redux';
 import '../table.css';
 
-import BudgetGoal from '../BudgetGoalModal';
+import BudgetGoal from '../Modal_Components/BudgetGoalModal';
 
 const useStyles = makeStyles({
 	table: {

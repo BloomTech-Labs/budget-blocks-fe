@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
-import { registerUser } from "../../redux/actions/RegisterActions";
-import Title from "./Title";
-import PasswordField from "./PasswordField";
-import Account from "./Account";
-import { CheckEmptyFields } from "./CheckEmpyFields";
-import { ChangeCheckField } from "./ChangeCheckField";
+import { registerUser } from "../../../redux/actions/RegisterActions";
+import Title from "../Title";
+import PasswordField from "../PasswordField";
+import Account from "../Account";
+import { CheckEmptyFields } from "../CheckEmpyFields";
+import { ChangeCheckField } from "../ChangeCheckField";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";

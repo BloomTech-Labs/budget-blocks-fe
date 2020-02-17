@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { createProfile } from "../redux/actions/ProfileActions";
-import Title from "./Form_Components/Title";
-import PasswordField from "./Form_Components/PasswordField";
+import { createProfile } from "../../../redux/actions/ProfileActions";
+import Title from "../Title";
+import PasswordField from "../PasswordField";
 
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 import Button from "@material-ui/core/Button";
-import "../style/createProfileStyle.css";
+import "./createProfileStyle.css";
 import TextField from "@material-ui/core/TextField";
 import FormControl from "@material-ui/core/FormControl";
 import { Link } from "react-router-dom";

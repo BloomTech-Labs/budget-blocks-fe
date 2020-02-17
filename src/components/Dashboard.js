@@ -4,7 +4,7 @@ import UnlinkedBlocks from "./Blocks_Components/UnlinkedBlocks"
 import LinkedBlocks from "./Blocks_Components/LinkedBlocks"
 import Header from "./Header"
 import { connect } from "react-redux";
-import Balance from "./Balance"
+import Balance from "./Balance_Components/Balance"
 import LinkedTransactions from "./Transactions_Components/LinkedTransactions"
 import UnlinkedTransactions from "./Transactions_Components/UnlinkedTransactions"
 import LinkedTotalBudget from "./LinkedTotalBudget"

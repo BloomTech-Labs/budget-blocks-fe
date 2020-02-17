@@ -3,7 +3,7 @@ import Grid from '@material-ui/core/Grid';
 
 import { connect } from 'react-redux';
 
-import './table.css';
+import '../table.css';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';

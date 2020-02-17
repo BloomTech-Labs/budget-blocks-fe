@@ -1,5 +1,5 @@
 import React from "react";
-import "../style/linkAccountStyle.css";
+import "./linkAccountStyle.css";
 import PlaidLink from 'react-plaid-link';
 import { connect } from "react-redux";
 import { sendLinkToken } from "../redux/actions/PlaidActions";

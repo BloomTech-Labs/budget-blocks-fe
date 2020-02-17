@@ -7,11 +7,11 @@ import { connect } from "react-redux";
 import Balance from "./Balance_Components/Balance"
 import LinkedTransactions from "./Transactions_Components/LinkedTransactions"
 import UnlinkedTransactions from "./Transactions_Components/UnlinkedTransactions"
-import LinkedTotalBudget from "./LinkedTotalBudget"
-import UnlinkedTotalBudget from "./UnlinkedTotalBudget"
+import LinkedTotalBudget from "./TotalBudget_Components/LinkedTotalBudget"
+import UnlinkedTotalBudget from "./TotalBudget_Components/UnlinkedTotalBudget"
 import { getUserInfo } from "../redux/actions/ProfileActions";
 import { getTransactions } from "../redux/actions/PlaidActions";
-import "../style/dashboardStyle.css";
+import "./dashboardStyle.css";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Loader from "react-loader-spinner";
 

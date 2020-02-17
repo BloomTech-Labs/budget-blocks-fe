@@ -5,8 +5,8 @@ import LinkedBlocks from "./LinkedBlocks"
 import Header from "./Header"
 import { connect } from "react-redux";
 import Balance from "./Balance"
-import LinkedTransactions from "./LinkedTransactions"
-import UnlinkedTransactions from "./UnlinkedTransactions"
+import LinkedTransactions from "./Transactions_Components/LinkedTransactions"
+import UnlinkedTransactions from "./Transactions_Components/UnlinkedTransactions"
 import LinkedTotalBudget from "./LinkedTotalBudget"
 import UnlinkedTotalBudget from "./UnlinkedTotalBudget"
 import { getUserInfo } from "../redux/actions/ProfileActions";

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 
-import { getTransactions } from '../redux/actions/PlaidActions';
+import { getTransactions } from '../../redux/actions/PlaidActions';
 import { connect } from 'react-redux';
 import Grid from '@material-ui/core/Grid';
 

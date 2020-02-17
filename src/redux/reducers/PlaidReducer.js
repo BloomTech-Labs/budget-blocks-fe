@@ -51,6 +51,7 @@ export const reducer = (state = initialState, action) => {
                 error: null,
                 accounts:action.payload.accounts,
                 categories:action.payload.Categories,
+                transactions:sortTrans(action.payload.Categories)
                 
             }
         case CLEAR_PLAID:
@@ -72,3 +73,20 @@ const initialState = {
     
     
 };
+
+function sortTrans(cats){
+    let transArr = [];
+    const catTransArr = cats.map((cat)=>{
+        return cat.transactions
+    });
+
+    catTransArr.forEach(trans => {
+        transArr = [...transArr, ...trans];
+    });
+
+    transArr = transArr.sort((a,b)=>{
+        return new Date(b.payment_date) - new Date(a.payment_date);
+    })
+
+    return transArr;
+}

@@ -1,7 +1,7 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
-
-import { connect } from 'react-redux';
+import BudgetGoal from "./BudgetGoal";
+import TotalExpenses from "./TotalExpenses";
 
 import '../table.css';
 
@@ -30,61 +30,19 @@ const useStyles = makeStyles({
 	}
 });
 
-const TotalBudget = props => {
+const TotalBudget = () => {
 	const classes = useStyles();
 	return (
 		<Card className={classes.card}>
 			<CardContent>
 				<Typography variant='subtitle1' gutterBottom></Typography>
 				<Grid container spacing={3}>
-					<Grid item xs={6}>
-						<h2 className={classes.textHeader}>
-							Total<br></br>Expenses
-						</h2>
-						<h3>
-							$<span> </span>
-							{Math.round(
-								100 *
-									props.expenses.reduce(function(a, b) {
-										return a + b;
-									}, 0)
-							) / 100}
-						</h3>
-					</Grid>
-					<Grid item xs={6}>
-						<h2>
-							Budget
-							<br /> Goal
-						</h2>
-						<h3>
-							$<span> </span>
-							{Math.round(
-								100 *
-									props.budget.reduce(function(a, b) {
-										return a + b;
-									}, 0)
-							) / 100}
-						</h3>
-					</Grid>
+					<TotalExpenses/>
+					<BudgetGoal/>
 				</Grid>
 			</CardContent>
 		</Card>
 	);
 };
-function mapStateToProps(state) {
-	return {
-		budget: state.plaidReducer.categories.map(
-			i => Math.round(100 * i.budget) / 100
-		),
-		expenses: state.plaidReducer.categories.map(
-			i => Math.round(100 * i.total) / 100
-		),
-		total: state.plaidReducer.categories.map(
-			i => Math.round(100 * i.total) / 100
-		),
 
-		user: state.profileReducer.user
-	};
-}
-
-export default connect(mapStateToProps)(TotalBudget);
+export default TotalBudget;

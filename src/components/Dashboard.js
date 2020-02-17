@@ -16,8 +16,8 @@ import Loader from "react-loader-spinner";
 
 export const Dashboard = props => {
   useEffect(() => {
-    props.getTransactions(localStorage.getItem("id"));
-    props.getUserInfo(localStorage.getItem("id"));
+    props.getTransactions(props.userID);
+    props.getUserInfo(props.userID);
   },[props.LinkedAccount])
     return (
      <div className="container">

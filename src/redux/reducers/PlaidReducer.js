@@ -52,7 +52,6 @@ export const reducer = (state = initialState, action) => {
                 accounts:action.payload.accounts,
                 categories:action.payload.Categories,
                 transactions:sortTrans(action.payload.Categories)
-                
             }
         case CLEAR_PLAID:
             return {

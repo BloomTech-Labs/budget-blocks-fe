@@ -22,31 +22,16 @@ export function Blocks(props) {
 	const classes = useStyles();
 	const [filter, setFilter] = useState([]);
 	const [open, setOpen] = useState(false);
-
-	useEffect(() => {
-		props.getTransactions(props.userID);
-	}, [props.LinkedAccount]);
 	const handleClick = e => {
 		setFilter(!filter);
 	};
-
-	// [0,10,20,30,...,490]
-	var shuffled = props.blocks.sort(function(a,b) {
-		return a-b;
-	});
-
-
 	const [values,setValues]=useState({
 		userId:"",
 		catId:"",
 		budget:0.00
 	})
-	useEffect(()=>{
-	},[])
-	var selected = shuffled.slice(0, 5);
 	const handleClickOpen = (id, budget) => {
 		setValues({...values,userId:localStorage.id, catId:id, budget});
-
 		setOpen(true);
 	};
 	const handleClose = () => {
@@ -54,40 +39,17 @@ export function Blocks(props) {
 	};
 	return (
 		<div>
-			{filter ? (
-				<div>
-					<TableContainer className='table' component={Paper}>
-						<Table className={classes.table} aria-label='simple table'>
-							<TableHeads
-								CellNames={['Block', 'Total Expenses', 'Limit', '']}
-								className='lightgrey'
-							/>
-
-							<DisplayBlocks arr={selected} handleClick={handleClickOpen}/>
-
-
-						</Table>
-						<BudgetGoal open={open} values={values} handleClose={handleClose} />
-					</TableContainer>
-					<button onClick={handleClick}>View All</button>
-				</div>
-			) : (
-				<div>
-					<TableContainer className='table' component={Paper}>
-						<Table className={classes.table} aria-label='simple table'>
-							<TableHeads
-								CellNames={['Block', 'Total Expenses', 'Limit', '']}
-								className='lightgrey'
-							/>
-
-							<DisplayBlocks arr={props.blocks} handleClick={handleClickOpen}/>
-
-						</Table>
-						<BudgetGoal open={open} values={values} handleClose={handleClose} />
-					</TableContainer>
-					<button onClick={handleClick}>View Less</button>
-				</div>
-			)}
+			<TableContainer className='table' component={Paper}>
+				<Table className={classes.table} aria-label='simple table'>
+					<TableHeads
+						CellNames={['Block', 'Total Expenses', 'Limit', '']}
+						className='lightgrey'
+					/>
+					<DisplayBlocks arr={filter ? props.blocks.slice(0,5) : props.blocks} handleClick={handleClickOpen}/>
+				</Table>
+				<BudgetGoal open={open} values={values} handleClose={handleClose} />
+			</TableContainer>
+			<button onClick={handleClick}>{filter ? "View All": "View Less"}</button>
 		</div>
 	);
 }
@@ -96,7 +58,9 @@ function mapStateToProps(state) {
 	return {
 		userID: state.loginReducer.user.id,
 		LinkedAccount: state.loginReducer.user.LinkedAccount,
-		blocks: state.plaidReducer.categories
+		blocks: state.plaidReducer.categories.sort((a,b)=>{
+			return a.id-b.id
+		})
 	};
 }
 

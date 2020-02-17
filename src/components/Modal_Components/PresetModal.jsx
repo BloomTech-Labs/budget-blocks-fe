@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Back_Continue } from "./Modal_Components/Back_Continue";
-import { Modal_Title } from "./Modal_Components/Modal_Title";
+import { Back_Continue } from "./Back_Continue";
+import { Modal_Title } from "./Modal_Title";
 
 import { withStyles, makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";

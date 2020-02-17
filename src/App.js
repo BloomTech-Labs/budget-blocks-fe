@@ -7,7 +7,7 @@ import Profile from './components/CreateProfile';
 import { Switch, Route } from 'react-router-dom';
 import Dashboard from './components/Dashboard';
 import PrivateRoute from './components/PrivateRoute';
-import BudgetGoal from './components/PresetModal';
+import BudgetGoal from './components/Modal_Components/PresetModal';
 import Navbar from './components/NavBar';
 import ReactGA from 'react-ga';
 

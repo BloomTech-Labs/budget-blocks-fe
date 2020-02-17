@@ -1,6 +1,6 @@
 import React from 'react';
 import Modal from '@material-ui/core/Modal';
-import { TableHeads } from './Blocks_Components/TableHead';
+import { TableHeads } from '../Blocks_Components/TableHead';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';

@@ -1,5 +1,5 @@
 import React from "react";
-import { Register } from "../register";
+import { Register } from "../Form_Components/Register";
 import { render, fireEvent } from "@testing-library/react";
 import {BrowserRouter as Router } from "react-router-dom"
 import { configure } from 'enzyme';

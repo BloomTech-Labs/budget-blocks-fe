@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
-import { loginUser } from "../redux/actions/LoginActions";
-import Title from "./Form_Components/Title";
-import PasswordField from "./Form_Components/PasswordField";
-import Account from "./Form_Components/Account";
-import { CheckEmptyFields } from "./Form_Components/CheckEmpyFields";
-import { ChangeCheckField } from "./Form_Components/ChangeCheckField";
+import { loginUser } from "../../redux/actions/LoginActions";
+import Title from "./Title";
+import PasswordField from "./PasswordField";
+import Account from "./Account";
+import { CheckEmptyFields } from "./CheckEmpyFields";
+import { ChangeCheckField } from "./ChangeCheckField";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 
 import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
 import FormControl from "@material-ui/core/FormControl";
 import Button from "@material-ui/core/Button";
-import "../style/loginStyle.css";
+import "./loginStyle.css";
 import Container from "@material-ui/core/Container";
 import Loader from "react-loader-spinner";
 

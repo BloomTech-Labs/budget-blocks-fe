@@ -7,8 +7,7 @@ import { connect } from "react-redux";
 import Balance from "./Balance_Components/Balance"
 import LinkedTransactions from "./Transactions_Components/LinkedTransactions"
 import UnlinkedTransactions from "./Transactions_Components/UnlinkedTransactions"
-import LinkedTotalBudget from "./TotalBudget_Components/LinkedTotalBudget"
-import UnlinkedTotalBudget from "./TotalBudget_Components/UnlinkedTotalBudget"
+import TotalBudget from "./TotalBudget_Components/TotalBudget"
 import { getUserInfo } from "../redux/actions/ProfileActions";
 import { getTransactions } from "../redux/actions/PlaidActions";
 import "./dashboardStyle.css";
@@ -53,7 +52,7 @@ export const Dashboard = props => {
             <Grid item sm={4} xs={12}>
                 
             <Grid container>
-                    <Grid item sm={8} xs={12}>{props.blocks.length ? <LinkedTotalBudget /> : <UnlinkedTotalBudget />}</Grid>
+                    <Grid item sm={8} xs={12}><TotalBudget/></Grid>
                 </Grid>
                 <Grid container>
                     <Grid item sm={8} xs={12}><Balance/></Grid>

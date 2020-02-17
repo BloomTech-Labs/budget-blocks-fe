@@ -32,18 +32,6 @@ const useStyles = makeStyles({
 
 const TotalBudget = props => {
 	const classes = useStyles();
-	console.log(
-		'expense',
-		props.expenses.reduce(function(a, b) {
-			return a + b;
-		}, 0)
-	);
-	console.log(
-		'budget',
-		props.budget.reduce(function(a, b) {
-			return a + b;
-		}, 0)
-	);
 	return (
 		<Card className={classes.card}>
 			<CardContent>

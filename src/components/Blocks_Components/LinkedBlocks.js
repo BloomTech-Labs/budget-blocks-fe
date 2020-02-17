@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { TableHeads } from './Blocks_Components/TableHead';
-import DisplayBlocks from './Blocks_Components/DisplayBlocks';
+import { TableHeads } from './TableHead';
+import DisplayBlocks from './DisplayBlocks';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableContainer from '@material-ui/core/TableContainer';
 import Paper from '@material-ui/core/Paper';
-import { getTransactions } from '../redux/actions/PlaidActions';
+import { getTransactions } from '../../redux/actions/PlaidActions';
 import { connect } from 'react-redux';
-import './table.css';
+import '../table.css';
 
-import BudgetGoal from '../components/BudgetGoalModal';
+import BudgetGoal from '../BudgetGoalModal';
 
 const useStyles = makeStyles({
 	table: {

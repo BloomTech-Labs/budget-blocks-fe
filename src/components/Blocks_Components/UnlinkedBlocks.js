@@ -1,5 +1,5 @@
 import React,{ useEffect } from 'react';
-import {TableHeads} from "./Blocks_Components/TableHead";
+import {TableHeads} from "./TableHead";
 
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -9,7 +9,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import { Progress } from "reactstrap";
-import { getTransactions } from '../redux/actions/PlaidActions';
+import { getTransactions } from '../../redux/actions/PlaidActions';
 import { connect } from "react-redux";
 
 const useStyles = makeStyles({

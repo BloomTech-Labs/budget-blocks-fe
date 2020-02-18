@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import Home from './components/Home';
+import Home from './components/home';
 import Login from './components/Form_Components/Login/Login';
 import Register from './components/Form_Components/Register/Register';
 import Profile from './components/Form_Components/Create_Profile/CreateProfile';
@@ -11,13 +11,13 @@ import BudgetGoal from './components/Modal_Components/PresetModal';
 import Navbar from './components/NavBar';
 import ReactGA from 'react-ga';
 
-function initializeReactGA() {
-	ReactGA.initialize('UA-158581736-1');
-	ReactGA.pageview(window.location.pathname + window.location.search);
-}
+// function initializeReactGA() {
+// 	ReactGA.initialize('UA-158581736-1');
+// 	ReactGA.pageview(window.location.pathname + window.location.search);
+// }
 
 function App() {
-	initializeReactGA();
+	// initializeReactGA();
 
 	return (
 		<div>

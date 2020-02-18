@@ -3,22 +3,24 @@ import Grid from '@material-ui/core/Grid';
 import { connect } from 'react-redux';
 
 const TotalExpenses = props => {
-
+    
+    const TotalExpenses = (
+		Math.round(
+			100 *
+				props.expenses.reduce(function(a, b) {
+					return a + b;
+				}, 0)
+		) / 100
+	).toLocaleString('en-US', {
+		style: 'currency',
+		currency: 'USD'
+    });
+    
 	return (
-		<Grid item xs={6}>
-			<h2 className="totalExpenses">
-				Total<br></br>Expenses
-			</h2>
-			<h3>
-				$<span> </span>
-				{Math.round(
-					100 *
-					props.expenses.reduce(function(a, b) {
-						return a + b;
-					}, 0)
-				) / 100}
-			</h3>
-		</Grid>
+        <div className='budget-expenses'>
+            <h4>Total Expenses</h4>
+            <p>{TotalExpenses}</p>
+        </div>
 	);
 };
 function mapStateToProps(state) {

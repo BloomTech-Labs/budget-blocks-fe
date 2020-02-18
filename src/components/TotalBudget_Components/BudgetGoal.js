@@ -1,25 +1,23 @@
 import React from 'react';
-import Grid from '@material-ui/core/Grid';
 import { connect } from 'react-redux';
-import '../table.css';
 
 const BudgetGoal = props => {
+	const BudgetGoal = (
+		Math.round(
+			100 *
+				props.budget.reduce(function(a, b) {
+					return a + b;
+				}, 0)
+		) / 100
+	).toLocaleString('en-US', {
+		style: 'currency',
+		currency: 'USD'
+	});
 	return (
-					<Grid item xs={6}>
-						<h2>
-							Budget
-							<br /> Goal
-						</h2>
-						<h3>
-							$<span> </span>
-							{Math.round(
-								100 *
-									props.budget.reduce(function(a, b) {
-										return a + b;
-									}, 0)
-							) / 100}
-						</h3>
-					</Grid>
+        <div className='budget-goal'>
+            <h4>Budget Goal</h4>
+            <p>{BudgetGoal}</p>
+        </div>
 	);
 };
 function mapStateToProps(state) {

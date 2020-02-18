@@ -9,7 +9,7 @@ export const TableHeads = ({ CellNames, className = "table_names" }) =>{
         <TableHead>
           <TableRow className= {className}>
               {CellNames.map((name)=>(
-                  <TableCell>{name}</TableCell>
+                  <TableCell key={name}>{name}</TableCell>
               ))}
           </TableRow>
         </TableHead>

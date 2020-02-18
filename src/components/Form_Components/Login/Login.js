@@ -107,7 +107,7 @@ export const Login = props => {
                 timeout={10000} //3 secs
               />
             ) : (
-              <p>SignIn</p>
+              <p>Sign In</p>
             )}
           </Button>
         </form>

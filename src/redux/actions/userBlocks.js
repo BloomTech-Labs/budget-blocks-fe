@@ -1,5 +1,5 @@
 import { getTransactions } from "./PlaidActions";
-import axios from "axios";
+import { axiosWithAuth } from "../../components/AxiosWithAuth";
 
 export const BLOCKS_CATEGORY_LOADING = "BLOCKS_CATEGORY_LOADING";
 export const BLOCKS_CATEGORY_SUCCESS = "BLOCKS_CATEGORY_SUCCESS";
@@ -30,13 +30,13 @@ export const updateFailed = error => ({
 export function updateBlocks(userID, goals){
     return function(dispatch) {
         dispatch(updateLoading());
-        return axios.put(`https://lambda-budget-blocks.herokuapp.com/api/users/categories/${userID}`,goals)
+        return axiosWithAuth().put(`https://lambda-budget-blocks.herokuapp.com/api/users/categories/${userID}`,goals)
             .then(response => {
                 dispatch(updateSuccess());
                 dispatch(getTransactions(userID));
             })
             .catch(error => {
-                dispatch(updateFailed());
+                dispatch(updateFailed(error));
             });
         }
 }

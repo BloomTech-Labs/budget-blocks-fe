@@ -8,7 +8,6 @@ import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import { Progress } from 'reactstrap';
 import { getTransactions } from '../../redux/actions/PlaidActions';
 import { connect } from 'react-redux';
 import '../../index.css';

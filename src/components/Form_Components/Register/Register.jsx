@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
-import { registerUser } from "../redux/actions/RegisterActions";
-import Title from "./Form_Components/Title";
-import PasswordField from "./Form_Components/PasswordField";
-import Account from "./Form_Components/Account";
-import { CheckEmptyFields } from "./Form_Components/CheckEmpyFields";
-import { ChangeCheckField } from "./Form_Components/ChangeCheckField";
+import { registerUser } from "../../../redux/actions/RegisterActions";
+import Title from "../Title";
+import PasswordField from "../PasswordField";
+import Account from "../Account";
+import { CheckEmptyFields } from "../CheckEmpyFields";
+import { ChangeCheckField } from "../ChangeCheckField";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 import Button from "@material-ui/core/Button";
-import "../style/registerStyle.css";
+import "./registerStyle.css";
 import TextField from "@material-ui/core/TextField";
 import FormControl from "@material-ui/core/FormControl";
 import Loader from "react-loader-spinner";
@@ -83,7 +83,6 @@ export const Register = props => {
       setValues({ ...values, button: { disabled: true } });
     }
   }, [user]);
-
   return (
     <div className="register">
       <Container maxWidth="sm">
@@ -137,8 +136,8 @@ export const Register = props => {
                   <Loader
                     type="Puff"
                     color="#00BFFF"
-                    height={100}
-                    width={100}
+                    height={50}
+                    width={50}
                     timeout={10000} //3 secs
                   />
                 ) : (

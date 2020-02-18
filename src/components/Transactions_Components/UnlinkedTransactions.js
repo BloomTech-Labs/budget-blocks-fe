@@ -1,12 +1,11 @@
 import React from 'react';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import Typography from '@material-ui/core/Typography';
+
 import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
-import { getTransactions } from '../redux/actions/PlaidActions';
+import { getTransactions } from '../../redux/actions/PlaidActions';
 import { connect } from 'react-redux';
+import '../../index.css';
 
 const useStyles = makeStyles(theme => ({
 	root: {
@@ -65,8 +64,8 @@ const Transactions = props => {
 	});
 	return (
 		<React.Fragment>
-			<div className={classes.topcontent}>
-				<h2 className={classes.text}>Recent Transactions:</h2>
+			{/* <div className={classes.topcontent}>
+				<b className={classes.text}>Recent Transactions:</b>
 				<div className={classes.root}>
 					<Button variant='contained'>
 						<AddIcon />
@@ -77,25 +76,14 @@ const Transactions = props => {
 						Add Income
 					</Button>
 				</div>
+			</div> */}
+			<div className='trans-container'>
+				<div className='trans-top-content'>
+					<h3>Recent Transactions: </h3>
+					<button className='add-trans-button'>Add Transactions</button>
+				</div>
+				<p>Nothing yet</p>
 			</div>
-
-			{transactions.map(i => (
-				<Card className={classes.card} key={i.id}>
-					<div className={classes.details}>
-						<CardContent className={classes.content}>
-							<Typography component='p' variant='body1'>
-								{i.name}
-							</Typography>
-							<Typography variant='subtitle1' color='textSecondary'>
-								{i.payment_date}
-							</Typography>
-						</CardContent>
-					</div>
-					<div className={classes.controls}>
-						${Math.round(10 * i.amount) / 100}
-					</div>
-				</Card>
-			))}
 		</React.Fragment>
 	);
 };

@@ -3,10 +3,10 @@ name: Code Climate Coverage Action
 on: 
   push:
     branches: 
-    - development
+    - master
   pull_request:
     branches: 
-    - development
+    - master
 
 jobs:
   test:

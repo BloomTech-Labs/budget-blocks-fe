@@ -1,20 +1,16 @@
 import React,{useEffect} from "react";
 import { connect } from "react-redux";
-import {getUserInfo} from '../redux/actions/ProfileActions';
-import LinkAccount from "./LinkAccount";
-import plaidImg from "../media/image/PlaidIcon.png";
-import "../style/balanceStyle.js";
-import { useStyles } from "../style/balanceStyle";
+import {getUserInfo} from '../../redux/actions/ProfileActions';
+import LinkAccount from "../LinkAccount";
+import plaidImg from "../../media/image/PlaidIcon.png";
+import { useStyles } from "./balanceStyle";
 import Card from '@material-ui/core/Card';
 
-export const Balance = ({balance,LinkedAccount})=>{
+export const Balance = ({LinkedAccount})=>{
 
     useEffect(()=> {
         getUserInfo()
     },[])
-
-    // const amounts = balance.accounts.map(e => e.balances.available)
-    // const sum = amounts.reduce((a,b) => {return a + b},0)
     const classes = useStyles();
 
     if(LinkedAccount === false){
@@ -26,20 +22,13 @@ export const Balance = ({balance,LinkedAccount})=>{
         )
     }else{
         return (
-        <Card className={classes.NoBalance}>
-            <h3>Balance:</h3>
-            <h3>
-                ${balance}
-            </h3>
-        </Card>
-             
+            null
         )
     }
 }
 
 function mapStateToProps(state){
     return {
-        balance:state.plaidReducer.Balance,
         LinkedAccount: state.loginReducer.user.LinkedAccount
     }
 }

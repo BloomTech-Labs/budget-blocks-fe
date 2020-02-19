@@ -2,6 +2,7 @@ import React from 'react';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
+import './index.css';
 
 const DisplayBlocks = ({ arr, handleClick }) => {
 	return (
@@ -38,7 +39,12 @@ const DisplayBlocks = ({ arr, handleClick }) => {
 							: (Math.round(100 * i.budget) / 100).toFixed(2)}
 					</td>
 					<td>
-						<button onClick={() => handleClick(i.id, i.budget)}>edit</button>
+						<button
+							id='edit-button'
+							onClick={() => handleClick(i.id, i.budget)}
+						>
+							edit
+						</button>
 					</td>
 				</tr>
 			))}

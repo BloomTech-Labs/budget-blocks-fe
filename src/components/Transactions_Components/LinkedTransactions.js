@@ -13,8 +13,10 @@ const useStyles = makeStyles(theme => ({
 		}
 	},
 	container: {
-		display: 'grid',
-		gridTemplateColumns: 'repeat(12, 1fr)'
+		// display: 'grid',
+		// gridTemplateColumns: 'repeat(12, 1fr)'
+		display: 'flex',
+		width: '100%'
 	},
 	topcontent: {
 		display: 'flex'
@@ -23,9 +25,12 @@ const useStyles = makeStyles(theme => ({
 		width: '100%',
 		marginBottom: '1rem',
 		height: '70%',
-		background: '#F0F0F0',
+		background: '#f7f7f7',
 		textAlign: 'left',
-		paddingLeft: '10px'
+		paddingLeft: '10px',
+		display: 'flex',
+
+		fontSize: '12px'
 	},
 	details: {
 		display: 'flex'
@@ -44,6 +49,14 @@ const useStyles = makeStyles(theme => ({
 	text: {
 		textAlign: 'left',
 		paddingLeft: theme.spacing(5)
+	},
+	rightInfo: {
+		width: '85%'
+	},
+	leftInfo: {
+		width: '15%',
+		paddingTop: '5%',
+		alignItems: 'center'
 	}
 }));
 
@@ -90,13 +103,6 @@ const Transactions = props => {
 							View less
 						</button>
 					</div>
-
-					{/* <div className={classes.topcontent}>
-						<h3 className={classes.text}>Recent Transactions:</h3>
-					</div>
-					<DisplayTrans arr={props.transactions} classes={classes} />
-
-					<button onClick={handleClick}>View Less</button> */}
 				</React.Fragment>
 			)}
 		</div>

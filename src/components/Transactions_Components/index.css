@@ -1,5 +1,6 @@
 /* transactions component */
 .trans-container {
+	width: 100%;
 	margin-top: 20px;
 	background-color: white;
 	border: 1px solid #f0f0f0;
@@ -7,13 +8,15 @@
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
+	/* box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
 	box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	margin: 3%;
 }
 .trans-container .trans-top-content {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
-	padding: 2px 2%;
+	/* padding: 2px 2%; */
 }
 .add-trans-button {
 	color: #4d4d4d;
@@ -44,23 +47,28 @@
 	width: 20%;
 	align-items: center;
 	margin: 2px auto;
+	border: 1px solid #4d4d4d;
 }
 #view-button:hover {
-	background: #f0f0f0;
+	color: white;
+	background: #4d4d4d;
 }
 /* .trans-item {
 	margin: 2px 2px;
 	padding: 2px 2px;
 	border: 1px solid black;
 } */
-.trans-showcase {
-	display: flex;
-	flex-direction: column;
-	border: 1px soild red;
-}
+
 .trans-item {
 	display: flex;
 	flex-direction: column;
 	margin: 1%;
-	padding: 1%;
+	padding: 2px;
+	padding-right: 10px;
+}
+.green {
+	color: green;
+}
+.red {
+	color: red;
 }

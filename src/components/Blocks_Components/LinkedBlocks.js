@@ -4,12 +4,24 @@ import DisplayBlocks from './DisplayBlocks';
 
 import { getTransactions } from '../../redux/actions/PlaidActions';
 import { connect } from 'react-redux';
-import '../table.css';
+// import '../table.css';
 import '../../index.css';
+import './index.css';
+
+import Table from '@material-ui/core/Table';
+import TableContainer from '@material-ui/core/Table';
+import Paper from '@material-ui/core/Paper';
+import { withStyles, makeStyles } from '@material-ui/core/styles';
 
 import BudgetGoal from '../Modal_Components/BudgetGoalModal';
 
+const useStyles = makeStyles({
+	table: {
+		minWidth: 700
+	}
+});
 export function Blocks(props) {
+	const classes = useStyles();
 	const [filter, setFilter] = useState([]);
 	const [open, setOpen] = useState(false);
 	const handleClick = e => {
@@ -28,38 +40,38 @@ export function Blocks(props) {
 		setOpen(false);
 	};
 	return (
-		// <div>
-		// 	<TableContainer className='table' component={Paper}>
-		// 		<Table className={classes.table} aria-label='simple table'>
-		// 			<TableHeads
-		// 				CellNames={['Block', 'Total Expenses', 'Limit', '']}
-		// 				className='lightgrey'
-		// 			/>
-		// 			<DisplayBlocks
-		// 				arr={filter ? props.blocks.slice(0, 5) : props.blocks}
-		// 				handleClick={handleClickOpen}
-		// 			/>
-		// 		</Table>
-		// 		<BudgetGoal open={open} values={values} handleClose={handleClose} />
-		// 	</TableContainer>
-		// 	<button onClick={handleClick}>{filter ? 'View All' : 'View Less'}</button>
-		// </div>
-		<div className='table-container'>
-			<table id='table-showcase'>
-				<tr>
-					<TableHeads
-						CellNames={['Block', 'Total Expenses', 'Limit', '']}
-						className='lightgrey'
-					/>
-				</tr>
-				<tr>
-					<DisplayBlocks
-						arr={filter ? props.blocks.slice(0, 5) : props.blocks}
-						handleClick={handleClickOpen}
-					/>
-				</tr>
-			</table>
+		<div>
+			<div id='table-showcase'>
+				<TableContainer className='table' component={Paper}>
+					<Table className='table-content'>
+						<TableHeads
+							CellNames={['Block', 'Total Expenses', 'Limit', '']}
+							className='lightgrey'
+						/>
+						<DisplayBlocks
+							arr={filter ? props.blocks.slice(0, 5) : props.blocks}
+							handleClick={handleClickOpen}
+						/>
+					</Table>
+					<BudgetGoal open={open} values={values} handleClose={handleClose} />
+				</TableContainer>
+				<div>
+					<button className='blocks-button' onClick={handleClick}>
+						{filter ? 'View All' : 'View Less'}
+					</button>
+				</div>
+			</div>
 		</div>
+
+		// <div className='table-container'>
+		// 	<table id='table-showcase'>
+		// 		<TableHeads CellNames={['Block', 'Total Expenses', 'Limit', '']} />
+		// 		<DisplayBlocks
+		// 			arr={filter ? props.blocks.slice(0, 5) : props.blocks}
+		// 			handleClick={handleClickOpen}
+		// 		/>
+		// 	</table>
+		// </div>
 	);
 }
 

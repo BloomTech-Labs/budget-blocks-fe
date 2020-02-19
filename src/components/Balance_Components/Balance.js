@@ -18,7 +18,7 @@ export const Balance = ({LinkedAccount})=>{
         )
     }else{
         return (
-            null
+            <p></p>
         )
     }
 }

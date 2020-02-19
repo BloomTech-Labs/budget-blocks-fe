@@ -12,6 +12,10 @@ import {
     CLEAR_PLAID
 } from "../actions/LogoutAction";
 
+import {
+    CATEGORY_UPDATE_SUCCESS
+} from "../actions/userBlocks";
+
 export const reducer = (state = initialState, action) => {
     switch(action.type){
         case SEND_LINK_TOKEN_LOADING:
@@ -57,6 +61,12 @@ export const reducer = (state = initialState, action) => {
             return {
                 ...initialState
             }
+        case CATEGORY_UPDATE_SUCCESS:
+            return {
+                ...state,
+                categories:updateCategory(state.categories, action.payload.categoryid, action.payload.amount),
+                transactions:sortTrans(updateCategory(state.categories, action.payload.categoryid, action.payload.amount))
+            }
         default:
             return state;
     }
@@ -88,4 +98,14 @@ function sortTrans(cats){
     })
 
     return transArr;
+}
+
+function updateCategory(arr,categoryid, amount){
+    const newCategory = arr.map(c =>
+        c.id === categoryid
+          ? { ...c, budget: amount }
+          : c
+      );
+    
+    return newCategory;
 }

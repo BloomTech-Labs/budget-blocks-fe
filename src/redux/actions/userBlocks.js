@@ -10,6 +10,7 @@ export const CATEGORY_UPDATE_SUCCESS = "CATEGORY_UPDATE_SUCCESS";
 export const CATEGORY_UPDATE_FAILED = "CATEGORY_UPDATE_FAILED";
 
 
+
 export const blocksLoading = () => ({ type: BLOCKS_CATEGORY_LOADING });
 export const blocksSuccess = data => ({
     type: BLOCKS_CATEGORY_SUCCESS,
@@ -21,7 +22,7 @@ export const blocksFailure = error => ({
 });
 
 export const updateLoading = () => ({ type: CATEGORY_UPDATE_LOADING });
-export const updateSuccess = data => ({ type: CATEGORY_UPDATE_SUCCESS });
+export const updateSuccess = data => ({ type: CATEGORY_UPDATE_SUCCESS, payload: data });
 export const updateFailed = error => ({
     type: CATEGORY_UPDATE_FAILED,
     payload: error
@@ -32,8 +33,7 @@ export function updateBlocks(userID, goals){
         dispatch(updateLoading());
         return axiosWithAuth().put(`https://lambda-budget-blocks.herokuapp.com/api/users/categories/${userID}`,goals)
             .then(response => {
-                dispatch(updateSuccess());
-                dispatch(getTransactions(userID));
+                dispatch(updateSuccess(response.data));
             })
             .catch(error => {
                 dispatch(updateFailed(error));

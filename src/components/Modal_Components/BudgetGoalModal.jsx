@@ -97,7 +97,7 @@ export function BudgetGoal(props) {
 
     e.preventDefault();
     props.updateBlocks(userID, goals);
-    setGoals({ ...goals,budget:"" });
+    setGoals({ ...goals });
     props.handleClose();
 
   };

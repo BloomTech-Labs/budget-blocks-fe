@@ -1,5 +1,4 @@
-import axios from "axios";
-import {axiosWithAuth} from "../../components/AxiosWithAuth";
+import { axiosWithAuth } from "../../components/AxiosWithAuth";
 
 export const SEND_LINK_TOKEN_LOADING = "SEND_LINK_TOKEN_LOADING";
 export const SEND_LINK_TOKEN_SUCCESS = "SEND_LINK_TOKEN_SUCCESS";

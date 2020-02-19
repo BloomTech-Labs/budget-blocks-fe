@@ -1,17 +1,12 @@
 import React from "react"; 
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import TableCell from '@material-ui/core/TableCell';
 
-export const TableHeads = ({ CellNames, className = "table_names" }) =>{
+export const TableHeads = ({ CellNames }) =>{
 
     return(
-        <TableHead>
-          <TableRow className= {className}>
+        <tr>
               {CellNames.map((name)=>(
-                  <TableCell>{name}</TableCell>
+                  <th key={name}>{name}</th>
               ))}
-          </TableRow>
-        </TableHead>
+        </tr>
     )
 }

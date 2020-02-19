@@ -5,6 +5,7 @@ import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
 import { getTransactions } from '../../redux/actions/PlaidActions';
 import { connect } from 'react-redux';
+import '../../index.css';
 
 const useStyles = makeStyles(theme => ({
 	root: {
@@ -63,7 +64,7 @@ const Transactions = props => {
 	});
 	return (
 		<React.Fragment>
-			<div className={classes.topcontent}>
+			{/* <div className={classes.topcontent}>
 				<b className={classes.text}>Recent Transactions:</b>
 				<div className={classes.root}>
 					<Button variant='contained'>
@@ -75,9 +76,14 @@ const Transactions = props => {
 						Add Income
 					</Button>
 				</div>
+			</div> */}
+			<div className='trans-container'>
+				<div className='trans-top-content'>
+					<h3>Recent Transactions: </h3>
+					<button className='add-trans-button'>Add Transactions</button>
+				</div>
+				<p>Nothing yet</p>
 			</div>
-
-			<p>Nothing yet</p>
 		</React.Fragment>
 	);
 };

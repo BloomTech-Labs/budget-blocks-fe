@@ -7,10 +7,6 @@ import { useStyles } from "./balanceStyle";
 import Card from '@material-ui/core/Card';
 
 export const Balance = ({LinkedAccount})=>{
-
-    useEffect(()=> {
-        getUserInfo()
-    },[])
     const classes = useStyles();
 
     if(LinkedAccount === false){

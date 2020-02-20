@@ -20,6 +20,8 @@ export function loginUser(user,history){
         return axios.post('https://lambda-budget-blocks.herokuapp.com/api/auth/login',user)
             .then(response=>{
                 sessionStorage.setItem("token",response.data.token);
+                sessionStorage.setItem("userID",response.data.id);
+                sessionStorage.setItem("LinkedAccount", response.data.LinkedAccount);
                 dispatch(loginUserSuccess(response.data))
                 history.push("/dashboard");
             })

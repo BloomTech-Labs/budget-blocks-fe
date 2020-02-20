@@ -1,3 +1,4 @@
+
 import React from 'react';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
@@ -6,15 +7,7 @@ import '../../index.css';
 import './index.css';
 
 export const TableHeads = ({ CellNames, className = 'table_names' }) => {
-	return (
-		// <TableHead>
-		//   <TableRow className= {className}>
-		//       {CellNames.map((name)=>(
-		//           <TableCell key={name}>{name}</TableCell>
-		//       ))}
-		//   </TableRow>
-		// </TableHead>
-
+	return (		
 		<div className='table-header'>
 			{CellNames.map(name => (
 				<th key={name}>{name}</th>
@@ -22,3 +15,4 @@ export const TableHeads = ({ CellNames, className = 'table_names' }) => {
 		</div>
 	);
 };
+

@@ -33,7 +33,9 @@ export function Blocks(props) {
 		budget: 0.0
 	});
 	const handleClickOpen = (id, budget) => {
-		setValues({ ...values, userId: localStorage.id, catId: id, budget });
+
+		setValues({...values,userId:props.userID, catId:id, budget});
+
 		setOpen(true);
 	};
 	const handleClose = () => {

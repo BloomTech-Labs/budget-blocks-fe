@@ -11,6 +11,7 @@ export const logoutClearBlocks = () => ({ type: CLEAR_BLOCKS });
 export function logoutUser(){
     return function(dispatch) {
         sessionStorage.clear();
+        localStorage.clear()
         dispatch(logoutClearLogin());
         dispatch(logoutClearPlaid());
         dispatch(logoutClearBlocks());

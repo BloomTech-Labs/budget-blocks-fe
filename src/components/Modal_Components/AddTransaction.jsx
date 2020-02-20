@@ -61,7 +61,7 @@ export default function AddTransaction() {
   };
   useEffect(() => {
     axios
-      .get("https://lambda-budget-blocks.herokuapp.com/api/users/categories/2")
+      .get("https://lambda-budget-blocks.herokuapp.com/api/users/categories/6")
       .then(response => {
         console.log(response)
         // setValues({ ...values, categories: response.data });

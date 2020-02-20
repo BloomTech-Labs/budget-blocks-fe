@@ -15,6 +15,7 @@ import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 import Loader from 'react-loader-spinner';
 import '../App.css';
 import './main.css';
+import LinkAccount from './LinkAccount';
 
 export const Dashboard = props => {
 	useEffect(() => {
@@ -22,88 +23,33 @@ export const Dashboard = props => {
 		props.getUserInfo(props.userID);
 	}, [props.LinkedAccount]);
 	return (
-		// <div className='container'>
-		// 	<Grid container spacing={3}>
-		// 		<Grid item xs={12} sm={12} md={6} lg={8}>
-		// 			<div className='middle'>
-		// 				<Grid container>
-		// 					<Grid item xs={12} lg={12} sm={12}>
-		// 						<Header />
-		// 					</Grid>
-		// 				</Grid>
-		// 				{props.plaidFetching ||
-		// 				props.blockFetching ||
-		// 				props.profileFetching ? (
-		// 					<Loader
-		// 						type='ThreeDots'
-		// 						color='#66aabc'
-		// 						height={50}
-		// 						width={50}
-		// 						timeout={10000} //3 secs
-		// 					/>
-		// 				) : (
-		// 					<p></p>
-		// 				)}
-		// 				<Grid container>
-		// 					<Grid item xs={12} sm={12} md={12} lg={12}>
-		// 						{props.blocks.length > 0 ? (
-		// 							<LinkedBlocks />
-		// 						) : (
-		// 							<UnlinkedBlocks />
-		// 						)}
-		// 					</Grid>
-		// 				</Grid>
-		// 				<Grid container>
-		// 					<Grid item xs={12} sm={12} md={12} lg={12}>
-		// 						{props.blocks.length ? (
-		// 							<LinkedTransactions />
-		// 						) : (
-		// 							<UnlinkedTransactions />
-		// 						)}
-		// 					</Grid>
-		// 				</Grid>
-		// 			</div>
-		// 		</Grid>
-
-		// 		{/* right component */}
-		// 		<Grid item xs={12} sm={12} md={4} lg={4}>
-		// 			<Grid container>
-		// 				<Grid item sm={12} xs={12} md={12} lg={12}>
-		// 					<TotalBudget />
-		// 				</Grid>
-		// 			</Grid>
-		// 			<Grid container>
-		// 				<Grid item sm={8} xs={12}>
-		// 					<Balance />
-		// 				</Grid>
-		// 			</Grid>
-		// 		</Grid>
-		// 	</Grid>
-		// </div>
-
-		// css style
 		<div className='app-container'>
 			<div className='app-nav'>
 				<Header />
 			</div>
+
+			<div id='loading'>
+				{props.plaidFetching || props.blockFetching || props.profileFetching ? (
+					<Loader
+						type='ThreeDots'
+						color='#66aabc'
+						height={50}
+						width={50}
+						timeout={10000} //3 secs
+					/>
+				) : (
+					<p></p>
+				)}
+			</div>
 			<div className='showcase'>
-				<div id='loading'>
-					{props.plaidFetching ||
-					props.blockFetching ||
-					props.profileFetching ? (
-						<Loader
-							type='ThreeDots'
-							color='#66aabc'
-							height={50}
-							width={50}
-							timeout={10000} //3 secs
-						/>
-					) : (
-						<p></p>
-					)}
-				</div>
 				<div className='right-showcase'>
-					<TotalBudget />
+					<div>
+						<TotalBudget />
+					</div>
+					<div>
+						<Balance />
+						<LinkAccount />
+					</div>
 				</div>
 				<div className='left-showcase'>
 					<div>

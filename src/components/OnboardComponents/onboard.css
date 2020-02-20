@@ -1,0 +1,16 @@
+.main{
+    margin-top:5%;
+    margin-left:25%;
+  width:50%;
+    justify-content: center;
+}
+.manualBudgetButton{
+		min-width: 275px;
+        background: #F0F0F0;
+        display: flex;
+        padding:2rem;
+        margin-bottom:2rem;
+        margin-top:2rem;
+        align-items:center;
+        justify-content:space-around
+	}

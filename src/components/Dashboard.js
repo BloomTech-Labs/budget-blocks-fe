@@ -115,6 +115,7 @@ export const Dashboard = props => {
 						) : (
 							<UnlinkedTransactions />
 						)}
+							
 					</div>
 				</div>
 			</div>

@@ -10,6 +10,7 @@ import PrivateRoute from './components/PrivateRoute';
 import AddTransaction from './components/Modal_Components/AddTransaction';
 import Navbar from './components/NavBar';
 import ReactGA from 'react-ga';
+import FirstOnboard from "./components/OnboardComponents/FirstOnboard"
 
 // function initializeReactGA() {
 // 	ReactGA.initialize('UA-158581736-1');
@@ -31,6 +32,7 @@ function App() {
 					<PrivateRoute path='/dashboard' component={Dashboard} />
 					{/* <Route path='/budgetModal' component={BudgetGoal} /> */}
 					<Route path='/trans' component={AddTransaction} />
+					<Route path="/onBoard/1" component={FirstOnboard} /> 
 				</Switch>
 			</div>
 		</div>

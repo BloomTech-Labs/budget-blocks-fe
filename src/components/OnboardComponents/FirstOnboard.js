@@ -4,6 +4,7 @@ import {loginUser} from "../../redux/actions/LoginActions"
 import "./onboard.css"
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import Loader from 'react-loader-spinner'
 
 const FirstOnboard = props => {
     useEffect(() => {
@@ -21,13 +22,26 @@ props.loginUser({email:localStorage.getItem("user_email"),password:localStorage.
         :
       props.isFetching 
       ?
-      <div>...</div>
+      <div><Loader
+      type="Puff"
+      color="#00BFFF"
+      height={100}
+      width={100} //3 secs
+
+   /></div>
       :
       props.linkedAccount === true
       ?
       props.history.push("/dashboard")
       :
-      "..."
+      <div><Loader
+      type="Puff"
+      color="#00BFFF"
+      height={100}
+      width={100}
+      timeout={3000} //3 secs
+
+   /></div>
             }
 
         </div>

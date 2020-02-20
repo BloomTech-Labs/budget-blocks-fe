@@ -10,10 +10,11 @@ const FirstOnboard = props => {
     useEffect(() => {
 props.loginUser({email:localStorage.getItem("user_email"),password:localStorage.getItem("user_password")})
     },[])
+    console.log(props.error)
     return (
         
        <div>
-            {!props.isFetching && !props.linkedAccount
+            {!props.isFetching && !props.linkedAccount && props.error === null
             ?
             <div className="main">
         <div className="manualBudgetButton"> <Link to="/onboard/budget">Manually set your budget goals here</Link></div>
@@ -34,14 +35,12 @@ props.loginUser({email:localStorage.getItem("user_email"),password:localStorage.
       ?
       props.history.push("/dashboard")
       :
-      <div><Loader
-      type="Puff"
-      color="#00BFFF"
-      height={100}
-      width={100}
-      timeout={3000} //3 secs
+      <div className="main">
+      <p className="error">Sorry Please Try Again</p>
+  <div className="manualBudgetButton"> <Link to="/onboard/budget">Manually set your budget goals here</Link></div>
+  <Balance /> 
+  </div>
 
-   /></div>
             }
 
         </div>
@@ -50,6 +49,7 @@ props.loginUser({email:localStorage.getItem("user_email"),password:localStorage.
 function mapStateToProps(state) {
     return {
       isFetching: state.plaidReducer.isFetching,
+      error: state.plaidReducer.error,
         linkedAccount: state.loginReducer.user.LinkedAccount
     };
   }

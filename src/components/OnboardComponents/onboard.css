@@ -4,6 +4,9 @@
   width:50%;
     justify-content: center;
 }
+.error{
+    color:red
+}
 .manualBudgetButton{
 		min-width: 275px;
         background: #F0F0F0;

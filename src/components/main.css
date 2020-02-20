@@ -6,11 +6,15 @@
 }
 
 .right-showcase {
-	width: 25%;
-	margin: 10px auto;
+	width: 30%;
+	/* margin: 10px auto; */
+	margin-right: 2%;
+	margin-top: 2%;
 }
 .left-showcase {
-	width: 70%;
+	width: 65%;
+	margin-left: 2%;
+	margin-top: 2%;
 }
 
 /* navbar */
@@ -22,7 +26,7 @@
 .nav-logo {
 	display: flex;
 	flex-direction: column;
-	width: 90%;
+	width: 100%;
 	align-items: flex-start;
 	margin-left: 100px;
 }
@@ -36,14 +40,20 @@
 
 /* phone screen */
 @media screen and (max-width: 600px) {
+	.nav-bar {
+		width: 100%;
+	}
 	.showcase {
 		display: flex;
 		flex-direction: column;
+		margin: 3%;
 	}
 	.right-showcase {
 		width: 100%;
+		margin: 2%;
 	}
 	.left-showcase {
 		width: 100%;
+		margin: 2%;
 	}
 }

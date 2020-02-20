@@ -12,7 +12,6 @@ const TotalBudget = () => {
 				<TotalExpenses />
 				<BudgetGoal />
 			</div>
-			<div>progress bar</div>
 		</div>
 	);
 };

@@ -30,19 +30,26 @@ const TotalBudget = props => {
 	console.log('Total expenses', TotalExpenses);
 	console.log('Total budget', BudgetGoal);
 	return (
+		// <div className='budget-container'>
+		// 	<h3>Budget Summary</h3>
+		// 	<div className='budget-showcase'>
+		// 		<div className='budget-expenses'>
+		// 			<h4>Total Expenses</h4>
+		// 			<p>{TotalExpenses}</p>
+		// 		</div>
+		// 		<div className='budget-goal'>
+		// 			<h4>Budget Goal</h4>
+		// 			<p>{BudgetGoal}</p>
+		// 		</div>
+		// 	</div>
+		// </div>
+
 		<div className='budget-container'>
-			<h3>Budget Summary</h3>
+			<h5>Budget Summary</h5>
 			<div className='budget-showcase'>
-				<div className='budget-expenses'>
-					<h4>Total Expenses</h4>
-					<p>{TotalExpenses}</p>
-				</div>
-				<div className='budget-goal'>
-					<h4>Budget Goal</h4>
-					<p>{BudgetGoal}</p>
-				</div>
+				<TotalExpenses />
+				<BudgetGoal />
 			</div>
-			<div>progress bar</div>
 		</div>
 	);
 };

@@ -14,10 +14,10 @@ const BudgetGoal = props => {
 		currency: 'USD'
 	});
 	return (
-        <div className='budget-goal'>
-            <h4>Budget Goal</h4>
-            <p>{BudgetGoal}</p>
-        </div>
+		<div className='budget-goal'>
+			<h4>Budget Goal</h4>
+			<p>{BudgetGoal}</p>
+		</div>
 	);
 };
 function mapStateToProps(state) {

@@ -3,20 +3,20 @@
 	width: 100%;
 	margin-top: 20px;
 	background-color: white;
-	border: 1px solid #f0f0f0;
+	border: 1px solid #d4d4d4;
 	border-radius: 10px;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-	/* box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
-	box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-	margin: 3%;
+
+	/* margin: 3%; */
 }
 .trans-container .trans-top-content {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
 	/* padding: 2px 2%; */
+	padding-left: 10px;
 }
 .add-trans-button {
 	color: #4d4d4d;
@@ -33,8 +33,8 @@
 	/* box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
 }
 .add-trans-button:hover {
-	box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
-		0 17px 50px 0 rgba(0, 0, 0, 0.19);
+	/* box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
+		0 17px 50px 0 rgba(0, 0, 0, 0.19); */
 	color: white;
 	background-color: #4d4d4d;
 }

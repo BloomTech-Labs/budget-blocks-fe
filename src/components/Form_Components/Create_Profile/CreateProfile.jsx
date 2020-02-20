@@ -10,7 +10,6 @@ import Button from "@material-ui/core/Button";
 import "./createProfileStyle.css";
 import TextField from "@material-ui/core/TextField";
 import FormControl from "@material-ui/core/FormControl";
-import { Link } from "react-router-dom";
 
 const Profile = props => {
   const [user, setUser] = useState({

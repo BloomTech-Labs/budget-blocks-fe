@@ -12,6 +12,10 @@ import {
     CLEAR_PLAID
 } from "../actions/LogoutAction";
 
+import {
+    CATEGORY_UPDATE_SUCCESS
+} from "../actions/userBlocks";
+
 export const reducer = (state = initialState, action) => {
     switch(action.type){
         case SEND_LINK_TOKEN_LOADING:
@@ -51,11 +55,17 @@ export const reducer = (state = initialState, action) => {
                 error: null,
                 accounts:action.payload.accounts,
                 categories:action.payload.Categories,
-                
+                transactions:sortTrans(action.payload.Categories)
             }
         case CLEAR_PLAID:
             return {
                 ...initialState
+            }
+        case CATEGORY_UPDATE_SUCCESS:
+            return {
+                ...state,
+                categories:updateCategory(state.categories, action.payload.categoryid, action.payload.amount),
+                transactions:sortTrans(updateCategory(state.categories, action.payload.categoryid, action.payload.amount))
             }
         default:
             return state;
@@ -72,3 +82,30 @@ const initialState = {
     
     
 };
+
+function sortTrans(cats){
+    let transArr = [];
+    const catTransArr = cats.map((cat)=>{
+        return cat.transactions
+    });
+
+    catTransArr.forEach(trans => {
+        transArr = [...transArr, ...trans];
+    });
+
+    transArr = transArr.sort((a,b)=>{
+        return new Date(b.payment_date) - new Date(a.payment_date);
+    })
+
+    return transArr;
+}
+
+function updateCategory(arr,categoryid, amount){
+    const newCategory = arr.map(c =>
+        c.id === categoryid
+          ? { ...c, budget: amount }
+          : c
+      );
+    
+    return newCategory;
+}

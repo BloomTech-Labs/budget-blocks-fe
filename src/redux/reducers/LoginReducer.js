@@ -51,10 +51,10 @@ export const reducer = (state = initialState, action) => {
 
 const initialState = {
     user:{
-        id:null,
-        token:"",
+        id: sessionStorage.getItem("userID") || null,
+        token:sessionStorage.getItem("token") || "",
         message:"",
-        LinkedAccount:false
+        LinkedAccount:sessionStorage.getItem("LinkedAccount") || false
     },
     error:null,
     isFetching:false

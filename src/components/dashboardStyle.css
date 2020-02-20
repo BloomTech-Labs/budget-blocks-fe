@@ -1,6 +1,9 @@
-@media (min-width: 1600px){
-
-    /* .container{
+@media (min-width: 1600px) {
+	/* .container{
         width:1600px
     }  */
+}
+.container {
+	margin: 2px auto;
+	padding: 10px auto;
 }

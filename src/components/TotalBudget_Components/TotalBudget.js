@@ -1,15 +1,16 @@
 import React from 'react';
-import BudgetGoal from "./BudgetGoal";
-import TotalExpenses from "./TotalExpenses";
-import '../../index.css';
+import BudgetGoal from './BudgetGoal';
+import TotalExpenses from './TotalExpenses';
+
+import './index.css';
 
 const TotalBudget = () => {
 	return (
 		<div className='budget-container'>
 			<h5>Budget Summary</h5>
 			<div className='budget-showcase'>
-				<TotalExpenses/>
-				<BudgetGoal/>
+				<TotalExpenses />
+				<BudgetGoal />
 			</div>
 			<div>progress bar</div>
 		</div>

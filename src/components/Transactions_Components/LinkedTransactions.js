@@ -1,15 +1,22 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import DisplayTrans from "./DisplayTrans";
+import DisplayTrans from './DisplayTrans';
 
 import { getTransactions } from '../../redux/actions/PlaidActions';
 import { connect } from 'react-redux';
+import './index.css';
 
 const useStyles = makeStyles(theme => ({
 	root: {
 		'& > *': {
 			margin: theme.spacing(1)
 		}
+	},
+	container: {
+		// display: 'grid',
+		// gridTemplateColumns: 'repeat(12, 1fr)'
+		display: 'flex',
+		width: '100%'
 	},
 	topcontent: {
 		display: 'flex'
@@ -18,7 +25,12 @@ const useStyles = makeStyles(theme => ({
 		width: '100%',
 		marginBottom: '1rem',
 		height: '70%',
-		background: '#F0F0F0'
+		background: '#f7f7f7',
+		textAlign: 'left',
+		paddingLeft: '10px',
+		display: 'flex',
+
+		fontSize: '12px'
 	},
 	details: {
 		display: 'flex'
@@ -37,6 +49,14 @@ const useStyles = makeStyles(theme => ({
 	text: {
 		textAlign: 'left',
 		paddingLeft: theme.spacing(5)
+	},
+	rightInfo: {
+		width: '85%'
+	},
+	leftInfo: {
+		width: '15%',
+		paddingTop: '5%',
+		alignItems: 'center'
 	}
 }));
 
@@ -48,26 +68,41 @@ const Transactions = props => {
 	};
 
 	var selected = props.transactions.slice(0, 3);
-	
+	const transSelect = props.transactions.slice(0, 3);
+
 	return (
 		<div>
 			{filter ? (
 				<React.Fragment>
-					<div className={classes.topcontent}>
-						<h3 className={classes.text}>Recent Transactions:</h3>
+					<div className='trans-container'>
+						<div className='trans-top-content'>
+							<h3 className={classes.text}>Recent Transactions:</h3>
+							<button className='add-trans-button'>Add Transactions</button>
+						</div>
+
+						<div className='trans-item'>
+							<DisplayTrans arr={selected} classes={classes} />
+						</div>
+
+						<button id='view-button' onClick={handleClick}>
+							View all transactions
+						</button>
 					</div>
-					<DisplayTrans arr={selected} classes={classes}/>
-					
-					<button onClick={handleClick}>View All</button>
 				</React.Fragment>
 			) : (
 				<React.Fragment>
-					<div className={classes.topcontent}>
-						<h3 className={classes.text}>Recent Transactions:</h3>
+					<div className='trans-container'>
+						<div className='trans-top-content'>
+							<h3 className={classes.text}>Recent Transactions:</h3>
+							<button className='add-trans-button'>Add Transactions</button>
+						</div>
+						<div className='trans-item'>
+							<DisplayTrans arr={props.transactions} classes={classes} />
+						</div>
+						<button id='view-button' onClick={handleClick}>
+							View less
+						</button>
 					</div>
-					<DisplayTrans arr={props.transactions} classes={classes}/>
-					
-					<button onClick={handleClick}>View Less</button>
 				</React.Fragment>
 			)}
 		</div>
@@ -88,13 +123,7 @@ const Transactions = props => {
 		// 							<p>Category: {category}</p>
 		// 						</div>
 		// 						<div className='trans-amount'>
-		// 							<p
-		// 								className={
-		// 									i.transactions[0].amount < 0
-		// 										? 'red bottom-content'
-		// 										: 'green bottom-content'
-		// 								}
-		// 							>
+		// 							<p>
 		// 								$ <span></span>
 		// 								{(Math.round(10 * i.transactions[0].amount) / 100).toFixed(
 		// 									2
@@ -122,13 +151,7 @@ const Transactions = props => {
 		// 							<p>Category: {category}</p>
 		// 						</div>
 		// 						<div className='trans-amount'>
-		// 							<p
-		// 								className={
-		// 									i.transactions[0].amount < 0
-		// 										? 'red bottom-content'
-		// 										: 'green bottom-content'
-		// 								}
-		// 							>
+		// 							<p>
 		// 								$ <span></span>
 		// 								{(Math.round(10 * i.transactions[0].amount) / 100).toFixed(
 		// 									2
@@ -153,4 +176,3 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, { getTransactions })(Transactions);
-

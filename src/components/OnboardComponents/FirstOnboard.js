@@ -4,12 +4,13 @@ import Balance from "../Balance_Components/Balance"
 import "./onboard.css"
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import { addDefault } from "../../redux/actions/ManualActions";
 import Loader from 'react-loader-spinner'
 
 const FirstOnboard = props => {
     const handleClick = (e) =>{
-        axios.get(`https://lambda-budget-blocks.herokuapp.com/manual/onboard/${props.userId}`)
-            .then((response)=>{props.history.push("/onBoard/select")});
+        e.preventDefault();
+        props.addDefault(props.userId, props.history);
     }
     return (
         
@@ -56,4 +57,4 @@ function mapStateToProps(state) {
     };
   }
   
-  export default connect(mapStateToProps, {})(FirstOnboard);
+  export default connect(mapStateToProps, { addDefault })(FirstOnboard);

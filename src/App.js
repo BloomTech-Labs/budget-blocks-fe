@@ -11,6 +11,8 @@ import AddTransaction from './components/Modal_Components/AddTransaction';
 import Navbar from './components/NavBar';
 import ReactGA from 'react-ga';
 import SelectCategories from "./components/Form_Components/Select_Categories/SelectCategories";
+import FirstOnboard from "./components/OnboardComponents/FirstOnboard"
+
 
 // function initializeReactGA() {
 // 	ReactGA.initialize('UA-158581736-1');
@@ -33,6 +35,7 @@ function App() {
 					{/* <Route path='/budgetModal' component={BudgetGoal} /> */}
 					<Route path='/select' component={SelectCategories} />
 					<Route path='/trans' component={AddTransaction} />
+					<Route path="/onBoard/1" component={FirstOnboard} /> 
 				</Switch>
 			</div>
 		</div>

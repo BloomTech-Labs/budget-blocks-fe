@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import Home from './components/home';
+import Home from './components/Home';
 import Login from './components/Form_Components/Login/Login';
 import Register from './components/Form_Components/Register/Register';
 import Profile from './components/Form_Components/Create_Profile/CreateProfile';
@@ -10,7 +10,9 @@ import PrivateRoute from './components/PrivateRoute';
 import AddTransaction from './components/Modal_Components/AddTransaction';
 import Navbar from './components/NavBar';
 import ReactGA from 'react-ga';
+import SelectCategories from "./components/Form_Components/Select_Categories/SelectCategories";
 import FirstOnboard from "./components/OnboardComponents/FirstOnboard"
+
 
 // function initializeReactGA() {
 // 	ReactGA.initialize('UA-158581736-1');
@@ -31,6 +33,7 @@ function App() {
 					<PrivateRoute path='/profile' component={Profile} />
 					<PrivateRoute path='/dashboard' component={Dashboard} />
 					{/* <Route path='/budgetModal' component={BudgetGoal} /> */}
+					<Route path='/select' component={SelectCategories} />
 					<Route path='/trans' component={AddTransaction} />
 					<Route path="/onBoard/1" component={FirstOnboard} /> 
 				</Switch>

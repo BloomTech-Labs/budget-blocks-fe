@@ -8,18 +8,19 @@ import Card from '@material-ui/core/Card';
 
 export const Balance = ({ LinkedAccount }) => {
 	const classes = useStyles();
-
-	if (LinkedAccount === false) {
-		return (
-			<Card className={classes.NoBalance}>
-				<LinkAccount />
-				<img src={plaidImg} className='plaidIcon' alt='Plaid Icon' />
-			</Card>
-		);
-	} else {
-		return null;
-	}
-};
+    if(LinkedAccount === false){
+        return(
+        <Card className={classes.NoBalance}>
+            <LinkAccount/>
+            <img src={plaidImg} className="plaidIcon" alt="Plaid Icon"/>
+        </Card>
+        )
+    }else{
+        return (
+            <p></p>
+        )
+    }
+}
 
 function mapStateToProps(state) {
 	return {

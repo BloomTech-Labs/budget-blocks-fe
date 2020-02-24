@@ -42,38 +42,26 @@ export function Blocks(props) {
 		setOpen(false);
 	};
 	return (
-		<div>
-			<div id='table-showcase'>
-				<TableContainer className='table' component={Paper}>
-					<Table className='table-content'>
-						<TableHeads
-							CellNames={['Block', 'Total Expenses', 'Limit', '']}
-							className='lightgrey'
-						/>
-						<DisplayBlocks
-							arr={filter ? props.blocks.slice(0, 5) : props.blocks}
-							handleClick={handleClickOpen}
-						/>
-					</Table>
-					<BudgetGoal open={open} values={values} handleClose={handleClose} />
-				</TableContainer>
-				<div>
-					<button className='blocks-button' onClick={handleClick}>
-						{filter ? 'View All' : 'View Less'}
-					</button>
-				</div>
+		<div id='table-showcase'>
+			<TableContainer className='table' component={Paper}>
+				<Table className='table-content'>
+					<TableHeads
+						CellNames={['Block', 'Total Expenses', 'Limit', '']}
+						className='lightgrey'
+					/>
+					<DisplayBlocks
+						arr={filter ? props.blocks.slice(0, 5) : props.blocks}
+						handleClick={handleClickOpen}
+					/>
+				</Table>
+				<BudgetGoal open={open} values={values} handleClose={handleClose} />
+			</TableContainer>
+			<div>
+				<button className='blocks-button' onClick={handleClick}>
+					{filter ? 'View All' : 'View Less'}
+				</button>
 			</div>
 		</div>
-
-		// <div className='table-container'>
-		// 	<table id='table-showcase'>
-		// 		<TableHeads CellNames={['Block', 'Total Expenses', 'Limit', '']} />
-		// 		<DisplayBlocks
-		// 			arr={filter ? props.blocks.slice(0, 5) : props.blocks}
-		// 			handleClick={handleClickOpen}
-		// 		/>
-		// 	</table>
-		// </div>
 	);
 }
 

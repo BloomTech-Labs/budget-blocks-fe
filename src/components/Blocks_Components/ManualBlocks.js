@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { getTransactions } from '../../redux/actions/PlaidActions';
-import { selectCategories } from '../../redux/actions/ManualActions';
+import {
+	selectCategories,
+	addDefault
+} from '../../redux/actions/ManualActions';
 import { Back_Continue } from '../Modal_Components/Back_Continue';
 import { TableHeads } from './TableHead';
 import DisplayBlocks from './DisplayBlocks';
@@ -106,6 +109,10 @@ export function ManualBlocks(props) {
 							arr={filter ? props.blocks.slice(0, 5) : props.blocks}
 							handleClick={handleClickOpen}
 						/> */}
+						{/* <DisplayBlocks
+							arr={props.categoryArr}
+							handleClick={handleClickOpen}
+						/> */}
 					</Table>
 					<BudgetGoal open={open} values={values} handleClose={handleClose} />
 				</TableContainer>
@@ -126,11 +133,17 @@ export function ManualBlocks(props) {
 function mapStateToProps(state) {
 	return {
 		userID: state.loginReducer.user.id,
-		LinkedAccount: state.loginReducer.user.LinkedAccount
+		LinkedAccount: state.loginReducer.user.LinkedAccount,
 		// blocks: state.plaidReducer.categories.sort((a, b) => {
+		// 	return a.id - b.id;
+		// })
+		categoryArr: state.plaidReducer.categories
+		// categoryArr: state.plaidReducer.categories.sort((a, b) => {
 		// 	return a.id - b.id;
 		// })
 	};
 }
 
-export default connect(mapStateToProps, { getTransactions })(ManualBlocks);
+// export default connect(mapStateToProps, { getTransactions })(ManualBlocks);
+
+export default connect(mapStateToProps, { selectCategories })(ManualBlocks);

@@ -162,6 +162,9 @@ Object {
                 </strong>
               </a>
             </div>
+            <p
+              class="errorMessage"
+            />
             <button
               class="MuiButtonBase-root MuiButton-root MuiButton-outlined signInBtn"
               tabindex="0"
@@ -170,7 +173,9 @@ Object {
               <span
                 class="MuiButton-label"
               >
-                Sign In
+                <p>
+                  Sign In
+                </p>
               </span>
               <span
                 class="MuiTouchRipple-root"
@@ -339,6 +344,9 @@ Object {
               </strong>
             </a>
           </div>
+          <p
+            class="errorMessage"
+          />
           <button
             class="MuiButtonBase-root MuiButton-root MuiButton-outlined signInBtn"
             tabindex="0"
@@ -347,7 +355,9 @@ Object {
             <span
               class="MuiButton-label"
             >
-              Sign In
+              <p>
+                Sign In
+              </p>
             </span>
             <span
               class="MuiTouchRipple-root"

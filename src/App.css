@@ -1,22 +1,23 @@
-@import url("https://fonts.googleapis.com/css?family=Exo&display=swap");
+@import url('https://fonts.googleapis.com/css?family=Exo&display=swap');
 .App {
-  text-align: center;
-  margin: 0, auto;
-  align-content: center;
+	text-align: center;
+	margin: 5px auto;
+	align-content: center;
+	width: 100vw;
 }
 
 .App-logo {
-  margin-top: 30px;
-  height: 40vmin;
-  pointer-events: none;
+	margin-top: 30px;
+	height: 40vmin;
+	pointer-events: none;
 }
 @media screen and (max-width: 400px) {
-  .App-logo {
-    margin-top: 50px;
-  }
+	.App-logo {
+		margin-top: 50px;
+	}
 }
 .budget_img {
-  margin-top: 10px;
+	margin-top: 10px;
 }
 
 /* @media (prefers-reduced-motion: no-preference) {
@@ -56,35 +57,34 @@
 	width: 70%;
 }
 .buttons {
-  margin-top: 180px;
+	margin-top: 180px;
 }
 @media screen and (max-width: 400px) {
-  .buttons {
-    margin-top: 240px;
-  }
+	.buttons {
+		margin-top: 240px;
+	}
 }
 .signup {
-  font-family: "Exo", sans-serif !important;
-  text-transform: none !important;
-  font-size: 16px !important;
-  background: #1890ff !important ;
-  border: 1px solid #ffffff !important;
-  color: #ffffff !important;
-  width: 70% !important;
-  margin-bottom: 10px !important;
+	font-family: 'Exo', sans-serif !important;
+	text-transform: none !important;
+	font-size: 16px !important;
+	background: #1890ff !important ;
+	border: 1px solid #ffffff !important;
+	color: #ffffff !important;
+	width: 70% !important;
+	margin-bottom: 10px !important;
 }
 .signin {
-  font-family: "Exo", sans-serif !important;
-  text-transform: none !important;
-  font-size: 16px !important;
-  background: #ffffff !important ;
-  border: 1px solid #1890ff !important;
-  color: #1890ff !important;
-  width: 70% !important;
+	font-family: 'Exo', sans-serif !important;
+	text-transform: none !important;
+	font-size: 16px !important;
+	background: #ffffff !important ;
+	border: 1px solid #1890ff !important;
+	color: #1890ff !important;
+	width: 70% !important;
 }
-.links{
-  text-decoration: none;
-  font-family: "Exo", sans-serif !important;
-  color: #282c34;
-
+.links {
+	text-decoration: none;
+	font-family: 'Exo', sans-serif !important;
+	color: #282c34;
 }

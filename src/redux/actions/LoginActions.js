@@ -22,8 +22,13 @@ export function loginUser(user,history){
                 sessionStorage.setItem("token",response.data.token);
                 sessionStorage.setItem("userID",response.data.id);
                 sessionStorage.setItem("LinkedAccount", response.data.LinkedAccount);
-                dispatch(loginUserSuccess(response.data))
-                history.push("/dashboard");
+                dispatch(loginUserSuccess(response.data));
+
+                if(response.data.LinkedAccount === true){
+                    history.push("/dashboard");
+                }else{
+                    history.push("/onBoard/1");
+                }
             })
             .catch(error=>{
                 dispatch(loginUserFailure( error.response.data.message)); 

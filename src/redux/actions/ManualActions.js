@@ -23,19 +23,19 @@ export const selectCategoriesSuccess = data => ({
 
 
 
-// export const GET_TRANS_LOADING = "GET_TRANS_LOADING";
-// export const GET_TRANS_SUCCESS = "GET_TRANS_SUCCESS";
-// export const GET_TRANS_FAILED = "GET_TRANS_FAILED";
+export const GET_TRANS_LOADING = "GET_TRANS_LOADING";
+export const GET_TRANS_SUCCESS = "GET_TRANS_SUCCESS";
+export const GET_TRANS_FAILED = "GET_TRANS_FAILED";
 
-// export const getTransLoading = () => ({ type: GET_TRANS_LOADING });
-// export const getTransSuccess = data => ({
-//     type: GET_TRANS_SUCCESS,
-//     payload: data
-//   });
-// export const getTransFailed = error => ({
-//     type: GET_TRANS_FAILED,
-//     payload: error
-// });
+export const getTransLoading = () => ({ type: GET_TRANS_LOADING });
+export const getTransSuccess = data => ({
+    type: GET_TRANS_SUCCESS,
+    payload: data
+  });
+export const getTransFailed = error => ({
+    type: GET_TRANS_FAILED,
+    payload: error
+});
 
 export function addDefault(userID, history){
     return function(dispatch) {
@@ -62,23 +62,21 @@ export function selectCategories(arr,history){
     }
 }
 
-// export function getTransactions(userID){
-//     return function(dispatch) {
-//         dispatch(getTransLoading());
-//         return axiosWithAuth().get(`https://cors-anywhere.herokuapp.com/https://lambda-budget-blocks.herokuapp.com/plaid/transactions/${userID}`)
-//             .then(response=>{
-//                 dispatch(getTransSuccess(response.data))
-//             })
-//             .catch(error=>{
-//                 if(error.response.status === 300 || error.response.status === 330){
-//                      return setTimeout(function(){
-//                          dispatch(getTransactions(userID));
-//                      },5000);
-//                 }else{
-//                     dispatch(getTransFailed(error)); 
-//                 }
-//             })
-//         }}
+export function getManualTrans(userID){
+    return function(dispatch) {
+        dispatch(getTransLoading());
+        return axiosWithAuth().get(`https://cors-anywhere.herokuapp.com/https://lambda-budget-blocks.herokuapp.com/manual/transaction/${userID}`)
+            .then(response=>{
+                const data = {
+                    accounts:[],
+                    Categories:response.data.list
+                }
+                dispatch(getTransSuccess(data));
+            })
+            .catch(error=>{
+                    dispatch(getTransFailed(error)); 
+            })
+        }}
 
 
 

@@ -24,7 +24,7 @@ export function loginUser(user,history){
                 sessionStorage.setItem("LinkedAccount", response.data.LinkedAccount);
                 dispatch(loginUserSuccess(response.data));
 
-                if(response.data.LinkedAccount === true){
+                if(response.data.LinkedAccount === true || response.data.ManualOnly === true){
                     history.push("/dashboard");
                 }else{
                     history.push("/onBoard/1");
@@ -32,7 +32,6 @@ export function loginUser(user,history){
             })
             .catch(error=>{
                 dispatch(loginUserFailure( error.response.data.message)); 
-                console.log("This is the error i am testing", error)
             })
     }
 }

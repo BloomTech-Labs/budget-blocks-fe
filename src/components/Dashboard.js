@@ -15,12 +15,14 @@ import Loader from 'react-loader-spinner';
 import '../App.css';
 import './main.css';
 import LinkAccount from './LinkAccount';
+import { getManualTrans } from "../redux/actions/ManualActions";
 
 export const Dashboard = props => {
 	useEffect(() => {
         if (props.LinkedAccount){
             props.getTransactions(props.userID);
-		    props.getUserInfo(props.userID);
+        } else {
+            props.getManualTrans(props.userID);
         }
 	}, []);
 	return (
@@ -81,6 +83,6 @@ function mapStateToProps(state) {
 	};
 }
 
-export default connect(mapStateToProps, { getTransactions, getUserInfo })(
+export default connect(mapStateToProps, { getTransactions, getUserInfo, getManualTrans })(
 	Dashboard
 );

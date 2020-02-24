@@ -1,23 +1,24 @@
-import React,{useEffect,useState} from "react"
+import React from "react"
+import axios from "axios";
 import Balance from "../Balance_Components/Balance"
-import {loginUser} from "../../redux/actions/LoginActions"
 import "./onboard.css"
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import { addDefault } from "../../redux/actions/ManualActions";
 import Loader from 'react-loader-spinner'
 
 const FirstOnboard = props => {
-    useEffect(() => {
-props.loginUser({email:localStorage.getItem("user_email"),password:localStorage.getItem("user_password")})
-    },[])
-    console.log(props.error)
+    const handleClick = (e) =>{
+        e.preventDefault();
+        props.addDefault(props.userId, props.history);
+    }
     return (
         
        <div>
             {!props.isFetching && !props.linkedAccount && props.error === null
             ?
             <div className="main">
-        <div className="manualBudgetButton"> <Link to="/onboard/budget">Manually set your budget goals here</Link></div>
+        <div className="manualBudgetButton"> <button onClick={handleClick}>Manually set your budget goals here</button></div>
         <Balance /> 
         </div>
         :
@@ -37,7 +38,7 @@ props.loginUser({email:localStorage.getItem("user_email"),password:localStorage.
       :
       <div className="main">
       <p className="error">Sorry Please Try Again</p>
-  <div className="manualBudgetButton"> <Link to="/onboard/budget">Manually set your budget goals here</Link></div>
+  <div className="manualBudgetButton"> <button onClick={handleClick}>Manually set your budget goals here</button></div>
   <Balance /> 
   </div>
 
@@ -50,8 +51,10 @@ function mapStateToProps(state) {
     return {
       isFetching: state.plaidReducer.isFetching,
       error: state.plaidReducer.error,
-        linkedAccount: state.loginReducer.user.LinkedAccount
+      linkedAccount: state.loginReducer.user.LinkedAccount,     
+      userId: state.loginReducer.user.id
+
     };
   }
   
-  export default connect(mapStateToProps, { loginUser })(FirstOnboard);
+  export default connect(mapStateToProps, { addDefault })(FirstOnboard);

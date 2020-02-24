@@ -33,7 +33,7 @@ function App() {
 					<PrivateRoute path='/profile' component={Profile} />
 					<PrivateRoute path='/dashboard' component={Dashboard} />
 					{/* <Route path='/budgetModal' component={BudgetGoal} /> */}
-					<Route path='/select' component={SelectCategories} />
+					<Route path='/onBoard/select' component={SelectCategories} />
 					<Route path='/trans' component={AddTransaction} />
 					<Route path="/onBoard/1" component={FirstOnboard} /> 
 				</Switch>

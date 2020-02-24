@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import CheckboxItem from "./CheckboxItem";
+import { selectCategories } from "../../../redux/actions/ManualActions";
 
-export function SelectCategories({categoryArr}) {
-  categoryArr = [{name:"food and drink", id:1}, {name:"travel", id:2}];
+export function SelectCategories({categoryArr, selectCategories, history}) {
   const [values, setValues] = useState(mapCategoriesToValues(categoryArr));
  
   const handleChange = event => {
@@ -20,7 +20,7 @@ export function SelectCategories({categoryArr}) {
     event.preventDefault();
     const selectedValues = filterUnwanted(values)
     const selectedCats = categoryArr.filter((cat)=>selectedValues.includes(cat.name));
-    console.log(selectedCats);
+    selectCategories(selectedCats, history);
   }
   return (
     <div>
@@ -76,4 +76,4 @@ function filterUnwanted(values){
     return newArr;
 }
 
-export default connect(mapStateToProps,{})(SelectCategories)
+export default connect(mapStateToProps,{selectCategories})(SelectCategories)

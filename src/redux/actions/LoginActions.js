@@ -14,7 +14,7 @@ export const loginUserFailure = error => ({
     payload: error
 });
 
-export function loginUser(user){
+export function loginUser(user,history){
     return function(dispatch) {
         dispatch(loginUserLoading());
         return axios.post('https://lambda-budget-blocks.herokuapp.com/api/auth/login',user)
@@ -22,8 +22,13 @@ export function loginUser(user){
                 sessionStorage.setItem("token",response.data.token);
                 sessionStorage.setItem("userID",response.data.id);
                 sessionStorage.setItem("LinkedAccount", response.data.LinkedAccount);
-                dispatch(loginUserSuccess(response.data))
-                
+                dispatch(loginUserSuccess(response.data));
+
+                if(response.data.LinkedAccount === true){
+                    history.push("/dashboard");
+                }else{
+                    history.push("/onBoard/1");
+                }
             })
             .catch(error=>{
                 dispatch(loginUserFailure( error.response.data.message)); 

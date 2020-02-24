@@ -92,7 +92,7 @@ export function ManualBlocks(props) {
 
 		<div>
 			<div className='man-block-container'>
-				<div>
+				<div className='man-block-header'>
 					<h1>Create Your Budget Blocks</h1>
 					<p>Assign the value you want in each selected category.</p>
 				</div>

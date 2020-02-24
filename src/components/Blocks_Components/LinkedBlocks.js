@@ -33,8 +33,7 @@ export function Blocks(props) {
 		budget: 0.0
 	});
 	const handleClickOpen = (id, budget) => {
-
-		setValues({...values,userId:props.userID, catId:id, budget});
+		setValues({ ...values, userId: props.userID, catId: id, budget });
 
 		setOpen(true);
 	};

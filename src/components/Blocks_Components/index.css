@@ -80,3 +80,11 @@ th {
 	color: white;
 	background-color: #4d4d4d;
 }
+
+/* manual blocks */
+.man-block-container {
+	width: 80%;
+	margin: 20px auto;
+	border: 1px solid #d4d4d4;
+	border-radius: 10px;
+}

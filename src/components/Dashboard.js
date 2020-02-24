@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import Grid from '@material-ui/core/Grid';
 import UnlinkedBlocks from './Blocks_Components/UnlinkedBlocks';
 import LinkedBlocks from './Blocks_Components/LinkedBlocks';
 import Header from './Header';
@@ -19,9 +18,11 @@ import LinkAccount from './LinkAccount';
 
 export const Dashboard = props => {
 	useEffect(() => {
-		props.getTransactions(props.userID);
-		props.getUserInfo(props.userID);
-	}, [props.LinkedAccount]);
+        if (props.LinkedAccount){
+            props.getTransactions(props.userID);
+		    props.getUserInfo(props.userID);
+        }
+	}, []);
 	return (
 		<div className='app-container'>
 			<div className='app-nav'>

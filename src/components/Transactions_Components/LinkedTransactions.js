@@ -6,9 +6,9 @@ import { getTransactions } from '../../redux/actions/PlaidActions';
 import { connect } from 'react-redux';
 import './index.css';
 
-import { getCategories } from "../../redux/actions/AddTransactionActions";
+import { getCategories } from '../../redux/actions/AddTransactionActions';
 
-import AddTransactionModal from "../Modal_Components/AddTransaction";
+import AddTransactionModal from '../Modal_Components/AddTransaction';
 const useStyles = makeStyles(theme => ({
 	root: {
 		'& > *': {
@@ -58,26 +58,26 @@ const useStyles = makeStyles(theme => ({
 	},
 	leftInfo: {
 		width: '15%',
-		paddingTop: '5%',
+		// paddingTop: '5%',
 		alignItems: 'center'
 	}
 }));
 
 const Transactions = props => {
-  const classes = useStyles();
-  const [filter, setFilter] = useState(true);
-  const handleClick = e => {
-    setFilter(!filter);
-  };
-  const [category, setCategory] = useState("");
+	const classes = useStyles();
+	const [filter, setFilter] = useState(true);
+	const handleClick = e => {
+		setFilter(!filter);
+	};
+	const [category, setCategory] = useState('');
 
-  var selected = props.transactions.slice(0, 3);
-  const [open, setOpen] = useState(false);	
-  const handleClickOpen = () => {	
-	setOpen(true);	
-  };	
-	const handleClose = () => {	
-	  setOpen(false);	
+	var selected = props.transactions.slice(0, 3);
+	const [open, setOpen] = useState(false);
+	const handleClickOpen = () => {
+		setOpen(true);
+	};
+	const handleClose = () => {
+		setOpen(false);
 	};
 
 	return (
@@ -87,10 +87,10 @@ const Transactions = props => {
 					<div className='trans-container'>
 						<div className='trans-top-content'>
 							<h3 className={classes.text}>Recent Transactions:</h3>
-							<button className="add-trans-button" onClick={handleClickOpen}>	
-              					Add Transactions	
-            				</button>	
-            				<AddTransactionModal open={open} handleClose={handleClose} />
+							<button className='add-trans-button' onClick={handleClickOpen}>
+								Add Transactions
+							</button>
+							<AddTransactionModal open={open} handleClose={handleClose} />
 						</div>
 						<div className='trans-item'>
 							<DisplayTrans arr={selected} classes={classes} />
@@ -121,12 +121,11 @@ const Transactions = props => {
 	);
 };
 function mapStateToProps(state) {
-  return {
-    userID: state.loginReducer.user.id,
-    LinkedAccount: state.loginReducer.user.LinkedAccount,
-	transactions: state.plaidReducer.transactions,
-	
-  };
+	return {
+		userID: state.loginReducer.user.id,
+		LinkedAccount: state.loginReducer.user.LinkedAccount,
+		transactions: state.plaidReducer.transactions
+	};
 }
 
 export default connect(mapStateToProps, { getTransactions })(Transactions);

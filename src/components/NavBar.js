@@ -23,7 +23,8 @@ const useStyles = makeStyles(theme => ({
 	}
 }));
 
-export function NavBar({ logoutUser }) {
+export function NavBar({navState,logoutUser}) {
+	console.log("I am navState", {navState})
 	const classes = useStyles();
 	return (
 		// <div className="navbar">
@@ -44,16 +45,25 @@ export function NavBar({ logoutUser }) {
 				<img className='heading' src={head} />
 			</div>
 			<div className='nav-action'>
-				<Link onClick={logoutUser} to='/login'>
+				{ (navState==="")?
+				"":<Link onClick={logoutUser} to='/login'>
 					Log Out
 				</Link>
+
+					
+				}
 			</div>
 		</div>
 	);
 }
 
 function mapStateToProps(state) {
-	return {};
+	return {
+		navState:state.loginReducer.navState,
+		
+
+
+	};
 }
 
 export default connect(mapStateToProps, { logoutUser })(NavBar);

@@ -1,14 +1,13 @@
-import React,{useEffect} from "react";
-import { connect } from "react-redux";
-import {getUserInfo} from '../../redux/actions/ProfileActions';
-import LinkAccount from "../LinkAccount";
-import plaidImg from "../../media/image/PlaidIcon.png";
-import { useStyles } from "./balanceStyle";
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+import { getUserInfo } from '../../redux/actions/ProfileActions';
+import LinkAccount from '../LinkAccount';
+import plaidImg from '../../media/image/PlaidIcon.png';
+import { useStyles } from './balanceStyle';
 import Card from '@material-ui/core/Card';
 
-export const Balance = ({LinkedAccount})=>{
-    const classes = useStyles();
-
+export const Balance = ({ LinkedAccount }) => {
+	const classes = useStyles();
     if(LinkedAccount === false){
         return(
         <Card className={classes.NoBalance}>
@@ -18,15 +17,15 @@ export const Balance = ({LinkedAccount})=>{
         )
     }else{
         return (
-            null
+            <p></p>
         )
     }
 }
 
-function mapStateToProps(state){
-    return {
-        LinkedAccount: state.loginReducer.user.LinkedAccount
-    }
+function mapStateToProps(state) {
+	return {
+		LinkedAccount: state.loginReducer.user.LinkedAccount
+	};
 }
 
-export default connect(mapStateToProps,{getUserInfo})(Balance)
+export default connect(mapStateToProps, { getUserInfo })(Balance);

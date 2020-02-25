@@ -16,6 +16,13 @@ import {
     CATEGORY_UPDATE_SUCCESS
 } from "../actions/userBlocks";
 
+import {
+    ADD_DEFAULT_CATEGORIES_LOADING,
+    ADD_DEFAULT_CATEGORIES_SUCCESS,
+    ADD_DEFAULT_CATEGORIES_FAILED,
+    SELECT_CATEGORIES_SUCCESS,
+    } from "../actions/ManualActions";
+
 export const reducer = (state = initialState, action) => {
     switch(action.type){
         case SEND_LINK_TOKEN_LOADING:
@@ -64,8 +71,31 @@ export const reducer = (state = initialState, action) => {
         case CATEGORY_UPDATE_SUCCESS:
             return {
                 ...state,
-                categories:updateCategory(state.categories, action.payload.categoryid, action.payload.amount),
-                transactions:sortTrans(updateCategory(state.categories, action.payload.categoryid, action.payload.amount))
+                categories:updateCategory(state.categories, action.payload.categoryid, action.payload.amount)
+            }
+        case ADD_DEFAULT_CATEGORIES_LOADING:
+            return {
+                ...state,
+                isFetching: true,
+                error: null
+            };
+        case ADD_DEFAULT_CATEGORIES_FAILED:
+            return {
+                ...state,
+                isFetching: false,
+                error: action.payload
+            }
+        case ADD_DEFAULT_CATEGORIES_SUCCESS:
+            return {
+                ...state,
+                isFetching: false,
+                error: null,
+                categories:action.payload
+            }
+        case SELECT_CATEGORIES_SUCCESS:
+            return {
+                ...state,
+                categories:action.payload
             }
         default:
             return state;

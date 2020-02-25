@@ -1,0 +1,74 @@
+/* transactions component */
+.trans-container {
+	width: 100%;
+	margin-top: 20px;
+	background-color: white;
+	border: 1px solid #d4d4d4;
+	border-radius: 10px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+
+	/* margin: 3%; */
+}
+.trans-container .trans-top-content {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	/* padding: 2px 2%; */
+	padding-left: 10px;
+}
+.add-trans-button {
+	color: #4d4d4d;
+	background-color: white;
+	border: 1px solid #4d4d4d;
+	padding: 10px 10px;
+	border-radius: 30px;
+	cursor: pointer;
+	margin: 10px 10px;
+	/* opacity: 0.6; */
+	transition: 0.3s;
+	display: inline-block;
+	width: 20%;
+	/* box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
+}
+.add-trans-button:hover {
+	/* box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
+		0 17px 50px 0 rgba(0, 0, 0, 0.19); */
+	color: white;
+	background-color: #4d4d4d;
+}
+
+#view-button {
+	padding: 5px 20px;
+	cursor: pointer;
+	border-radius: 10px;
+	margin-top: 10px;
+	width: 20%;
+	align-items: center;
+	margin: 2px auto;
+	border: 1px solid #4d4d4d;
+}
+#view-button:hover {
+	color: white;
+	background: #4d4d4d;
+}
+/* .trans-item {
+	margin: 2px 2px;
+	padding: 2px 2px;
+	border: 1px solid black;
+} */
+
+.trans-item {
+	display: flex;
+	flex-direction: column;
+	margin: 1%;
+	padding: 2px;
+	padding-right: 10px;
+}
+.green {
+	color: green;
+}
+.red {
+	color: red;
+}

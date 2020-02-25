@@ -10,14 +10,17 @@ import PrivateRoute from './components/PrivateRoute';
 import AddTransaction from './components/Modal_Components/AddTransaction';
 import Navbar from './components/NavBar';
 import ReactGA from 'react-ga';
+import SelectCategories from './components/Form_Components/Select_Categories/SelectCategories';
+import FirstOnboard from './components/OnboardComponents/FirstOnboard';
+import  ManualBlocks from './components/Blocks_Components/ManualBlocks';
 
-function initializeReactGA() {
-	ReactGA.initialize('UA-158581736-1');
-	ReactGA.pageview(window.location.pathname + window.location.search);
-}
+// function initializeReactGA() {
+// 	ReactGA.initialize('UA-158581736-1');
+// 	ReactGA.pageview(window.location.pathname + window.location.search);
+// }
 
 function App() {
-	initializeReactGA();
+	// initializeReactGA();
 
 	return (
 		<div>
@@ -30,7 +33,10 @@ function App() {
 					<PrivateRoute path='/profile' component={Profile} />
 					<PrivateRoute path='/dashboard' component={Dashboard} />
 					{/* <Route path='/budgetModal' component={BudgetGoal} /> */}
+					<Route path='/onBoard/select' component={SelectCategories} />
 					<Route path='/trans' component={AddTransaction} />
+					<Route path='/onBoard/1' component={FirstOnboard} />
+					<Route path='/manual' component={ManualBlocks} />
 				</Switch>
 			</div>
 		</div>

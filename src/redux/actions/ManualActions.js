@@ -70,11 +70,11 @@ export function selectCategories(arr, history) {
 export function getManualTrans(userID){
     return function(dispatch) {
         dispatch(getTransLoading());
-        return axiosWithAuth().get(`https://cors-anywhere.herokuapp.com/https://lambda-budget-blocks.herokuapp.com/manual/transaction/${userID}`)
+        return axiosWithAuth().get(`https://lambda-budget-blocks.herokuapp.com/manual/transaction/${userID}`)
             .then(response=>{
                 const data = {
                     accounts:[],
-                    Categories:response.data.list
+                    Categories:response.data.list.filter((cat)=> cat.budget !== null)
                 }
                 dispatch(getTransSuccess(data));
             })

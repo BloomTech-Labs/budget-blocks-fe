@@ -56,7 +56,7 @@ export const reducer = (state = initialState, action) => {
 		case DELETE_TRANS_LOADING:
 			return {
 				...state,
-				transaction: action.payload,
+
 				isFetching: true,
 				error: ''
 			};

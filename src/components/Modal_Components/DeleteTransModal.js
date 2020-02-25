@@ -44,7 +44,7 @@ const DeleteTransModal = ({ props, deleteTrans }) => {
 					<Button onClick={handleClose} color='primary'>
 						Cancel
 					</Button>
-					<Button onClick={() => deleteTrans(props)} color='primary' autoFocus>
+					<Button onClick={() => deleteTrans()} color='primary' autoFocus>
 						Delete
 					</Button>
 				</DialogActions>

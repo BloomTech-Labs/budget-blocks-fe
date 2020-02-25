@@ -70,7 +70,7 @@ export function deleteTrans(transaction, userID, transID) {
 		dispatch({ type: DELETE_TRANS_LOADING });
 		return axiosWithAuth()
 			.delete(
-				`https://lambda-budget-blocks.herokuapp.com/api/manual/transaction/${userID}/${transID.id}`,
+				`https://lambda-budget-blocks.herokuapp.com/api/manual/transaction/${userID}/${transID}`,
 				transaction
 			)
 			.then(response => {

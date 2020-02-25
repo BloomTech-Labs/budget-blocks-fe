@@ -1,4 +1,5 @@
 import { axiosWithAuth } from "../../components/AxiosWithAuth";
+import { getManualTrans } from "../actions/ManualActions";
 
 export const ADD_TRANSACTION_LOADING = "ADD_TRANSACTION_LOADING";
 export const ADD_TRANSACTION_SUCCESS = "ADD_TRANSACTION_SUCCESS";
@@ -30,12 +31,13 @@ export const categoriesFailure = error => ({
 });
 
 export function addTransaction(transaction,userID){
+    console.log("transaction", transaction)
     return function(dispatch) {
         dispatch(addTransactionLoading());
-        return axiosWithAuth().post(`https://lambda-budget-blocks.herokuapp.com/api/manual/transaction/${userID}`,transaction)
+        return axiosWithAuth().post(`https://lambda-budget-blocks.herokuapp.com/manual/transaction/${userID}`,transaction)
             .then(response=>{
-               
-                dispatch(addTransactionSuccess(response.data))
+               console.log("addTransaction response",response.data);
+                return dispatch(getManualTrans(userID));
             })
             .catch(error=>{
                 dispatch(addTransactionFailure( error.response.data.message)); 

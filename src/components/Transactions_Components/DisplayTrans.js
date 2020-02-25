@@ -7,13 +7,12 @@ const DisplayTrans = ({ arr, classes }) => {
 	return (
 		<div className='transactions'>
 			{arr.map(i => {
-				const category = i.name;
 				return (
 					<Card className={classes.card} key={i.id}>
 						<div className={classes.rightInfo}>
 							<p>{`Purchase Authorized from ${i.name}`}</p>
 							<p>{i.payment_date}</p>
-							<p>Category: {category}</p>
+							<p>Category: {i.category}</p>
 						</div>
 						<div className={classes.leftInfo}>
 							<p

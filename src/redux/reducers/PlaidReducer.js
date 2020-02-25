@@ -116,9 +116,12 @@ const initialState = {
 function sortTrans(cats){
     let transArr = [];
     const catTransArr = cats.map((cat)=>{
-        return cat.transactions
+        console.log(cat);
+        return cat.transactions.map((trans)=>{
+            return {...trans, category:cat.name}
+        })
     });
-
+    console.log(catTransArr);
     catTransArr.forEach(trans => {
         transArr = [...transArr, ...trans];
     });

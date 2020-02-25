@@ -6,9 +6,11 @@ import { getTransactions } from '../../redux/actions/PlaidActions';
 import { connect } from 'react-redux';
 import './index.css';
 
-import { getCategories } from "../../redux/actions/AddTransactionActions";
+import { getCategories } from '../../redux/actions/AddTransactionActions';
 
-import AddTransactionModal from "../Modal_Components/AddTransaction";
+import AddTransactionModal, {
+	AddTransaction
+} from '../Modal_Components/AddTransaction';
 const useStyles = makeStyles(theme => ({
 	root: {
 		'& > *': {
@@ -58,18 +60,18 @@ const useStyles = makeStyles(theme => ({
 	},
 	leftInfo: {
 		width: '15%',
-		paddingTop: '5%',
+		// paddingTop: '5%',
 		alignItems: 'center'
 	}
 }));
 
 const Transactions = props => {
-  const classes = useStyles();
-  const [filter, setFilter] = useState(true);
-  const handleClick = e => {
-    setFilter(!filter);
-  };
-  const [category, setCategory] = useState("");
+	const classes = useStyles();
+	const [filter, setFilter] = useState(true);
+	const handleClick = e => {
+		setFilter(!filter);
+	};
+	const [category, setCategory] = useState('');
 
 	var selected = props.transactions.slice(0, 3);
 	const transSelect = props.transactions.slice(0, 3);
@@ -81,7 +83,9 @@ const Transactions = props => {
 					<div className='trans-container'>
 						<div className='trans-top-content'>
 							<h3 className={classes.text}>Recent Transactions:</h3>
-							<button className='add-trans-button'>Add Transactions</button>
+							<button className='add-trans-button' component={AddTransaction}>
+								Add Transactions
+							</button>
 						</div>
 
 						<div className='trans-item'>
@@ -172,12 +176,11 @@ const Transactions = props => {
 	);
 };
 function mapStateToProps(state) {
-  return {
-    userID: state.loginReducer.user.id,
-    LinkedAccount: state.loginReducer.user.LinkedAccount,
-	transactions: state.plaidReducer.transactions,
-	
-  };
+	return {
+		userID: state.loginReducer.user.id,
+		LinkedAccount: state.loginReducer.user.LinkedAccount,
+		transactions: state.plaidReducer.transactions
+	};
 }
 
 export default connect(mapStateToProps, { getTransactions })(Transactions);

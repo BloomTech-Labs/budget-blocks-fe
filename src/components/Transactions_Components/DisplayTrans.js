@@ -2,6 +2,10 @@ import React from 'react';
 import './index.css';
 
 import Card from '@material-ui/core/Card';
+import IconButton from '@material-ui/core/IconButton';
+import DeleteIcon from '@material-ui/icons/Delete';
+
+import DeleteTransModal from '../Modal_Components/DeleteTransModal';
 
 const DisplayTrans = ({ arr, classes }) => {
 	return (
@@ -16,17 +20,22 @@ const DisplayTrans = ({ arr, classes }) => {
 							<p>Category: {category}</p>
 						</div>
 						<div className={classes.leftInfo}>
-							<p
-								id='trans-amount'
-								className={
-									i.amount < 0 ? 'red bottom-content' : 'green bottom-content'
-								}
-							>
-								{(Math.round(10 * i.amount) / 100).toLocaleString('en-US', {
-									style: 'currency',
-									currency: 'USD'
-								})}
-							</p>
+							<div className='action-button'>
+								<DeleteTransModal />
+							</div>
+							<div>
+								<p
+									id='trans-amount'
+									className={
+										i.amount < 0 ? 'red bottom-content' : 'green bottom-content'
+									}
+								>
+									{(Math.round(10 * i.amount) / 100).toLocaleString('en-US', {
+										style: 'currency',
+										currency: 'USD'
+									})}
+								</p>
+							</div>
 						</div>
 					</Card>
 				);

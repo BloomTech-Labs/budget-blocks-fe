@@ -33,8 +33,13 @@ const useStyles = makeStyles(theme => ({
 		}
 	}
 }));
-export function ManualBlocks(props) {
+export function ManualBlocks(props, history) {
 	const classes = useStyles();
+	const [userID, setUserID] = useState('');
+	const [goals, setGoals] = useState({
+		categoryid: '',
+		budget: ''
+	});
 	const [open, setOpen] = useState(false);
 	const [values, setValues] = useState({
 		userId: '',
@@ -54,6 +59,12 @@ export function ManualBlocks(props) {
 		setValues({ ...values, userId: props.userID, catId: id, budget });
 
 		setOpen(true);
+	};
+	const submit = e => {
+		e.preventDefault();
+		props.updateBlocks(userID, goals);
+		setGoals({ ...goals });
+		props.handleClose();
 	};
 
 	return (
@@ -124,7 +135,8 @@ export function ManualBlocks(props) {
 				</div>
 				<div>
 					{/* <Back_Continue BackClick={props.handleClose} ContClick={submit} /> */}
-					<Back_Continue />
+					{/* <Back_Continue /> */}
+					<button>Continue</button>
 				</div>
 			</div>
 		</div>

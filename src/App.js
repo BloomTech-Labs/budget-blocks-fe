@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import Home from './components/Home';
+import Home from './components/home';
 import Login from './components/Form_Components/Login/Login';
 import Register from './components/Form_Components/Register/Register';
 import Profile from './components/Form_Components/Create_Profile/CreateProfile';
@@ -12,7 +12,7 @@ import Navbar from './components/NavBar';
 import ReactGA from 'react-ga';
 import SelectCategories from './components/Form_Components/Select_Categories/SelectCategories';
 import FirstOnboard from './components/OnboardComponents/FirstOnboard';
-import  ManualBlocks from './components/Blocks_Components/ManualBlocks';
+import ManualBlocks from './components/Blocks_Components/ManualBlocks';
 
 // function initializeReactGA() {
 // 	ReactGA.initialize('UA-158581736-1');

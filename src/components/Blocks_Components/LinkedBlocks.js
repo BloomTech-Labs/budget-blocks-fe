@@ -45,12 +45,13 @@ export function Blocks(props) {
 			<TableContainer className='table' component={Paper}>
 				<Table className='table-content'>
 					<TableHeads
-						CellNames={['Block', 'Total Expenses', 'Limit', '']}
+						CellNames={['Block', 'Total Expenses', 'Limit',""]}
 						className='lightgrey'
 					/>
 					<DisplayBlocks
 						arr={filter ? props.blocks.slice(0, 5) : props.blocks}
 						handleClick={handleClickOpen}
+						LinkedAccount={props.LinkedAccount}
 					/>
 				</Table>
 				<BudgetGoal open={open} values={values} handleClose={handleClose} />
@@ -58,7 +59,9 @@ export function Blocks(props) {
 			<div>
 				<button className='blocks-button' onClick={handleClick}>
 					{filter ? 'View All' : 'View Less'}
-				</button>
+					</button>
+					
+				
 			</div>
 		</div>
 	);

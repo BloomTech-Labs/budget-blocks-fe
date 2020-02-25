@@ -102,10 +102,12 @@ export function ManualBlocks(props) {
 				</div>
 				<TableContainer className='table' component={Paper}>
 					<Table className='table-content'>
+						
 						<TableHeads
-							CellNames={['Block', 'Total Expenses', 'Limit', '']}
+							CellNames={['Block', 'Total Expenses', 'Limit', '',""]}
 							className='lightgrey'
 						/>
+						
 						{/* <DisplayBlocks
 							arr={filter ? props.blocks.slice(0, 5) : props.blocks}
 							handleClick={handleClickOpen}
@@ -113,6 +115,7 @@ export function ManualBlocks(props) {
 						<DisplayBlocks
 							arr={props.categoryArr}
 							handleClick={handleClickOpen}
+							LinkedAccount={props.LinkedAccount}
 						/>
 					</Table>
 					<BudgetGoal open={open} values={values} handleClose={handleClose} />

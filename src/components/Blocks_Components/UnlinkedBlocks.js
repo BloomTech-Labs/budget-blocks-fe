@@ -41,6 +41,9 @@ export function UnlinkedBlocks(props) {
 	const handleClose = () => {
 		setOpen(false);
 	};
+	const addMore = () => {
+
+	}
 	return (
 		// <div className='blocks-container'>
 
@@ -62,13 +65,15 @@ export function UnlinkedBlocks(props) {
 			<div id='table-showcase'>
 				<TableContainer className='table' component={Paper}>
 					<Table className='table-content'>
+						
 						<TableHeads
-							CellNames={['Block', 'Total Expenses', 'Limit', '']}
+							CellNames={['Block', 'Total Expenses', 'Limit', '',""]}
 							className='lightgrey'
 						/>
 						<DisplayBlocks
 							arr={filter ? props.blocks.slice(0, 5) : props.blocks}
 							handleClick={handleClickOpen}
+							LinkedAccount={props.LinkedAccount}
 						/>
 					</Table>
 					<BudgetGoal open={open} values={values} handleClose={handleClose} />
@@ -76,6 +81,9 @@ export function UnlinkedBlocks(props) {
 				<div>
 					<button className='blocks-button' onClick={handleClick}>
 						{filter ? 'View All' : 'View Less'}
+						</button>
+						<button className='blocks-button' onClick={addMore}>
+						Add more 
 					</button>
 				</div>
 			</div>

@@ -1,7 +1,8 @@
 import React from 'react';
 import './index.css';
+import { connect } from 'react-redux';
 
-const DisplayBlocks = ({ arr, handleClick }) => {
+const DisplayBlocks = ({ arr, handleClick,LinkedAccount}) => {
 	return (
 		<tbody className='table-body'>
 			{arr.map(i => (
@@ -27,10 +28,31 @@ const DisplayBlocks = ({ arr, handleClick }) => {
 							edit
 						</button>
 					</td>
+			{!LinkedAccount ? <td>
+			<button
+			id='edit-button'
+			onClick={() => handleClick(i.id, i.budget)}
+						>
+							Delete
+						</button>				
+	</td>
+	:
+	null
+	}
+					
 				</tr>
 			))}
 		</tbody>
 	);
 };
 
-export default DisplayBlocks;
+function mapStateToProps(state) {
+	return {
+		userID: state.loginReducer.user.id,
+		LinkedAccount: state.loginReducer.user.LinkedAccount,
+		blocks: state.plaidReducer.categories
+	};
+}
+
+export default connect(mapStateToProps)(DisplayBlocks);
+

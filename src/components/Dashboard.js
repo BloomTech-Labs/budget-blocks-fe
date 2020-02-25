@@ -16,9 +16,12 @@ import { getManualTrans } from "../redux/actions/ManualActions";
 
 export const Dashboard = props => {
 	useEffect(() => {
-        if (props.LinkedAccount){
+        console.log(props.LinkedAccount)
+        if (props.LinkedAccount == true){
+            console.log("Linked Account!")
             props.getTransactions(props.userID);
         } else {
+            console.log("Manual Account!")
             props.getManualTrans(props.userID);
         }
 	}, []);

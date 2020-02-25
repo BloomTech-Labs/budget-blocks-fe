@@ -72,9 +72,10 @@ export function getManualTrans(userID){
         dispatch(getTransLoading());
         return axiosWithAuth().get(`https://lambda-budget-blocks.herokuapp.com/manual/transaction/${userID}`)
             .then(response=>{
+                console.log(response.data);
                 const data = {
                     accounts:[],
-                    Categories:response.data.list.filter((cat)=> cat.budget !== null)
+                    Categories:response.data.list
                 }
                 dispatch(getTransSuccess(data));
             })

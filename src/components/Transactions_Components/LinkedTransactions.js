@@ -71,8 +71,14 @@ const Transactions = props => {
   };
   const [category, setCategory] = useState("");
 
-	var selected = props.transactions.slice(0, 3);
-	const transSelect = props.transactions.slice(0, 3);
+  var selected = props.transactions.slice(0, 3);
+  const [open, setOpen] = useState(false);	
+  const handleClickOpen = () => {	
+	setOpen(true);	
+  };	
+	const handleClose = () => {	
+	  setOpen(false);	
+	};
 
 	return (
 		<div>
@@ -81,9 +87,11 @@ const Transactions = props => {
 					<div className='trans-container'>
 						<div className='trans-top-content'>
 							<h3 className={classes.text}>Recent Transactions:</h3>
-							<button className='add-trans-button'>Add Transactions</button>
+							<button className="add-trans-button" onClick={handleClickOpen}>	
+              					Add Transactions	
+            				</button>	
+            				<AddTransactionModal open={open} handleClose={handleClose} />
 						</div>
-
 						<div className='trans-item'>
 							<DisplayTrans arr={selected} classes={classes} />
 						</div>
@@ -110,65 +118,6 @@ const Transactions = props => {
 				</React.Fragment>
 			)}
 		</div>
-		// <div className='trans-container'>
-		// 	{filter ? (
-		// 		<React.Fragment>
-		// 			<div className='trans-top-content'>
-		// 				<h3>Recent Transactions: </h3>
-		// 				<button className='add-trans-button'>Add Transactions</button>
-		// 			</div>
-		// 			{selected.map(i => {
-		// 				const category = i.name;
-		// 				return (
-		// 					<div className='trans-card' key={i.id}>
-		// 						<div className='trans-info'>
-		// 							<h5>{`Purchase Authorized from ${i.transactions[0].name} `}</h5>
-		// 							<p>{i.transactions[0].payment.date}</p>
-		// 							<p>Category: {category}</p>
-		// 						</div>
-		// 						<div className='trans-amount'>
-		// 							<p>
-		// 								$ <span></span>
-		// 								{(Math.round(10 * i.transactions[0].amount) / 100).toFixed(
-		// 									2
-		// 								)}
-		// 							</p>
-		// 						</div>
-		// 					</div>
-		// 				);
-		// 			})}
-		// 			<button onClick={handleClick}>View all transactions</button>
-		// 		</React.Fragment>
-		// 	) : (
-		// 		<React.Fragment>
-		// 			<div className='trans-top-content'>
-		// 				<h3>Recent Transactions: </h3>
-		// 				<button className='add-trans-button'>Add Transactions</button>
-		// 			</div>
-		// 			{props.transactions.map(i => {
-		// 				const category = i.name;
-		// 				return i.transactions.map(i => (
-		// 					<div className='trans-card' key={i.id}>
-		// 						<div className='trans-info'>
-		// 							<h5>{`Purchase Authorized from ${i.transactions[0].name} `}</h5>
-		// 							<p>{i.transactions[0].payment.date}</p>
-		// 							<p>Category: {category}</p>
-		// 						</div>
-		// 						<div className='trans-amount'>
-		// 							<p>
-		// 								$ <span></span>
-		// 								{(Math.round(10 * i.transactions[0].amount) / 100).toFixed(
-		// 									2
-		// 								)}
-		// 							</p>
-		// 						</div>
-		// 						<button onClick={handleClick}>View Less</button>
-		// 					</div>
-		// 				));
-		// 			})}
-		// 		</React.Fragment>
-		// 	)}
-		// </div>
 	);
 };
 function mapStateToProps(state) {

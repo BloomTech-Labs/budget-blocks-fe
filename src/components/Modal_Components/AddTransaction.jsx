@@ -130,7 +130,7 @@ export const AddTransaction = props => {
                 >
                   <option value="" />
                   {cat.map(([key, value]) => (
-                    <option value={value.id}>{value.name}</option>
+                    <option key={key} value={value.id}>{value.name}</option>
                   ))}
                 </Select>
               </FormControl>
@@ -174,7 +174,7 @@ export const AddTransaction = props => {
 
 function mapStateToProps(state) {
   return {
-    categories: state.addTransactionReducer.categories,
+    categories: state.plaidReducer.categories,
     userID: state.loginReducer.user.id,
 
   };

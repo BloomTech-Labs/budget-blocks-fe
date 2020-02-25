@@ -3,18 +3,15 @@ import UnlinkedBlocks from './Blocks_Components/UnlinkedBlocks';
 import LinkedBlocks from './Blocks_Components/LinkedBlocks';
 import Header from './Header';
 import { connect } from 'react-redux';
-import Balance from './Balance_Components/Balance';
 import LinkedTransactions from './Transactions_Components/LinkedTransactions';
 import UnlinkedTransactions from './Transactions_Components/UnlinkedTransactions';
 import TotalBudget from './TotalBudget_Components/TotalBudget';
-import { getUserInfo } from '../redux/actions/ProfileActions';
 import { getTransactions } from '../redux/actions/PlaidActions';
 import './dashboardStyle.css';
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 import Loader from 'react-loader-spinner';
 import '../App.css';
 import './main.css';
-import LinkAccount from './LinkAccount';
 import { getManualTrans } from "../redux/actions/ManualActions";
 
 export const Dashboard = props => {
@@ -49,10 +46,6 @@ export const Dashboard = props => {
 					<div>
 						<TotalBudget />
 					</div>
-					<div>
-						<Balance />
-						<LinkAccount />
-					</div>
 				</div>
 				<div className='left-showcase'>
 					<div>
@@ -83,6 +76,6 @@ function mapStateToProps(state) {
 	};
 }
 
-export default connect(mapStateToProps, { getTransactions, getUserInfo, getManualTrans })(
+export default connect(mapStateToProps, { getTransactions, getManualTrans })(
 	Dashboard
 );

@@ -5,7 +5,8 @@ import {
     SEND_LINK_TOKEN_FAILED,
     GET_TRANS_LOADING,
     GET_TRANS_SUCCESS,
-    GET_TRANS_FAILED
+    GET_TRANS_FAILED,
+
     } from "../actions/PlaidActions";
 
 import {
@@ -21,10 +22,18 @@ import {
     ADD_DEFAULT_CATEGORIES_SUCCESS,
     ADD_DEFAULT_CATEGORIES_FAILED,
     SELECT_CATEGORIES_SUCCESS,
+    ADD_MANUAL_BLOCKS_SUCCESS,
+    ADD_MANUAL_BLOCKS_FAILED
     } from "../actions/ManualActions";
 
 export const reducer = (state = initialState, action) => {
     switch(action.type){
+        case ADD_MANUAL_BLOCKS_SUCCESS:
+            return {
+                ...state,
+                categories:[...state.categories,action.payload],
+                error: null
+            };
         case SEND_LINK_TOKEN_LOADING:
             return {
                 ...state,

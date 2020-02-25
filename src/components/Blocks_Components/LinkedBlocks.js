@@ -12,7 +12,7 @@ import Table from '@material-ui/core/Table';
 import TableContainer from '@material-ui/core/Table';
 import Paper from '@material-ui/core/Paper';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
-
+import AddManualBlocks from "../AddManualBlocks"
 import BudgetGoal from '../Modal_Components/BudgetGoalModal';
 
 const useStyles = makeStyles({
@@ -60,6 +60,9 @@ export function Blocks(props) {
 				<button className='blocks-button' onClick={handleClick}>
 					{filter ? 'View All' : 'View Less'}
 					</button>
+					
+					<AddManualBlocks/>
+					
 					
 				
 			</div>

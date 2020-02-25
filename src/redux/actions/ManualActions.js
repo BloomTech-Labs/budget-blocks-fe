@@ -1,11 +1,12 @@
 import { axiosWithAuth } from '../../components/AxiosWithAuth';
+import AddManualBlocks from '../../components/AddManualBlocks';
 
 export const ADD_DEFAULT_CATEGORIES_LOADING = 'ADD_DEFAULT_CATEGORIES_LOADING';
 export const ADD_DEFAULT_CATEGORIES_SUCCESS = 'ADD_DEFAULT_CATEGORIES_SUCCESS';
 export const ADD_DEFAULT_CATEGORIES_FAILED = 'ADD_DEFAULT_CATEGORIES_FAILED';
-
+export const ADD_MANUAL_BLOCKS_FAILED = "ADD_MANUAL_BLOCKS_FAILED"
 export const SELECT_CATEGORIES_SUCCESS = 'SELECT_CATEGORIES_SUCCESS';
-
+export const ADD_MANUAL_BLOCKS_SUCCESS = "ADD_MANUAL_BLOCKS_SUCCESS"
 export const addDefaultLoading = () => ({
 	type: ADD_DEFAULT_CATEGORIES_LOADING
 });
@@ -37,6 +38,13 @@ export const getTransFailed = error => ({
     payload: error
 });
 
+export const addManualBlockSuccess = (obj) => ({ type: ADD_MANUAL_BLOCKS_SUCCESS,payload:obj });
+
+export const addManualBlocksFailed = error => ({
+    type: ADD_MANUAL_BLOCKS_FAILED,
+    payload: error
+});
+
 export function addDefault(userID, history) {
 	return function(dispatch) {
 		dispatch(addDefaultLoading());
@@ -59,11 +67,24 @@ export function addDefault(userID, history) {
 			});
 	};
 }
+export function addManualBlocks(userId,obj){
+	return  function(dispatch) {
+		
+		axiosWithAuth().post(`https://lambda-budget-blocks.herokuapp.com/manual/categories/${userId}`,obj)
+	.then( i => {
+dispatch(addManualBlockSuccess(obj))
+	})
+	.catch(err => {
+		dispatch(addManualBlocksFailed(err))
+	})
 
-export function selectCategories(arr, history) {
+}
+}
+
+export function selectCategories(arr) {
 	return function(dispatch) {
 		dispatch(selectCategoriesSuccess(arr));
-		history.push('/manual');
+		
 	};
 }
 
@@ -72,17 +93,18 @@ export function getManualTrans(userID){
         dispatch(getTransLoading());
         return axiosWithAuth().get(`https://lambda-budget-blocks.herokuapp.com/manual/transaction/${userID}`)
             .then(response=>{
-                console.log(response.data);
                 const data = {
                     accounts:[],
-                    Categories:response.data.list
+                    Categories:response.data.list.filter((cat)=> cat.budget !== null)
                 }
                 dispatch(getTransSuccess(data));
             })
             .catch(error=>{
                     dispatch(getTransFailed(error)); 
             })
-        }}
+		}}
+
+		
 
 
 

@@ -12,7 +12,7 @@ import Navbar from './components/NavBar';
 import ReactGA from 'react-ga';
 import SelectCategories from './components/Form_Components/Select_Categories/SelectCategories';
 import FirstOnboard from './components/OnboardComponents/FirstOnboard';
-import  ManualBlocks from './components/Blocks_Components/ManualBlocks';
+import ManualBlocks from './components/Blocks_Components/ManualBlocks';
 
 // function initializeReactGA() {
 // 	ReactGA.initialize('UA-158581736-1');

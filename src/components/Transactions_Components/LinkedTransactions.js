@@ -6,9 +6,9 @@ import { getTransactions } from '../../redux/actions/PlaidActions';
 import { connect } from 'react-redux';
 import './index.css';
 
-import { getCategories } from "../../redux/actions/AddTransactionActions";
+import { getCategories } from '../../redux/actions/AddTransactionActions';
 
-import AddTransactionModal from "../Modal_Components/AddTransaction";
+import AddTransactionModal from '../Modal_Components/AddTransaction';
 const useStyles = makeStyles(theme => ({
 	root: {
 		'& > *': {
@@ -58,21 +58,27 @@ const useStyles = makeStyles(theme => ({
 	},
 	leftInfo: {
 		width: '15%',
-		paddingTop: '5%',
+		// paddingTop: '5%',
 		alignItems: 'center'
 	}
 }));
 
 const Transactions = props => {
-  const classes = useStyles();
-  const [filter, setFilter] = useState(true);
-  const handleClick = e => {
-    setFilter(!filter);
-  };
-  const [category, setCategory] = useState("");
+	const classes = useStyles();
+	const [filter, setFilter] = useState(true);
+	const handleClick = e => {
+		setFilter(!filter);
+	};
+	const [category, setCategory] = useState('');
 
 	var selected = props.transactions.slice(0, 3);
-	const transSelect = props.transactions.slice(0, 3);
+	const [open, setOpen] = useState(false);
+	const handleClickOpen = () => {
+		setOpen(true);
+	};
+	const handleClose = () => {
+		setOpen(false);
+	};
 
 	return (
 		<div>
@@ -81,9 +87,11 @@ const Transactions = props => {
 					<div className='trans-container'>
 						<div className='trans-top-content'>
 							<h3 className={classes.text}>Recent Transactions:</h3>
-							<button className='add-trans-button'>Add Transactions</button>
+							<button className='add-trans-button' onClick={handleClickOpen}>
+								Add Transactions
+							</button>
+							<AddTransactionModal open={open} handleClose={handleClose} />
 						</div>
-
 						<div className='trans-item'>
 							<DisplayTrans arr={selected} classes={classes} />
 						</div>
@@ -110,74 +118,14 @@ const Transactions = props => {
 				</React.Fragment>
 			)}
 		</div>
-		// <div className='trans-container'>
-		// 	{filter ? (
-		// 		<React.Fragment>
-		// 			<div className='trans-top-content'>
-		// 				<h3>Recent Transactions: </h3>
-		// 				<button className='add-trans-button'>Add Transactions</button>
-		// 			</div>
-		// 			{selected.map(i => {
-		// 				const category = i.name;
-		// 				return (
-		// 					<div className='trans-card' key={i.id}>
-		// 						<div className='trans-info'>
-		// 							<h5>{`Purchase Authorized from ${i.transactions[0].name} `}</h5>
-		// 							<p>{i.transactions[0].payment.date}</p>
-		// 							<p>Category: {category}</p>
-		// 						</div>
-		// 						<div className='trans-amount'>
-		// 							<p>
-		// 								$ <span></span>
-		// 								{(Math.round(10 * i.transactions[0].amount) / 100).toFixed(
-		// 									2
-		// 								)}
-		// 							</p>
-		// 						</div>
-		// 					</div>
-		// 				);
-		// 			})}
-		// 			<button onClick={handleClick}>View all transactions</button>
-		// 		</React.Fragment>
-		// 	) : (
-		// 		<React.Fragment>
-		// 			<div className='trans-top-content'>
-		// 				<h3>Recent Transactions: </h3>
-		// 				<button className='add-trans-button'>Add Transactions</button>
-		// 			</div>
-		// 			{props.transactions.map(i => {
-		// 				const category = i.name;
-		// 				return i.transactions.map(i => (
-		// 					<div className='trans-card' key={i.id}>
-		// 						<div className='trans-info'>
-		// 							<h5>{`Purchase Authorized from ${i.transactions[0].name} `}</h5>
-		// 							<p>{i.transactions[0].payment.date}</p>
-		// 							<p>Category: {category}</p>
-		// 						</div>
-		// 						<div className='trans-amount'>
-		// 							<p>
-		// 								$ <span></span>
-		// 								{(Math.round(10 * i.transactions[0].amount) / 100).toFixed(
-		// 									2
-		// 								)}
-		// 							</p>
-		// 						</div>
-		// 						<button onClick={handleClick}>View Less</button>
-		// 					</div>
-		// 				));
-		// 			})}
-		// 		</React.Fragment>
-		// 	)}
-		// </div>
 	);
 };
 function mapStateToProps(state) {
-  return {
-    userID: state.loginReducer.user.id,
-    LinkedAccount: state.loginReducer.user.LinkedAccount,
-	transactions: state.plaidReducer.transactions,
-	
-  };
+	return {
+		userID: state.loginReducer.user.id,
+		LinkedAccount: state.loginReducer.user.LinkedAccount,
+		transactions: state.plaidReducer.transactions
+	};
 }
 
 export default connect(mapStateToProps, { getTransactions })(Transactions);

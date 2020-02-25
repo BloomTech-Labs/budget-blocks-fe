@@ -24,7 +24,7 @@ export const Dashboard = props => {
             console.log("Manual Account!")
             props.getManualTrans(props.userID);
         }
-	}, []);
+	}, [props.LinkedAccount]);
 	return (
 		<div className='app-container'>
 			<div className='app-nav'>

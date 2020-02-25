@@ -1,6 +1,9 @@
 import React from 'react';
 import './index.css';
-import { connect } from 'react-redux';
+
+
+import DeleteBlockModal from "./DeleteBlockModal";
+
 
 const DisplayBlocks = ({ arr, handleClick,LinkedAccount}) => {
 	return (
@@ -21,6 +24,7 @@ const DisplayBlocks = ({ arr, handleClick,LinkedAccount}) => {
 							: (Math.round(100 * i.budget) / 100).toFixed(2)}
 					</td>
 					<td>
+						<DeleteBlockModal blockID={i.id}/>
 						<button
 							id='edit-button'
 							onClick={() => handleClick(i.id, i.budget)}

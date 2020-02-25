@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 import './index.css';
 
 const TotalBudget = props => {
-	const down =
+	const sumBudget =
 		Math.round(
 			100 *
 				props.budget.reduce(function(a, b) {
@@ -16,14 +16,14 @@ const TotalBudget = props => {
 				}, 0)
 		) / 100;
 
-	const up =
+	const sumExpenses =
 		Math.round(
 			100 *
 				props.expenses.reduce(function(a, b) {
 					return a + b;
 				}, 0)
 		) / 100;
-	const percent = 100;
+	const percent = ((sumExpenses / sumBudget) * 100).toFixed(2);
 	return (
 		<div className='budget-container'>
 			<h5>Budget Summary</h5>
@@ -32,7 +32,7 @@ const TotalBudget = props => {
 				<BudgetGoal />
 			</div>
 			<div className='bar-showcase'>
-				<ProgressBar done={(up / down) * 100} />
+				<ProgressBar done={percent} />
 			</div>
 		</div>
 	);

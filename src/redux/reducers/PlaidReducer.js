@@ -71,8 +71,7 @@ export const reducer = (state = initialState, action) => {
         case CATEGORY_UPDATE_SUCCESS:
             return {
                 ...state,
-                categories:updateCategory(state.categories, action.payload.categoryid, action.payload.amount),
-                transactions:sortTrans(updateCategory(state.categories, action.payload.categoryid, action.payload.amount))
+                categories:updateCategory(state.categories, action.payload.categoryid, action.payload.amount)
             }
         case ADD_DEFAULT_CATEGORIES_LOADING:
             return {

@@ -13,9 +13,6 @@ import { withStyles, makeStyles } from '@material-ui/core/styles';
 import BudgetGoal from '../Modal_Components/BudgetGoalModal';
 
 export function UnlinkedBlocks(props) {
-	useEffect(() => {
-		props.getTransactions(props.userID);
-	}, [props.LinkedAccount]);
 
 	const useStyles = makeStyles({
 		table: {

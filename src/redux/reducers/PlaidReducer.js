@@ -13,7 +13,9 @@ import {
 } from "../actions/LogoutAction";
 
 import {
-    CATEGORY_UPDATE_SUCCESS
+    CATEGORY_UPDATE_SUCCESS,
+    BLOCKS_CATEGORY_LOADING, 
+    BLOCKS_CATEGORY_FAILED
 } from "../actions/userBlocks";
 
 import {
@@ -96,6 +98,18 @@ export const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 categories:action.payload
+            }
+        case BLOCKS_CATEGORY_LOADING:
+            return {
+                ...state,
+                isFetching: true,
+                error: null
+            }
+        case BLOCKS_CATEGORY_FAILED:
+            return {
+                ...state,
+                isFetching: false,
+                error: action.payload
             }
         default:
             return state;

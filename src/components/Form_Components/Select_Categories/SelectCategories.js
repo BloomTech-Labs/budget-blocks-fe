@@ -21,6 +21,7 @@ export function SelectCategories({categoryArr, selectCategories, history}) {
     const selectedValues = filterUnwanted(values)
     const selectedCats = categoryArr.filter((cat)=>selectedValues.includes(cat.name));
     selectCategories(selectedCats, history);
+    history.push("/manual")
   }
   return (
     <div>

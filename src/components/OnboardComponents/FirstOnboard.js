@@ -21,34 +21,36 @@ props.loginUser({email:localStorage.getItem("email"),password:localStorage.getIt
     return (
         
        <div>
-            {!props.isFetching && !props.linkedAccount && props.error === null
-            ?
-            <div className="main">
-        <div className="manualBudgetButton"> <button onClick={handleClick}>Manually set your budget goals here</button></div>
-        <Balance /> 
-        </div>
-        :
-      props.isFetching 
-      ?
-      <div><Loader
+         
+            {
+                localStorage.length !== 0 || props.isFetching
+                ?
+<div><Loader
       type="Puff"
       color="#00BFFF"
       height={100}
-      width={100} //3 secs
+      width={100} 
+      />
+      </div>
+                :
+                !props.isFetching && !props.linkedAccount && props.error === null
+                ?
 
-   /></div>
-      :
-      props.linkedAccount === true
-      ?
-      props.history.push("/dashboard")
-      :
-      <div className="main">
-      <p className="error">Sorry Please Try Again</p>
-  <div className="manualBudgetButton"> <button onClick={handleClick}>Manually set your budget goals here</button></div>
-  <Balance /> 
-  </div>
-
-            }
+                <div className="main">
+            <div className="manualBudgetButton"> <button onClick={handleClick}>Manually set your budget goals here</button></div>
+            <Balance /> 
+            </div>
+            :
+            props.linkedAccount === true
+            ?
+            props.history.push("/dashboard")
+            :
+            <div className="main">
+            <p className="error">Sorry Please Try Again</p>
+        <div className="manualBudgetButton"> <button onClick={handleClick}>Manually set your budget goals here</button></div>
+        <Balance /> 
+        </div>
+                }
 
         </div>
     )

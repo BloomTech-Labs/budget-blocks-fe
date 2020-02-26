@@ -5,46 +5,40 @@ import { selectCategories } from "../redux/actions/ManualActions";
 import { axiosWithAuth } from "./AxiosWithAuth"
 import {Link} from "react-router-dom"
 import { addManualBlocks } from '../redux/actions/ManualActions';
-
+import "./addBlocks.css"
 export const ManualAddBlocks = (props) => {
   
  const [customBlock,setCustomBlock] = useState({name:null,budget:null,total:0})
- console.log(customBlock.name)
-const handleClick = (e,obj) => {
-   
-    console.log(obj)
-    const object = {
-       name:obj.name,
-       budget:1.00,
-       total:0
-    }
-}
-    const handleChange = e => {
-       
+ const handleChange = e => {
         setCustomBlock({...customBlock, [e.target.name]: e.target.value});
 
-console.log(customBlock)
     }
     const handleSubmit = e => {
         e.preventDefault()
        props.addManualBlocks(props.userID,customBlock)
-
-   
+        props.handleClose()
     }
 
 
   
   return (
     <form onSubmit={handleSubmit}>
+        <div className="inputContainer">
+            <h3>Add Custom Manual Blocks</h3>
         <input
         value={customBlock.name}
         name="name"
-        onChange={handleChange}/>
+        onChange={handleChange}
+        placeholder="name"
+        />
          <input
         value={customBlock.budget}
         name="budget"
-        onChange={handleChange}/>
+        onChange={handleChange}
+        placeholder="budget"
+        />
         <button>Submit</button>
+        </div>
         </form>
   );
 }

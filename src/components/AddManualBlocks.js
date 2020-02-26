@@ -64,7 +64,7 @@ console.log(blocks)
         onClose={handleClose}
       >
         <div style={modalStyle} className={classes.paper}>
-        <ManualAddBlocks blocks={blocks} history={props.history}/>
+        <ManualAddBlocks handleClose={handleClose} blocks={blocks} history={props.history}/>
         </div>
       </Modal>
     </div>

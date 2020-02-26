@@ -3,12 +3,15 @@ import { getTransactions } from '../../redux/actions/PlaidActions';
 import { connect } from 'react-redux';
 
 import './index.css';
+import { axiosWithAuth } from '../AxiosWithAuth';
 
 function preventDefault(event) {
 	event.preventDefault();
 }
 
 const Transactions = props => {
+	
+	
 	let transactions = [];
 	props.transactions.map(i => i.transactions.map(i => transactions.push(i)));
 	console.log(transactions);

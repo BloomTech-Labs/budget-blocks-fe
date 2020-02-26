@@ -1,45 +1,54 @@
 import React from "react";
 import { Register } from "../Form_Components/Register/Register";
 import { render, fireEvent } from "@testing-library/react";
-import {BrowserRouter as Router } from "react-router-dom"
-import { configure } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
-import { shallow, mount, render as enzymeRender } from 'enzyme';
+import { BrowserRouter as Router } from "react-router-dom";
+import { configure } from "enzyme";
+import Adapter from "enzyme-adapter-react-16";
+import { shallow, mount, render as enzymeRender } from "enzyme";
 
 configure({ adapter: new Adapter() });
 
-test('Register renders correctly',()=>{
-    expect(render(
-        <Router>
-            <Register/>
-        </Router>
-    )).toMatchSnapshot();
+test("Register renders correctly", () => {
+  expect(
+    render(
+      <Router>
+        <Register />
+      </Router>
+    )
+  ).toMatchSnapshot();
 });
 
-test('Form errors when passwords do not match',()=>{
-    const callAPI = jest.fn();
+test("Form errors when passwords do not match", () => {
+  const callAPI = jest.fn();
 
-    const wrapper = mount(
+  const wrapper = mount(
     <Router>
-        <Register registerUser={callAPI} />
+      <Register registerUser={callAPI} />
     </Router>
-    );
+  );
 
+  let passInput = wrapper.find("input").at(3);
+  let emailInput = wrapper.find("input").at(0);
+  let fName = wrapper.find("input").at(1);
+  let lName = wrapper.find("input").at(2);
+  let confirmPassInput = wrapper.find("input").at(4);
 
-    let passInput = wrapper.find("input").at(1);
-    let emailInput = wrapper.find("input").at(0);
-    let confirmPassInput = wrapper.find("input").at(2);
+  fName.simulate("change", { target: { value: "FName", name: "first_name" } });
+  lName.simulate("change", { target: { value: "LName", name: "last_name" } });
+  passInput.simulate("change", { target: { value: "true", name: "password" } });
+  emailInput.simulate("change", {
+    target: { value: "sendtests@gmail.com", name: "email" }
+  });
+  confirmPassInput.simulate("change", {
+    target: { value: "false", name: "confirmPassword" }
+  });
 
-    passInput.simulate('change',{ target: { value: 'true',name:"password" } });
-    emailInput.simulate('change',{ target: { value: 'sendtests@gmail.com',name:"email" } });
-    confirmPassInput.simulate('change',{ target: { value: 'false',name:"confirmPassword" } });
+  wrapper.find("form").simulate("submit");
 
-    wrapper.find("form").simulate("submit");
-    
-    let errorText = wrapper.find("p").get(2);
-    
-    expect(errorText.props.children).toBe("Password Mismatch");
-    expect(callAPI).not.toHaveBeenCalled();
+  let errorText = wrapper.find("p").get(4);
+
+  expect(errorText.props.children).toBe("Password Mismatch");
+  expect(callAPI).not.toHaveBeenCalled();
 });
 
 // test('When fields are empty and press sign up, sign up button disables',()=>{
@@ -57,28 +66,35 @@ test('Form errors when passwords do not match',()=>{
 //     const emailHelpTxt = getByText(/email is required/i);
 //     expect(emailHelpTxt.innerHTML).toBe("email is required");
 //     expect(callAPI).not.toHaveBeenCalled();
-    
+
 // });
 
-test('Form calls api when form is filled out correctly',()=>{
-    const callAPI = jest.fn();
+test("Form calls api when form is filled out correctly", () => {
+  const callAPI = jest.fn();
 
-    const wrapper = mount(
+  const wrapper = mount(
     <Router>
-        <Register registerUser={callAPI} />
+      <Register registerUser={callAPI} />
     </Router>
-    );
+  );
 
+  let fName = wrapper.find("input").at(1);
+  let lName = wrapper.find("input").at(2);
+  let passInput = wrapper.find("input").at(3);
+  let emailInput = wrapper.find("input").at(0);
+  let confirmPassInput = wrapper.find("input").at(4);
 
-    let passInput = wrapper.find("input").at(1);
-    let emailInput = wrapper.find("input").at(0);
-    let confirmPassInput = wrapper.find("input").at(2);
+  fName.simulate("change", { target: { value: "Fname", name: "first_name" } });
+  lName.simulate("change", { target: { value: "Lname", name: "last_name" } });
+  passInput.simulate("change", { target: { value: "true", name: "password" } });
+  emailInput.simulate("change", {
+    target: { value: "sendtests@gmail.com", name: "email" }
+  });
+  confirmPassInput.simulate("change", {
+    target: { value: "true", name: "confirmPassword" }
+  });
 
-    passInput.simulate('change',{ target: { value: 'true',name:"password" } });
-    emailInput.simulate('change',{ target: { value: 'sendtests@gmail.com',name:"email" } });
-    confirmPassInput.simulate('change',{ target: { value: 'true',name:"confirmPassword" } });
+  wrapper.find("form").simulate("submit");
 
-    wrapper.find("form").simulate("submit");
-    
-    expect(callAPI).toHaveBeenCalled();
+  expect(callAPI).toHaveBeenCalled();
 });

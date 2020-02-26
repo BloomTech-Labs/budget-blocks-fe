@@ -22,6 +22,7 @@ export const Back_Continue = ({BackClick, ContClick}) =>{
           >
             BACK
           </Button>
+          
           <Button
             className="contBtn"
             onClick={ContClick}

@@ -1,5 +1,4 @@
-import axios from "axios";
-import {axiosWithAuth} from "../../components/AxiosWithAuth";
+import { axiosWithAuth } from "../../components/AxiosWithAuth";
 
 export const SEND_LINK_TOKEN_LOADING = "SEND_LINK_TOKEN_LOADING";
 export const SEND_LINK_TOKEN_SUCCESS = "SEND_LINK_TOKEN_SUCCESS";
@@ -35,7 +34,7 @@ export const getTransFailed = error => ({
 export function sendLinkToken(token,userID){
     return function(dispatch) {
         dispatch(sendLinkLoading());
-        return axiosWithAuth().post('https://cors-anywhere.herokuapp.com/https://lambda-budget-blocks.herokuapp.com/plaid/token_exchange',{publicToken:token, userid:userID})
+        return axiosWithAuth().post('https://-anywhere.herokuapp.com/https://lambda-budget-blocks.herokuapp.com/plaid/token_exchange',{publicToken:token, userid:userID})
             .then(response=>{
                 console.log(response.data);
                 dispatch(sendLinkSuccess(response.data))

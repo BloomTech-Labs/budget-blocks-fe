@@ -1,17 +1,13 @@
 import React,{useEffect} from "react";
 import { connect } from "react-redux";
-import {getUserInfo} from '../redux/actions/ProfileActions';
-import LinkAccount from "./LinkAccount";
-import plaidImg from "../media/image/PlaidIcon.png";
-import "../style/balanceStyle.js";
-import { useStyles } from "../style/balanceStyle";
+import {getUserInfo} from '../../redux/actions/ProfileActions';
+import LinkAccount from "../LinkAccount";
+import plaidImg from "../../media/image/PlaidIcon.png";
+import { useStyles } from "./balanceStyle";
 import Card from '@material-ui/core/Card';
+import { Link } from "react-router-dom";
 
 export const Balance = ({LinkedAccount})=>{
-
-    useEffect(()=> {
-        getUserInfo()
-    },[])
     const classes = useStyles();
 
     if(LinkedAccount === false){

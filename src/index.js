@@ -11,9 +11,10 @@ import { reducer as plaidReducer } from "./redux/reducers/PlaidReducer";
 import { reducer as registerReducer } from "./redux/reducers/RegisterReducer";
 import { reducer as profileReducer } from "./redux/reducers/ProfileReducer";
 import {reducer as blockReducer} from "./redux/reducers/BlockReducers"
+import {reducer as addTransactionReducer} from "./redux/reducers/AddTransactionReducer"
 import { BrowserRouter as Router } from "react-router-dom";
 
-const store = createStore(combineReducers({loginReducer,plaidReducer,registerReducer,profileReducer,blockReducer}), applyMiddleware(thunk, logger));
+const store = createStore(combineReducers({loginReducer,plaidReducer,registerReducer,profileReducer,blockReducer,addTransactionReducer}), applyMiddleware(thunk, logger));
 
 ReactDOM.render(
   <Provider store={store}>

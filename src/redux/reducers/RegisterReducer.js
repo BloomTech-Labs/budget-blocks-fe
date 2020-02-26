@@ -32,5 +32,4 @@ export const reducer = (state = initialState, action) => {
 const initialState = {
     error:null,
     isFetching:false,
-
 };

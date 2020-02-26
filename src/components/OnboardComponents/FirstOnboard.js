@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect,useState } from "react"
 import axios from "axios";
 import Balance from "../Balance_Components/Balance"
 import "./onboard.css"
@@ -6,12 +6,18 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { addDefault } from "../../redux/actions/ManualActions";
 import Loader from 'react-loader-spinner'
+import { loginUser } from "../../redux/actions/LoginActions";
 
 const FirstOnboard = props => {
+    
     const handleClick = (e) =>{
         e.preventDefault();
         props.addDefault(props.userId, props.history);
     }
+    useEffect(() => {
+        
+props.loginUser({email:localStorage.getItem("email"),password:localStorage.getItem("password")},props.history)
+    },[])
     return (
         
        <div>
@@ -57,4 +63,4 @@ function mapStateToProps(state) {
     };
   }
   
-  export default connect(mapStateToProps, { addDefault })(FirstOnboard);
+  export default connect(mapStateToProps, { addDefault,loginUser })(FirstOnboard);

@@ -52,15 +52,10 @@ export const Dashboard = props => {
 				</div>
 				<div className='left-showcase'>
 					<div>
-						{props.blocks.length > 0 ? <LinkedBlocks /> : <UnlinkedBlocks />}
+						<LinkedBlocks /> 
 					</div>
 					<div>
-						{props.blocks.length ? (
-							<LinkedTransactions />
-						) : (
-							<UnlinkedTransactions />
-						)}
-							
+						<LinkedTransactions />		
 					</div>
 				</div>
 			</div>

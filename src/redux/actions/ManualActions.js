@@ -81,10 +81,10 @@ dispatch(addManualBlockSuccess(obj))
 }
 }
 
-export function selectCategories(arr) {
+export function selectCategories(arr, history) {
 	return function(dispatch) {
 		dispatch(selectCategoriesSuccess(arr));
-		
+		history.push("/manual");
 	};
 }
 

@@ -1,64 +1,77 @@
-import React,{ useEffect } from "react"
-import Grid from '@material-ui/core/Grid'
-import UnlinkedBlocks from "./UnlinkedBlocks"
-import LinkedBlocks from "./LinkedBlocks"
-import Header from "./Header"
-import { connect } from "react-redux";
-import Balance from "./Balance"
-import LinkedTransactions from "./LinkedTransactions"
-import UnlinkedTransactions from "./UnlinkedTransactions"
-import LinkedTotalBudget from "./LinkedTotalBudget"
-import UnlinkedTotalBudget from "./UnlinkedTotalBudget"
-import { getUserInfo } from "../redux/actions/ProfileActions";
-import { getTransactions } from "../redux/actions/PlaidActions";
-import "../style/dashboardStyle.css";
+import React, { useEffect } from 'react';
+import LinkedBlocks from './Blocks_Components/LinkedBlocks';
+import Header from './Header';
+import { connect } from 'react-redux';
+import LinkedTransactions from './Transactions_Components/LinkedTransactions';
+import TotalBudget from './TotalBudget_Components/TotalBudget';
+import { getTransactions } from '../redux/actions/PlaidActions';
+import './dashboardStyle.css';
+import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
+import Loader from 'react-loader-spinner';
+import '../App.css';
+import './main.css';
+import { getManualTrans } from "../redux/actions/ManualActions";
 
 export const Dashboard = props => {
-  useEffect(() => {
-    props.getTransactions(localStorage.getItem("id"));
-    props.getUserInfo(localStorage.getItem("id"));
-  },[props.LinkedAccount])
-    console.log(props)
-    return (
-     <div className="container">
-        <Grid container spacing={5}>
-            <Grid item sm={8} xs={12}> 
-                <div className="middle">
-                <Grid container>
-                    <Grid item xs={12} lg={12} sm={12}><Header/></Grid>
-                </Grid>
-                <Grid container>
-            <Grid item xs={12} sm={12}>{props.blocks.length > 0 ? <LinkedBlocks /> : <UnlinkedBlocks />}</Grid>  
-                </Grid>
-                <Grid container>
-                    <Grid item xs={12} sm={12}>{props.blocks.length ? <LinkedTransactions /> : <UnlinkedTransactions />}</Grid> 
-                </Grid>
-                </div>
-            </Grid>
-            <Grid item sm={4} xs={12}>
-                
-            <Grid container>
-                    <Grid item sm={8} xs={12}>{props.blocks.length ? <LinkedTotalBudget /> : <UnlinkedTotalBudget />}</Grid>
-                </Grid>
-                <Grid container>
-                    <Grid item sm={8} xs={12}><Balance/></Grid>
-                </Grid>
-            </Grid>
-        </Grid>
-     </div>
-   
-    )
+	useEffect(() => {
+        console.log(props.LinkedAccount)
+        if (props.LinkedAccount == true){
+            console.log("Linked Account!")
+            props.getTransactions(props.userID);
+        } else {
+            console.log("Manual Account!")
+            props.getManualTrans(props.userID,props.history);
+        }
+	}, [props.LinkedAccount]);
+	return (
+		<div className='app-container'>
+			<div className='app-nav'>
+				<Header />
+			</div>
+
+			<div id='loading'>
+				{props.plaidFetching || props.blockFetching || props.profileFetching ? (
+					<Loader
+						type='ThreeDots'
+						color='#66aabc'
+						height={50}
+						width={50}
+						timeout={10000} //3 secs
+					/>
+				) : (
+					<p></p>
+				)}
+			</div>
+			<div className='showcase'>
+				<div className='right-showcase'>
+					<div>
+						<TotalBudget />
+					</div>
+				</div>
+				<div className='left-showcase'>
+					<div>
+						<LinkedBlocks /> 
+					</div>
+					<div>
+						<LinkedTransactions />		
+					</div>
+				</div>
+			</div>
+		</div>
+	);
+};
+
+function mapStateToProps(state) {
+	return {
+		userID: state.loginReducer.user.id,
+		LinkedAccount: state.loginReducer.user.LinkedAccount,
+		blocks: state.plaidReducer.categories,
+		plaidFetching: state.plaidReducer.isFetching,
+		blockFetching: state.blockReducer.isFetching,
+		profileFetching: state.profileReducer.isFetching
+	};
 }
 
-
-
-
-function mapStateToProps(state){
-  return {
-      userID:state.loginReducer.user.id,
-      LinkedAccount:state.loginReducer.user.LinkedAccount,
-      blocks:state.plaidReducer.categories
-  }
-}
-
-export default connect(mapStateToProps,{ getTransactions,getUserInfo },)(Dashboard)
+export default connect(mapStateToProps, { getTransactions, getManualTrans })(
+	Dashboard
+);

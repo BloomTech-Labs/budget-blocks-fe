@@ -1,7 +1,7 @@
 import React, { useState, useEffect} from "react";
 import { connect } from "react-redux"
-import { Back_Continue } from "./Modal_Components/Back_Continue";
-import { Modal_Title } from "./Modal_Components/Modal_Title";
+import { Back_Continue } from "./Back_Continue";
+import { Modal_Title } from "./Modal_Title";
 import { withStyles, makeStyles } from "@material-ui/core/styles";
 import Dialog from "@material-ui/core/Dialog";
 import MuiDialogContent from "@material-ui/core/DialogContent";
@@ -9,9 +9,9 @@ import Typography from "@material-ui/core/Typography";
 import Slider from "@material-ui/core/Slider";
 import TextField from "@material-ui/core/TextField";
 import InputAdornment from "@material-ui/core/InputAdornment";
-import "../style/modalStyle.css";
+import "./modalStyle.css";
 import axios from "axios";
-import { updateBlocks } from "../redux/actions/userBlocks";
+import { updateBlocks } from "../../redux/actions/userBlocks";
 const useStyles = makeStyles(theme => ({
   root: {
     width: 300 + theme.spacing(3) * 2
@@ -97,7 +97,7 @@ export function BudgetGoal(props) {
 
     e.preventDefault();
     props.updateBlocks(userID, goals);
-    setGoals({ ...goals,budget:"" });
+    setGoals({ ...goals });
     props.handleClose();
 
   };

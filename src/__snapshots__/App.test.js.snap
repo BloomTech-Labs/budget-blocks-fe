@@ -7,41 +7,28 @@ Object {
     <div>
       <div>
         <div
-          class="navbar"
+          class="nav-bar"
         >
           <div
-            class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-3"
+            class="nav-logo"
           >
-            <div
-              class="MuiGrid-root MuiGrid-item"
+            <img
+              class="image"
+              src="Background.png"
+            />
+            <img
+              class="heading"
+              src="budget_blocks.png"
+            />
+          </div>
+          <div
+            class="nav-action"
+          >
+            <a
+              href="/login"
             >
-              <div
-                class="images-container"
-              >
-                <img
-                  class="image"
-                  src="Background.png"
-                />
-                 
-                <img
-                  class="heading"
-                  src="budget_blocks.png"
-                />
-              </div>
-            </div>
-            <div
-              class="MuiGrid-root MuiGrid-item"
-            >
-              <div
-                class="left"
-              >
-                <a
-                  href="/login"
-                >
-                  Log Out
-                </a>
-              </div>
-            </div>
+              Log Out
+            </a>
           </div>
         </div>
         <div
@@ -118,41 +105,28 @@ Object {
   "container": <div>
     <div>
       <div
-        class="navbar"
+        class="nav-bar"
       >
         <div
-          class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-3"
+          class="nav-logo"
         >
-          <div
-            class="MuiGrid-root MuiGrid-item"
+          <img
+            class="image"
+            src="Background.png"
+          />
+          <img
+            class="heading"
+            src="budget_blocks.png"
+          />
+        </div>
+        <div
+          class="nav-action"
+        >
+          <a
+            href="/login"
           >
-            <div
-              class="images-container"
-            >
-              <img
-                class="image"
-                src="Background.png"
-              />
-               
-              <img
-                class="heading"
-                src="budget_blocks.png"
-              />
-            </div>
-          </div>
-          <div
-            class="MuiGrid-root MuiGrid-item"
-          >
-            <div
-              class="left"
-            >
-              <a
-                href="/login"
-              >
-                Log Out
-              </a>
-            </div>
-          </div>
+            Log Out
+          </a>
         </div>
       </div>
       <div

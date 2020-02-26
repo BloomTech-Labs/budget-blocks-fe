@@ -20,13 +20,18 @@ export function loginUser(user,history){
         return axios.post('https://lambda-budget-blocks.herokuapp.com/api/auth/login',user)
             .then(response=>{
                 sessionStorage.setItem("token",response.data.token);
-                localStorage.setItem("id",response.data.id)
-                dispatch(loginUserSuccess(response.data))
-                history.push("/dashboard");
+                sessionStorage.setItem("userID",response.data.id);
+                sessionStorage.setItem("LinkedAccount", response.data.LinkedAccount);
+                dispatch(loginUserSuccess(response.data));
+
+                if(response.data.LinkedAccount === true || response.data.ManualOnly === true){
+                    history.push("/dashboard");
+                }else{
+                    history.push("/onBoard/1");
+                }
             })
             .catch(error=>{
-                dispatch(loginUserFailure( error)); 
-                console.log("This is the error i am testing", error)
+                dispatch(loginUserFailure( error.response.data.message)); 
             })
     }
 }

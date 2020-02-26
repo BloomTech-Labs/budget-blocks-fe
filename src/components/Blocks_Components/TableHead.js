@@ -1,17 +1,17 @@
-import React from "react"; 
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import TableCell from '@material-ui/core/TableCell';
 
-export const TableHeads = ({ CellNames, className = "table_names" }) =>{
+import React from 'react';
+import '../../index.css';
+import './index.css';
 
-    return(
-        <TableHead>
-          <TableRow className= {className}>
-              {CellNames.map((name)=>(
-                  <TableCell>{name}</TableCell>
-              ))}
-          </TableRow>
-        </TableHead>
-    )
-}
+export const TableHeads = ({ CellNames, className = 'table_names' }) => {
+	return (	
+		<thead>
+			<tr className='table-header'>
+				{CellNames.map(name => (
+					<th key={name}>{name}</th>
+				))}
+			</tr>
+		</thead>	
+	);
+};
+

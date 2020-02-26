@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Back_Continue } from "./Modal_Components/Back_Continue";
-import { Modal_Title } from "./Modal_Components/Modal_Title";
+import { Back_Continue } from "./Back_Continue";
+import { Modal_Title } from "./Modal_Title";
 
 import { withStyles, makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
@@ -11,10 +11,10 @@ import Radio from "@material-ui/core/Radio";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormControl from "@material-ui/core/FormControl";
-import icon from "../media/image/icon.png";
+import icon from "../../media/image/icon.png";
 import axios from "axios";
 
-import "../style/modalStyle.css";
+import "./modalStyle.css";
 const useStyles = makeStyles(theme => ({
   root: {
     width: "100%",

@@ -30,7 +30,9 @@ export const reducer = (state = initialState, action) => {
                 ...state,
                 user: action.payload,
                 isFetching: false,
-                error: null
+                error: null,
+                navState:"I am in show logout but"
+
             }
         case SEND_LINK_TOKEN_SUCCESS:
             return {
@@ -51,11 +53,12 @@ export const reducer = (state = initialState, action) => {
 
 const initialState = {
     user:{
-        id:null,
-        token:"",
+        id: sessionStorage.getItem("userID") || null,
+        token:sessionStorage.getItem("token") || "",
         message:"",
-        LinkedAccount:false
+        LinkedAccount:sessionStorage.getItem("LinkedAccount") || false
     },
     error:null,
-    isFetching:false
+    isFetching:false,
+    navState:""
 };

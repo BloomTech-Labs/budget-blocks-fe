@@ -1,22 +1,22 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
-import { registerUser } from "../redux/actions/RegisterActions";
-import Title from "./Form_Components/Title";
-import PasswordField from "./Form_Components/PasswordField";
-import Account from "./Form_Components/Account";
-import { CheckEmptyFields } from "./Form_Components/CheckEmpyFields";
-import { ChangeCheckField } from "./Form_Components/ChangeCheckField";
+import { registerUser } from "../../../redux/actions/RegisterActions";
+import Title from "../Title";
+import PasswordField from "../PasswordField";
+import Account from "../Account";
+import { CheckEmptyFields } from "../CheckEmpyFields";
+import { ChangeCheckField } from "../ChangeCheckField";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 import Button from "@material-ui/core/Button";
-import "../style/registerStyle.css";
+import "./registerStyle.css";
 import TextField from "@material-ui/core/TextField";
 import FormControl from "@material-ui/core/FormControl";
 import Loader from "react-loader-spinner";
 
 export const Register = props => {
-  const [user, setUser] = useState({ email: "", password: "" });
+  const [user, setUser] = useState({ email: "", password: "",first_name:"",last_name:"" });
   const [confirmPass, setConfirmPass] = useState({ confirmPassword: "" });
   const [values, setValues] = useState({
     password: {
@@ -24,6 +24,14 @@ export const Register = props => {
       helperText: ""
     },
     email: {
+      error: false,
+      helperText: ""
+    },
+    first_name: {
+      error: false,
+      helperText: ""
+    },
+    last_name: {
       error: false,
       helperText: ""
     },
@@ -64,7 +72,7 @@ export const Register = props => {
       });
     } else {
       props.registerUser(user, props.history);
-      setUser({ email: "", password: "" });
+      setUser({ email: "", password: "",first_name:"",last_name:"" });
       setConfirmPass({ confirmPassword: "" });
       setValues({
         ...values,
@@ -83,7 +91,6 @@ export const Register = props => {
       setValues({ ...values, button: { disabled: true } });
     }
   }, [user]);
-
   return (
     <div className="register">
       <Container maxWidth="sm">
@@ -104,7 +111,32 @@ export const Register = props => {
                 value={user.email}
                 error={values.email.error}
               />
+              <Typography className="label">First Name</Typography>
 
+              <TextField
+                id="outlined-basic"
+                placeholder="First Name"
+                variant="outlined"
+                type="text"
+                name="first_name"
+                helperText={values.first_name.helperText}
+                onChange={handleChange}
+                value={user.first_name}
+                error={values.first_name.error}
+              />
+                            <Typography className="label">Last Name</Typography>
+
+              <TextField
+                id="outlined-basic"
+                placeholder="Last Name"
+                variant="outlined"
+                type="text"
+                name="last_name"
+                helperText={values.last_name.helperText}
+                onChange={handleChange}
+                value={user.last_name}
+                error={values.last_name.error}
+              />
               <PasswordField
                 name="password"
                 placeholder="Password"
@@ -124,9 +156,13 @@ export const Register = props => {
                 handleChange={handleConfirm}
               />
               <Account message="Already have an account?" link="/login" />
-              {
-                props.error?<p style={{display: "inline"}} className="errorMessage">{props.error}</p>:<p className="errorMessage"></p>
-              }
+              {props.error ? (
+                <p style={{ display: "inline" }} className="errorMessage">
+                  {props.error}
+                </p>
+              ) : (
+                <p className="errorMessage"></p>
+              )}
               <Button
                 variant="outlined"
                 className="signUpBtn"

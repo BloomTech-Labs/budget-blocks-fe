@@ -76,6 +76,80 @@ Object {
                   </div>
                   
                 </div>
+                <p
+                  class="MuiTypography-root label MuiTypography-body1"
+                >
+                  First Name
+                </p>
+                <div
+                  class="MuiFormControl-root MuiTextField-root"
+                >
+                  <div
+                    class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-formControl"
+                  >
+                    <input
+                      aria-invalid="false"
+                      class="MuiInputBase-input MuiOutlinedInput-input"
+                      id="outlined-basic"
+                      name="first_name"
+                      placeholder="First Name"
+                      type="text"
+                      value=""
+                    />
+                    <fieldset
+                      aria-hidden="true"
+                      class="PrivateNotchedOutline-root-77 MuiOutlinedInput-notchedOutline"
+                      style="padding-left: 8px;"
+                    >
+                      <legend
+                        class="PrivateNotchedOutline-legend-78"
+                        style="width: 0.01px;"
+                      >
+                        <span>
+                          ​
+                        </span>
+                      </legend>
+                    </fieldset>
+                  </div>
+                  
+                </div>
+                <p
+                  class="MuiTypography-root label MuiTypography-body1"
+                >
+                  Last Name
+                </p>
+                <div
+                  class="MuiFormControl-root MuiTextField-root"
+                >
+                  <div
+                    class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-formControl"
+                  >
+                    <input
+                      aria-invalid="false"
+                      class="MuiInputBase-input MuiOutlinedInput-input"
+                      id="outlined-basic"
+                      name="last_name"
+                      placeholder="Last Name"
+                      type="text"
+                      value=""
+                    />
+                    <fieldset
+                      aria-hidden="true"
+                      class="PrivateNotchedOutline-root-77 MuiOutlinedInput-notchedOutline"
+                      style="padding-left: 8px;"
+                    >
+                      <legend
+                        class="PrivateNotchedOutline-legend-78"
+                        style="width: 0.01px;"
+                      >
+                        <span>
+                          ​
+                        </span>
+                      </legend>
+                    </fieldset>
+                  </div>
+                  
+                </div>
                 <div
                   class="MuiFormControl-root"
                 >
@@ -314,6 +388,80 @@ Object {
                     name="email"
                     placeholder="Email Address"
                     type="email"
+                    value=""
+                  />
+                  <fieldset
+                    aria-hidden="true"
+                    class="PrivateNotchedOutline-root-77 MuiOutlinedInput-notchedOutline"
+                    style="padding-left: 8px;"
+                  >
+                    <legend
+                      class="PrivateNotchedOutline-legend-78"
+                      style="width: 0.01px;"
+                    >
+                      <span>
+                        ​
+                      </span>
+                    </legend>
+                  </fieldset>
+                </div>
+                
+              </div>
+              <p
+                class="MuiTypography-root label MuiTypography-body1"
+              >
+                First Name
+              </p>
+              <div
+                class="MuiFormControl-root MuiTextField-root"
+              >
+                <div
+                  class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-formControl"
+                >
+                  <input
+                    aria-invalid="false"
+                    class="MuiInputBase-input MuiOutlinedInput-input"
+                    id="outlined-basic"
+                    name="first_name"
+                    placeholder="First Name"
+                    type="text"
+                    value=""
+                  />
+                  <fieldset
+                    aria-hidden="true"
+                    class="PrivateNotchedOutline-root-77 MuiOutlinedInput-notchedOutline"
+                    style="padding-left: 8px;"
+                  >
+                    <legend
+                      class="PrivateNotchedOutline-legend-78"
+                      style="width: 0.01px;"
+                    >
+                      <span>
+                        ​
+                      </span>
+                    </legend>
+                  </fieldset>
+                </div>
+                
+              </div>
+              <p
+                class="MuiTypography-root label MuiTypography-body1"
+              >
+                Last Name
+              </p>
+              <div
+                class="MuiFormControl-root MuiTextField-root"
+              >
+                <div
+                  class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-formControl"
+                >
+                  <input
+                    aria-invalid="false"
+                    class="MuiInputBase-input MuiOutlinedInput-input"
+                    id="outlined-basic"
+                    name="last_name"
+                    placeholder="Last Name"
+                    type="text"
                     value=""
                   />
                   <fieldset

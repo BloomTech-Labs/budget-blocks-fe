@@ -81,44 +81,25 @@ const Transactions = props => {
 	};
 
 	return (
-		<div>
-			{filter ? (
-				<React.Fragment>
-					<div className='trans-container'>
-						<div className='trans-top-content'>
-							<h3 className={classes.text}>Recent Transactions:</h3>
-							<button className='add-trans-button' onClick={handleClickOpen}>
-								Add Transactions
-							</button>
-							<AddTransactionModal open={open} handleClose={handleClose} />
-						</div>
-						<div className='trans-item'>
-							<DisplayTrans arr={selected} classes={classes} />
-						</div>
+		<React.Fragment>
+			<div className='trans-container'>
+				<div className='trans-top-content'>
+					<h3 className={classes.text}>Recent Transactions:</h3>
+						<button className='add-trans-button' onClick={handleClickOpen}>
+							Add Transactions
+						</button>
+						<AddTransactionModal open={open} handleClose={handleClose} />
+				</div>
+				<div className='trans-item'>
+					<DisplayTrans arr={filter ? selected : props.transactions } classes={classes} />
+				</div>
 
-						<button id='view-button' onClick={handleClick}>
-							View all transactions
-						</button>
-					</div>
-				</React.Fragment>
-			) : (
-				<React.Fragment>
-					<div className='trans-container'>
-						<div className='trans-top-content'>
-							<h3 className={classes.text}>Recent Transactions:</h3>
-							<button className='add-trans-button'>Add Transactions</button>
-						</div>
-						<div className='trans-item'>
-							<DisplayTrans arr={props.transactions} classes={classes} />
-						</div>
-						<button id='view-button' onClick={handleClick}>
-							View less
-						</button>
-					</div>
-				</React.Fragment>
-			)}
-		</div>
-	);
+				<button id='view-button' onClick={handleClick}>
+					{filter  ? "View all transactions" : "View less"}
+				</button>
+			</div>
+	</React.Fragment>
+	)
 };
 function mapStateToProps(state) {
 	return {

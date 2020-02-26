@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import CheckboxItem from "./CheckboxItem";
 import { selectCategories } from "../../../redux/actions/ManualActions";
 
 export function SelectCategories({categoryArr, selectCategories, history}) {
   const [values, setValues] = useState(mapCategoriesToValues(categoryArr));
+  const [error, setError]= useState('');
  
   const handleChange = event => {
     setValues({
@@ -20,13 +21,22 @@ export function SelectCategories({categoryArr, selectCategories, history}) {
     event.preventDefault();
     const selectedValues = filterUnwanted(values)
     const selectedCats = categoryArr.filter((cat)=>selectedValues.includes(cat.name));
-    selectCategories(selectedCats, history);
+    if (selectedCats.length === 0){
+        setError("You must pick at least one category");
+    }else{
+        selectCategories(selectedCats, history);
+    }
   }
+
+  useEffect(()=>{
+      if(categoryArr.length === 0){
+          history.push("/onBoard/1");
+      }
+  })
   return (
     <div>
-        <h2>Choose Spending Blocks</h2>
         <div className="content">
-          <h6> Choose which category you would like to set budget for </h6>
+          <h2> Choose which category you would like to set budget for </h2>
           <div className="divider"></div>
             <form className="cat-select" onSubmit={onSubmit}>
                 {Object.entries(values).map((value)=>(
@@ -38,6 +48,7 @@ export function SelectCategories({categoryArr, selectCategories, history}) {
                         key={value[0]}
                     />
                 ))}
+                <p>{error}</p>
                 <button>Select Categories</button>
             </form>
           </div>

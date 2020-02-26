@@ -88,11 +88,15 @@ export function selectCategories(arr, history) {
 	};
 }
 
-export function getManualTrans(userID){
+export function getManualTrans(userID,history){
     return function(dispatch) {
         dispatch(getTransLoading());
         return axiosWithAuth().get(`https://lambda-budget-blocks.herokuapp.com/manual/transaction/${userID}`)
             .then(response=>{
+
+                if (response.data.list.length === 0){
+                    history.push("/onBoard/1");
+                }
                 const data = {
                     accounts:[],
                     Categories:response.data.list.filter((cat)=> cat.budget !== null)

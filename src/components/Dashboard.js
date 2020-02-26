@@ -20,7 +20,7 @@ export const Dashboard = props => {
             props.getTransactions(props.userID);
         } else {
             console.log("Manual Account!")
-            props.getManualTrans(props.userID);
+            props.getManualTrans(props.userID,props.history);
         }
 	}, [props.LinkedAccount]);
 	return (

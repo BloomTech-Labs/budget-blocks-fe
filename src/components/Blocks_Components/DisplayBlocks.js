@@ -31,16 +31,6 @@ const DisplayBlocks = ({ arr, handleClick, LinkedAccount }) => {
               edit
             </button>
           </td>
-          {!LinkedAccount ? (
-            <td>
-              <button
-                id="edit-button"
-                onClick={() => handleClick(i.id, i.budget)}
-              >
-                Delete
-              </button>
-            </td>
-          ) : null}
         </tr>
       ))}
     </tbody>

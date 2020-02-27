@@ -25,11 +25,18 @@ import {
     ADD_DEFAULT_CATEGORIES_FAILED,
     SELECT_CATEGORIES_SUCCESS,
     ADD_MANUAL_BLOCKS_SUCCESS,
-    ADD_MANUAL_BLOCKS_FAILED
+    ADD_MANUAL_BLOCKS_FAILED,
+    EDIT_MANUAL_BLOCKS_SUCCESS
     } from "../actions/ManualActions";
 
 export const reducer = (state = initialState, action) => {
     switch(action.type){
+        case EDIT_MANUAL_BLOCKS_SUCCESS:
+            return {
+                ...state,
+                categories:[...state.categories,action.payload],
+                error: null
+            };
         case ADD_MANUAL_BLOCKS_SUCCESS:
             return {
                 ...state,

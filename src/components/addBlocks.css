@@ -1,7 +1,7 @@
 input{
-    width:50%;
+    width:95.9%;
     display:block;
-    padding:1rem;
+    padding:0.8rem;
 }
 button{
     width:70%;
@@ -25,10 +25,24 @@ button:hover {
 	background-color: #4d4d4d;
 }
 .inputContainer{
-    margin-left:5rem;
+   
+  
     
 }
 .error-message{
     color:red;
     font-size: 12px;
 }
+.column {
+   margin-bottom:5rem;
+  }
+  
+  /* Clear floats after the columns */
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  .select{
+      
+  }

@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import Home from './components/Home';
+import Home from './components/home';
 import Login from './components/Form_Components/Login/Login';
 import Register from './components/Form_Components/Register/Register';
 import Profile from './components/Form_Components/Create_Profile/CreateProfile';

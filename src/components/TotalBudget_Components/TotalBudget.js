@@ -32,7 +32,7 @@ const TotalBudget = props => {
 				<BudgetGoal />
 			</div>
 			<div className='bar-showcase'>
-				<ProgressBar done={percent} />
+				<ProgressBar done={percent > 100 ? 100 : percent}></ProgressBar>
 			</div>
 		</div>
 	);

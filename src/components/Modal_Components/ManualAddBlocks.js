@@ -68,7 +68,7 @@ const handleEdit = e => {
     if (cat[e.target.value][1].name === "Create New Category")
     {setEdit(false)}
     else{setEdit(true)}
-    setEditBlock({...editBlock,name:cat[e.target.value][1].name,categoryid:e.target.value,budget:customBlock.budget})
+    setEditBlock({...editBlock,name:e.target.value,categoryid:cat[e.target.value][1].name,budget:customBlock.budget})
     setCustomBlock({...customBlock,name:""})
     console.log(editBlock)
     console.log(edit)

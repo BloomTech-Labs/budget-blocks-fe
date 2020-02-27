@@ -61,6 +61,7 @@ th {
 	display: inline-block;
 	width: 20%;
 	/* box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
+	outline: none;
 }
 .blocks-button:hover {
 	box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
@@ -73,6 +74,7 @@ th {
 	border-radius: 10px;
 	cursor: pointer;
 	font-size: 12px;
+	outline: none;
 }
 #edit-button:hover {
 	box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),

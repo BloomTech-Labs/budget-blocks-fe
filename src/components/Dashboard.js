@@ -7,54 +7,30 @@ import TotalBudget from './TotalBudget_Components/TotalBudget';
 import { getTransactions } from '../redux/actions/PlaidActions';
 import './dashboardStyle.css';
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
-import Loader from 'react-loader-spinner';
 import '../App.css';
 import './main.css';
 import { getManualTrans } from "../redux/actions/ManualActions";
+import Loading from "./Loading";
 
 export const Dashboard = props => {
 	useEffect(() => {
-        console.log(props.LinkedAccount)
-        if (props.LinkedAccount == true){
-            console.log("Linked Account!")
-            props.getTransactions(props.userID);
-        } else {
-            console.log("Manual Account!")
-            props.getManualTrans(props.userID,props.history);
-        }
+        props.LinkedAccount == true 
+            ? props.getTransactions(props.userID) 
+            : props.getManualTrans(props.userID,props.history);
 	}, [props.LinkedAccount]);
 	return (
 		<div className='app-container'>
 			<div className='app-nav'>
 				<Header />
 			</div>
-
-			<div id='loading'>
-				{props.plaidFetching || props.blockFetching || props.profileFetching ? (
-					<Loader
-						type='ThreeDots'
-						color='#66aabc'
-						height={50}
-						width={50}
-						timeout={10000} //3 secs
-					/>
-				) : (
-					<p></p>
-				)}
-			</div>
+			<Loading/>
 			<div className='showcase'>
 				<div className='right-showcase'>
-					<div>
 						<TotalBudget />
-					</div>
 				</div>
 				<div className='left-showcase'>
-					<div>
 						<LinkedBlocks /> 
-					</div>
-					<div>
 						<LinkedTransactions />		
-					</div>
 				</div>
 			</div>
 		</div>

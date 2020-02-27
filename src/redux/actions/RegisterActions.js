@@ -20,7 +20,9 @@ export function registerUser(data, history){
         return axios.post('https://lambda-budget-blocks.herokuapp.com/api/auth/register',data)
             .then(response=>{
                 dispatch(registerUserSuccess(response.data))
-                history.push("/login");
+                localStorage.setItem("email",data.email)
+                localStorage.setItem("password",data.password)
+                history.push("/onBoard/1");
             })
             .catch(error=>{
                 dispatch(registerUserFailure(error.response.data.error)); 

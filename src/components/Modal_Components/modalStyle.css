@@ -1,6 +1,4 @@
-.dialogModal {
-  text-align: center !important;
-}
+.s
 .customized-dialog-title {
   font-family: Exo !important;
   font-style: normal !important;
@@ -126,17 +124,18 @@
   text-align: left;
   width: 100% !important;
 }
-.select {
-  display: flex;
-  flex-direction: row;
-  text-align: left;
-  padding: 10px;
-  background: #fafafa;
-  width: 100% !important;
+.select{
+  width:90%;
+}
+
+.Select-arrow-zone {
+  position: absolute;
+  top: 8px;
+  right: 0px;
 }
 .content {
   width: 75% !important;
-  margin: 0px auto !important;
+ 
 }
 .cat1{
   display: flex;

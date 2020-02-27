@@ -63,7 +63,9 @@ export const AddTransaction = props => {
   useEffect(() => {
     setCategories(props.categories);
   });
+  console.log(props.categories)
   const cat = Object.entries(categories);
+
   const userID= props.userID;
   const submit = e => {
     e.preventDefault();
@@ -133,6 +135,7 @@ export const AddTransaction = props => {
                     <option key={key} value={value.id}>{value.name}</option>
                   ))}
                 </Select>
+                
               </FormControl>
               <TextField
                 className={classes.formControl}

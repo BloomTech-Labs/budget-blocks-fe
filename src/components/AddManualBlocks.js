@@ -4,6 +4,7 @@ import Modal from '@material-ui/core/Modal';
 import { connect } from 'react-redux';
 import { axiosWithAuth } from "./AxiosWithAuth"
 import ManualAddBlocks  from "./ManualAddBlocks"
+import DemomanualBlocks from './Modal_Components/demomanualBlocks';
 function rand() {
   return Math.round(Math.random() * 20) - 10;
 }
@@ -22,7 +23,7 @@ function getModalStyle() {
 const useStyles = makeStyles(theme => ({
   paper: {
     position: 'absolute',
-    width: 400,
+    
     backgroundColor: theme.palette.background.paper,
     border: '2px solid #000',
     boxShadow: theme.shadows[5],
@@ -64,7 +65,8 @@ console.log(blocks)
         onClose={handleClose}
       >
         <div style={modalStyle} className={classes.paper}>
-        <ManualAddBlocks blocks={blocks} history={props.history}/>
+        <DemomanualBlocks open={true} handleClose={handleClose} blocks={blocks} history={props.history}/>
+        {/* <ManualAddBlocks handleClose={handleClose} blocks={blocks} history={props.history}/> */}
         </div>
       </Modal>
     </div>

@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect,useState } from "react"
 import axios from "axios";
 import Balance from "../Balance_Components/Balance"
 import "./onboard.css"
@@ -6,43 +6,51 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { addDefault } from "../../redux/actions/ManualActions";
 import Loader from 'react-loader-spinner'
+import { loginUser } from "../../redux/actions/LoginActions";
 
 const FirstOnboard = props => {
+    
     const handleClick = (e) =>{
         e.preventDefault();
         props.addDefault(props.userId, props.history);
     }
+    useEffect(() => {
+        
+props.loginUser({email:localStorage.getItem("email"),password:localStorage.getItem("password")},props.history)
+    },[])
     return (
         
        <div>
-            {!props.isFetching && !props.linkedAccount && props.error === null
-            ?
-            <div className="main">
-        <div className="manualBudgetButton"> <button onClick={handleClick}>Manually set your budget goals here</button></div>
-        <Balance /> 
-        </div>
-        :
-      props.isFetching 
-      ?
-      <div><Loader
+         
+            {
+                localStorage.length !== 0 || props.isFetching
+                ?
+<div><Loader
       type="Puff"
       color="#00BFFF"
       height={100}
-      width={100} //3 secs
+      width={100} 
+      />
+      </div>
+                :
+                !props.isFetching && !props.linkedAccount && props.error === null
+                ?
 
-   /></div>
-      :
-      props.linkedAccount === true
-      ?
-      props.history.push("/dashboard")
-      :
-      <div className="main">
-      <p className="error">Sorry Please Try Again</p>
-  <div className="manualBudgetButton"> <button onClick={handleClick}>Manually set your budget goals here</button></div>
-  <Balance /> 
-  </div>
-
-            }
+                <div className="main">
+            <div className="manualBudgetButton"> <button onClick={handleClick}>Manually set your budget goals here</button></div>
+            <Balance /> 
+            </div>
+            :
+            props.linkedAccount === true
+            ?
+            props.history.push("/dashboard")
+            :
+            <div className="main">
+            <p className="error">Sorry Please Try Again</p>
+        <div className="manualBudgetButton"> <button onClick={handleClick}>Manually set your budget goals here</button></div>
+        <Balance /> 
+        </div>
+                }
 
         </div>
     )
@@ -57,4 +65,4 @@ function mapStateToProps(state) {
     };
   }
   
-  export default connect(mapStateToProps, { addDefault })(FirstOnboard);
+  export default connect(mapStateToProps, { addDefault,loginUser })(FirstOnboard);

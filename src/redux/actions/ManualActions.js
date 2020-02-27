@@ -7,6 +7,8 @@ export const ADD_DEFAULT_CATEGORIES_FAILED = 'ADD_DEFAULT_CATEGORIES_FAILED';
 export const ADD_MANUAL_BLOCKS_FAILED = "ADD_MANUAL_BLOCKS_FAILED"
 export const SELECT_CATEGORIES_SUCCESS = 'SELECT_CATEGORIES_SUCCESS';
 export const ADD_MANUAL_BLOCKS_SUCCESS = "ADD_MANUAL_BLOCKS_SUCCESS"
+export const EDIT_MANUAL_BLOCKS_SUCCESS = "EDIT_MANUAL_BLOCKS_SUCCESS"
+export const EDIT_MANUAL_BLOCKS_FAILED = "EDIT_MANUAL_BLOCKS_FAILED"
 export const addDefaultLoading = () => ({
 	type: ADD_DEFAULT_CATEGORIES_LOADING
 });
@@ -44,6 +46,12 @@ export const addManualBlocksFailed = error => ({
     type: ADD_MANUAL_BLOCKS_FAILED,
     payload: error
 });
+export const editManualBlockSuccess = (obj) => ({ type: EDIT_MANUAL_BLOCKS_SUCCESS,payload:obj });
+
+export const editManualBlocksFailed = error => ({
+    type: EDIT_MANUAL_BLOCKS_FAILED,
+    payload: error
+});
 
 export function addDefault(userID, history) {
 	return function(dispatch) {
@@ -73,6 +81,19 @@ export function addManualBlocks(userId,obj){
 		axiosWithAuth().post(`https://lambda-budget-blocks.herokuapp.com/manual/categories/${userId}`,obj)
 	.then( i => {
 dispatch(addManualBlockSuccess(obj))
+	})
+	.catch(err => {
+		dispatch(addManualBlocksFailed(err))
+	})
+
+}
+}
+export function editManualBlocks(userId,obj){
+	return  function(dispatch) {
+		
+		axiosWithAuth().put(`https://lambda-budget-blocks.herokuapp.com/api/users/categories/${userId}`,obj)
+	.then( i => {
+dispatch(editManualBlockSuccess(obj))
 	})
 	.catch(err => {
 		dispatch(addManualBlocksFailed(err))

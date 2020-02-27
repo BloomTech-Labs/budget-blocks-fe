@@ -23,7 +23,7 @@ export function loginUser(user,history){
                 sessionStorage.setItem("userID",response.data.id);
                 sessionStorage.setItem("LinkedAccount", response.data.LinkedAccount);
                 dispatch(loginUserSuccess(response.data));
-
+                localStorage.clear()
                 if(response.data.LinkedAccount === true || response.data.ManualOnly === true){
                     history.push("/dashboard");
                 }else{

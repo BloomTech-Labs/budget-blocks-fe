@@ -1,17 +1,8 @@
 import React from 'react';
 import Modal from '@material-ui/core/Modal';
 import { makeStyles } from '@material-ui/core/styles';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
 import { connect } from "react-redux";
-import { Progress,Container} from "reactstrap";
 import "./table.css"
-import HeadsetIcon from '@material-ui/icons/Headset';
 import Card from '@material-ui/core/Card';
 import Grid from '@material-ui/core/Grid'
 import CardContent from '@material-ui/core/CardContent';
@@ -75,16 +66,6 @@ const TransactionsModal = props => {
            <React.Fragment >
 			<div className={classes.topcontent}>
 				<h3 className={classes.text}>Recent Transactions:</h3>
-				{/* <div className={classes.root}>
-					<Button variant='contained'>
-						<AddIcon />
-						Add Transactions
-					</Button>
-					<Button variant='contained' color='primary'>
-						<AddIcon />
-						Add Income
-					</Button>
-				</div> */}
 			</div>
 
 			{transactions.map(i => {

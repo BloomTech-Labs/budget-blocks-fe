@@ -60,5 +60,5 @@ const initialState = {
     },
     error:null,
     isFetching:false,
-    navState:""
+    navState: sessionStorage.getItem("navState") || ""
 };

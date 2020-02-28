@@ -78,7 +78,6 @@ export function ManualBlocks(props) {
 					</button>
 				</div>
 				<div>
-					{/* <Back_Continue BackClick={props.handleClose} ContClick={submit} /> */}
 					<Back_Continue 
 					BackClick={()=>props.history.push("/onBoard/select")}
 					ContClick={()=>props.history.push("/dashboard")}
@@ -93,16 +92,8 @@ function mapStateToProps(state) {
 	return {
 		userID: state.loginReducer.user.id,
 		LinkedAccount: state.loginReducer.user.LinkedAccount,
-		// blocks: state.plaidReducer.categories.sort((a, b) => {
-		// 	return a.id - b.id;
-		// })
 		categoryArr: state.plaidReducer.categories
-		// categoryArr: state.plaidReducer.categories.sort((a, b) => {
-		// 	return a.id - b.id;
-		// })
 	};
 }
-
-// export default connect(mapStateToProps, { getTransactions })(ManualBlocks);
 
 export default connect(mapStateToProps, { selectCategories })(ManualBlocks);

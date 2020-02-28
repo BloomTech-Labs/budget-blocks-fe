@@ -31,7 +31,6 @@ export const reducer = (state = initialState, action) => {
 				isFetching: false,
 				error: null
 			};
-		///
 		case CATEGORIES_LOADING:
 			return {
 				...state,
@@ -51,7 +50,6 @@ export const reducer = (state = initialState, action) => {
 				isFetching: false,
 				error: null
 			};
-
 		//delete trans
 		case DELETE_TRANS_LOADING:
 			return {

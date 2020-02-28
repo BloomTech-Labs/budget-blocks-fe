@@ -6,8 +6,6 @@ import { getTransactions } from '../../redux/actions/PlaidActions';
 import { connect } from 'react-redux';
 import './index.css';
 
-import { getCategories } from '../../redux/actions/AddTransactionActions';
-
 import AddTransactionModal from '../Modal_Components/AddTransaction';
 const useStyles = makeStyles(theme => ({
 	root: {
@@ -16,8 +14,6 @@ const useStyles = makeStyles(theme => ({
 		}
 	},
 	container: {
-		// display: 'grid',
-		// gridTemplateColumns: 'repeat(12, 1fr)'
 		display: 'flex',
 		width: '100%'
 	},
@@ -58,7 +54,6 @@ const useStyles = makeStyles(theme => ({
 	},
 	leftInfo: {
 		width: '15%',
-		// paddingTop: '5%',
 		alignItems: 'center'
 	}
 }));

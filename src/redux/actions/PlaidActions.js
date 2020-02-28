@@ -40,7 +40,6 @@ export function sendLinkToken(token, userID) {
         { publicToken: token, userid: userID }
       )
       .then(response => {
-        console.log(response.data);
         dispatch(sendLinkSuccess(response.data));
         dispatch(sendLoginSuccess());
       })

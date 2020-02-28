@@ -10,29 +10,7 @@ import Slider from "@material-ui/core/Slider";
 import TextField from "@material-ui/core/TextField";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import "./modalStyle.css";
-import axios from "axios";
 import { updateBlocks } from "../../redux/actions/userBlocks";
-const useStyles = makeStyles(theme => ({
-  root: {
-    width: 300 + theme.spacing(3) * 2
-  },
-  margin: {
-    height: theme.spacing(3)
-  }
-}));
-
-const styles = theme => ({
-  root: {
-    margin: 0,
-    padding: theme.spacing(2)
-  },
-  closeButton: {
-    position: "absolute",
-    right: theme.spacing(1),
-    top: theme.spacing(1),
-    color: "#00000"
-  }
-});
 
 const DialogContent = withStyles(theme => ({
   root: {

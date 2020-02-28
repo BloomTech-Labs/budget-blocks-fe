@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { Back_Continue } from "./Back_Continue";
 import { Modal_Title } from "./Modal_Title";
 import MuiDialogActions from "@material-ui/core/DialogActions";
 import { addManualBlocks,editManualBlocks } from '../../redux/actions/ManualActions';
@@ -12,9 +11,7 @@ import { connect } from "react-redux";
 
 import FormControl from "@material-ui/core/FormControl";
 import TextField from "@material-ui/core/TextField";
-import InputLabel from "@material-ui/core/InputLabel";
 import Select from "@material-ui/core/Select";
-import { addTransaction } from "../../redux/actions/AddTransactionActions";
 import "./modalStyle.css";
 const useStyles = makeStyles(theme => ({
   root: {
@@ -39,40 +36,25 @@ const DialogActions = withStyles(theme => ({
   }
 }))(MuiDialogActions);
 export const AddTransaction = props => {
-  const [open, setOpen] = useState(false);
   const [customBlock,setCustomBlock] = useState({name:"",budget:null,total:0})
   const [editBlock,setEditBlock] = useState({name:"",budget:null,categoryid:null,total:0})
   const [failedEdit,setFailedEdit] = useState(false)
   const [failedCustom,setFailedCustom] = useState(false)
   const [edit,setEdit] = useState(true)
-  const inputLabel = React.useRef(null);
-  const [labelWidth, setLabelWidth] = React.useState(2012);
-  React.useEffect(() => {
-    setLabelWidth(100);
-  }, []);
   const classes = useStyles();
 
-  const handleClose = () => {
-    setOpen(false);
-  };
 
   const handleChange = e => {
     
     setCustomBlock({...customBlock, [e.target.name]: e.target.value});
     setEditBlock({...editBlock,name:""})
-    console.log(customBlock)
-    console.log(edit)
 }
 const handleEdit = e => {
-    console.log(e.target.value)
     if (cat[e.target.value][1].name === "Create New Category")
     {setEdit(false)}
     else{setEdit(true)}
     setEditBlock({...editBlock,name:cat[e.target.value][1].name,categoryid:e.target.value,budget:customBlock.budget})
     setCustomBlock({...customBlock,name:""})
-    console.log(editBlock)
-    console.log(edit)
-    
 }
 const handleBudget = e => {
     setEditBlock({...editBlock,budget:e.target.value})
@@ -85,7 +67,6 @@ const handleSubmit = e => {
     e.preventDefault()
     if (customBlock.name === null || isNaN(customBlock.budget) || !isNaN(customBlock.name)){
         setFailedCustom(true)
-        console.log(customBlock)
     }
     else{
         setFailedCustom(false)
@@ -94,30 +75,13 @@ const handleSubmit = e => {
 
     }
 }
-
-// const submitEdit = e => {
-//     cat
-//     e.preventDefault()
-//     if (editBlock.name === null || isNaN(editBlock.budget)){
-//         setFailedEdit(true)
-//         console.log(editBlock)
-//     }
-//     else{
-//         props.editManualBlocks(props.userID,editBlock)
-//         setFailedEdit(false)
-//         props.handleClose()
-//     }       
-// }
 const cat = Object.entries(props.blocks);
 cat.unshift(["hi",{name:"Create New Category",id:0}])
-console.log(cat)
 const submitEdit = e => {
-  console.log(editBlock)
   e.preventDefault()
  
   if (editBlock.name === null || isNaN(editBlock.budget)){
       setFailedEdit(true)
-      console.log(editBlock)
   }
   else{
       props.editManualBlocks(props.userID,editBlock)
@@ -224,18 +188,8 @@ props.blocks.filter(i => i.budget === null).map(i => options.push({value:i.id,la
                     <option key={key} value={value.id}>{value.name}</option>
                   ))}
                 </Select>
-                {/* </InputLabel> */}
         <FormControl className="radios" component="fieldset">
           <div className="cat1">
-          
-            {/* <TextField
-              className={classes.formControl}
-              label="Name"
-              value={values.name}
-              name="name"
-              onChange={handleChange}
-              variant="outlined"
-            /> */}
             <TextField
               className={classes.formControl}
               label="Budget"

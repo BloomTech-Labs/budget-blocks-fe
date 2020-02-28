@@ -43,7 +43,7 @@ export const AddTransaction = props => {
   const [values, setValues] = useState({
     name: "",
     amount: "",
-    payment_date: "",
+    payment_date: createCurrentDate(),
     category_id: ""
   });
   const inputLabel = React.useRef(null);
@@ -63,16 +63,14 @@ export const AddTransaction = props => {
   useEffect(() => {
     setCategories(props.categories);
   });
-  console.log(props.categories)
   const cat = Object.entries(categories);
-
   const userID= props.userID;
   const submit = e => {
     e.preventDefault();
      props.addTransaction(values, userID);
     setCategories({  name: "",
     amount: "",
-    payment_date: "",
+    payment_date: createCurrentDate(),
     category_id: "" });
     props.handleClose();
   };
@@ -135,7 +133,6 @@ export const AddTransaction = props => {
                     <option key={key} value={value.id}>{value.name}</option>
                   ))}
                 </Select>
-                
               </FormControl>
               <TextField
                 className={classes.formControl}
@@ -181,6 +178,19 @@ function mapStateToProps(state) {
     userID: state.loginReducer.user.id,
 
   };
+}
+
+function createCurrentDate(){
+  const date = new Date();
+  function month(){
+    if(date.getMonth()+1 < 10){
+      return `0${date.getMonth()+1}`
+    }else{
+      return date.getMonth()+1
+    }
+  }
+  const dateValue = `${date.getFullYear()}-${month()}-${date.getDate()}`
+  return dateValue
 }
 
 export default connect(mapStateToProps, { addTransaction })(AddTransaction);

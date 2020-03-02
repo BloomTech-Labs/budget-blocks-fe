@@ -13,7 +13,6 @@ button{
 	padding: 5px 10px;
 	border-radius: 30px;
 	cursor: pointer;
-	/* opacity: 0.6; */
 	transition: 0.3s;
 	display: inline-block;
 }
@@ -22,11 +21,6 @@ button:hover {
 		0 17px 50px 0 rgba(0, 0, 0, 0.19);
 	color: white;
 	background-color: #4d4d4d;
-}
-.inputContainer{
-   
-  
-    
 }
 .error-message{
     color:red;
@@ -41,9 +35,6 @@ button:hover {
     content: "";
     display: table;
     clear: both;
-  }
-  .select{
-      
   }
   .dialogModal {
     text-align: center !important;

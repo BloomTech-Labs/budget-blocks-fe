@@ -64,7 +64,6 @@ const Transactions = props => {
 	const handleClick = e => {
 		setFilter(!filter);
 	};
-	const [category, setCategory] = useState('');
 
 	var selected = props.transactions.slice(0, 3);
 	const [open, setOpen] = useState(false);

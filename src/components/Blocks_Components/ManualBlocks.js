@@ -7,26 +7,12 @@ import { Back_Continue } from '../Modal_Components/Back_Continue';
 import { TableHeads } from './TableHead';
 import DisplayBlocks from './DisplayBlocks';
 import './index.css';
-
-import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableContainer from '@material-ui/core/TableContainer';
 import Paper from '@material-ui/core/Paper';
 
 import  BudgetGoal  from '../Modal_Components/BudgetGoalModal';
 
-const useStyles = makeStyles(theme => ({
-	table: {
-		minWidth: 650,
-		width: '100%'
-	},
-	root: {
-		'& > *': {
-			margin: theme.spacing(1),
-			width: 200
-		}
-	}
-}));
 export function ManualBlocks(props) {
 	const [open, setOpen] = useState(false);
 	const [values, setValues] = useState({

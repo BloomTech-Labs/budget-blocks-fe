@@ -9,7 +9,7 @@ const LinkAccount = props => {
 		props.sendLinkToken(token, props.user.id);
 	}
 	function handleOnExit() {
-		// handle the case when your user exits Link
+		console.log("Plaid Component has exited");
 	}
 
 	return (

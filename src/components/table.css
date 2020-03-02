@@ -55,13 +55,6 @@ margin-left:0rem;
 .border{
   border:solid 5px red;
 }
-/* .subheading{
-  background-color: lightgray;
-  width:100%;
-  font-size:15px;
-  margin-top: 1rem;
-  padding:10px;
-} */
 .gray{
     width:100%;
     background-color: lightgray;}
@@ -138,8 +131,8 @@ margin-left: 5rem;}
 .red{color:red
 
 }
-.head-icon{color:#0099FF
-  ;
+.head-icon{
+  color:#0099FF;
   border-radius: 50%;
 background-color:lightgrey;
 width:20%;}

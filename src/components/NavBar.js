@@ -1,5 +1,4 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
 import logo from '../media/images/Background.png';
 import head from '../media/images/budget_blocks.png';
@@ -7,19 +6,6 @@ import { Link } from 'react-router-dom';
 import './main.css';
 
 import { logoutUser } from '../redux/actions/LogoutAction';
-
-const useStyles = makeStyles(theme => ({
-	root: {
-		flexGrow: 1,
-		background: 'red'
-	},
-	menuButton: {
-		marginRight: theme.spacing(2)
-	},
-	title: {
-		flexGrow: 1
-	}
-}));
 
 export function NavBar({navState,logoutUser}) {
 	return (

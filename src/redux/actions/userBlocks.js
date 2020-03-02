@@ -46,7 +46,6 @@ export function updateBlocks(userID, goals){
 }
 
 export function deleteBlocks(userID, blockID) {
-    console.log("catID", blockID);
 	return function(dispatch) {
 		dispatch({ type: BLOCKS_DELETE_LOADING });
 

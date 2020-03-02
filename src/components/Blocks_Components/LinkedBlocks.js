@@ -4,7 +4,6 @@ import DisplayBlocks from './DisplayBlocks';
 
 import { getTransactions } from '../../redux/actions/PlaidActions';
 import { connect } from 'react-redux';
-// import '../table.css';
 import '../../index.css';
 import './index.css';
 
@@ -59,12 +58,8 @@ export function Blocks(props) {
 			<div>
 				<button className='blocks-button' onClick={handleClick}>
 					{filter ? 'View All' : 'View Less'}
-					</button>
-					
+					</button>	
 					<AddManualBlocks/>
-					
-					
-				
 			</div>
 		</div>
 	);

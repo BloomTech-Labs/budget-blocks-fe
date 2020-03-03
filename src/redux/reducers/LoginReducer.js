@@ -44,7 +44,15 @@ export const reducer = (state = initialState, action) => {
             }
         case LOGOUT_USER:
             return {
-                ...initialState
+                user:{
+                    id: null,
+                    token: "",
+                    message:"",
+                    LinkedAccount:false
+                },
+                error:null,
+                isFetching:false,
+                navState: ""
             }
         default:
             return state;
@@ -60,5 +68,5 @@ const initialState = {
     },
     error:null,
     isFetching:false,
-    navState:""
+    navState: sessionStorage.getItem("navState") || ""
 };

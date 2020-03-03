@@ -1,10 +1,10 @@
 import React from "react";
 import { Register } from "../Form_Components/Register/Register";
-import { render, fireEvent } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import { BrowserRouter as Router } from "react-router-dom";
 import { configure } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
-import { shallow, mount, render as enzymeRender } from "enzyme";
+import { mount } from "enzyme";
 
 configure({ adapter: new Adapter() });
 
@@ -51,23 +51,6 @@ test("Form errors when passwords do not match", () => {
   expect(callAPI).not.toHaveBeenCalled();
 });
 
-// test('When fields are empty and press sign up, sign up button disables',()=>{
-//     const callAPI = jest.fn();
-//     const { getAllByText, getByText } = render(
-//         <Router>
-//             <Register registerUser={callAPI} />
-//         </Router>
-//     );
-//     const signInButton = getAllByText(/Sign Up/i)[1];
-//     fireEvent.click(signInButton.parentElement);
-//     expect(signInButton.parentElement.hasAttribute("disabled")).toBe(true);
-//     const passHelpTxt = getAllByText(/password is required/i)[0];
-//     expect(passHelpTxt.innerHTML).toBe("password is required");
-//     const emailHelpTxt = getByText(/email is required/i);
-//     expect(emailHelpTxt.innerHTML).toBe("email is required");
-//     expect(callAPI).not.toHaveBeenCalled();
-
-// });
 
 test("Form calls api when form is filled out correctly", () => {
   const callAPI = jest.fn();

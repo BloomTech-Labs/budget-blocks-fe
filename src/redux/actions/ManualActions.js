@@ -1,5 +1,4 @@
 import { axiosWithAuth } from '../../components/AxiosWithAuth';
-import AddManualBlocks from '../../components/AddManualBlocks';
 
 export const ADD_DEFAULT_CATEGORIES_LOADING = 'ADD_DEFAULT_CATEGORIES_LOADING';
 export const ADD_DEFAULT_CATEGORIES_SUCCESS = 'ADD_DEFAULT_CATEGORIES_SUCCESS';
@@ -80,7 +79,7 @@ export function addManualBlocks(userId,obj){
 		
 		axiosWithAuth().post(`https://lambda-budget-blocks.herokuapp.com/manual/categories/${userId}`,obj)
 	.then( i => {
-dispatch(addManualBlockSuccess(obj))
+		dispatch(addManualBlockSuccess(obj))
 	})
 	.catch(err => {
 		dispatch(addManualBlocksFailed(err))

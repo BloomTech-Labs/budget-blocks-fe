@@ -22,6 +22,7 @@ export function loginUser(user,history){
                 sessionStorage.setItem("token",response.data.token);
                 sessionStorage.setItem("userID",response.data.id);
                 sessionStorage.setItem("LinkedAccount", response.data.LinkedAccount);
+                sessionStorage.setItem("navState", response.data.navState);
                 dispatch(loginUserSuccess(response.data));
                 localStorage.clear()
                 if(response.data.LinkedAccount === true || response.data.ManualOnly === true){

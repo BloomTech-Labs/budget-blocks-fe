@@ -1,10 +1,10 @@
 import React from "react";
 import { Login } from "../Form_Components/Login/Login";
-import { render, fireEvent } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import {BrowserRouter as Router } from "react-router-dom"
 import { configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import { shallow, mount, render as enzymeRender } from 'enzyme';
+import { mount } from 'enzyme';
 
 configure({ adapter: new Adapter() });
 
@@ -16,24 +16,6 @@ test('Login renders correctly',()=>{
     )).toMatchSnapshot();
 });
 
-// test('When fields are empty and press sign in, sign in button disables',()=>{
-//     const callAPI = jest.fn();
-//     const { getAllByText, getByText } = render(
-//         <Router>
-//             <Login loginUser={callAPI} />
-//         </Router>
-//     );
-//     const signInButton = getAllByText(/Sign In/i)[1];
-//     console.log(signInButton);
-//     fireEvent.click(signInButton);
-//     expect(signInButton.hasAttribute("disabled")).toBe(true);
-//     const passHelpTxt = getByText(/password is required/i);
-//     expect(passHelpTxt.innerHTML).toBe("password is required");
-//     const emailHelpTxt = getByText(/email is required/i);
-//     expect(emailHelpTxt.innerHTML).toBe("email is required");
-//     expect(callAPI).not.toHaveBeenCalled();
-    
-// });
 
 test('Changing the text inputs changes the values on screen',()=>{
     const callAPI = jest.fn();

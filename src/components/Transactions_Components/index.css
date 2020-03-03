@@ -8,14 +8,11 @@
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-
-	/* margin: 3%; */
 }
 .trans-container .trans-top-content {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
-	/* padding: 2px 2%; */
 	padding-left: 10px;
 }
 .add-trans-button {
@@ -26,16 +23,12 @@
 	border-radius: 30px;
 	cursor: pointer;
 	margin: 10px 10px;
-	/* opacity: 0.6; */
 	transition: 0.3s;
 	display: inline-block;
 	width: 20%;
-	/* box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
 	outline: none;
 }
 .add-trans-button:hover {
-	/* box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
-		0 17px 50px 0 rgba(0, 0, 0, 0.19); */
 	color: white;
 	background-color: #4d4d4d;
 }
@@ -55,11 +48,6 @@
 	color: white;
 	background: #4d4d4d;
 }
-/* .trans-item {
-	margin: 2px 2px;
-	padding: 2px 2px;
-	border: 1px solid black;
-} */
 
 .trans-item {
 	display: flex;

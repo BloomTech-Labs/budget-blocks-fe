@@ -9,10 +9,6 @@ import { reducer } from "../../redux/reducers/PlaidReducer"
 const middlewares = [thunk, logger];
 const mockStore = configureMockStore(middlewares);
 var mock = new MockAdapter(axios);
-const history = {
-    push: (string)=>{console.log(`Go to ${string}!`)}
-}
-
 const initialState = {
     error:null,
     isFetching:false,

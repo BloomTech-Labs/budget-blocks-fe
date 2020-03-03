@@ -1,5 +1,4 @@
 import React from 'react';
-import Grid from '@material-ui/core/Grid';
 import { connect } from 'react-redux';
 
 const TotalExpenses = props => {

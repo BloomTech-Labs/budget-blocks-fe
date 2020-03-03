@@ -50,7 +50,13 @@ export const AddTransaction = props => {
   const [labelWidth, setLabelWidth] = React.useState(2012);
   React.useEffect(() => {
     setLabelWidth(100);
-  }, []);
+    setValues({
+      name: "",
+      amount: "",
+      payment_date: createCurrentDate(),
+      category_id: ""
+    });
+  }, [props.open]);
   const classes = useStyles();
 
   const handleClose = () => {
@@ -188,8 +194,17 @@ function createCurrentDate(){
     }else{
       return date.getMonth()+1
     }
+    
   }
-  const dateValue = `${date.getFullYear()}-${month()}-${date.getDate()}`
+  function day(){
+    if(date.getDate() < 10){
+      return `0${date.getDate()}`
+    }else{
+      return date.getDate()
+    }
+    
+  }
+  const dateValue = `${date.getFullYear()}-${month()}-${day()}`
   return dateValue
 }
 

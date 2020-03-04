@@ -11,6 +11,11 @@ import { connect } from 'react-redux';
 import { deleteBlocks } from "../../redux/actions/userBlocks";
 
 const DeleteTransModal = ({ deleteBlocks, userID, blockID }) => {
+	// This component displays the delete button for each block the user has. The button is the trash can icon from material-ui.
+	// Clicking the button will open a modal (dialog) asking if they want to delete the block
+	// Clicking delete will call the action from userBlocks in redux to delete the block from their account
+	// Delete only works for NON-PRESET categories
+
 	const [open, setOpen] = React.useState(false);
 
 	const handleClickOpen = () => {

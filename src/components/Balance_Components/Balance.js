@@ -7,8 +7,15 @@ import { useStyles } from './balanceStyle';
 import Card from '@material-ui/core/Card';
 
 export const Balance = ({ LinkedAccount }) => {
-	const classes = useStyles();
+    //This component was originally meant to be used on the dashboard. If the user had a manual account and wanted to swith to using plaid: this component would allow that
+    //In the current version, you cannot have a mix of plaid and manual so this component is only used in the onboarding process
+
+    //uses styling from the balanceStlye file. 
+    const classes = useStyles();
+    
+
     if(LinkedAccount === false){
+        //if the user's account does not use plaid then it displays component to connect bank account
         return(
         <Card className={classes.NoBalance}>
             <LinkAccount/>
@@ -16,6 +23,7 @@ export const Balance = ({ LinkedAccount }) => {
         </Card>
         )
     }else{
+        //if the user has already connected their bank account then display nothing
         return (
             <p></p>
         )

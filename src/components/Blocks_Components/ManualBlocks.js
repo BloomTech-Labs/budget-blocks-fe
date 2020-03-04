@@ -14,13 +14,15 @@ import Paper from '@material-ui/core/Paper';
 import  BudgetGoal  from '../Modal_Components/BudgetGoalModal';
 
 export function ManualBlocks(props) {
+	// This components displays the table of blocks for the Onboarding process.
+	// functions very similarly to LinkedBlocks
+	// known bug: if the user does not edit a block's budget and presses continue, it will not appear on the dashboard because the value is still null
 	const [open, setOpen] = useState(false);
 	const [values, setValues] = useState({
 		userId: '',
 		catId: '',
 		budget: 0.0
 	});
-	console.log(props);
 
 	const handleClose = () => {
 		setOpen(false);

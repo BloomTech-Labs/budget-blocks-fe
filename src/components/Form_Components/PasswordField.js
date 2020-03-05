@@ -8,7 +8,9 @@ import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 
 const PasswordField = ({ name, placeholder, label, value, handleChange, error, helperText }) =>{
-
+    // This component creates a password field for a form (used in login and register)
+    // all values in props are values set to the text field
+    // viewPass is a boolean that determines whether the text field is text or password field
     const [ viewPass, setViewPass] = useState(false)
 
     const handleClickShowPassword = () => {

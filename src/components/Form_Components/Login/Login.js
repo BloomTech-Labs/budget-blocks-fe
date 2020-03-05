@@ -17,20 +17,32 @@ import Container from "@material-ui/core/Container";
 import Loader from "react-loader-spinner";
 
 export const Login = props => {
+  // This Component creates the login form. Two Fields: email and password
+  // user is used to save form data for submission.
+
+  // values is an object that has objects for each part of the form
+  // each object in values are just details for the field such as making email and password error with a message or the submit button disable 
   const [user, setUser] = useState({ email: "", password: "" });
 
   const handleChange = e => {
+    // updates for data with new entry. removes any spaces at the begining and end of the string. 
     setUser({ ...user, [e.target.name]: e.target.value.trim() });
-
+    // updates form field with error and message accordingly
     setValues(ChangeCheckField(e, values));
   };
 
   const handleSubmit = e => {
     e.preventDefault();
+    // calls function to see if fields are empty. 
+    // if fields are empty: it returns an object with new values.
+    // if there are no empty fields: it returns boolean of false
     const check = CheckEmptyFields(user, values);
+    // check for returned object
     if (check instanceof Object) {
+      // if object returned: setValues with that object
       setValues({ ...check });
     } else {
+      // if no object returned: call loginUser action from redux to login
       props.loginUser(user, props.history);
       setUser({ email: "", password: "" });
     }
@@ -52,9 +64,12 @@ export const Login = props => {
   });
 
   useEffect(() => {
+    // Everytime a change is made to the form it will check for any errors in any of the given fields
     if (values.password.error === false && values.email.error === false) {
+      // if there are no errors: user can click submit button to login
       setValues({ ...values, button: { disabled: false } });
     } else {
+      // if there is an error: disable the button 
       setValues({ ...values, button: { disabled: true } });
     }
   }, [user]);
@@ -98,6 +113,7 @@ export const Login = props => {
             type="submit"
             disabled={values.button.disabled}
           >
+            {/* If the form is submitting data for login, the button will change from 'Sign In' to a loading animation */}
             {props.isFetching ? (
               <Loader
                 type="Puff"

@@ -16,6 +16,11 @@ import FormControl from "@material-ui/core/FormControl";
 import Loader from "react-loader-spinner";
 
 export const Register = props => {
+  // This Component creates the register form. Five Fields: email, first name, last name, password, and confirm password
+  // user is used to save form data for submission.
+
+  // values is an object that has objects for each part of the form
+  // each object in values are just details for the field such as making email and password error with a message or the submit button disable 
   const [user, setUser] = useState({ email: "", password: "",first_name:"",last_name:"" });
   const [confirmPass, setConfirmPass] = useState({ confirmPassword: "" });
   const [values, setValues] = useState({
@@ -41,11 +46,16 @@ export const Register = props => {
   });
 
   const handleChange = e => {
+    // updates for data with new entry. removes any spaces at the begining and end of the string. 
     setUser({ ...user, [e.target.name]: e.target.value });
+    // updates form field with error and message accordingly
     setValues(ChangeCheckField(e, values));
   };
 
   const handleConfirm = e => {
+    // This function is called everytime the confirm password fields has changed
+
+    // Remove error and message from the field
     setValues({
       ...values,
       password: {
@@ -53,16 +63,23 @@ export const Register = props => {
         helperText: ``
       }
     });
-
+    // update field
     setConfirmPass({ ...confirmPass, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = e => {
     e.preventDefault();
+    // calls function to see if fields are empty. 
+    // if fields are empty: it returns an object with new values.
+    // if there are no empty fields: it returns boolean of false
     const check = CheckEmptyFields(user, values);
+    // check for returned object
     if (check instanceof Object) {
+      // if object returned: setValues with that object
       setValues({ ...check });
+      // check to see if confirm password and password fields match
     } else if (confirmPass.confirmPassword !== user.password) {
+      // if they are not the same: error password
       setValues({
         ...values,
         password: {
@@ -71,6 +88,7 @@ export const Register = props => {
         }
       });
     } else {
+      // if there are no errors: call registerUser action from redux to register new account
       props.registerUser(user, props.history);
       setUser({ email: "", password: "",first_name:"",last_name:"" });
       setConfirmPass({ confirmPassword: "" });
@@ -85,9 +103,12 @@ export const Register = props => {
   };
 
   useEffect(() => {
+    // Everytime a change is made to the form it will check for any errors in any of the given fields
     if (values.password.error === false && values.email.error === false) {
+      // if there are no errors: user can click submit button to login
       setValues({ ...values, button: { disabled: false } });
     } else {
+      // if there is an error: disable the button 
       setValues({ ...values, button: { disabled: true } });
     }
   }, [user]);
@@ -124,7 +145,7 @@ export const Register = props => {
                 value={user.first_name}
                 error={values.first_name.error}
               />
-                            <Typography className="label">Last Name</Typography>
+              <Typography className="label">Last Name</Typography>
 
               <TextField
                 id="outlined-basic"
@@ -169,6 +190,7 @@ export const Register = props => {
                 type="submit"
                 disabled={values.button.disabled}
               >
+                {/* If the form is submitting data for register, the button will change from 'Sign Up' to a loading animation */}
                 {props.isFetching ? (
                   <Loader
                     type="Puff"
@@ -178,7 +200,7 @@ export const Register = props => {
                     timeout={10000} //3 secs
                   />
                 ) : (
-                  <p>SignUp</p>
+                  <p>Sign Up</p>
                 )}
               </Button>
             </FormControl>

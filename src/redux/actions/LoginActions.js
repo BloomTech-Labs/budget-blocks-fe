@@ -19,12 +19,15 @@ export function loginUser(user,history){
         dispatch(loginUserLoading());
         return axios.post('https://lambda-budget-blocks.herokuapp.com/api/auth/login',user)
             .then(response=>{
+                // All Login data saved to sessionStorage and then saved to redux
+                // This way a user can refresh the page a not need to relogin
                 sessionStorage.setItem("token",response.data.token);
                 sessionStorage.setItem("userID",response.data.id);
                 sessionStorage.setItem("LinkedAccount", response.data.LinkedAccount);
                 sessionStorage.setItem("navState", response.data.navState);
                 dispatch(loginUserSuccess(response.data));
                 localStorage.clear()
+                // If the user is not using manual nor plaid: take them to onboarding process. Otherwise take them to dashboard
                 if(response.data.LinkedAccount === true || response.data.ManualOnly === true){
                     history.push("/dashboard");
                 }else{

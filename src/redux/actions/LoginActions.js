@@ -35,6 +35,7 @@ export function loginUser(user,history){
                 }
             })
             .catch(error=>{
+                console.log(error);
                 dispatch(loginUserFailure( error.response.data.message)); 
             })
     }

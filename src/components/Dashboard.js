@@ -40,8 +40,7 @@ function mapStateToProps(state) {
 		LinkedAccount: state.loginReducer.user.LinkedAccount,
 		blocks: state.plaidReducer.categories,
 		plaidFetching: state.plaidReducer.isFetching,
-		blockFetching: state.blockReducer.isFetching,
-		profileFetching: state.profileReducer.isFetching
+		blockFetching: state.blockReducer.isFetching
 	};
 }
 

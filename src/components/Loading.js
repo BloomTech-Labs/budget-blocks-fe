@@ -22,8 +22,7 @@ export const Loading = props => {
 function mapStateToProps(state) {
 	return {
 		plaidFetching: state.plaidReducer.isFetching,
-		blockFetching: state.blockReducer.isFetching,
-		profileFetching: state.profileReducer.isFetching
+		blockFetching: state.blockReducer.isFetching
 	};
 }
 

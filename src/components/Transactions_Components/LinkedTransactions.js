@@ -59,6 +59,10 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const Transactions = props => {
+	// This component displays the transactions table. 
+	// filter determines the amount of transactions that are displayed. (True = 3 transactions, false = all transactions)
+	// handleClick toggles the filter
+	// open is used to display the add transaction modal
 	const classes = useStyles();
 	const [filter, setFilter] = useState(true);
 	const handleClick = e => {

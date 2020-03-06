@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getUserInfo } from '../../redux/actions/ProfileActions';
 import LinkAccount from '../LinkAccount';
 import plaidImg from '../../media/image/PlaidIcon.png';
 import { useStyles } from './balanceStyle';
@@ -36,4 +35,4 @@ function mapStateToProps(state) {
 	};
 }
 
-export default connect(mapStateToProps, { getUserInfo })(Balance);
+export default connect(mapStateToProps, {})(Balance);

@@ -31,6 +31,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function AddManualBlocks(props) {
+  // This component displays the modal to create a new block
   const classes = useStyles();
   // getModalStyle is not a pure function, we roll the style only on the first render
   const [modalStyle] = React.useState(getModalStyle);

@@ -1,6 +1,6 @@
 import { axiosWithAuth } from '../../components/AxiosWithAuth';
 import { getManualTrans } from '../actions/ManualActions';
-
+// This file contains actions for adding and deleting transactions. action for getting user categories
 export const ADD_TRANSACTION_LOADING = 'ADD_TRANSACTION_LOADING';
 export const ADD_TRANSACTION_SUCCESS = 'ADD_TRANSACTION_SUCCESS';
 export const ADD_TRANSACTION_FAILED = 'ADD_TRANSACTION_FAILED';
@@ -34,7 +34,6 @@ export const categoriesFailure = error => ({
 });
 
 export function addTransaction(transaction, userID) {
-	console.log('transaction', transaction);
 	return function(dispatch) {
 		dispatch(addTransactionLoading());
 		return axiosWithAuth()
@@ -43,7 +42,7 @@ export function addTransaction(transaction, userID) {
 				transaction
 			)
 			.then(response => {
-				console.log('addTransaction response', response.data);
+				// If adding transaction is a success: call the getManualTransactions action from ManualActions to retrieve updated transactions
 				return dispatch(getManualTrans(userID));
 			})
 			.catch(error => {
@@ -56,6 +55,7 @@ export function getCategories(userID) {
 	return function(dispatch) {
 		dispatch(categoriesLoading());
 		return axiosWithAuth()
+			// This endpoint returns all categories. Even the ones that are not being used by the user
 			.get(
 				`https://lambda-budget-blocks.herokuapp.com/api/users/categories/${userID}`
 			)
@@ -78,6 +78,7 @@ export function deleteTrans(userID, transID) {
 				`https://lambda-budget-blocks.herokuapp.com/manual/transaction/${userID}/${transID}`
 			)
 			.then(response => {
+				// If adding transaction is a success: call the getManualTransactions action from ManualActions to retrieve updated transactions
 				return dispatch(getManualTrans(userID));
 			})
 			.catch(error => {

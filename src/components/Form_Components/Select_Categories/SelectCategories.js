@@ -33,7 +33,7 @@ export function SelectCategories({categoryArr, selectCategories, history}) {
         setError("You must pick at least one category");
     }else{
         // updates state with selected categories using the selectCategories redux action
-        selectCategories(selectedCats, history);
+        selectCategories(selectedValues, history);
     }
   }
 

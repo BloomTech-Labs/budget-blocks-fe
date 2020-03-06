@@ -53,18 +53,22 @@ export const editManualBlocksFailed = error => ({
 });
 
 export function addDefault(userID, history) {
+	// This function is used during the onboarding process when the user chooses they want to go manual
 	return function(dispatch) {
 		dispatch(addDefaultLoading());
 		return axiosWithAuth()
+			// Calls endpoint to let back end know they need to create default categories for this user (returns nothing)
 			.get(
 				`https://lambda-budget-blocks.herokuapp.com/manual/onboard/${userID}`
 			)
 			.then(response => {
+				// After back end creates the default categories: get all the categories from back end
 				return axiosWithAuth()
 					.get(
 						`https://lambda-budget-blocks.herokuapp.com/api/users/categories/${userID}`
 					)
 					.then(response => {
+						// save categories to state and then take them to select their preset categories
 						dispatch(addDefaultSuccess(response.data));
 						history.push('/onBoard/select');
 					});
@@ -75,6 +79,7 @@ export function addDefault(userID, history) {
 	};
 }
 export function addManualBlocks(userId,obj){
+	// This function is used to add a new block (manual users only)
 	return  function(dispatch) {
 		
 		axiosWithAuth().post(`https://lambda-budget-blocks.herokuapp.com/manual/categories/${userId}`,obj)
@@ -88,6 +93,7 @@ export function addManualBlocks(userId,obj){
 }
 }
 export function editManualBlocks(userId,obj){
+	// This function is used to edit a block (manual users only)
 	return  function(dispatch) {
 		
 		axiosWithAuth().put(`https://lambda-budget-blocks.herokuapp.com/api/users/categories/${userId}`,obj)
@@ -102,21 +108,25 @@ dispatch(editManualBlockSuccess(obj))
 }
 
 export function selectCategories(arr, history) {
+	// This function is used in SelectCategories.js. takes newly filtered array and saves to redux
 	return function(dispatch) {
 		dispatch(selectCategoriesSuccess(arr));
+		// sends user to set budget for their chosen categories
 		history.push("/manual");
 	};
 }
 
 export function getManualTrans(userID,history){
+	// This function is used on Dashboard.js. Gets categories and their transactions
     return function(dispatch) {
         dispatch(getTransLoading());
         return axiosWithAuth().get(`https://lambda-budget-blocks.herokuapp.com/manual/transaction/${userID}`)
             .then(response=>{
-
+				// if there are no categories returned: send them to onboarding process
                 if (response.data.list.length === 0){
                     history.push("/onBoard/1");
-                }
+				}
+				// reformat data to be saved in redux
                 const data = {
                     accounts:[],
                     Categories:response.data.list.filter((cat)=> cat.budget !== null)

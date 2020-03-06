@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import LinkedBlocks from './Blocks_Components/LinkedBlocks';
-import Header from './Header';
 import { connect } from 'react-redux';
 import LinkedTransactions from './Transactions_Components/LinkedTransactions';
 import TotalBudget from './TotalBudget_Components/TotalBudget';
@@ -21,9 +20,6 @@ export const Dashboard = props => {
 	}, [props.LinkedAccount]);
 	return (
 		<div className='app-container'>
-			<div className='app-nav'>
-				<Header />
-			</div>
 			<Loading/>
 			<div className='showcase'>
 				<div className='right-showcase'>

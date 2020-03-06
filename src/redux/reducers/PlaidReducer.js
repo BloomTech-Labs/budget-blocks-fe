@@ -79,7 +79,7 @@ export const reducer = (state = initialState, action) => {
                 error: null,
                 accounts:action.payload.accounts,
                 categories:action.payload.Categories,
-                transactions:sortTrans(action.payload.Categories)
+                transactions:sortTrans(action.payload.Categories) // function at bottom of file
             }
         case CLEAR_PLAID:
             return {
@@ -88,7 +88,7 @@ export const reducer = (state = initialState, action) => {
         case CATEGORY_UPDATE_SUCCESS:
             return {
                 ...state,
-                categories:updateCategory(state.categories, action.payload.categoryid, action.payload.amount)
+                categories:updateCategory(state.categories, action.payload.categoryid, action.payload.amount) // function at bottom of file
             }
         case ADD_DEFAULT_CATEGORIES_LOADING:
             return {
@@ -143,16 +143,21 @@ const initialState = {
 };
 
 function sortTrans(cats){
+    // takes all transactions and puts them into one array. sorts them Newest to oldest
+    // Each category object has an array for their transactions
     let transArr = [];
+    // creates array of transaction arrays
     const catTransArr = cats.map((cat)=>{
         return cat.transactions.map((trans)=>{
             return {...trans, category:cat.name}
         })
     });
+    // maps through all arrays of transactions
+    // takes each transaction and puts them into one array
     catTransArr.forEach(trans => {
         transArr = [...transArr, ...trans];
     });
-
+    // sorts array from newest to oldest
     transArr = transArr.sort((a,b)=>{
         return new Date(b.payment_date) - new Date(a.payment_date);
     })
@@ -161,6 +166,7 @@ function sortTrans(cats){
 }
 
 function updateCategory(arr,categoryid, amount){
+    // maps through array and updates the category that was updated 
     const newCategory = arr.map(c =>
         c.id === categoryid
           ? { ...c, budget: amount }

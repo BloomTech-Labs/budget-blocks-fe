@@ -28,12 +28,14 @@ export function SelectCategories({categoryArr, selectCategories, history}) {
     event.preventDefault();
     // creates an array of only the selected categories (filterUnwanted function is at the bottom of this file)
     const selectedValues = filterUnwanted(values)
-    // if there are no selected values: display message saying they must pick at least one 
-    if (selectedValues.length === 0){
+    // filters through the categories array so that the selcted values have their information such as name and budget
+    const selectedCats = categoryArr.filter((cat)=>selectedValues.includes(cat.name));
+    if (selectedCats.length === 0){
+        // if there are no selected values: display message saying they must pick at least one 
         setError("You must pick at least one category");
     }else{
         // updates state with selected categories using the selectCategories redux action
-        selectCategories(selectedValues, history);
+        selectCategories(selectedCats, history);
     }
   }
 

@@ -33,6 +33,8 @@ export const updateFailed = error => ({
 });
 
 export function updateBlocks(userID, goals){
+    // This function is used to update blocks
+    // Upon success: saves data to redux
     return function(dispatch) {
         dispatch(updateLoading());
         return axiosWithAuth().put(`https://lambda-budget-blocks.herokuapp.com/api/users/categories/${userID}`,goals)
@@ -46,6 +48,8 @@ export function updateBlocks(userID, goals){
 }
 
 export function deleteBlocks(userID, blockID) {
+    // This function is used to delete blocks
+    // upon success: calls getManualTrans to retrieve update blocks from back end
 	return function(dispatch) {
 		dispatch({ type: BLOCKS_DELETE_LOADING });
 

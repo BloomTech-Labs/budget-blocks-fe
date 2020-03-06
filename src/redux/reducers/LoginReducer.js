@@ -60,6 +60,7 @@ export const reducer = (state = initialState, action) => {
 }
 
 const initialState = {
+    // If the user refreshes the page, gets data from session storage if it is there
     user:{
         id: sessionStorage.getItem("userID") || null,
         token:sessionStorage.getItem("token") || "",

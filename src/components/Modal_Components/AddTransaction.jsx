@@ -38,7 +38,10 @@ const DialogActions = withStyles(theme => ({
   }
 }))(MuiDialogActions);
 export const AddTransaction = props => {
-  const [open, setOpen] = useState(false);
+  // This component displays the Add Transaction Modal
+  // categories is an array of the categories from redux. It is used to populate the select field.
+  // values is an object that stores all the data for the form
+  // At this moment, All fields are required but there is no errors or button disableing to prevent the user from adding a transaction if one or more fields are empty.
   const [categories, setCategories] = useState("");
   const [values, setValues] = useState({
     name: "",
@@ -49,19 +52,16 @@ export const AddTransaction = props => {
   const inputLabel = React.useRef(null);
   const [labelWidth, setLabelWidth] = React.useState(2012);
   React.useEffect(() => {
+    // Whenever the modal is opened: set these variables
     setLabelWidth(100);
     setValues({
       name: "",
       amount: "",
-      payment_date: createCurrentDate(),
+      payment_date: createCurrentDate(), // This creates a current date for material-ui date picker. createCurrentDate function is at the bottom of file.
       category_id: ""
     });
   }, [props.open]);
   const classes = useStyles();
-
-  const handleClose = () => {
-    setOpen(false);
-  };
 
   const handleChange = event => {
     setValues({ ...values, [event.target.name]: event.target.value });
@@ -72,6 +72,7 @@ export const AddTransaction = props => {
   const cat = Object.entries(categories);
   const userID= props.userID;
   const submit = e => {
+    // On submit: call addTransaction action from redux, clear data in variables, close the modal
     e.preventDefault();
      props.addTransaction(values, userID);
     setCategories({  name: "",
@@ -135,6 +136,7 @@ export const AddTransaction = props => {
                   }}
                 >
                   <option value="" />
+                  {/* maps through the categories and make them an option for the selector */}
                   {cat.map(([key, value]) => (
                     <option key={key} value={value.id}>{value.name}</option>
                   ))}
@@ -155,24 +157,8 @@ export const AddTransaction = props => {
             </div>
           </FormControl>
         </DialogContent>
-        <DialogActions className="buttons">
-          <Button
-            className="backBtn"
-            onClick={props.handleClose}
-            variant="outlined"
-            color="primary"
-          >
-            BACK
-          </Button>
-          <Button
-            className="contBtn"
-            onClick={submit}
-            variant="outlined"
-            color="primary"
-          >
-            CONTINUE
-          </Button>
-        </DialogActions>{" "}
+        {/* Creates Back and Continue buttons. Takes in functions to close modal and submit to add transaction*/}
+        <Back_Continue BackClick={props.handleClose} ContClick={submit}/>
       </Dialog>
     </div>
   );
@@ -187,23 +173,31 @@ function mapStateToProps(state) {
 }
 
 function createCurrentDate(){
+  // This function creates a new date in the format of YYYY-MM-DD
   const date = new Date();
   function month(){
+    // Checks if the month is double or single digit
     if(date.getMonth()+1 < 10){
+      // If it is single digit: add a 0 on the front
       return `0${date.getMonth()+1}`
     }else{
+      // If it is double digit: return the month
       return date.getMonth()+1
     }
     
   }
   function day(){
+    // Checks if the day is double digit or single digit
     if(date.getDate() < 10){
+      // If it is single digit: add a 0 on the front
       return `0${date.getDate()}`
     }else{
+      // If it is double digit: return the day
       return date.getDate()
     }
     
   }
+  // Create the date in a string with the format YYYY-MM-DD and return it
   const dateValue = `${date.getFullYear()}-${month()}-${day()}`
   return dateValue
 }

@@ -12,8 +12,10 @@ import { reducer as registerReducer } from "./redux/reducers/RegisterReducer";
 import {reducer as blockReducer} from "./redux/reducers/BlockReducers"
 import {reducer as addTransactionReducer} from "./redux/reducers/AddTransactionReducer"
 import { BrowserRouter as Router } from "react-router-dom";
+import * as Sentry from '@sentry/browser';
 
 const store = createStore(combineReducers({loginReducer,plaidReducer,registerReducer,blockReducer,addTransactionReducer}), applyMiddleware(thunk, logger));
+Sentry.init({dsn: "https://d1c8f54ec01c4a3bb2697ec305242356@sentry.io/5172263"});
 
 ReactDOM.render(
   <Provider store={store}>

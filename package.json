@@ -46,7 +46,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --watchAll=false",
+    "test": "npx cypress run",
     "eject": "react-scripts eject",
     "coverage": "CI=true yarn test --coverage || true"
   },

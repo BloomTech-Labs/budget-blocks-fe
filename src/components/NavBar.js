@@ -8,6 +8,7 @@ import './main.css';
 import { logoutUser } from '../redux/actions/LogoutAction';
 
 export function NavBar({navState,logoutUser}) {
+	// This component creates the Navbar at the top. has logout functionality and displays logo
 	return (
 
 		<div className='nav-bar'>

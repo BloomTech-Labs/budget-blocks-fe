@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { sendLinkToken } from '../redux/actions/PlaidActions';
 import '../index.css';
 const LinkAccount = props => {
+	// This component creates the button that brings up the modal for the user to enter banking information to connect via plaid
 	function handleOnSuccess(token, metadata) {
 		props.sendLinkToken(token, props.user.id);
 	}

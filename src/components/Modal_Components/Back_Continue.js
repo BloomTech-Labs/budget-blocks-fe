@@ -4,6 +4,8 @@ import Button from "@material-ui/core/Button";
 import { withStyles } from "@material-ui/core/styles";
 
 export const Back_Continue = ({BackClick, ContClick}) =>{
+    // This component makes a Back and Continue button: mostly used for modals
+    // BackClick and ContClick are functions for onClick for both buttons
     
     const DialogActions = withStyles(theme => ({
         root: {

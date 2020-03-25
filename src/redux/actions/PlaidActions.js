@@ -32,6 +32,8 @@ export const getTransFailed = error => ({
 });
 
 export function sendLinkToken(token, userID) {
+  // This function is used in LinkAccount.js
+  // When signing in their bank account is successful this function will run to give back end the plaid token to set up categories and transactions for the user.
   return function(dispatch) {
     dispatch(sendLinkLoading());
     return axiosWithAuth()
@@ -50,6 +52,9 @@ export function sendLinkToken(token, userID) {
 }
 
 export function getTransactions(userID) {
+  // This function is used on Dashboard.js to get categories and their transactions
+  // back end may return status 300 or 330 meaning that data is not ready for use
+  // if that is the case: wait 5 seconds and try calling back end again
   return function(dispatch) {
     dispatch(getTransLoading());
     return axiosWithAuth()

@@ -14,6 +14,12 @@ import AddManualBlocks from "../AddManualBlocks"
 import BudgetGoal from '../Modal_Components/BudgetGoalModal';
 
 export function Blocks(props) {
+	// This component displays the blocks table. 
+	// filter determines the amount of blocks that are displayed. (True = 5 blocks, false = all blocks)
+	// handleClick toggles the filter
+	// open is used to display the edit block modal
+	// handleClickOpen is used to populate the edit block modal with the data from the selected block (passed down to DiplayBlocks component)
+	// values is an object to populate the modal (passed down to the edit block modal)
 	const [filter, setFilter] = useState([]);
 	const [open, setOpen] = useState(false);
 	const handleClick = e => {
@@ -43,7 +49,6 @@ export function Blocks(props) {
 					<DisplayBlocks
 						arr={filter ? props.blocks.slice(0, 5) : props.blocks}
 						handleClick={handleClickOpen}
-						LinkedAccount={props.LinkedAccount}
 					/>
 				</Table>
 				<BudgetGoal open={open} values={values} handleClose={handleClose} />
@@ -61,7 +66,6 @@ export function Blocks(props) {
 function mapStateToProps(state) {
 	return {
 		userID: state.loginReducer.user.id,
-		LinkedAccount: state.loginReducer.user.LinkedAccount,
 		blocks: state.plaidReducer.categories.sort((a, b) => {
 			return a.id - b.id;
 		})

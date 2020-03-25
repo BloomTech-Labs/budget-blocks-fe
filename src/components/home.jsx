@@ -7,7 +7,7 @@ import {Link} from "react-router-dom"
 
 
 const Home = () => {
-
+  // This component created the landing page
   return (
     <div className="home" >
     <Container maxWidth="sm">

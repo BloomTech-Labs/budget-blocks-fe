@@ -4,7 +4,13 @@ import { connect } from 'react-redux';
 
 import DeleteBlockModal from "./DeleteBlockModal";
 
-const DisplayBlocks = ({ arr, handleClick, LinkedAccount }) => {
+const DisplayBlocks = ({ arr, handleClick }) => {
+  // This components maps through the blocks and displays them on the table.
+  // the arr is the array of blocks that are to be displayed.
+  // the handleClick is a function from LinkedBlocks. it displays and populates the modal to edit the block with the info from the block clicked
+  // new categories have a default of null for budget and total. if they are null then it will display as 0.
+  // total refers to the total amount of money spent. (Transactions tied to that block added together)
+  // budget refers to the limit of the block
   return (
     <tbody className="table-body">
       {arr.map(i => (
@@ -40,7 +46,6 @@ const DisplayBlocks = ({ arr, handleClick, LinkedAccount }) => {
 function mapStateToProps(state) {
   return {
     userID: state.loginReducer.user.id,
-    LinkedAccount: state.loginReducer.user.LinkedAccount,
     blocks: state.plaidReducer.categories
   };
 }

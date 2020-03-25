@@ -15,6 +15,9 @@ export const registerUserFailure = error => ({
 });
 
 export function registerUser(data, history){
+    // This function is used in Register.jsx
+    // After sucecssful register: takes the user to the onboarding process
+    // localStorage items are used to login automatically in onboarding process
     return function(dispatch) {
         dispatch(registerUserLoading());
         return axios.post('https://lambda-budget-blocks.herokuapp.com/api/auth/register',data)

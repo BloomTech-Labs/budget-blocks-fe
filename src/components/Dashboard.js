@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import LinkedBlocks from './Blocks_Components/LinkedBlocks';
-import Header from './Header';
 import { connect } from 'react-redux';
 import LinkedTransactions from './Transactions_Components/LinkedTransactions';
 import TotalBudget from './TotalBudget_Components/TotalBudget';
@@ -13,6 +12,7 @@ import { getManualTrans } from "../redux/actions/ManualActions";
 import Loading from "./Loading";
 
 export const Dashboard = props => {
+    // This component displays the dashboard: Blocks, transactions, and budget
 	useEffect(() => {
         props.LinkedAccount == true 
             ? props.getTransactions(props.userID) 
@@ -20,9 +20,6 @@ export const Dashboard = props => {
 	}, [props.LinkedAccount]);
 	return (
 		<div className='app-container'>
-			<div className='app-nav'>
-				<Header />
-			</div>
 			<Loading/>
 			<div className='showcase'>
 				<div className='right-showcase'>
@@ -43,8 +40,7 @@ function mapStateToProps(state) {
 		LinkedAccount: state.loginReducer.user.LinkedAccount,
 		blocks: state.plaidReducer.categories,
 		plaidFetching: state.plaidReducer.isFetching,
-		blockFetching: state.blockReducer.isFetching,
-		profileFetching: state.profileReducer.isFetching
+		blockFetching: state.blockReducer.isFetching
 	};
 }
 

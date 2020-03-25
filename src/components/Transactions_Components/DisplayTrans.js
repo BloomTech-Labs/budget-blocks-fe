@@ -5,6 +5,7 @@ import Card from '@material-ui/core/Card';
 import DeleteTranModal from './DeleteTranModal';
 
 const DisplayTrans = ({ arr, classes }) => {
+	// This component maps through the transactions array and displays them
 	return (
 		<div className='transactions'>
 			{arr.map(i => {

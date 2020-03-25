@@ -11,6 +11,9 @@ import { connect } from 'react-redux';
 import { deleteTrans } from '../../redux/actions/AddTransactionActions';
 
 const DeleteTransModal = ({ props, deleteTrans, userID, transID }) => {
+	// This component displays the delete button for each transaction the user has. The button is the trash can icon from material-ui.
+	// Clicking the button will open a modal (dialog) asking if they want to delete the transaction
+	// Clicking delete will call the action from AddTransactionActions in redux to delete the transaction from their account
 	const [open, setOpen] = React.useState(false);
 
 	const handleClickOpen = () => {

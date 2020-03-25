@@ -19,6 +19,10 @@ const DialogContent = withStyles(theme => ({
 }))(MuiDialogContent);
 
 export function BudgetGoal(props) {
+  // This component is used to edit blocks
+  // goals is the data from the form
+  // The only field that works functionally is the textfield for editing the budget
+  // Slider and time increments are meant for future canvas to implement goals
   const [userID, setUserID]=useState("")
   const [goals, setGoals] = useState({
     categoryid: "",
@@ -26,6 +30,7 @@ export function BudgetGoal(props) {
   });
 
   useEffect(()=>{
+    // whenever the block being edited changes: apply these new values
     if(props.values.budget === null){
       props.values.budget = 0
     }
@@ -72,7 +77,7 @@ export function BudgetGoal(props) {
     console.log(value);
   }
   const submit = e => {
-
+    // update using updateBlocks from redux
     e.preventDefault();
     props.updateBlocks(userID, goals);
     setGoals({ ...goals });

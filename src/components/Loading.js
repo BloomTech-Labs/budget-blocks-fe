@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import Loader from 'react-loader-spinner';
 
 export const Loading = props => {
+	// This component displays a loading animation if there is something loading in redux
 	return (
 		<div id='loading'>
 			{props.plaidFetching || props.blockFetching || props.profileFetching ? (
@@ -21,8 +22,7 @@ export const Loading = props => {
 function mapStateToProps(state) {
 	return {
 		plaidFetching: state.plaidReducer.isFetching,
-		blockFetching: state.blockReducer.isFetching,
-		profileFetching: state.profileReducer.isFetching
+		blockFetching: state.blockReducer.isFetching
 	};
 }
 

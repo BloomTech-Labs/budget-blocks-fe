@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 const BudgetGoal = props => {
+	// This component takes all the categories' budgets and total them to be displayed.
 	const BudgetGoal = (
 		Math.round(
 			100 *

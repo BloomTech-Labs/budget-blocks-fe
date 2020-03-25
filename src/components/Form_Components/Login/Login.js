@@ -57,7 +57,8 @@ export const Login = props => {
     } else {
       setValues({ ...values, button: { disabled: true } });
     }
-  }, [user]);
+  }, [user]); // refactor?
+
   return (
     <div className="SignIn">
       <Container maxWidth="sm">

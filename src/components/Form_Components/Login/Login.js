@@ -16,12 +16,12 @@ import "./loginStyle.css";
 import Container from "@material-ui/core/Container";
 import Loader from "react-loader-spinner";
 
+import LANG from "../Lang";
 export const Login = props => {
   const [user, setUser] = useState({ email: "", password: "" });
 
   const handleChange = e => {
     setUser({ ...user, [e.target.name]: e.target.value.trim() });
-
     setValues(ChangeCheckField(e, values));
   };
 
@@ -59,18 +59,17 @@ export const Login = props => {
     }
   }, [user]);
   return (
-      
     <div className="SignIn">
       <Container maxWidth="sm">
-        <Title title="Sign In" />
+        <Title title={LANG.SIGN_IN} />
 
         <form className="SignInForm" onSubmit={handleSubmit}>
           <FormControl variant="filled">
-            <Typography className="label">E-Mail Address</Typography>
+            <Typography className="label">{LANG.EMAIL_ADDRESS}</Typography>
             <TextField
               error={values.email.error}
               helperText={values.email.helperText}
-              placeholder="E-Mail Address"
+              placeholder={LANG.EMAIL_ADDRESS}
               type="text"
               name="email"
               onChange={handleChange}
@@ -81,17 +80,22 @@ export const Login = props => {
 
           <PasswordField
             name="password"
-            placeholder="Password"
-            label="Password"
+            placeholder={LANG.PASSWORD}
+            label={LANG.PASSWORD}
             error={values.password.error}
             value={user.password}
             handleChange={handleChange}
             helperText={values.password.helperText}
           />
-          <Account message="Need an account?" link="/register" />
-          {
-                props.error?<p style={{display: "inline"}} className="errorMessage">{props.error}</p>:<p className="errorMessage"></p>
-              }
+          <Account message={LANG.NEED_AN_ACCOUNT} link="/register" />
+
+          {props.error ? (
+            <p style={{ display: "inline" }} className="errorMessage">
+              {props.error}
+            </p>
+          ) : (
+            <p className="errorMessage"></p>
+          )}
           <Button
             variant="outlined"
             className="signInBtn"
@@ -107,7 +111,7 @@ export const Login = props => {
                 timeout={10000} //3 secs
               />
             ) : (
-              <p>Sign In</p>
+              <p>{LANG.SIGN_IN}</p>
             )}
           </Button>
         </form>

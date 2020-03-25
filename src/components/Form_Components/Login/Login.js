@@ -4,13 +4,13 @@ import { loginUser } from "../../../redux/actions/LoginActions";
 import Title from "../Title";
 import EmailField from "../EmailField";
 import PasswordField from "../PasswordField";
+import SpinnerLoading from "../SpinnerLoading";
 import Account from "../Account";
 import { CheckEmptyFields } from "../CheckEmpyFields";
 import { ChangeCheckField } from "../ChangeCheckField";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Button from "@material-ui/core/Button";
 import Container from "@material-ui/core/Container";
-import Loader from "react-loader-spinner";
 
 import LANG from "../Lang";
 import "./loginStyle.css";
@@ -58,20 +58,27 @@ export const Login = props => {
 
   return (
     <div className="SignIn">
-      <Container maxWidth="sm">
+      <Container>
         <Title title={LANG.SIGN_IN} titleClass="SignInTitle" />
 
         <form className="SignInForm" onSubmit={handleSubmit}>
-          <EmailField values={values} handleChange={handleChange} user={user} />
-          <PasswordField
-            name="password"
-            placeholder={LANG.PASSWORD}
-            label={LANG.PASSWORD}
-            error={values.password.error}
-            value={user.password}
-            handleChange={handleChange}
-            helperText={values.password.helperText}
-          />
+          <div className="inputText">
+            <EmailField
+              values={values}
+              handleChange={handleChange}
+              user={user}
+              fullWidth={true}
+            />
+            <PasswordField
+              name="password"
+              placeholder={LANG.PASSWORD}
+              label={LANG.PASSWORD}
+              error={values.password.error}
+              value={user.password}
+              handleChange={handleChange}
+              helperText={values.password.helperText}
+            />
+          </div>
           <Account message={LANG.NEED_AN_ACCOUNT} link="/register" />
 
           {props.error ? (
@@ -87,17 +94,7 @@ export const Login = props => {
             type="submit"
             disabled={values.button.disabled}
           >
-            {props.isFetching ? (
-              <Loader
-                type="Puff"
-                color="#00BFFF"
-                height={50}
-                width={50}
-                timeout={10000} //3 secs
-              />
-            ) : (
-              <p>{LANG.SIGN_IN}</p>
-            )}
+            {props.isFetching ? <SpinnerLoading /> : <p>{LANG.SIGN_IN}</p>}
           </Button>
         </form>
       </Container>

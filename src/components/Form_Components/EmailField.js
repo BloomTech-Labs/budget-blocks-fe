@@ -4,9 +4,9 @@ import LANG from "./Lang";
 import FormControl from "@material-ui/core/FormControl";
 import TextField from "@material-ui/core/TextField";
 
-const EmailField = ({ values, handleChange, user }) => {
+const EmailField = ({ values, handleChange, user, fullWidth }) => {
   return (
-    <FormControl variant="filled">
+    <FormControl variant="filled" fullWidth={fullWidth}>
       <Typography className="label">{LANG.EMAIL_ADDRESS}</Typography>
       <TextField
         error={values.email.error}

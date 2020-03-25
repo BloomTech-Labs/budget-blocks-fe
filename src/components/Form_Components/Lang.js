@@ -7,7 +7,7 @@ const english = {
   EMAIL_ADDRESS: "E-mail Address",
   SIGN_IN: "Sign in",
   PASSWORD: "Password",
-  NEED_AN_ACCOUNT: "Need an account?",
+  NEED_AN_ACCOUNT: "Don't have account?",
   CLICK_HERE: "Click here!"
 };
 

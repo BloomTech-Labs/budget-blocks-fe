@@ -2,21 +2,18 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { loginUser } from "../../../redux/actions/LoginActions";
 import Title from "../Title";
+import EmailField from "../EmailField";
 import PasswordField from "../PasswordField";
 import Account from "../Account";
 import { CheckEmptyFields } from "../CheckEmpyFields";
 import { ChangeCheckField } from "../ChangeCheckField";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
-
-import Typography from "@material-ui/core/Typography";
-import TextField from "@material-ui/core/TextField";
-import FormControl from "@material-ui/core/FormControl";
 import Button from "@material-ui/core/Button";
-import "./loginStyle.css";
 import Container from "@material-ui/core/Container";
 import Loader from "react-loader-spinner";
 
 import LANG from "../Lang";
+import "./loginStyle.css";
 export const Login = props => {
   const [user, setUser] = useState({ email: "", password: "" });
 
@@ -62,23 +59,10 @@ export const Login = props => {
   return (
     <div className="SignIn">
       <Container maxWidth="sm">
-        <Title title={LANG.SIGN_IN} />
+        <Title title={LANG.SIGN_IN} titleClass="SignInTitle" />
 
         <form className="SignInForm" onSubmit={handleSubmit}>
-          <FormControl variant="filled">
-            <Typography className="label">{LANG.EMAIL_ADDRESS}</Typography>
-            <TextField
-              error={values.email.error}
-              helperText={values.email.helperText}
-              placeholder={LANG.EMAIL_ADDRESS}
-              type="text"
-              name="email"
-              onChange={handleChange}
-              value={user.email}
-              variant="outlined"
-            />
-          </FormControl>
-
+          <EmailField values={values} handleChange={handleChange} user={user} />
           <PasswordField
             name="password"
             placeholder={LANG.PASSWORD}

@@ -1,23 +1,8 @@
 @import url("https://fonts.googleapis.com/css?family=Exo&display=swap");
-/* .logo_name {
-  align-items: center;
+
+.SignIn {
   display: flex;
   flex-direction: column;
-  margin-top: 44px;
-}
-.SignInForm {
-  display: flex;
-  flex-direction: column;
-  margin: 20px 20px 0 20px;
-  height: fit-content;
-}
-.logo-reg {
-  width: 75px;
-  height: 50px;
-}
-.name-reg {
-  margin-top: 10px;
-  height: 30px;
 }
 .sign {
   font-family: Exo !important;
@@ -39,24 +24,46 @@
 .password {
   margin-top: 30px;
   text-align: left;
-  }
+}
 .confirmPassword {
   margin-top: 30px;
   text-align: left;
-  }
-  .signInBtn{
-    margin-top: 20px !important;
-    font-family: "Exo", sans-serif !important;
-    text-transform: none !important;
-    font-size: 16px !important;
-    background: #ffffff !important ;
-    border: 1px solid #1890ff !important;
-    color: #1890ff !important;
-  }
-  .account{
-    text-align: center !important;
-    display: flex;
-    flex-direction: row;
-    font-family: "Exo", sans-serif !important;
+}
+
+/* .signInBtn {
+  margin-top: 20px !important;
+  font-family: "Exo", sans-serif !important;
+  text-transform: none !important;
+  font-size: 16px !important;
+  background: #ffffff !important ;
+  border: 1px solid #1890ff !important;
+  color: #1890ff !important;
+} */
+/* .account {
+  text-align: center !important;
+  display: flex;
+  flex-direction: row;
+  font-family: "Exo", sans-serif !important;
+} */
+/* .logo_name {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin-top: 44px;
+}
+.SignInForm {
+  display: flex;
+  flex-direction: column;
+  margin: 20px 20px 0 20px;
+  height: fit-content;
+}
+.logo-reg {
+  width: 75px;
+  height: 50px;
+}
+.name-reg {
+  margin-top: 10px;
+  height: 30px;
+}
 
   } */

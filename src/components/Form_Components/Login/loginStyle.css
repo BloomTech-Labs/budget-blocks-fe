@@ -1,23 +1,17 @@
 @import url("https://fonts.googleapis.com/css?family=Exo&display=swap");
-.logo_name {
-  align-items: center;
+
+.SignIn {
+  display: flex;
+  margin: 0 2rem;
+}
+.inputText {
   display: flex;
   flex-direction: column;
-  margin-top: 44px;
+  margin: 2rem 0 2rem 0;
 }
-.SignInForm {
+.signInBtn {
   display: flex;
-  flex-direction: column;
-  margin: 20px 20px 0 20px;
-  height: fit-content;
-}
-.logo-reg {
-  width: 75px;
-  height: 50px;
-}
-.name-reg {
-  margin-top: 10px;
-  height: 30px;
+  /* You can set any size you want (in %, px, em, etc) */
 }
 .sign {
   font-family: Exo !important;
@@ -25,7 +19,7 @@
   font-weight: 600 !important;
   font-size: 30px !important;
   line-height: 38px !important;
-  color: #000000 !important;
+  color: #37474f !important;
 }
 .label {
   text-align: left;
@@ -34,29 +28,27 @@
   font-weight: normal !important;
   font-size: 14px !important;
   line-height: 22px !important;
-  color: #262626 !important;
+  color: #37474f !important;
+}
+.account {
+  display: flex;
+  justify-content: center;
+  font-family: Exo !important;
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-size: 14px !important;
+  line-height: 22px !important;
+  color: #357eeb !important;
+  margin: 5%;
+}
+.account strong {
+  color: #357eeb;
 }
 .password {
   margin-top: 30px;
   text-align: left;
-  }
+}
 .confirmPassword {
   margin-top: 30px;
   text-align: left;
-  }
-  .signInBtn{
-    margin-top: 20px !important;
-    font-family: "Exo", sans-serif !important;
-    text-transform: none !important;
-    font-size: 16px !important;
-    background: #ffffff !important ;
-    border: 1px solid #1890ff !important;
-    color: #1890ff !important;
-  }
-  .account{
-    text-align: center !important;
-    display: flex;
-    flex-direction: row;
-    font-family: "Exo", sans-serif !important;
-
-  }
+}

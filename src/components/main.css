@@ -20,21 +20,33 @@
 .nav-bar {
 	display: flex;
 	width: 100%;
-	background-color: rgb(111, 198, 198);
+	background-color: #FFFFFF;
+	border: 1px solid #E7E7E7;
 }
 .nav-logo {
 	display: flex;
-	flex-direction: column;
-	width: 100%;
-	align-items: flex-start;
-	margin-left: 100px;
+	flex-direction: row;
+	justify-content: space-between;
+	width: 50%;
+	align-items: center;
+	margin-left: 39px;
+	margin-top: 8px;
+	margin-bottom: 8px;
 }
 .nav-action {
-	width: 10%;
+	width: 100%;
 	margin-top: 50px;
+	background-color: blue;
 }
 .image {
-	width: 10%;
+	width: 2.5rem;
+}
+
+.heading {
+    width: 7.5rem;
+	height: 1.1rem;
+	margin-right: 3px;
+	margin-top: 5px;
 }
 
 /* phone screen */

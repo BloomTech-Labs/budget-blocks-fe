@@ -6,7 +6,7 @@ import { useStyles } from './balanceStyle';
 import Card from '@material-ui/core/Card';
 
 export const Balance = ({ LinkedAccount }) => {
-    //This component was originally meant to be used on the dashboard. If the user had a manual account and wanted to swith to using plaid: this component would allow that
+    //This component was originally meant to be used on the dashboard. If the user had a manual account and wanted to switch to using plaid: this component would allow that
     //In the current version, you cannot have a mix of plaid and manual so this component is only used in the onboarding process
 
     //uses styling from the balanceStlye file. 
@@ -28,6 +28,9 @@ export const Balance = ({ LinkedAccount }) => {
         )
     }
 }
+
+// axiosWithAuth()
+// .post(`https://budgetblocks.org/dashboard/accounts/balance/get`)
 
 function mapStateToProps(state) {
 	return {

@@ -47,7 +47,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --watchAll=false",
-    "cypress": "npx cypress run",
+    "cypress": "npx cypress open",
     "eject": "react-scripts eject",
     "coverage": "CI=true yarn test --coverage || true"
   },
@@ -67,6 +67,7 @@
     ]
   },
   "devDependencies": {
+    "@applitools/eyes-cypress": "^3.9.18",
     "axios-mock-adapter": "^1.17.0",
     "cypress": "^4.2.0",
     "redux-mock-store": "^1.5.4"

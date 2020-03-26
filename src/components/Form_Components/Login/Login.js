@@ -14,69 +14,90 @@ import Container from "@material-ui/core/Container";
 
 import LANG from "../Lang";
 import "./loginStyle.css";
+
+const default_values = {
+  showPassword: false,
+  password: {
+    error: false,
+    helperText: ""
+  },
+  email: {
+    error: false,
+    helperText: ""
+  },
+  button: {
+    disabled: false
+  }
+};
+const default_user = { email: "", password: "" };
+
+/**
+ * Login (React Component)
+ * @param {*} props
+ * @renders login page
+ */
 export const Login = props => {
-  const [user, setUser] = useState({ email: "", password: "" });
+  const [state, setState] = useState({
+    values: { ...default_values },
+    user: { ...default_user }
+  });
+
+  useEffect(() => {
+    if (
+      state.values.password.error === false &&
+      state.values.email.error === false
+    ) {
+      setState({
+        ...state,
+        values: { ...state.values, button: { disabled: false } }
+      });
+    } else {
+      setState({
+        ...state,
+        values: { ...state.values, button: { disabled: true } }
+      });
+    }
+  }, [state.user]); // refactor this useEffect?
 
   const handleChange = e => {
-    setUser({ ...user, [e.target.name]: e.target.value.trim() });
-    setValues(ChangeCheckField(e, values));
+    setState({
+      user: { ...state.user, [e.target.name]: e.target.value.trim() },
+      values: ChangeCheckField(e, state.values)
+    });
   };
 
   const handleSubmit = e => {
     e.preventDefault();
-    const check = CheckEmptyFields(user, values);
+    const check = CheckEmptyFields(state.user, state.values);
     if (check instanceof Object) {
-      setValues({ ...check });
+      setState({ ...state, values: { ...check } });
     } else {
-      props.loginUser(user, props.history);
-      setUser({ email: "", password: "" });
+      props.loginUser(state.user, props.history);
+      setState({ ...state, user: { email: "", password: "" } });
     }
   };
 
-  const [values, setValues] = useState({
-    showPassword: false,
-    password: {
-      error: false,
-      helperText: ""
-    },
-    email: {
-      error: false,
-      helperText: ""
-    },
-    button: {
-      disabled: false
-    }
-  });
-
-  useEffect(() => {
-    if (values.password.error === false && values.email.error === false) {
-      setValues({ ...values, button: { disabled: false } });
-    } else {
-      setValues({ ...values, button: { disabled: true } });
-    }
-  }, [user]); // refactor?
-
   return (
     <div className="SignIn">
-      <Container>
+      <Container maxWidth="sm">
         <Title title={LANG.SIGN_IN} titleClass="SignInTitle" />
 
         <form className="SignInForm" onSubmit={handleSubmit}>
           <div className="inputText">
             <EmailField
-              values={values}
+              values={state.values}
               handleChange={handleChange}
-              user={user}
+              user={state.user}
               fullWidth={true}
             />
             <PasswordField
               name="password"
               placeholder={LANG.PASSWORD}
               label={LANG.PASSWORD}
-              error={values.password.error}
-              value={user.password}
+              error={state.values.password.error}
+              value={state.user.password}
               handleChange={handleChange}
-              helperText={values.password.helperText}
+              helperText={state.values.password.helperText}
             />
           </div>
           <Account message={LANG.NEED_AN_ACCOUNT} link="/register" />
@@ -92,7 +113,9 @@ export const Login = props => {
             variant="outlined"
             className="signInBtn"
             type="submit"
-            disabled={values.button.disabled}
+            fullWidth={true}
+            small="small"
+            disabled={state.values.button.disabled}
           >
             {props.isFetching ? <SpinnerLoading /> : <p>{LANG.SIGN_IN}</p>}
           </Button>

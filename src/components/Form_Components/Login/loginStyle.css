@@ -9,6 +9,10 @@
   flex-direction: column;
   margin: 2rem 0 2rem 0;
 }
+.signInBtn {
+  display: flex;
+  /* You can set any size you want (in %, px, em, etc) */
+}
 .sign {
   font-family: Exo !important;
   font-style: normal !important;

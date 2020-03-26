@@ -12,7 +12,7 @@ const EmailField = ({ values, handleChange, user, fullWidth }) => {
         error={values.email.error}
         helperText={values.email.helperText}
         placeholder={LANG.EMAIL_ADDRESS}
-        type="text"
+        type="email"
         name="email"
         onChange={handleChange}
         value={user.email}

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect}  from "react";
 import "./App.css";
 import Home from "./components/home";
 import Login from "./components/Form_Components/Login/Login";
@@ -10,9 +10,14 @@ import Navbar from "./components/NavBar";
 import SelectCategories from "./components/Form_Components/Select_Categories/SelectCategories";
 import FirstOnboard from "./components/OnboardComponents/FirstOnboard";
 import ManualBlocks from "./components/Blocks_Components/ManualBlocks";
+import {PageView} from "./components/google_analytics/index.js"
 
 /* return <button onClick={methodDoesNotExist}>Break the world</button>; */
 function App() {
+  // we need our pageview function to run with a useEffect hook here
+  useEffect(() =>{
+    PageView()
+  })
   return (
     <div>
       <Navbar />

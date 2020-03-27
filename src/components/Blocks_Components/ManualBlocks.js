@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import {
 	selectCategories,
@@ -10,6 +10,7 @@ import './index.css';
 import Table from '@material-ui/core/Table';
 import TableContainer from '@material-ui/core/TableContainer';
 import Paper from '@material-ui/core/Paper';
+import {PageView} from "../google_analytics/index.js"
 
 import  BudgetGoal  from '../Modal_Components/BudgetGoalModal';
 
@@ -23,6 +24,10 @@ export function ManualBlocks(props) {
 		catId: '',
 		budget: 0.0
 	});
+
+	useEffect(() =>{
+		PageView()
+	  })
 
 	const handleClose = () => {
 		setOpen(false);

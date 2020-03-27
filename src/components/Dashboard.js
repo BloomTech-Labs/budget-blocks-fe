@@ -10,6 +10,8 @@ import '../App.css';
 import './main.css';
 import { getManualTrans } from "../redux/actions/ManualActions";
 import Loading from "./Loading";
+import {PageView} from "./google_analytics/index.js"
+
 
 export const Dashboard = props => {
     // This component displays the dashboard: Blocks, transactions, and budget
@@ -18,6 +20,11 @@ export const Dashboard = props => {
             ? props.getTransactions(props.userID) 
             : props.getManualTrans(props.userID,props.history);
 	}, [props.LinkedAccount]);
+
+	useEffect(() =>{
+		PageView()
+	  })
+
 	return (
 		<div className='app-container'>
 			<Loading/>

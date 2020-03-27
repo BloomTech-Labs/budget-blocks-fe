@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import CheckboxItem from "./CheckboxItem";
 import { selectCategories } from "../../../redux/actions/ManualActions";
+import {PageView} from "../../google_analytics/index.js"
 
 export function SelectCategories({categoryArr, selectCategories, history}) {
   // This form is allowing the user to select what preset categories they want during onboarding process
@@ -23,6 +24,10 @@ export function SelectCategories({categoryArr, selectCategories, history}) {
         }
     })
   };
+
+  useEffect(() =>{
+    PageView()
+  })
 
   const onSubmit = event =>{
     event.preventDefault();

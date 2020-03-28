@@ -53,7 +53,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test --watchAll=false",
     "eject": "react-scripts eject",
-    "coverage": "CI=true yarn test --coverage || true"
+    "coverage": "CI=true yarn test --coverage || true",
+    "md-docs": "find ./src -name \\*.js | xargs npx jsdoc2md --template ./README.hbs --files",
+    "html-docs": "npx jsdoc -c ./docs/config.json"
   },
   "eslintConfig": {
     "extends": "react-app"

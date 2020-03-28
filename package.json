@@ -55,7 +55,7 @@
     "test": "react-scripts test --watchAll=false",
     "eject": "react-scripts eject",
     "coverage": "CI=true yarn test --coverage || true",
-    "md-docs": "find ./src -name \\*.js | xargs npx jsdoc2md --template ./README.hbs --files",
+    "md-docs": "find ./src -name \\*.js | xargs npx jsdoc2md --template ./README.hbs --files | cat > ./FE_DOC.md",
     "html-docs": "npx jsdoc -c ./docs/config.json"
   },
   "eslintConfig": {

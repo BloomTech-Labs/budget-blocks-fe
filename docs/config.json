@@ -1,5 +1,5 @@
 {
-  "plugins": ["plugins/markdown"],
+  "plugins": [],
   "recurseDepth": 10,
   "source": {
     "include": ["./src"],
@@ -18,7 +18,7 @@
   },
   "opts": {
     "encoding": "utf8",
-    "destination": "./docs/gen",
+    "destination": "./public/docs",
     "recurse": true
   }
 }

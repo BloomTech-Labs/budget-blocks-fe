@@ -4,7 +4,7 @@ import Modal from "@material-ui/core/Modal";
 import { connect } from "react-redux";
 import { axiosWithAuth } from "./AxiosWithAuth";
 import DemomanualBlocks from "./Modal_Components/demomanualBlocks";
-import environmentUrls from "../../dispatch";
+import environmentUrls from "../dispatch";
 
 function rand() {
   return Math.round(Math.random() * 20) - 10;

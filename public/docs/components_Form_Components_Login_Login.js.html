@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/Form_Components/Login/Login.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/Form_Components/Login/Login.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, { useState, useEffect } from "react";
+import { connect } from "react-redux";
+import { loginUser } from "../../../redux/actions/LoginActions";
+import Title from "../Title";
+import EmailField from "../EmailField";
+import PasswordField from "../PasswordField";
+import SpinnerLoading from "../SpinnerLoading";
+import Account from "../Account";
+import { CheckEmptyFields } from "../CheckEmpyFields";
+import { ChangeCheckField } from "../ChangeCheckField";
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+import Button from "@material-ui/core/Button";
+import Container from "@material-ui/core/Container";
+
+import LANG from "../Lang";
+import "./loginStyle.css";
+
+const default_values = {
+  showPassword: false,
+  password: {
+    error: false,
+    helperText: ""
+  },
+  email: {
+    error: false,
+    helperText: ""
+  },
+  button: {
+    disabled: false
+  }
+};
+const default_user = { email: "", password: "" };
+
+/**
+ * Login (React Component)
+ * @param {*} props
+ * @renders login page
+ */
+export const Login = props => {
+  const [state, setState] = useState({
+    values: { ...default_values },
+    user: { ...default_user }
+  });
+
+  useEffect(() => {
+    if (
+      state.values.password.error === false &amp;&amp;
+      state.values.email.error === false
+    ) {
+      setState({
+        ...state,
+        values: { ...state.values, button: { disabled: false } }
+      });
+    } else {
+      setState({
+        ...state,
+        values: { ...state.values, button: { disabled: true } }
+      });
+    }
+  }, [state.user]); // refactor this useEffect?
+
+  const handleChange = e => {
+    setState({
+      user: { ...state.user, [e.target.name]: e.target.value.trim() },
+      values: ChangeCheckField(e, state.values)
+    });
+  };
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    const check = CheckEmptyFields(state.user, state.values);
+    if (check instanceof Object) {
+      setState({ ...state, values: { ...check } });
+    } else {
+      props.loginUser(state.user, props.history);
+      setState({ ...state, user: { email: "", password: "" } });
+    }
+  };
+
+  return (
+    &lt;div className="SignIn">
+      &lt;Container maxWidth="sm">
+        &lt;Title title={LANG.SIGN_IN} titleClass="SignInTitle" />
+
+        &lt;form className="SignInForm" onSubmit={handleSubmit}>
+          &lt;div className="inputText">
+            &lt;EmailField
+              values={state.values}
+              handleChange={handleChange}
+              user={state.user}
+              fullWidth={true}
+            />
+            &lt;PasswordField
+              name="password"
+              placeholder={LANG.PASSWORD}
+              label={LANG.PASSWORD}
+              error={state.values.password.error}
+              value={state.user.password}
+              handleChange={handleChange}
+              helperText={state.values.password.helperText}
+            />
+          &lt;/div>
+          &lt;Account message={LANG.NEED_AN_ACCOUNT} link="/register" />
+
+          {props.error ? (
+            &lt;p style={{ display: "inline" }} className="errorMessage">
+              {props.error}
+            &lt;/p>
+          ) : (
+            &lt;p className="errorMessage">&lt;/p>
+          )}
+          &lt;Button
+            variant="outlined"
+            className="signInBtn"
+            type="submit"
+            fullWidth={true}
+            small="small"
+            disabled={state.values.button.disabled}
+          >
+            {props.isFetching ? &lt;SpinnerLoading /> : &lt;p>{LANG.SIGN_IN}&lt;/p>}
+          &lt;/Button>
+        &lt;/form>
+      &lt;/Container>
+    &lt;/div>
+  );
+};
+
+function mapStateToProps(state) {
+  return {
+    isFetching: state.loginReducer.isFetching,
+    error: state.loginReducer.error
+  };
+}
+
+export default connect(mapStateToProps, { loginUser })(Login);
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="LANG%250A-%2520A%2520module%2520for%2520words%2520viewable%2520to%2520the%2520end-user.module_.html">LANG
+- A module for words viewable to the end-user.</a></li><li><a href="module-dispatch_urls.html">dispatch/urls</a></li></ul><h3>Global</h3><ul><li><a href="global.html#GenText">GenText</a></li><li><a href="global.html#Login">Login</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.3</a> on Sat Mar 28 2020 15:41:04 GMT-0400 (Eastern Daylight Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

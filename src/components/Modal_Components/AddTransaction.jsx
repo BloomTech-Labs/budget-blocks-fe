@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Back_Continue } from "./Back_Continue";
+import { BackContinue } from "./BackContinue";
 import ModalTitle from "./ModalTitle";
-import MuiDialogActions from "@material-ui/core/DialogActions";
+// import MuiDialogActions from "@material-ui/core/DialogActions";
 
 import { withStyles, makeStyles } from "@material-ui/core/styles";
-import Button from "@material-ui/core/Button";
+// import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import MuiDialogContent from "@material-ui/core/DialogContent";
 import { connect } from "react-redux";
@@ -31,12 +31,12 @@ const DialogContent = withStyles(theme => ({
     padding: theme.spacing(2)
   }
 }))(MuiDialogContent);
-const DialogActions = withStyles(theme => ({
-  root: {
-    margin: 0,
-    padding: theme.spacing(1)
-  }
-}))(MuiDialogActions);
+// const DialogActions = withStyles(theme => ({
+//   root: {
+//     margin: 0,
+//     padding: theme.spacing(1)
+//   }
+// }))(MuiDialogActions);
 export const AddTransaction = props => {
   // This component displays the Add Transaction Modal
   // categories is an array of the categories from redux. It is used to populate the select field.
@@ -68,7 +68,7 @@ export const AddTransaction = props => {
   };
   useEffect(() => {
     setCategories(props.categories);
-  });
+  }, [props.categories]);
   const cat = Object.entries(categories);
   const userID = props.userID;
   const submit = e => {
@@ -162,7 +162,7 @@ export const AddTransaction = props => {
           </FormControl>
         </DialogContent>
         {/* Creates Back and Continue buttons. Takes in functions to close modal and submit to add transaction*/}
-        <Back_Continue BackClick={props.handleClose} ContClick={submit} />
+        <BackContinue BackClick={props.handleClose} ContClick={submit} />
       </Dialog>
     </div>
   );

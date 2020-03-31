@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
-import { Back_Continue } from "./Back_Continue";
+import { BackContinue } from "./BackContinue";
 import ModalTitle from "./ModalTitle";
-import { withStyles, makeStyles } from "@material-ui/core/styles";
+import { withStyles } from "@material-ui/core/styles";
 import Dialog from "@material-ui/core/Dialog";
 import MuiDialogContent from "@material-ui/core/DialogContent";
 import Typography from "@material-ui/core/Typography";
@@ -146,7 +146,7 @@ export function BudgetGoal(props) {
             </div>
           </div>
         </DialogContent>
-        <Back_Continue BackClick={props.handleClose} ContClick={submit} />
+        <BackContinue BackClick={props.handleClose} ContClick={submit} />
       </Dialog>
     </div>
   );

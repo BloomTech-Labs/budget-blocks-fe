@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react";
 import BackContinue from "./BackContinue";
 import ModalTitle from "./ModalTitle";
-// import MuiDialogActions from "@material-ui/core/DialogActions";
 
 import { withStyles, makeStyles } from "@material-ui/core/styles";
-// import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import MuiDialogContent from "@material-ui/core/DialogContent";
 import { connect } from "react-redux";
@@ -31,12 +29,7 @@ const DialogContent = withStyles(theme => ({
     padding: theme.spacing(2)
   }
 }))(MuiDialogContent);
-// const DialogActions = withStyles(theme => ({
-//   root: {
-//     margin: 0,
-//     padding: theme.spacing(1)
-//   }
-// }))(MuiDialogActions);
+
 export const AddTransaction = props => {
   // This component displays the Add Transaction Modal
   // categories is an array of the categories from redux. It is used to populate the select field.

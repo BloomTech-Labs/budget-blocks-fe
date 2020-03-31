@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { BackContinue } from "./BackContinue";
+import BackContinue from "./BackContinue";
 import ModalTitle from "./ModalTitle";
 // import MuiDialogActions from "@material-ui/core/DialogActions";
 

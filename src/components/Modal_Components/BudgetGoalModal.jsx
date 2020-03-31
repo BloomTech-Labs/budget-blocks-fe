@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
-import { BackContinue } from "./BackContinue";
+import BackContinue from "./BackContinue";
 import ModalTitle from "./ModalTitle";
 import { withStyles } from "@material-ui/core/styles";
 import Dialog from "@material-ui/core/Dialog";

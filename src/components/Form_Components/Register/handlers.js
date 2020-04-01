@@ -3,6 +3,13 @@ import { ChangeCheckField } from "../ChangeCheckField";
 import { default_user, default_values } from "./defaults";
 import LANG from "../Lang";
 
+/**
+ * clearState will callback `setState` with default values.
+ *
+ * @param {Object} state form data
+ * @param {Function} setState callback to update `state`
+ *
+ */
 const clearState = ({ state, setState }) => {
   return setState({
     ...state,
@@ -12,6 +19,14 @@ const clearState = ({ state, setState }) => {
   });
 };
 
+/**
+ * handleUserChange will callback `setState` to update `state.user`.
+ *
+ * @param {Event} e the event
+ * @param {Object} state form data
+ * @param {Function} setState callback to update `state`
+ *
+ */
 const handleUserChange = ({ e, state, setState }) => {
   setState({
     ...state,
@@ -20,6 +35,14 @@ const handleUserChange = ({ e, state, setState }) => {
   });
 };
 
+/**
+ * handleConfirm will callback `setState` to update `state.confirmPass`.
+ *
+ * @param {Event} e the event
+ * @param {Object} state form data
+ * @param {Function} setState callback to update `state`
+ *
+ */
 const handleConfirm = ({ e, state, setState }) => {
   setState({
     ...state,
@@ -33,7 +56,14 @@ const handleConfirm = ({ e, state, setState }) => {
     confirmPass: { ...state.confirmPass, [e.target.name]: e.target.value }
   });
 };
-
+/**
+ * handleSubmit will callback `setState` to update `state.confirmPass`.
+ * @param {Event} e the event
+ * @param {Object} state form data
+ * @param {Function} setState callback to update `state`
+ * @param {*} props React component props
+ *
+ */
 const handleSubmit = ({ e, state, setState, props }) => {
   e.preventDefault();
   const rCheck = CheckEmptyFields(state.user, state.values);

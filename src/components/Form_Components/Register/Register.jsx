@@ -11,6 +11,13 @@ import Container from "@material-ui/core/Container";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import "./registerStyle.css";
 
+/**
+ * `Register` is a convenience wrapper
+ * around several components that comprise
+ * the new user registration form.
+ * @param {Object} props React component props
+ * @returns <div className="register" .../>
+ */
 export const Register = props => {
   const [state, setState] = useState({
     user: { ...default_user },
@@ -18,13 +25,13 @@ export const Register = props => {
     confirmPass: { confirmPassword: "" }
   });
   const canSubmit = () => {
-    const isDisabled = !(
-      state.values.password.error === false &&
-      state.values.email.error === false
+    const vals = Object.keys(state.values).filter(key =>
+      Object.keys(state.values[key]).includes("error")
     );
+    const errs = vals.filter(value => state.values[value].error === true);
     setState({
       ...state,
-      values: { ...state.values, button: { disabled: isDisabled } }
+      values: { ...state.values, button: { disabled: errs.length > 0 } }
     });
   };
   const handleSubmit = e =>

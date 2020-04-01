@@ -8,6 +8,17 @@ import EmailField from "../EmailField";
 import GenText from "../GenText";
 import LANG from "../Lang";
 
+/**
+ * `RegForm` is a convenience wrapper
+ * around several components that comprise
+ * the new user registration form.
+ * @param {Object} rProps React component props
+ * @param {Object} rState React component state
+ * @param {Function} rConfirm callback => validate
+ * @param {Function} rSubmit callback => validate & submit
+ * @param {Function} rUserChange callback => validate & update
+ * @returns <form className="RegisterForm" ... />
+ */
 const RegForm = ({
   rProps: props,
   rState: state,

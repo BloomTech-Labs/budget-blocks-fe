@@ -1,3 +1,7 @@
+/**
+ * Register/default_user
+ * @returns default Register component state.user
+ */
 export const default_user = {
   email: "",
   password: "",
@@ -5,6 +9,10 @@ export const default_user = {
   last_name: ""
 };
 
+/**
+ * Register/default_values
+ * @returns default Register component state.values
+ */
 export const default_values = {
   password: {
     error: false,

@@ -5,12 +5,24 @@ import {
   editManualBlocks
 } from "../../redux/actions/ManualActions";
 import { dialogView1, dialogView2, dialogView3 } from "./dialogViews";
-
 import { connect } from "react-redux";
+
 import "./dialogViews/dialogComponents";
 import "./modalStyle.css";
 
-export const AddTransaction = props => {
+/**
+ * ManualTransaction (Modal)
+ *
+ * (called from ../AddManualBlocks)
+ *
+ * @param {String} userID userID
+ * @param {Function} open handler
+ * @param {Function} handleClose handler
+ * @param {Function} addTransaction handler
+ *
+ * @returns {*} Add Transaction Modal
+ */
+export const ManualTransaction = props => {
   const [state, setState] = useState({
     customBlock: {
       name: "",
@@ -148,5 +160,5 @@ function mapStateToProps(state) {
   };
 }
 export default connect(mapStateToProps, { addManualBlocks, editManualBlocks })(
-  AddTransaction
+  ManualTransaction
 );

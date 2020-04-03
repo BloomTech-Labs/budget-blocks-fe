@@ -7,7 +7,11 @@ import TransactionForm from "./TransactionForm";
 import "./modalStyle.css";
 
 /**
- * AddTransaction (Modal)
+ * LinkedTransaction (Modal)
+ *
+ * this modal relies on a 3rd party API.
+ *
+ * (called from ../Transaction_Components/LinkedTransactions)
  * @param {String} userID userID
  * @param {Function} open handler
  * @param {Function} handleClose handler
@@ -15,7 +19,7 @@ import "./modalStyle.css";
  *
  * @returns {*} Add Transaction Modal
  */
-export const AddTransaction = ({
+export const LinkedTransaction = ({
   open: handleOpen,
   userID,
   handleClose,
@@ -80,4 +84,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { addTransaction })(AddTransaction);
+export default connect(mapStateToProps, { addTransaction })(LinkedTransaction);

@@ -1,66 +1,61 @@
-import React, { useEffect,useState } from "react"
-import Balance from "../Balance_Components/Balance"
-import "./onboard.css"
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { addDefault } from "../../redux/actions/ManualActions";
-import Loader from 'react-loader-spinner'
 import { loginUser } from "../../redux/actions/LoginActions";
+import { renderSpinner, pushToDashboard, renderManualBtn } from "./views";
+import "./onboard.css";
 
-const FirstOnboard = props => {
-    
-    const handleClick = (e) =>{
-        e.preventDefault();
-        props.addDefault(props.userId, props.history);
-    }
-    useEffect(() => {
-        
-props.loginUser({email:localStorage.getItem("email"),password:localStorage.getItem("password")},props.history)
-    },[])
-    return (
-        
-       <div>
-         
-            {
-                localStorage.length !== 0 || props.isFetching
-                ?
-<div><Loader
-      type="Puff"
-      color="#00BFFF"
-      height={100}
-      width={100} 
-      />
-      </div>
-                :
-                !props.isFetching && !props.linkedAccount && props.error === null
-                ?
+/**
+ * FirstOnboard
+ *
+ * after logging in & prior to the dashboard;
+ * a virtual "waiting room" for the end-user.
+ *
+ * @param {Object} history React component props.history
+ * @param {Boolean} isFetching are we waiting for a reply?
+ * @param {String} error contains inforation about error when applicable
+ * @param {Object} linkedAccount returned by Plaid-API after logging in
+ * @param {Object} userId current user Id
+ */
+const FirstOnboard = ({
+  history,
+  isFetching,
+  error,
+  linkedAccount,
+  userId
+}) => {
+  useEffect(() => {
+    loginUser(
+      {
+        email: localStorage.getItem("email"),
+        password: localStorage.getItem("password")
+      },
+      history
+    );
+  }, [history]);
+  const handleClick = e => {
+    e.preventDefault();
+    addDefault(userId, history);
+  };
+  const waitingOnLink = localStorage.length !== 0 || isFetching;
+  const haveLink = linkedAccount === true;
+  const View = waitingOnLink
+    ? renderSpinner()
+    : haveLink
+    ? pushToDashboard(history)
+    : renderManualBtn({ handleClick, error });
+  return <div>{View}</div>;
+};
 
-                <div className="main">
-            <div className="manualBudgetButton"> <button onClick={handleClick}>Manually set your budget goals here</button></div>
-            <Balance /> 
-            </div>
-            :
-            props.linkedAccount === true
-            ?
-            props.history.push("/dashboard")
-            :
-            <div className="main">
-            <p className="error">Sorry Please Try Again</p>
-        <div className="manualBudgetButton"> <button onClick={handleClick}>Manually set your budget goals here</button></div>
-        <Balance /> 
-        </div>
-                }
-
-        </div>
-    )
-}
 function mapStateToProps(state) {
-    return {
-      isFetching: state.plaidReducer.isFetching,
-      error: state.plaidReducer.error,
-      linkedAccount: state.loginReducer.user.LinkedAccount,     
-      userId: state.loginReducer.user.id
+  return {
+    isFetching: state.plaidReducer.isFetching,
+    error: state.plaidReducer.error,
+    linkedAccount: state.loginReducer.user.LinkedAccount,
+    userId: state.loginReducer.user.id
+  };
+}
 
-    };
-  }
-  
-  export default connect(mapStateToProps, { addDefault,loginUser })(FirstOnboard);
+export default connect(mapStateToProps, { addDefault, loginUser })(
+  FirstOnboard
+);

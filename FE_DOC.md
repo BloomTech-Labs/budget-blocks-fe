@@ -1,6 +1,6 @@
 # budget blocks
 
- <img src="madge.png" >
+<img src="madge.svg">
 
 ## Front end documentation
 
@@ -55,8 +55,14 @@ the new user registration form.</p>
 <dt><a href="#GenText">GenText(langKey, handleChange, value, error, helperText, fullWidth, variant, id)</a></dt>
 <dd><p>TextField with Label</p>
 </dd>
+<dt><a href="#FirstOnboard">FirstOnboard(history, isFetching, error, linkedAccount, userId)</a></dt>
+<dd><p>FirstOnboard</p>
+<p>after logging in &amp; prior to the dashboard;
+a virtual &quot;waiting room&quot; for the end-user.</p>
+</dd>
 <dt><a href="#ymdNow">ymdNow()</a> ⇒ <code>String</code></dt>
 <dd><p>ymdNow()</p>
+<p>todays date, formatted <code>YYYY-MM-DD</code></p>
 </dd>
 </dl>
 
@@ -205,12 +211,32 @@ TextField with Label
 | variant | <code>String</code> | default 'outline-basic' |
 | id | <code>String</code> | default 'outlined' |
 
+<a name="FirstOnboard"></a>
+
+## FirstOnboard(history, isFetching, error, linkedAccount, userId)
+FirstOnboard
+
+after logging in & prior to the dashboard;
+a virtual "waiting room" for the end-user.
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| history | <code>Object</code> | React component props.history |
+| isFetching | <code>Boolean</code> | are we waiting for a reply? |
+| error | <code>String</code> | contains inforation about error when applicable |
+| linkedAccount | <code>Object</code> | returned by Plaid-API after logging in |
+| userId | <code>Object</code> | current user Id |
+
 <a name="ymdNow"></a>
 
 ## ymdNow() ⇒ <code>String</code>
 ymdNow()
 
+todays date, formatted `YYYY-MM-DD`
+
 **Kind**: global function  
-**Returns**: <code>String</code> - todays date formatted as YYYY-MM-DD  
+**Returns**: <code>String</code> - `YYYY-MM-DD`  
 
 Lambda School Labs

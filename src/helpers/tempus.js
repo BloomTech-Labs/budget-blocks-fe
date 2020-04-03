@@ -1,6 +1,9 @@
 /**
  * ymdNow()
- * @returns {String} todays date formatted as YYYY-MM-DD
+ *
+ * todays date, formatted `YYYY-MM-DD`
+ *
+ * @returns {String} `YYYY-MM-DD`
  */
 function ymdNow() {
   const date = new Date();

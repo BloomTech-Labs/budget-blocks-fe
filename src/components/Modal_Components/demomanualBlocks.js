@@ -4,12 +4,7 @@ import {
   addManualBlocks,
   editManualBlocks
 } from "../../redux/actions/ManualActions";
-import {
-  dialogView1,
-  dialogView2,
-  dialogView3,
-  dialogView4
-} from "./dialogViews";
+import { dialogView1, dialogView2, dialogView3 } from "./dialogViews";
 
 import { connect } from "react-redux";
 import "./dialogViews/dialogComponents";
@@ -130,7 +125,7 @@ export const AddTransaction = props => {
             cat,
             classes
           })
-        : dialogView4({
+        : dialogView3({
             props,
             handleEdit,
             handleChange,
@@ -139,7 +134,8 @@ export const AddTransaction = props => {
             editBlock: state.editBlock,
             customBlock: state.customBlock,
             cat,
-            classes
+            classes,
+            errorMessage: "Create a valid name and a budget number over 0"
           })}
     </div>
   );

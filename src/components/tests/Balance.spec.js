@@ -21,3 +21,10 @@ test("Balance renders Link account component when Linked Account is false", () =
   console.log(wrapper.props().className);
   expect(wrapper.props().className).toBe("makeStyles-NoBalance-1");
 });
+
+
+test('Balace renders correctly',()=>{
+  const wrapper = shallow(<Balance />)
+      
+  expect(wrapper.exists()).toBe(true)
+});

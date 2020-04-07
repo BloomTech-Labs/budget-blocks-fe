@@ -11,9 +11,12 @@ import { ChangeCheckField } from "../ChangeCheckField";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Button from "@material-ui/core/Button";
 import Container from "@material-ui/core/Container";
+import {PageView} from "../../google_analytics/index.js"
 
 import LANG from "../Lang";
 import "./loginStyle.css";
+
+
 
 const default_values = {
   showPassword: false,
@@ -42,6 +45,9 @@ export const Login = props => {
     user: { ...default_user }
   });
 
+  useEffect(() =>{
+    PageView()
+  })
   useEffect(() => {
     if (
       state.values.password.error === false &&

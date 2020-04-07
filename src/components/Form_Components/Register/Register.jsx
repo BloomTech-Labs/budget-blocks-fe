@@ -11,6 +11,7 @@ import Title from "../Title";
 
 import { CheckEmptyFields } from "../CheckEmpyFields";
 import { ChangeCheckField } from "../ChangeCheckField";
+import {PageView, GAevent} from "../../google_analytics/index.js"
 
 import FormControl from "@material-ui/core/FormControl";
 import Container from "@material-ui/core/Container";
@@ -53,6 +54,9 @@ export const Register = props => {
     values: { ...default_values }
   });
 
+  useEffect(() =>{
+    PageView()
+  })
   const handleUserChange = e => {
     setState({
       ...state,
@@ -77,6 +81,9 @@ export const Register = props => {
 
   const handleSubmit = e => {
     e.preventDefault();
+
+    GAevent("Registration", "User registered successfully", "New User Created");
+
     const check = CheckEmptyFields(state.user, state.values);
     if (check instanceof Object) {
       setState({ ...state, values: { ...check } });

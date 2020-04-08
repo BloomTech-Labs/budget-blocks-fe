@@ -33,7 +33,11 @@ const default_values = {
   }
 };
 const default_user = { email: "", password: "" };
+ga('create', 'UA-XXXXX-Y', 'auto', {
+  userId: state.user
+});
 
+ga('set', 'userId', state.user)
 /**
  * Login (React Component)
  * @param {*} props
@@ -43,8 +47,9 @@ export const Login = props => {
   const [state, setState] = useState({
     values: { ...default_values },
     user: { ...default_user }
+    
   });
-
+ 
   useEffect(() =>{
     PageView()
   })
@@ -68,7 +73,8 @@ export const Login = props => {
   const handleChange = e => {
     setState({
       user: { ...state.user, [e.target.name]: e.target.value.trim() },
-      values: ChangeCheckField(e, state.values)
+      values: ChangeCheckField(e, state.values) 
+      
     });
   };
 

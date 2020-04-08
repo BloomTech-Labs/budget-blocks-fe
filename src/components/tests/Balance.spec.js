@@ -23,7 +23,7 @@ test("Balance renders Link account component when Linked Account is false", () =
 });
 
 
-test('Balace renders correctly',()=>{
+test('Balance renders correctly',()=>{
   const wrapper = shallow(<Balance />)
       
   expect(wrapper.exists()).toBe(true)

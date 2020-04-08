@@ -47,3 +47,10 @@ test('App renders correctly',()=>{
   )).toMatchSnapshot();
 });
 
+// const methodDoesNotExist = jest.fn();
+
+// test("Button component fires callback function onClick", () => {
+//   const component = shallow(<Button onClick={methodDoesNotExist}>Button</Button>);
+//   component.find("button").simulate("click");
+//   expect(methodDoesNotExist).toHaveBeenCalled();
+// });

@@ -16,7 +16,6 @@ function App() {
 	return (
 		<div>
 			<Navbar />
-			return <button onClick={methodDoesNotExist}>Break the world</button>;
 			<div className='App'>
 				<Switch>
 					<Route exact path='/' component={Home} />

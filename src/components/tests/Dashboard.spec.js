@@ -21,18 +21,3 @@ test('Dashboard renders correctly',()=>{
     expect(wrapper.exists()).toBe(true)
 });
 
-// test('Linked Blocks renders correctly',()=>{
-//     const wrapper = shallow(<LinkedBlocks />)
-//     expect(wrapper.exists()).toBe(true)
-// });
-
-// test('Linked Blocks renders correctly',()=>{
-//     const wrapper = shallow(<LinkedTransactions />)
-//     expect(wrapper.exists()).toBe(true)
-// });
-
-// test('Linked Blocks renders correctly',()=>{
-//     const wrapper = shallow(<TotalBudget/>)
-//     expect(wrapper.exists()).toBe(true)
-// });
-

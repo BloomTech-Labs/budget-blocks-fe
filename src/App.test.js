@@ -31,7 +31,6 @@ let loginReducer = (state = initialState, action) => {
   }
 }
 
-// , profileReducer
 
 const store = createStore(combineReducers({loginReducer,plaidReducer,registerReducer}), applyMiddleware(thunk, logger));
 
@@ -46,11 +45,3 @@ test('App renders correctly',()=>{
       </Provider>
   )).toMatchSnapshot();
 });
-
-// const methodDoesNotExist = jest.fn();
-
-// test("Button component fires callback function onClick", () => {
-//   const component = shallow(<Button onClick={methodDoesNotExist}>Button</Button>);
-//   component.find("button").simulate("click");
-//   expect(methodDoesNotExist).toHaveBeenCalled();
-// });

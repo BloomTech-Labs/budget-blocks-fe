@@ -20,6 +20,7 @@ import {initGA} from './components/google_analytics/index.js'
 
 (function initAnalytics(){
   initGA("UA-158581736-1"); // TODO: Hard-coding this for now, need to move it to .env later
+  //initGA(process.env.REACT_APP_SECRET_KEY);
 })();
 
 const store = createStore(

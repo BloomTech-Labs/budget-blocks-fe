@@ -15,7 +15,3 @@ export const GAevent = (category, action, label) => {
         category, action, label
     });
 };
-
-ga('create', 'UA-XXXXX-Y', 'auto', {
-    userId: USER_ID
-  });

@@ -46,19 +46,3 @@ const GenText = ({
 };
 
 export default GenText;
-
-/*
-              <Typography className="label">First Name</Typography>
-              <TextField
-                id="outlined-basic"
-                placeholder="First Name"
-                variant="outlined"
-                type="text"
-                name="first_name"
-                helperText={state.values.first_name.helperText}
-                onChange={handleChange}
-                value={state.user.first_name}
-                error={state.values.first_name.error}
-              />
-
-*/

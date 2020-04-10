@@ -1,8 +1,8 @@
-import React from 'react';
-import './index.css';
-import { connect } from 'react-redux';
+import React from "react";
+import "./index.css";
+import { connect } from "react-redux";
 
-import DeleteBlockModal from "./DeleteBlockModal";
+import { DelBlock } from "../Modal_Components/DeleteBlockModal";
 
 const DisplayBlocks = ({ arr, handleClick }) => {
   // This components maps through the blocks and displays them on the table.
@@ -13,7 +13,7 @@ const DisplayBlocks = ({ arr, handleClick }) => {
   // budget refers to the limit of the block
   return (
     <tbody className="table-body">
-      {arr.map(i => (
+      {arr.map((i) => (
         <tr key={i.id}>
           <td>{i.name}</td>
           <td>
@@ -29,7 +29,7 @@ const DisplayBlocks = ({ arr, handleClick }) => {
               : (Math.round(100 * i.budget) / 100).toFixed(2)}
           </td>
           <td>
-            <DeleteBlockModal blockID={i.id} />
+            <DelBlock blockID={i.id} />
             <button
               id="edit-button"
               onClick={() => handleClick(i.id, i.budget)}
@@ -46,7 +46,7 @@ const DisplayBlocks = ({ arr, handleClick }) => {
 function mapStateToProps(state) {
   return {
     userID: state.loginReducer.user.id,
-    blocks: state.plaidReducer.categories
+    blocks: state.plaidReducer.categories,
   };
 }
 

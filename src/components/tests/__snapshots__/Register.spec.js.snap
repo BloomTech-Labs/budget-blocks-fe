@@ -20,12 +20,7 @@ Object {
               <img
                 alt="logo"
                 class="logo-reg"
-                src="logo.jpg"
-              />
-              <img
-                alt="budget_blocks"
-                class="name-reg"
-                src="budget_blocks.png"
+                src="Logo.svg"
               />
               <h2
                 class="MuiTypography-root sign MuiTypography-h2"
@@ -39,42 +34,45 @@ Object {
               <div
                 class="MuiFormControl-root"
               >
-                <p
-                  class="MuiTypography-root label MuiTypography-body1"
-                >
-                  Email Address
-                </p>
                 <div
-                  class="MuiFormControl-root MuiTextField-root"
+                  class="MuiFormControl-root MuiFormControl-fullWidth"
                 >
-                  <div
-                    class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-formControl"
+                  <p
+                    class="MuiTypography-root label MuiTypography-body1"
                   >
-                    <input
-                      aria-invalid="false"
-                      class="MuiInputBase-input MuiOutlinedInput-input"
-                      id="outlined-basic"
-                      name="email"
-                      placeholder="Email Address"
-                      type="email"
-                      value=""
-                    />
-                    <fieldset
-                      aria-hidden="true"
-                      class="PrivateNotchedOutline-root-77 MuiOutlinedInput-notchedOutline"
-                      style="padding-left: 8px;"
+                    E-mail Address
+                  </p>
+                  <div
+                    class="MuiFormControl-root MuiTextField-root"
+                  >
+                    <div
+                      class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-formControl"
                     >
-                      <legend
-                        class="PrivateNotchedOutline-legend-78"
-                        style="width: 0.01px;"
+                      <input
+                        aria-invalid="false"
+                        class="MuiInputBase-input MuiOutlinedInput-input"
+                        name="email"
+                        placeholder="E-mail Address"
+                        type="email"
+                        value=""
+                      />
+                      <fieldset
+                        aria-hidden="true"
+                        class="PrivateNotchedOutline-root-77 MuiOutlinedInput-notchedOutline"
+                        style="padding-left: 8px;"
                       >
-                        <span>
-                          ​
-                        </span>
-                      </legend>
-                    </fieldset>
+                        <legend
+                          class="PrivateNotchedOutline-legend-78"
+                          style="width: 0.01px;"
+                        >
+                          <span>
+                            ​
+                          </span>
+                        </legend>
+                      </fieldset>
+                    </div>
+                    
                   </div>
-                  
                 </div>
                 <p
                   class="MuiTypography-root label MuiTypography-body1"
@@ -190,7 +188,6 @@ Object {
                               aria-hidden="true"
                               class="MuiSvgIcon-root"
                               focusable="false"
-                              role="presentation"
                               viewBox="0 0 24 24"
                             >
                               <path
@@ -261,7 +258,6 @@ Object {
                               aria-hidden="true"
                               class="MuiSvgIcon-root"
                               focusable="false"
-                              role="presentation"
                               viewBox="0 0 24 24"
                             >
                               <path
@@ -294,19 +290,15 @@ Object {
                 <div
                   class="account"
                 >
-                  <p
-                    class="MuiTypography-root account MuiTypography-body1"
-                  >
-                    Already have an account?
-                  </p>
                   <a
                     class="links"
                     href="/login"
                   >
-                    Click 
-                    <strong>
-                       here!
-                    </strong>
+                    <p
+                      class="MuiTypography-root account MuiTypography-body1"
+                    >
+                      Already have an account?
+                    </p>
                   </a>
                 </div>
                 <p
@@ -321,7 +313,7 @@ Object {
                     class="MuiButton-label"
                   >
                     <p>
-                      SignUp
+                      Sign up
                     </p>
                   </span>
                   <span
@@ -351,12 +343,7 @@ Object {
             <img
               alt="logo"
               class="logo-reg"
-              src="logo.jpg"
-            />
-            <img
-              alt="budget_blocks"
-              class="name-reg"
-              src="budget_blocks.png"
+              src="Logo.svg"
             />
             <h2
               class="MuiTypography-root sign MuiTypography-h2"
@@ -370,42 +357,45 @@ Object {
             <div
               class="MuiFormControl-root"
             >
-              <p
-                class="MuiTypography-root label MuiTypography-body1"
-              >
-                Email Address
-              </p>
               <div
-                class="MuiFormControl-root MuiTextField-root"
+                class="MuiFormControl-root MuiFormControl-fullWidth"
               >
-                <div
-                  class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-formControl"
+                <p
+                  class="MuiTypography-root label MuiTypography-body1"
                 >
-                  <input
-                    aria-invalid="false"
-                    class="MuiInputBase-input MuiOutlinedInput-input"
-                    id="outlined-basic"
-                    name="email"
-                    placeholder="Email Address"
-                    type="email"
-                    value=""
-                  />
-                  <fieldset
-                    aria-hidden="true"
-                    class="PrivateNotchedOutline-root-77 MuiOutlinedInput-notchedOutline"
-                    style="padding-left: 8px;"
+                  E-mail Address
+                </p>
+                <div
+                  class="MuiFormControl-root MuiTextField-root"
+                >
+                  <div
+                    class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-formControl"
                   >
-                    <legend
-                      class="PrivateNotchedOutline-legend-78"
-                      style="width: 0.01px;"
+                    <input
+                      aria-invalid="false"
+                      class="MuiInputBase-input MuiOutlinedInput-input"
+                      name="email"
+                      placeholder="E-mail Address"
+                      type="email"
+                      value=""
+                    />
+                    <fieldset
+                      aria-hidden="true"
+                      class="PrivateNotchedOutline-root-77 MuiOutlinedInput-notchedOutline"
+                      style="padding-left: 8px;"
                     >
-                      <span>
-                        ​
-                      </span>
-                    </legend>
-                  </fieldset>
+                      <legend
+                        class="PrivateNotchedOutline-legend-78"
+                        style="width: 0.01px;"
+                      >
+                        <span>
+                          ​
+                        </span>
+                      </legend>
+                    </fieldset>
+                  </div>
+                  
                 </div>
-                
               </div>
               <p
                 class="MuiTypography-root label MuiTypography-body1"
@@ -521,7 +511,6 @@ Object {
                             aria-hidden="true"
                             class="MuiSvgIcon-root"
                             focusable="false"
-                            role="presentation"
                             viewBox="0 0 24 24"
                           >
                             <path
@@ -592,7 +581,6 @@ Object {
                             aria-hidden="true"
                             class="MuiSvgIcon-root"
                             focusable="false"
-                            role="presentation"
                             viewBox="0 0 24 24"
                           >
                             <path
@@ -625,19 +613,15 @@ Object {
               <div
                 class="account"
               >
-                <p
-                  class="MuiTypography-root account MuiTypography-body1"
-                >
-                  Already have an account?
-                </p>
                 <a
                   class="links"
                   href="/login"
                 >
-                  Click 
-                  <strong>
-                     here!
-                  </strong>
+                  <p
+                    class="MuiTypography-root account MuiTypography-body1"
+                  >
+                    Already have an account?
+                  </p>
                 </a>
               </div>
               <p
@@ -652,7 +636,7 @@ Object {
                   class="MuiButton-label"
                 >
                   <p>
-                    SignUp
+                    Sign up
                   </p>
                 </span>
                 <span

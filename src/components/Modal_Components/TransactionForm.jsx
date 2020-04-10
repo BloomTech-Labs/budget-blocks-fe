@@ -38,16 +38,7 @@ const TransactionForm = ({
   
   return (
     <div>
-      {/* <Dialog
-        className="dialogModal"
-        onClose={handleClose}
-        aria-labelledby="customized-dialog-title"
-        open={handleOpen}
-        fullWidth={true}
-        maxWidth="md"
-      >
-        <ModalTitle handleClose={handleClose} title="Add Transaction" />
-        <DialogContent className="content"> */}
+      
         <ModalDialog
           handleClose={handleClose}
           areaLabelledBy="customized-dialog-title"
@@ -123,10 +114,6 @@ const TransactionForm = ({
             </div>
           </FormControl>
           </ModalDialog>
-        {/* </DialogContent> */}
-        {/* Creates Back and Continue buttons. Takes in functions to close modal and submit to add transaction*/}
-        {/* <BackContinue BackClick={handleClose} ContClick={handleSubmit} /> */}
-      {/* </Dialog> */}
     </div>
   );
 };

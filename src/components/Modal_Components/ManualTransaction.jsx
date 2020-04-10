@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useStyles } from "./dialogViews/dialogStyles";
 import {
   addManualBlocks,
@@ -23,6 +23,7 @@ import "./modalStyle.css";
  * @returns {*} Add Transaction Modal
  */
 export const ManualTransaction = props => {
+  useEffect(()=>console.log('********************manualTransactions invoked*******************'))
   const [state, setState] = useState({
     customBlock: {
       name: "",

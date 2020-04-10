@@ -10,6 +10,11 @@ import BackContinue from "./BackContinue";
 
 /**
  * ModalDialog (wrapper for modals)
+ * This takes the Dialog, ModalTitle, and DialogContent components
+ * and returns them with appropriate props. This is used in DialogVews,
+ * and TransAction form, which require two different sets of buttons near
+ * the bottom. This is handled with backContinue and dialogActions booleans,
+ * which dictate which set is rendered.
  *
  * props: {
  *  handleOpen: function,
@@ -41,7 +46,7 @@ const ModalDialog = (props) => {
           ContClick={props.handleSubmit}
         />
       ) : null}
-      {props.dialogActions > (
+      {props.dialogActions ? (
         <DialogActions
           className="buttons"
           >
@@ -59,10 +64,10 @@ const ModalDialog = (props) => {
             variant="outlined"
             color="primary"
           >
-            CONTINUE
+            NEXT
           </Button>
         </DialogActions>
-      )}
+      ) : null}
     </Dialog>
   );
 };

@@ -18,7 +18,7 @@ jobs:
     steps:
       - uses: actions/checkout@master
         with:
-          ref: development
+          ref: ${{ github.event.pull_request.head.sha }}
           fetch-depth: 0
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
@@ -39,7 +39,7 @@ jobs:
       - run: yarn install
       - uses: paambaati/codeclimate-action@v2.4.0
         env:
-          CC_TEST_REPORTER_ID: dcb0e4f9c5dd2410190c3e06c1601c671d40116e1d604eee07e979e0aacd8c6c
+          CC_TEST_REPORTER_ID: 8b330051927dbc8bda351ac4df4b8e613dbde865fa8ec5d7bba70ea6dd1316d4
         with:
           coverageCommand: yarn coverage
           debug: false 

@@ -7,66 +7,21 @@ import { connect } from "react-redux";
 import "./index.css";
 
 import LinkedTransaction from "../Modal_Components/LinkedTransaction";
+import useStyles from "./LinkedTransactionStyles"
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    "& > *": {
-      margin: theme.spacing(1)
-    }
-  },
-  container: {
-    display: "flex",
-    width: "100%"
-  },
-  topcontent: {
-    display: "flex"
-  },
-  card: {
-    width: "100%",
-    marginBottom: "1rem",
-    height: "70%",
-    background: "#f7f7f7",
-    textAlign: "left",
-    paddingLeft: "10px",
-    display: "flex",
-
-    fontSize: "12px"
-  },
-  details: {
-    display: "flex"
-  },
-  content: {
-    flex: "1 0 auto",
-    alignItems: "flex-start",
-    textAlign: "left"
-  },
-  controls: {
-    display: "flex",
-    alignItems: "center",
-    textAlign: "right",
-    alignContent: "flex-end"
-  },
-  text: {
-    textAlign: "left",
-    paddingLeft: theme.spacing(5)
-  },
-  rightInfo: {
-    width: "85%"
-  },
-  leftInfo: {
-    width: "15%",
-    alignItems: "center"
-  }
-}));
-
-const Transactions = props => {
-  // This component displays the transactions table.
-  // filter determines the amount of transactions that are displayed. (True = 3 transactions, false = all transactions)
-  // handleClick toggles the filter
-  // open is used to display the add transaction modal
+/**
+ * @param {*} props
+ * @returns {*} Transactions Component
+ * 
+ * This component displays the transactions table.
+ * filter determines the amount of transactions that are displayed. (True = 3 transactions, false = all transactions)
+ * handleClick toggles the filter
+ * open is used to display the add transaction modal
+ */
+const Transactions = (props) => {
   const classes = useStyles();
   const [filter, setFilter] = useState(true);
-  const handleClick = e => {
+  const handleClick = (e) => {
     setFilter(!filter);
   };
 
@@ -107,7 +62,7 @@ function mapStateToProps(state) {
   return {
     userID: state.loginReducer.user.id,
     LinkedAccount: state.loginReducer.user.LinkedAccount,
-    transactions: state.plaidReducer.transactions
+    transactions: state.plaidReducer.transactions,
   };
 }
 

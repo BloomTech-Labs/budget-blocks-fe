@@ -3,10 +3,10 @@ name: Code Climate Coverage Action
 on: 
   push:
     branches: 
-    - master
+    - development
   pull_request:
     branches: 
-    - master
+    - development
 
 jobs:
   test:
@@ -39,7 +39,7 @@ jobs:
       - run: yarn install
       - uses: paambaati/codeclimate-action@v2.4.0
         env:
-          CC_TEST_REPORTER_ID: ${{ secrets.CodeClimateReporterId }} 
+          CC_TEST_REPORTER_ID: dcb0e4f9c5dd2410190c3e06c1601c671d40116e1d604eee07e979e0aacd8c6c
         with:
           coverageCommand: yarn coverage
           debug: false 

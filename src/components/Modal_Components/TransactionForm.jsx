@@ -9,6 +9,7 @@ import TextField from "@material-ui/core/TextField";
 import InputLabel from "@material-ui/core/InputLabel";
 import Select from "@material-ui/core/Select";
 import { DialogContent } from "./dialogViews/dialogStyles";
+import ModalDialog from './ModalDialog'
 
 /**
  * TransactionForm is used when adding a transaction
@@ -34,9 +35,10 @@ const TransactionForm = ({
   handleChange,
   handleSubmit
 }) => {
+  
   return (
     <div>
-      <Dialog
+      {/* <Dialog
         className="dialogModal"
         onClose={handleClose}
         aria-labelledby="customized-dialog-title"
@@ -45,7 +47,16 @@ const TransactionForm = ({
         maxWidth="md"
       >
         <ModalTitle handleClose={handleClose} title="Add Transaction" />
-        <DialogContent className="content">
+        <DialogContent className="content"> */}
+        <ModalDialog
+          handleClose={handleClose}
+          areaLabelledBy="customized-dialog-title"
+          modalTitle="Add Transaction"
+          handleOpen={handleOpen}
+          maxWidth="md"
+          handleSubmit={handleSubmit}
+          backContinue={true}
+          >
           <FormControl className="radios" component="fieldset">
             <div className="cat1">
               <TextField
@@ -111,10 +122,11 @@ const TransactionForm = ({
               />
             </div>
           </FormControl>
-        </DialogContent>
+          </ModalDialog>
+        {/* </DialogContent> */}
         {/* Creates Back and Continue buttons. Takes in functions to close modal and submit to add transaction*/}
-        <BackContinue BackClick={handleClose} ContClick={handleSubmit} />
-      </Dialog>
+        {/* <BackContinue BackClick={handleClose} ContClick={handleSubmit} /> */}
+      {/* </Dialog> */}
     </div>
   );
 };

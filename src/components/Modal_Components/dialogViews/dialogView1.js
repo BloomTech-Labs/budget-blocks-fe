@@ -1,4 +1,5 @@
 import React from "react";
+import ModalDialog from '../ModalDialog'
 import {
   Dialog,
   ModalTitle,
@@ -28,6 +29,15 @@ const View1 = ({
     >
       <ModalTitle handleClose={props.handleClose} title="Add Category" />
       <DialogContent className="content">
+    {/* <ModalDialog
+      handleClose={props.handleClose}
+      areaLabelledBy="customized-dialog-title"
+      modalTitle="Add Transaction"
+      handleOpen={props.open}
+      maxWidth="md"
+      backContinue={true}
+      dialogActions={true}
+      > */}
         <p className="error-message">
           Create a valid name and a budget number over 0
         </p>
@@ -61,7 +71,7 @@ const View1 = ({
             />
           </div>
         </FormControl>
-      </DialogContent>
+       </DialogContent>
       <DialogActions className="buttons">
         <Button
           className="backBtn"
@@ -80,7 +90,8 @@ const View1 = ({
           CONTINUE
         </Button>
       </DialogActions>{" "}
-    </Dialog>
+    </Dialog> 
+    // </ModalDialog>
   );
 };
 

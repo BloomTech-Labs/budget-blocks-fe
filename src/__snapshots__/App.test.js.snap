@@ -14,7 +14,7 @@ Object {
           >
             <img
               class="image"
-              src="Background.png"
+              src="Logo_113x83.svg"
             />
             <img
               class="heading"
@@ -46,7 +46,7 @@ Object {
                 <img
                   alt="logo"
                   class="App-logo"
-                  src="logo.jpg"
+                  src="Logo.svg"
                 />
                 <img
                   alt="budget_blocks"
@@ -112,7 +112,7 @@ Object {
         >
           <img
             class="image"
-            src="Background.png"
+            src="Logo_113x83.svg"
           />
           <img
             class="heading"
@@ -144,7 +144,7 @@ Object {
               <img
                 alt="logo"
                 class="App-logo"
-                src="logo.jpg"
+                src="Logo.svg"
               />
               <img
                 alt="budget_blocks"

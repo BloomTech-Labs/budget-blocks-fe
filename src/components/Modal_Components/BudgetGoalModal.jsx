@@ -1,8 +1,8 @@
-import React, { useState, useEffect} from "react";
-import { connect } from "react-redux"
-import { Back_Continue } from "./Back_Continue";
-import { Modal_Title } from "./Modal_Title";
-import { withStyles, makeStyles } from "@material-ui/core/styles";
+import React, { useState, useEffect } from "react";
+import { connect } from "react-redux";
+import BackContinue from "./BackContinue";
+import ModalTitle from "./ModalTitle";
+import { withStyles } from "@material-ui/core/styles";
 import Dialog from "@material-ui/core/Dialog";
 import MuiDialogContent from "@material-ui/core/DialogContent";
 import Typography from "@material-ui/core/Typography";
@@ -23,24 +23,28 @@ export function BudgetGoal(props) {
   // goals is the data from the form
   // The only field that works functionally is the textfield for editing the budget
   // Slider and time increments are meant for future canvas to implement goals
-  const [userID, setUserID]=useState("")
+  const [userID, setUserID] = useState("");
   const [goals, setGoals] = useState({
     categoryid: "",
     budget: ""
   });
 
-  useEffect(()=>{
+  useEffect(() => {
     // whenever the block being edited changes: apply these new values
-    if(props.values.budget === null){
-      props.values.budget = 0
+    if (props.values.budget === null) {
+      props.values.budget = 0;
     }
-    setGoals({...goals, categoryid:props.values.catId, budget:props.values.budget})
+    setGoals({
+      ...goals,
+      categoryid: props.values.catId,
+      budget: props.values.budget
+    });
     setUserID(props.values.userId);
-  },[props.values.catId])
+  }, [props.values.catId]);
 
   const handleChange = e => {
     e.preventDefault();
-    setGoals({ ...goals,budget: e.target.value });
+    setGoals({ ...goals, budget: e.target.value });
   };
 
   const PrettoSlider = withStyles({
@@ -82,9 +86,8 @@ export function BudgetGoal(props) {
     props.updateBlocks(userID, goals);
     setGoals({ ...goals });
     props.handleClose();
-
   };
- 
+
   return (
     <div>
       <Dialog
@@ -95,13 +98,13 @@ export function BudgetGoal(props) {
         fullWidth={true}
         maxWidth="md"
       >
-        <Modal_Title handleClose={props.handleClose} title="Total Goal"/>
-  
+        <ModalTitle handleClose={props.handleClose} title="Total Goal" />
+
         <DialogContent className="content">
           <Typography className="what" variant="h5">
             What is your spending goal?
           </Typography>
-       
+
           <TextField
             className="goal"
             placeholder="0.00"
@@ -143,16 +146,14 @@ export function BudgetGoal(props) {
             </div>
           </div>
         </DialogContent>
-        <Back_Continue BackClick={props.handleClose} ContClick={submit}/>
+        <BackContinue BackClick={props.handleClose} ContClick={submit} />
       </Dialog>
     </div>
   );
 }
 
-function mapStateToProps(state){
-  return {
-      
-  }
+function mapStateToProps(state) {
+  return {};
 }
 
-export default connect(mapStateToProps,{ updateBlocks })(BudgetGoal)
+export default connect(mapStateToProps, { updateBlocks })(BudgetGoal);

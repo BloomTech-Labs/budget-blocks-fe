@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import {
   Dialog,
   ModalTitle,
@@ -15,19 +16,8 @@ import BackContinue from "./BackContinue";
  * and TransAction form, which require two different sets of buttons near
  * the bottom. This is handled with backContinue and dialogActions booleans,
  * which dictate which set is rendered.
- *
- * props: {
- *  handleOpen: function,
- *  handleClose: function,
- *  modalTitle: string,
- *  maxWidth: string,
- *  ariaLabelledBy: string,
- *  handleSubmit: function,
- *  backContinue: boolean,
- *  dialogActions: boolean,
- *  submitEdit: function
- *  ...default
- * }
+ * @param {Object} props Defined in propType at bottom
+ * @returns {Component} Returns a wrapper that displays children
  */
 const ModalDialog = (props) => {
   return (
@@ -35,7 +25,7 @@ const ModalDialog = (props) => {
       className="dialogModal"
       onClose={props.handleClose}
       aria-labelledby={props.ariaLabelledBy}
-      open={props.handleOpen}
+      open={props.open}
       maxWidth={props.maxWidth}
     >
       <ModalTitle handleClose={props.handleClose} title={props.modalTitle} />
@@ -49,13 +39,13 @@ const ModalDialog = (props) => {
       {props.dialogActions ? (
         <DialogActions
           className="buttons"
-          >
+        >
           <Button
-           className="backBtn"
+            className="backBtn"
             onClick={props.handleClose}
             variant="outlined"
             color="primary"
-           >
+          >
             BACK
             </Button>
           <Button
@@ -71,5 +61,17 @@ const ModalDialog = (props) => {
     </Dialog>
   );
 };
+
+ModalDialog.propTypes = {
+  handleClose: PropTypes.func,
+  modalTitle: PropTypes.string,
+  maxWidth: PropTypes.string,
+  ariaLabelledBy: PropTypes.string,
+  handleSubmit: PropTypes.func,
+  backContinue: PropTypes.bool,
+  dialogActions: PropTypes.bool,
+  submitEdit: PropTypes.func,
+  open: PropTypes.bool
+}
 
 export default ModalDialog;

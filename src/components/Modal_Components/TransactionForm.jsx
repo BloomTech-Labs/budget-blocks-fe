@@ -19,7 +19,7 @@ import ModalDialog from './ModalDialog'
  * @param {Array} cat enumerated list of categories
  * @param {Object} inputLabel React.ref
  * @param {Number} labelWidth width of <Select>.option,
- * @param {Function} handleOpen event handler
+ * @param {Boolean} open event handler
  * @param {Function} handleClose event handler
  * @param {Function} handleChange event handler
  * @param {Function} handleSubmit event handler
@@ -30,7 +30,7 @@ const TransactionForm = ({
   cat,
   labelWidth,
   inputLabel,
-  handleOpen,
+  open,
   handleClose,
   handleChange,
   handleSubmit
@@ -41,9 +41,9 @@ const TransactionForm = ({
       
         <ModalDialog
           handleClose={handleClose}
-          areaLabelledBy="customized-dialog-title"
+          ariaLabelledBy="customized-dialog-title"
           modalTitle="Add Transaction"
-          handleOpen={handleOpen}
+          open={open}
           maxWidth="md"
           handleSubmit={handleSubmit}
           backContinue={true}

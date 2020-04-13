@@ -8,8 +8,8 @@ import ModalDialog from '../ModalDialog'
 
 /**
  * View2 
- * @param {*} param0 props{
- * }
+ * @param {Object} props props
+ * @returns {Component} component
  */
 const View2 = ({
   props,
@@ -23,9 +23,9 @@ const View2 = ({
   return (
     <ModalDialog
       handleClose={props.handleClose}
-      areaLabelledBy="customized-dialog-title"
+      ariaLabelledBy="customized-dialog-title"
       modalTitle="Add Transaction"
-      handleOpen={props.open}
+      open={props.open}
       maxWidth="md"
       backContinue={false}
       dialogActions={true}

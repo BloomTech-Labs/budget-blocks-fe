@@ -1,14 +1,10 @@
-import React, { useEffect } from "react";
+import React from "react";
 import ModalDialog from '../ModalDialog'
 import {
-  Dialog,
-  ModalTitle,
-  DialogContent,
+  
   FormControl,
   Select,
   TextField,
-  DialogActions,
-  Button
 } from "./dialogComponents";
 const View1 = ({
   props,
@@ -19,13 +15,12 @@ const View1 = ({
   cat,
   classes
 }) => {
-  useEffect(() => console.log('**************dialogView1 invoked***********'), [])
   return (
     <ModalDialog
       handleClose={props.handleClose}
-      areaLabelledBy="customized-dialog-title"
+      ariaLabelledBy="customized-dialog-title"
       modalTitle="Add Transaction"
-      handleOpen={props.open}
+      open={props.open}
       maxWidth="md"
       backContinue={true}
       dialogActions={true}

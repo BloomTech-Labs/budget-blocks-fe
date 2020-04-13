@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import {
   Select,
   FormControl,
@@ -19,14 +19,13 @@ const View3 = ({
   classes,
   errorMessage
 }) => {
-  useEffect(() => console.log('**************dialogView3 invoked***********'), [])
   return (
 
     <ModalDialog
       handleClose={props.handleClose}
-      areaLabelledBy="customized-dialog-title"
+      ariaLabelledBy="customized-dialog-title"
       modalTitle="Add Transaction"
-      handleOpen={props.open}
+      open={props.open}
       maxWidth="md"
       backContinue={false}
       dialogActions={true}

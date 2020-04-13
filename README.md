@@ -37,7 +37,7 @@ more info on using badges [here](https://github.com/badges/shields)
 
  [Notion](https://www.notion.so/Budget-Blocks-6251cc75b71c4988af56529409f6f07f)
 
- [UX Design files](https://www.figma.com/file/2yjo18aU6tUtB0gObkeeiE/Budget-Blocks%2C-Ivan?node-id=177%3A6)
+ [Figma Design files](https://www.figma.com/file/2yjo18aU6tUtB0gObkeeiE/Budget-Blocks%2C-Ivan?node-id=177%3A6)
 
 
 

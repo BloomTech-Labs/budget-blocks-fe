@@ -2,22 +2,12 @@ import React from "react";
 import { Register } from "../Form_Components/Register/Register";
 import { render } from "@testing-library/react";
 import { BrowserRouter as Router } from "react-router-dom";
-import { configure } from "enzyme";
-import Adapter from "enzyme-adapter-react-16";
-import { mount } from "enzyme";
-import { shallow } from 'enzyme';
+import { configure, mount, shallow } from "enzyme";
+
+
 
 configure({ adapter: new Adapter() });
 
-// test("Register renders correctly", () => {
-//   expect(
-//     render(
-//       <Router>
-//         <Register />
-//       </Router>
-//     )
-//   ).toMatchSnapshot();
-// });
 
 test('Register renders correctly',()=>{
   const wrapper = shallow(<Register />)

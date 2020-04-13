@@ -11,7 +11,7 @@ import Table from '@material-ui/core/Table';
 import TableContainer from '@material-ui/core/Table';
 import Paper from '@material-ui/core/Paper';
 import AddManualBlocks from "../AddManualBlocks"
-import BudgetGoal from '../Modal_Components/BudgetGoalModal';
+import BudgetGoalModal from '../Modal_Components/BudgetGoalModal';
 
 export function Blocks(props) {
 	// This component displays the blocks table. 
@@ -51,7 +51,7 @@ export function Blocks(props) {
 						handleClick={handleClickOpen}
 					/>
 				</Table>
-				<BudgetGoal open={open} values={values} handleClose={handleClose} />
+				<BudgetGoalModal handleOpen={open} values={values} handleClose={handleClose} />
 			</TableContainer>
 			<div>
 				<button className='blocks-button' onClick={handleClick}>

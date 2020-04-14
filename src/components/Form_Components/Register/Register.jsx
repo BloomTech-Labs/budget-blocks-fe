@@ -6,6 +6,8 @@ import Title from "../Title";
 import RegForm from "./form";
 import { default_user, default_values } from "./defaults";
 import handlers from "./handlers";
+import { useContext } from "react";
+import CredentialsContext from "../../../contexts/CredentialsContext";
 
 import Container from "@material-ui/core/Container";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
@@ -18,26 +20,29 @@ import "./registerStyle.css";
  * @param {Object} props React component props
  * @returns <div className="register" .../>
  */
-export const Register = props => {
+export const Register = (props) => {
+  const { updateCredentials } = useContext(CredentialsContext);
   const [state, setState] = useState({
     user: { ...default_user },
     values: { ...default_values },
-    confirmPass: { confirmPassword: "" }
+    confirmPass: { confirmPassword: "" },
   });
+
   const canSubmit = () => {
-    const vals = Object.keys(state.values).filter(key =>
+    const vals = Object.keys(state.values).filter((key) =>
       Object.keys(state.values[key]).includes("error")
     );
-    const errs = vals.filter(value => state.values[value].error === true);
+    const errs = vals.filter((value) => state.values[value].error === true);
     setState({
       ...state,
-      values: { ...state.values, button: { disabled: errs.length > 0 } }
+      values: { ...state.values, button: { disabled: errs.length > 0 } },
     });
+    updateCredentials(state.user.email, state.user.password);
   };
-  const handleSubmit = e =>
+  const handleSubmit = (e) =>
     handlers.handleSubmit({ e, state, setState, props });
-  const handleConfirm = e => handlers.handleConfirm({ e, state, setState });
-  const handleUserChange = e =>
+  const handleConfirm = (e) => handlers.handleConfirm({ e, state, setState });
+  const handleUserChange = (e) =>
     handlers.handleUserChange({ e, state, setState });
   useEffect(() => {
     canSubmit();
@@ -64,7 +69,7 @@ export const Register = props => {
 function mapStateToProps(state) {
   return {
     isFetching: state.registerReducer.isFetching,
-    error: state.registerReducer.error
+    error: state.registerReducer.error,
   };
 }
 

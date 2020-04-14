@@ -1,9 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import { connect } from "react-redux";
 import { addDefault } from "../../redux/actions/ManualActions";
 import { loginUser } from "../../redux/actions/LoginActions";
 import { renderSpinner, pushToDashboard, renderManualBtn } from "./views";
 import "./onboard.css";
+
+import CredentialsContext from "../../contexts/CredentialsContext";
 
 /**
  * FirstOnboard
@@ -22,24 +24,25 @@ const FirstOnboard = ({
   isFetching,
   error,
   linkedAccount,
-  userId
+  userId,
 }) => {
+  const { email, password } = useContext(CredentialsContext);
   useEffect(() => {
     loginUser(
       {
-        email: localStorage.getItem("email"),
-        password: localStorage.getItem("password")
+        email,
+        password,
       },
       history
     );
   }, [history]);
-  const handleClick = e => {
+  const handleClick = (e) => {
     e.preventDefault();
     addDefault(userId, history);
   };
-  const waitingOnLink = localStorage.length !== 0 || isFetching;
+  //   const waitingOnLink = localStorage.length !== 0 || isFetching;
   const haveLink = linkedAccount === true;
-  const View = waitingOnLink
+  const View = isFetching
     ? renderSpinner()
     : haveLink
     ? pushToDashboard(history)
@@ -52,7 +55,7 @@ function mapStateToProps(state) {
     isFetching: state.plaidReducer.isFetching,
     error: state.plaidReducer.error,
     linkedAccount: state.loginReducer.user.LinkedAccount,
-    userId: state.loginReducer.user.id
+    userId: state.loginReducer.user.id,
   };
 }
 

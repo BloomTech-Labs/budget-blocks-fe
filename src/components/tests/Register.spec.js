@@ -3,7 +3,7 @@ import { Register } from "../Form_Components/Register/Register";
 import { render } from "@testing-library/react";
 import { BrowserRouter as Router } from "react-router-dom";
 import { configure, mount, shallow } from "enzyme";
-
+import Adapter from 'enzyme-adapter-react-16';
 
 
 configure({ adapter: new Adapter() });

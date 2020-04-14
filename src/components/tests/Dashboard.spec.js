@@ -6,11 +6,11 @@ import LinkedTransactions from "../Dashboard";
 
 configure({ adapter: new Adapter() });
 
-test("Dashboard renders correctly", () => {
-  const wrapper = shallow(<Dashboard LinkedAccount={false} blocks={[]} />);
+// test("Dashboard renders correctly", () => {
+//   const wrapper = shallow(<Dashboard LinkedAccount={false} blocks={[]} />);
 
-  expect(wrapper).toMatchSnapshot();
-});
+//   expect(wrapper).toMatchSnapshot();
+// });
 
 test("Dashboard renders correctly", () => {
   const wrapper = shallow(<Dashboard LinkedAccount={false} blocks={[]} />);
@@ -18,12 +18,12 @@ test("Dashboard renders correctly", () => {
   expect(wrapper.exists()).toBe(true);
 });
 
-test("linked transactions exists within component", () => {
-  expect(
-    render(
-      <Provider>
-        <LinkedTransactions />
-      </Provider>
-    ).exists()
-  ).toBe(true);
-});
+// test("linked transactions exists within component", () => {
+//   expect(
+//     render(
+//       <Provider>
+//         <LinkedTransactions />
+//       </Provider>
+//     ).exists()
+//   ).toBe(true);
+// });

@@ -48,11 +48,18 @@ const default_values = {
 const default_user = { email: "", password: "", first_name: "", last_name: "" };
 
 export const Register = props => {
+
+
+
+
+  
   const [state, setState] = useState({
     user: { ...default_user },
     confirmPass: { confirmPassword: "" },
     values: { ...default_values }
   });
+
+  console.log(props)
 
   useEffect(() =>{
     PageView()
@@ -85,6 +92,7 @@ export const Register = props => {
     GAevent("Registration", "User registered successfully", "New User Created");
 
     const check = CheckEmptyFields(state.user, state.values);
+
     if (check instanceof Object) {
       setState({ ...state, values: { ...check } });
     } else if (state.confirmPass.confirmPassword !== state.user.password) {
@@ -196,9 +204,11 @@ export const Register = props => {
 };
 
 function mapStateToProps(state) {
+  console.log(state.registerReducer)
   return {
     isFetching: state.registerReducer.isFetching,
-    error: state.registerReducer.error
+    error: state.registerReducer.error, 
+    
   };
 }
 

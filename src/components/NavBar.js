@@ -14,6 +14,9 @@ export function NavBar({ navState, logoutUser }) {
 
   const changeClass  = () => {
     sessionStorage.removeItem('token')
+    sessionStorage.removeItem('navState')
+    sessionStorage.removeItem('userID')
+    sessionStorage.removeItem('LinkedAccount')
     setClass(false)
   };
 
@@ -28,12 +31,12 @@ export function NavBar({ navState, logoutUser }) {
         <img className="heading" src={head} />
       </div>
       <div className="nav-action">
-        {initialClass === true ? (
-          <Link   onClick={changeClass} className={initialClass ? '' : 'hiddenClass'}>
+        {initialClass  ? (
+          <Link   onClick={changeClass} >
           Log Out
         </Link>
         ) : (
-          <Redirect to="/login" />
+          <Redirect to="/" />
         )}
       </div>
     </div>

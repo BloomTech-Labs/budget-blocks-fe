@@ -1,5 +1,7 @@
 import axios from "axios";
 import environmentUrls from "../../dispatch";
+import { Redirect} from "react-router-dom";
+import React from 'react'
 
 export const REGISTER_USER_LOADING = "REGISTER_USER_LOADING";
 export const REGISTER_USER_SUCCESS = "REGISTER_USER_SUCCESS";
@@ -28,6 +30,7 @@ export function registerUser(data, history) {
         localStorage.setItem("email", data.email);
         localStorage.setItem("password", data.password);
         history.push("/onBoard/1");
+        
       })
       .catch(error => {
         dispatch(registerUserFailure(error.response.data.error));

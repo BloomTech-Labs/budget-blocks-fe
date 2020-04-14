@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { Redirect} from "react-router-dom";
+
 import { connect } from "react-redux";
 import { loginUser } from "../../../redux/actions/LoginActions";
 import Title from "../Title";
@@ -45,6 +47,8 @@ export const Login = props => {
     user: { ...default_user }
   });
 
+  const [initial, setinitial] = useState(sessionStorage.getItem('token'));
+
   useEffect(() =>{
     PageView()
   })
@@ -85,6 +89,7 @@ export const Login = props => {
 
   return (
     <div className="SignIn">
+      {initial ? (<Redirect to="/onBoard/1" />) : (
       <Container maxWidth="sm">
         <Title title={LANG.SIGN_IN} titleClass="SignInTitle" />
 
@@ -127,6 +132,7 @@ export const Login = props => {
           </Button>
         </form>
       </Container>
+       )}
     </div>
   );
 };

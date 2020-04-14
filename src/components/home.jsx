@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import logo from "../media/image/Logo.svg";
 import budgetImg from "../media/image/budget_blocks.png";
 import Container from "@material-ui/core/Container";
@@ -11,24 +11,23 @@ const Home = () => {
   useEffect(() =>{
     //console.log(sessionStorage.getItem('token')) todo, need to redirect user to dashboard if token is found in storage
     PageView()
-    directing()
   })
+
+  const [initial, setinitial] = useState(sessionStorage.getItem('token'));
+  // initial => "string" 
+
 
   let trackSignUp = () => {
     GAevent("Landing Page Buttons", "User clicked sign-up button", "New User Flow")
   }
-const directing = () => {
-if (sessionStorage.getItem('token') ) {
-  return <Redirect to="/onBoard/1"/>
-}
-}
-  return (
+
+  return ( 
     <div className="home">
+    {!initial ? (
       <Container maxWidth="sm">
         <div style={{ backgroundColor: "#ffffff", height: "100vh" }}>
           <img src={logo} className="App-logo" alt="logo" />
           <img src={budgetImg} className="budget_img" alt="budget_blocks" />
-
           <div className="buttons">
             <Link to="/register" className="links">
               <Button variant="outlined" className="signup" onClick={trackSignUp}>
@@ -43,6 +42,9 @@ if (sessionStorage.getItem('token') ) {
           </div>
         </div>
       </Container>
+      ) : (
+        <Redirect to="/onBoard/1" />
+      )}
     </div>
   );
 };

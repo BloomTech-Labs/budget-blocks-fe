@@ -1,14 +1,10 @@
 import React from "react";
 
-import BackContinue from "./BackContinue";
-import ModalTitle from "./ModalTitle";
 
-import Dialog from "@material-ui/core/Dialog";
 import FormControl from "@material-ui/core/FormControl";
 import TextField from "@material-ui/core/TextField";
 import InputLabel from "@material-ui/core/InputLabel";
 import Select from "@material-ui/core/Select";
-import { DialogContent } from "./dialogViews/dialogStyles";
 import ModalDialog from './ModalDialog'
 
 /**

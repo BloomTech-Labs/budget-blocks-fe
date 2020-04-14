@@ -20,7 +20,7 @@ import "./modalStyle.css";
  * @returns {*} Add Transaction Modal
  */
 export const LinkedTransaction = ({
-  open: handleOpen,
+  open,
   userID,
   handleClose,
   addTransaction,
@@ -46,7 +46,7 @@ export const LinkedTransaction = ({
       payment_date: ymdNow(), // current date for material-ui date picker.
       category_id: ""
     });
-  }, [handleOpen]);
+  }, [open]);
   useEffect(() => {
     setCategories(cats);
   }, [cats]);
@@ -70,7 +70,7 @@ export const LinkedTransaction = ({
     cat,
     labelWidth,
     inputLabel,
-    handleOpen,
+    open,
     handleClose,
     handleChange,
     handleSubmit

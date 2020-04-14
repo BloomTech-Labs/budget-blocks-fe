@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useStyles } from "./dialogViews/dialogStyles";
 import {
   addManualBlocks,
@@ -23,6 +23,7 @@ import "./modalStyle.css";
  * @returns {*} Add Transaction Modal
  */
 export const ManualTransaction = props => {
+  useEffect(()=>console.log('***************ManualTransaction**********'), [])
   const [state, setState] = useState({
     customBlock: {
       name: "",
@@ -102,7 +103,6 @@ export const ManualTransaction = props => {
   props.blocks
     .filter(i => i.budget === null)
     .map(i => options.push({ value: i.id, label: i.name }));
-  // console.log(props.blocks);
   return (
     <div>
       {state.edit && state.failedEdit

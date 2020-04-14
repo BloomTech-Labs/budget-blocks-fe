@@ -4,7 +4,7 @@ import { addDefault } from "../../redux/actions/ManualActions";
 import { loginUser } from "../../redux/actions/LoginActions";
 import { renderSpinner, pushToDashboard, renderManualBtn } from "./views";
 import "./onboard.css";
-
+import Balance from "../../components/Balance_Components/Balance";
 import CredentialsContext from "../../contexts/CredentialsContext";
 
 /**
@@ -40,13 +40,25 @@ const FirstOnboard = ({
     e.preventDefault();
     addDefault(userId, history);
   };
-  //   const waitingOnLink = localStorage.length !== 0 || isFetching;
+  const waitingOnLink = localStorage.length !== 0 || isFetching;
   const haveLink = linkedAccount === true;
-  const View = isFetching
-    ? renderSpinner()
-    : haveLink
-    ? pushToDashboard(history)
-    : renderManualBtn({ handleClick, error });
+  const View = waitingOnLink ? (
+    renderSpinner()
+  ) : !isFetching && !linkedAccount && error === null ? (
+    <div className="main">
+      <div className="manualBudgetButton">
+        {" "}
+        <button onClick={handleClick}>
+          Manually set your budget goals here
+        </button>
+      </div>
+      <Balance />
+    </div>
+  ) : haveLink ? (
+    pushToDashboard(history)
+  ) : (
+    renderManualBtn({ handleClick, error })
+  );
   return <div>{View}</div>;
 };
 

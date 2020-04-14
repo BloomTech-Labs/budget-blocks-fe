@@ -12,10 +12,10 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import "./modalStyle.css";
 import { updateBlocks } from "../../redux/actions/userBlocks";
 
-const DialogContent = withStyles(theme => ({
+const DialogContent = withStyles((theme) => ({
   root: {
-    padding: theme.spacing(2)
-  }
+    padding: theme.spacing(2),
+  },
 }))(MuiDialogContent);
 
 export function BudgetGoal(props) {
@@ -26,7 +26,7 @@ export function BudgetGoal(props) {
   const [userID, setUserID] = useState("");
   const [goals, setGoals] = useState({
     categoryid: "",
-    budget: ""
+    budget: "",
   });
 
   useEffect(() => {
@@ -34,15 +34,16 @@ export function BudgetGoal(props) {
     if (props.values.budget === null) {
       props.values.budget = 0;
     }
+    // console.log(props.values);
     setGoals({
       ...goals,
       categoryid: props.values.catId,
-      budget: props.values.budget
+      budget: props.values.budget,
     });
     setUserID(props.values.userId);
   }, [props.values.catId]);
 
-  const handleChange = e => {
+  const handleChange = (e) => {
     e.preventDefault();
     setGoals({ ...goals, budget: e.target.value });
   };
@@ -50,7 +51,7 @@ export function BudgetGoal(props) {
   const PrettoSlider = withStyles({
     root: {
       color: "#91D5FF",
-      height: 8
+      height: 8,
     },
     thumb: {
       height: 24,
@@ -60,27 +61,27 @@ export function BudgetGoal(props) {
       marginTop: -8,
       marginLeft: -12,
       "&:focus,&:hover,&$active": {
-        boxShadow: "inherit"
-      }
+        boxShadow: "inherit",
+      },
     },
     active: {},
     valueLabel: {
-      left: "calc(-50% + 4px)"
+      left: "calc(-50% + 4px)",
     },
     track: {
       height: 8,
-      borderRadius: 4
+      borderRadius: 4,
     },
     rail: {
       height: 8,
-      borderRadius: 4
-    }
+      borderRadius: 4,
+    },
   })(Slider);
 
   function changeSlider(event, value) {
-    console.log(value);
+    // console.log(value); TO-DO bind slider to value
   }
-  const submit = e => {
+  const submit = (e) => {
     // update using updateBlocks from redux
     e.preventDefault();
     props.updateBlocks(userID, goals);
@@ -114,7 +115,7 @@ export function BudgetGoal(props) {
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">$</InputAdornment>
-              )
+              ),
             }}
           />
 
@@ -152,13 +153,13 @@ export function BudgetGoal(props) {
   );
 }
 
-function mapStateToProps(state){
+function mapStateToProps(state) {
   return {
-  values: state.values, 
-  updateBlocks: state.updateBlocks,
-  handleClose: state.handleClose,
-  handleOpen: state.handleOpen
-  }
+    values: state.values,
+    updateBlocks: state.updateBlocks,
+    handleClose: state.handleClose,
+    handleOpen: state.handleOpen,
+  };
 }
 
 export default connect(mapStateToProps, { updateBlocks })(BudgetGoal);

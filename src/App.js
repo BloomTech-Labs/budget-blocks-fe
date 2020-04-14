@@ -21,15 +21,16 @@ function App() {
   return (
     <div>
       <Navbar />
+      
       <div className="App">
         <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
           <PrivateRoute path="/dashboard" component={Dashboard} />
-          <Route path="/onBoard/select" component={SelectCategories} />
-          <Route path="/onBoard/1" component={FirstOnboard} />
-          <Route path="/manual" component={ManualBlocks} />
+          <PrivateRoute path="/onBoard/select" component={SelectCategories} />
+          <PrivateRoute path="/onBoard/1" component={FirstOnboard} />
+          <PrivateRoute path="/manual" component={ManualBlocks} />
         </Switch>
       </div>
     </div>

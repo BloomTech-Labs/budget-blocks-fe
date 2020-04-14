@@ -5,16 +5,23 @@ import Container from "@material-ui/core/Container";
 import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
 import {PageView, GAevent} from "./google_analytics/index.js"
+import { Redirect} from "react-router-dom";
 
 const Home = () => {
   useEffect(() =>{
+    //console.log(sessionStorage.getItem('token')) todo, need to redirect user to dashboard if token is found in storage
     PageView()
+    directing()
   })
 
   let trackSignUp = () => {
     GAevent("Landing Page Buttons", "User clicked sign-up button", "New User Flow")
   }
-
+const directing = () => {
+if (sessionStorage.getItem('token') ) {
+  return <Redirect to="/onBoard/1"/>
+}
+}
   return (
     <div className="home">
       <Container maxWidth="sm">

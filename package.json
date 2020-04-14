@@ -20,11 +20,7 @@
     "axios": "^0.19.2",
     "bootstrap": "^4.4.1",
     "date-fns": "^2.9.0",
-<<<<<<< HEAD
-    "dotenv": "^8.2.0",
-=======
     "enzyme": "^3.11.0",
->>>>>>> 076a0639fdefbe992ef4976c77819058df844587
     "enzyme-adapter-react-16": "^1.15.2",
     "immutable": "^4.0.0-rc.12",
     "istanbul-lib-coverage": "^2.0.5",
@@ -83,16 +79,10 @@
     "axios-mock-adapter": "^1.17.0",
     "babel-plugin-istanbul": "^6.0.0",
     "cypress": "^4.2.0",
-<<<<<<< HEAD
-    "enzyme": "^3.11.0",
-    "enzyme-to-json": "^3.4.4",
-    "redux-mock-store": "^1.5.4"
-=======
     "jsdoc-to-markdown": "^5.0.3",
     "madge": "^3.8.0",
     "redux-mock-store": "^1.5.4",
     "start-server-and-test": "^1.10.11"
->>>>>>> 076a0639fdefbe992ef4976c77819058df844587
   },
   "jest": {
     "collectCoverageFrom": [

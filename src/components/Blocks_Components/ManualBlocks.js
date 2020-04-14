@@ -9,11 +9,7 @@ import Table from "@material-ui/core/Table";
 import TableContainer from "@material-ui/core/TableContainer";
 import Paper from "@material-ui/core/Paper";
 
-<<<<<<< Updated upstream
-import BudgetGoal from "../Modal_Components/BudgetGoalModal";
-=======
 import  BudgetGoalModal  from '../Modal_Components/BudgetGoalModal';
->>>>>>> Stashed changes
 
 export function ManualBlocks(props) {
   // This components displays the table of blocks for the Onboarding process.
@@ -67,7 +63,7 @@ export function ManualBlocks(props) {
 					</button>
 				</div>
 				<div>
-					<Back_Continue 
+					<BackContinue 
 					BackClick={()=>props.history.push("/onBoard/select")}
 					ContClick={()=>props.history.push("/dashboard")}
 					/>

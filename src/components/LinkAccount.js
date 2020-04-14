@@ -6,13 +6,15 @@ import { sendLinkToken } from "../redux/actions/PlaidActions";
 import "../index.css";
 import environmentUrls from "../dispatch";
 
-const LinkAccount = props => {
+const LinkAccount = (props) => {
   // This component creates the button that brings up the modal for the user to enter banking information to connect via plaid
   function handleOnSuccess(token, metadata) {
     props.sendLinkToken(token, props.user.id);
+    return <div>Hello</div>;
   }
   function handleOnExit() {
     console.log("Plaid Component has exited");
+    return <div>GoodBye</div>;
   }
 
   return (
@@ -38,7 +40,7 @@ const LinkAccount = props => {
 function mapStateToProps(state) {
   return {
     error: state.plaidReducer.error,
-    user: state.loginReducer.user
+    user: state.loginReducer.user,
   };
 }
 

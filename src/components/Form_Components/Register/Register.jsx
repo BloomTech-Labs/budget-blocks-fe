@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 import { connect } from "react-redux";
 import { registerUser } from "../../../redux/actions/RegisterActions";
@@ -39,14 +39,12 @@ export const Register = (props) => {
     });
     updateCredentials(state.user.email, state.user.password);
   };
+
   const handleSubmit = (e) =>
     handlers.handleSubmit({ e, state, setState, props });
   const handleConfirm = (e) => handlers.handleConfirm({ e, state, setState });
   const handleUserChange = (e) =>
-    handlers.handleUserChange({ e, state, setState });
-  useEffect(() => {
-    canSubmit();
-  }, [state.user]);
+    handlers.handleUserChange({ e, state, setState, canSubmit });
 
   return (
     <div className="register">

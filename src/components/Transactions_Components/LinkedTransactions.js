@@ -75,7 +75,6 @@ const Transactions = props => {
   var selected = props.transactions.slice(0, 3);
   const [open, setOpen] = useState(false);
   const handleClickOpen = () => {
-    console.log('linkedTransOpen')
     setOpen(true);
   };
 

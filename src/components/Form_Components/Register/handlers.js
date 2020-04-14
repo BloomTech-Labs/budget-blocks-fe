@@ -15,7 +15,7 @@ const clearState = ({ state, setState }) => {
     ...state,
     user: { ...default_user },
     values: { ...default_values },
-    confirmPass: { confirmPassword: "" }
+    confirmPass: { confirmPassword: "" },
   });
 };
 
@@ -31,7 +31,7 @@ const handleUserChange = ({ e, state, setState }) => {
   setState({
     ...state,
     user: { ...state.user, [e.target.name]: e.target.value },
-    values: ChangeCheckField(e, state.values)
+    values: ChangeCheckField(e, state.values),
   });
 };
 
@@ -50,10 +50,10 @@ const handleConfirm = ({ e, state, setState }) => {
       ...state.values,
       password: {
         error: false,
-        helperText: ""
-      }
+        helperText: "",
+      },
     },
-    confirmPass: { ...state.confirmPass, [e.target.name]: e.target.value }
+    confirmPass: { ...state.confirmPass, [e.target.name]: e.target.value },
   });
 };
 /**
@@ -77,8 +77,8 @@ const handleSubmit = ({ e, state, setState, props }) => {
     ...state,
     values: {
       ...rValues,
-      password: { error: rMismatch, helperText: rHelper }
-    }
+      password: { error: rMismatch, helperText: rHelper },
+    },
   });
   !rConcern && !rMismatch
     ? props.registerUser(state.user, props.history) &&

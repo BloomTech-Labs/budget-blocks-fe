@@ -1,4 +1,4 @@
-import React from "react";
+import React, { createContext, useState } from "react";
 import "./App.css";
 import Home from "./components/home";
 import Login from "./components/Form_Components/Login/Login";
@@ -10,22 +10,34 @@ import Navbar from "./components/NavBar";
 import SelectCategories from "./components/Form_Components/Select_Categories/SelectCategories";
 import FirstOnboard from "./components/OnboardComponents/FirstOnboard";
 import ManualBlocks from "./components/Blocks_Components/ManualBlocks";
-
-/* return <button onClick={methodDoesNotExist}>Break the world</button>; */
+import CredentialsContext from "./contexts/CredentialsContext";
+// Added useContext because user email and password were being stored in localStorage (security risk) and we needed to resolve that.
 function App() {
+  const [credContext, setCredContext] = useState({ email: "", password: "" });
+  const updateCredentials = (email, password) => {
+    setCredContext({ email, password });
+  };
   return (
     <div>
       <Navbar />
       <div className="App">
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route path="/login" component={Login} />
-          <Route path="/register" component={Register} />
-          <PrivateRoute path="/dashboard" component={Dashboard} />
-          <Route path="/onBoard/select" component={SelectCategories} />
-          <Route path="/onBoard/1" component={FirstOnboard} />
-          <Route path="/manual" component={ManualBlocks} />
-        </Switch>
+        <CredentialsContext.Provider
+          value={{
+            email: credContext.email,
+            password: credContext.password,
+            updateCredentials,
+          }}
+        >
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route path="/login" component={Login} />
+            <Route path="/register" component={Register} />
+            <PrivateRoute path="/dashboard" component={Dashboard} />
+            <Route path="/onBoard/select" component={SelectCategories} />
+            <Route path="/onBoard/1" component={FirstOnboard} />
+            <Route path="/manual" component={ManualBlocks} />
+          </Switch>
+        </CredentialsContext.Provider>
       </div>
     </div>
   );

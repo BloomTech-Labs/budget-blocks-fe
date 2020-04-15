@@ -56,8 +56,8 @@
     "coverage": "CI=true yarn test --coverage || true",
     "md-docs": "find ./src -name \\*.js | xargs npx jsdoc2md --template ./README.hbs --files | cat > ./FE_DOC.md",
     "html-docs": "npx jsdoc -c ./docs/config.json",
-    "madge": "npx madge ./src -i madge.png",
-    "gen-docs": "echo 'generating visual graphs' && npx madge ./src -i madge.png && echo 'generating markdown' && find ./src -name \\*.js | xargs npx jsdoc2md --template ./README.hbs --files | cat > ./FE_DOC.md && echo 'generating html' && npx jsdoc -c ./docs/config.json"
+    "madge": "npx madge ./src -i madge.svg",
+    "gen-docs": "echo 'generating visual graphs' && npx madge ./src -i madge.svg && echo 'generating markdown' && find ./src -name \\*.js | xargs npx jsdoc2md --template ./README.hbs --files | cat > ./FE_DOC.md && echo 'generating html' && npx jsdoc -c ./docs/config.json"
   },
   "eslintConfig": {
     "extends": "react-app"

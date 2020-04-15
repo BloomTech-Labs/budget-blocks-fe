@@ -4,18 +4,25 @@ import {
   addManualBlocks,
   editManualBlocks
 } from "../../redux/actions/ManualActions";
-import {
-  dialogView1,
-  dialogView2,
-  dialogView3,
-  dialogView4
-} from "./dialogViews";
-
+import { dialogView1, dialogView2, dialogView3 } from "./dialogViews";
 import { connect } from "react-redux";
+
 import "./dialogViews/dialogComponents";
 import "./modalStyle.css";
 
-export const AddTransaction = props => {
+/**
+ * ManualTransaction (Modal)
+ *
+ * (called from ../AddManualBlocks)
+ *
+ * @param {String} userID userID
+ * @param {Function} open handler
+ * @param {Function} handleClose handler
+ * @param {Function} addTransaction handler
+ *
+ * @returns {*} Add Transaction Modal
+ */
+export const ManualTransaction = props => {
   const [state, setState] = useState({
     customBlock: {
       name: "",
@@ -95,7 +102,6 @@ export const AddTransaction = props => {
   props.blocks
     .filter(i => i.budget === null)
     .map(i => options.push({ value: i.id, label: i.name }));
-  // console.log(props.blocks);
   return (
     <div>
       {state.edit && state.failedEdit
@@ -130,7 +136,7 @@ export const AddTransaction = props => {
             cat,
             classes
           })
-        : dialogView4({
+        : dialogView3({
             props,
             handleEdit,
             handleChange,
@@ -139,7 +145,8 @@ export const AddTransaction = props => {
             editBlock: state.editBlock,
             customBlock: state.customBlock,
             cat,
-            classes
+            classes,
+            errorMessage: "Create a valid name and a budget number over 0"
           })}
     </div>
   );
@@ -152,5 +159,5 @@ function mapStateToProps(state) {
   };
 }
 export default connect(mapStateToProps, { addManualBlocks, editManualBlocks })(
-  AddTransaction
+  ManualTransaction
 );

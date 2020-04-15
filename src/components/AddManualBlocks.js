@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
 import { connect } from "react-redux";
-import { axiosWithAuth } from "./AxiosWithAuth";
+import { useAxiosWithAuth } from '../hooks'
 import ManualTransaction from "./Modal_Components/ManualTransaction";
 import environmentUrls from "../dispatch";
 
@@ -39,11 +39,17 @@ function AddManualBlocks(props) {
   const [modalStyle] = React.useState(getModalStyle);
   const [open, setOpen] = React.useState(false);
   const [blocks, setBlocks] = useState([]);
+
+  const { axiosData } = useAxiosWithAuth(
+      `${environmentUrls.base_url}/api/users/categories/${props.userID}`,
+      'get'
+    )
+
   useEffect(() => {
-    axiosWithAuth()
-      .get(`${environmentUrls.base_url}/api/users/categories/${props.userID}`)
-      .then(i => setBlocks(i.data));
-  }, []);
+    setBlocks(axiosData)
+  }, [axiosData])
+
+
   const handleOpen = () => {
     setOpen(true);
   };
@@ -75,6 +81,7 @@ function AddManualBlocks(props) {
     </div>
   );
 }
+
 function mapStateToProps(state) {
   return {
     userID: state.loginReducer.user.id,

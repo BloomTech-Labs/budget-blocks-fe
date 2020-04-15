@@ -12,7 +12,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import Paper from '@material-ui/core/Paper';
 import {PageView} from "../google_analytics/index.js"
 
-import BudgetGoal from "../Modal_Components/BudgetGoalModal";
+import  BudgetGoalModal  from '../Modal_Components/BudgetGoalModal';
 
 export function ManualBlocks(props) {
   // This components displays the table of blocks for the Onboarding process.
@@ -56,28 +56,28 @@ export function ManualBlocks(props) {
               className="lightgrey"
             />
 
-            <DisplayBlocks
-              arr={props.categoryArr}
-              handleClick={handleClickOpen}
-              LinkedAccount={props.LinkedAccount}
-            />
-          </Table>
-          <BudgetGoal open={open} values={values} handleClose={handleClose} />
-        </TableContainer>
-        <div>
-          <button className="blocks-button" onClick={handleClick}>
-            {filter ? "View All" : "View Less"}
-          </button>
-        </div>
-        <div>
-          <BackContinue
-            BackClick={() => props.history.push("/onBoard/select")}
-            ContClick={() => props.history.push("/dashboard")}
-          />
-        </div>
-      </div>
-    </div>
-  );
+						<DisplayBlocks
+							arr={props.categoryArr}
+							handleClick={handleClickOpen}
+							LinkedAccount={props.LinkedAccount}
+						/>
+					</Table>
+					<BudgetGoalModal handleOpen={open} values={values} handleClose={handleClose} />
+				</TableContainer>
+				<div>
+					<button className='blocks-button' onClick={handleClick}>
+						{filter ? 'View All' : 'View Less'}
+					</button>
+				</div>
+				<div>
+					<BackContinue 
+					BackClick={()=>props.history.push("/onBoard/select")}
+					ContClick={()=>props.history.push("/dashboard")}
+					/>
+				</div>
+			</div>
+		</div>
+	);
 }
 
 function mapStateToProps(state) {

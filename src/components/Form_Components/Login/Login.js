@@ -24,15 +24,15 @@ const default_values = {
   showPassword: false,
   password: {
     error: false,
-    helperText: ""
+    helperText: "",
   },
   email: {
     error: false,
-    helperText: ""
+    helperText: "",
   },
   button: {
-    disabled: false
-  }
+    disabled: false,
+  },
 };
 const default_user = { email: "", password: "" };
 
@@ -41,10 +41,10 @@ const default_user = { email: "", password: "" };
  * @param {*} props
  * @renders login page
  */
-export const Login = props => {
+export const Login = (props) => {
   const [state, setState] = useState({
     values: { ...default_values },
-    user: { ...default_user }
+    user: { ...default_user },
   });
 
   const [initial, setinitial] = useState(sessionStorage.getItem('token'));
@@ -59,24 +59,24 @@ export const Login = props => {
     ) {
       setState({
         ...state,
-        values: { ...state.values, button: { disabled: false } }
+        values: { ...state.values, button: { disabled: false } },
       });
     } else {
       setState({
         ...state,
-        values: { ...state.values, button: { disabled: true } }
+        values: { ...state.values, button: { disabled: true } },
       });
     }
   }, [state.user]); // refactor this useEffect?
 
-  const handleChange = e => {
+  const handleChange = (e) => {
     setState({
       user: { ...state.user, [e.target.name]: e.target.value.trim() },
-      values: ChangeCheckField(e, state.values)
+      values: ChangeCheckField(e, state.values),
     });
   };
 
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     const check = CheckEmptyFields(state.user, state.values);
     if (check instanceof Object) {
@@ -140,7 +140,7 @@ export const Login = props => {
 function mapStateToProps(state) {
   return {
     isFetching: state.loginReducer.isFetching,
-    error: state.loginReducer.error
+    error: state.loginReducer.error,
   };
 }
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 import { connect } from "react-redux";
 import { registerUser } from "../../../redux/actions/RegisterActions";
@@ -6,6 +6,8 @@ import Title from "../Title";
 import RegForm from "./form";
 import { default_user, default_values } from "./defaults";
 import handlers from "./handlers";
+import { useContext } from "react";
+import CredentialsContext from "../../../contexts/CredentialsContext";
 
 import { CheckEmptyFields } from "../CheckEmpyFields";
 import { ChangeCheckField } from "../ChangeCheckField";
@@ -24,10 +26,14 @@ import "./registerStyle.css";
  * @returns <div className="register" .../>
  */
 export const Register = (props) => {
+
+  const { updateCredentials } = useContext(CredentialsContext);
+
   const [state, setState] = useState({
     user: { ...default_user },
     values: { ...default_values },
     confirmPass: { confirmPassword: "" },
+
   });
 
   console.log(props);
@@ -41,63 +47,15 @@ export const Register = (props) => {
       Object.keys(state.values[key]).includes("error")
     );
     const errs = vals.filter((value) => state.values[value].error === true);
+
   };
+  
+  const handleSubmit = (e) =>
+    handlers.handleSubmit({ e, state, setState, props });
+  const handleConfirm = (e) => handlers.handleConfirm({ e, state, setState });
+  const handleUserChange = (e) =>
+    handlers.handleUserChange({ e, state, setState, canSubmit });
 
-  const handleUserChange = (e) => {
-    setState({
-      ...state,
-      values: { ...state.values, button: { disabled: errs.length > 0 } },
-    });
-  };
-
-  const handleConfirm = (e) => {
-    setState({
-      ...state,
-      values: {
-        ...state.values,
-        password: {
-          error: false,
-          helperText: "",
-        },
-      },
-      confirmPass: { ...state.confirmPass, [e.target.name]: e.target.value },
-    });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    GAevent("Registration", "User registered successfully", "New User Created");
-
-    const check = CheckEmptyFields(state.user, state.values);
-
-    if (check instanceof Object) {
-      setState({ ...state, values: { ...check } });
-    } else if (state.confirmPass.confirmPassword !== state.user.password) {
-      setState({
-        ...state,
-        values: {
-          ...state.values,
-          password: {
-            error: true,
-            helperText: LANG.PW_MISMATCH,
-          },
-        },
-      });
-    } else {
-      props.registerUser(state.user, props.history);
-      setState({
-        ...state,
-        user: { ...default_user },
-        values: { ...default_values },
-        confirmPass: { confirmPassword: "" },
-      });
-    }
-  };
-
-  useEffect(() => {
-    canSubmit();
-  }, [state.user]);
 
   return (
     <div className="register">

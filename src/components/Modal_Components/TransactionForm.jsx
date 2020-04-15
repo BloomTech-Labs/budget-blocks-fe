@@ -1,14 +1,11 @@
 import React from "react";
 
-import BackContinue from "./BackContinue";
-import ModalTitle from "./ModalTitle";
 
-import Dialog from "@material-ui/core/Dialog";
 import FormControl from "@material-ui/core/FormControl";
 import TextField from "@material-ui/core/TextField";
 import InputLabel from "@material-ui/core/InputLabel";
 import Select from "@material-ui/core/Select";
-import { DialogContent } from "./dialogViews/dialogStyles";
+import ModalDialog from './ModalDialog'
 
 /**
  * TransactionForm is used when adding a transaction
@@ -18,7 +15,7 @@ import { DialogContent } from "./dialogViews/dialogStyles";
  * @param {Array} cat enumerated list of categories
  * @param {Object} inputLabel React.ref
  * @param {Number} labelWidth width of <Select>.option,
- * @param {Function} handleOpen event handler
+ * @param {Boolean} open event handler
  * @param {Function} handleClose event handler
  * @param {Function} handleChange event handler
  * @param {Function} handleSubmit event handler
@@ -29,23 +26,24 @@ const TransactionForm = ({
   cat,
   labelWidth,
   inputLabel,
-  handleOpen,
+  open,
   handleClose,
   handleChange,
   handleSubmit
 }) => {
+  
   return (
     <div>
-      <Dialog
-        className="dialogModal"
-        onClose={handleClose}
-        aria-labelledby="customized-dialog-title"
-        open={handleOpen}
-        fullWidth={true}
-        maxWidth="md"
-      >
-        <ModalTitle handleClose={handleClose} title="Add Transaction" />
-        <DialogContent className="content">
+      
+        <ModalDialog
+          handleClose={handleClose}
+          ariaLabelledBy="customized-dialog-title"
+          modalTitle="Add Transaction"
+          open={open}
+          maxWidth="md"
+          handleSubmit={handleSubmit}
+          backContinue={true}
+          >
           <FormControl className="radios" component="fieldset">
             <div className="cat1">
               <TextField
@@ -111,10 +109,7 @@ const TransactionForm = ({
               />
             </div>
           </FormControl>
-        </DialogContent>
-        {/* Creates Back and Continue buttons. Takes in functions to close modal and submit to add transaction*/}
-        <BackContinue BackClick={handleClose} ContClick={handleSubmit} />
-      </Dialog>
+          </ModalDialog>
     </div>
   );
 };

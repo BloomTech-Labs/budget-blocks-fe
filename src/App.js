@@ -11,7 +11,7 @@ import SelectCategories from "./components/Form_Components/Select_Categories/Sel
 import FirstOnboard from "./components/OnboardComponents/FirstOnboard";
 import ManualBlocks from "./components/Blocks_Components/ManualBlocks";
 import CredentialsContext from "./contexts/CredentialsContext";
-/* return <button onClick={methodDoesNotExist}>Break the world</button>; */
+// Added useContext because user email and password were being stored in localStorage (security risk) and we needed to resolve that.
 function App() {
   const [credContext, setCredContext] = useState({ email: "", password: "" });
   const updateCredentials = (email, password) => {

@@ -34,7 +34,6 @@ export function BudgetGoal(props) {
     if (props.values.budget === null) {
       props.values.budget = 0;
     }
-    // console.log(props.values);
     setGoals({
       ...goals,
       categoryid: props.values.catId,

@@ -94,7 +94,7 @@ export function BudgetGoal(props) {
         className="dialogModal"
         onClose={props.handleClose}
         aria-labelledby="customized-dialog-title"
-        open={props.open}
+        open={props.handleOpen}
         fullWidth={true}
         maxWidth="md"
       >
@@ -152,8 +152,13 @@ export function BudgetGoal(props) {
   );
 }
 
-function mapStateToProps(state) {
-  return {};
+function mapStateToProps(state){
+  return {
+  values: state.values, 
+  updateBlocks: state.updateBlocks,
+  handleClose: state.handleClose,
+  handleOpen: state.handleOpen
+  }
 }
 
 export default connect(mapStateToProps, { updateBlocks })(BudgetGoal);

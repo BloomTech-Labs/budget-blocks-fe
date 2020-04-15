@@ -29,7 +29,7 @@ function App() {
           <Route path="/register" component={Register} />
           <PrivateRoute path="/dashboard" component={Dashboard} />
           <PrivateRoute path="/onBoard/select" component={SelectCategories} />
-          <PrivateRoute path="/onBoard/1" component={FirstOnboard} />
+          <Route path="/onBoard/1" component={FirstOnboard} />
           <PrivateRoute path="/manual" component={ManualBlocks} />
         </Switch>
       </div>

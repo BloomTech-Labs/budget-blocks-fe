@@ -2,13 +2,13 @@ import axios from 'axios'
 import { useState, useEffect } from 'react'
 
 
-// /**
-//  * 
-//  * @param {string} url url endpoint to hit
-//  * @param {string} method method of request
-//  * @param {object} data data to send in post request, for example
-//  * @param {object} config config obejct
-//  */
+/**
+ * 
+ * @param {string} url url endpoint to hit
+ * @param {string} method method of request
+ * @param {object} data data to send in post request, for example
+ * @param {object} config config obejct
+ */
 
 export const useAxios = (url, method, data, config) => {
   const [axiosData, setAxiosData] = useState(null);

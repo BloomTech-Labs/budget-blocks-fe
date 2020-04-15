@@ -18,7 +18,8 @@ const View3 = ({
   editBlock,
   customBlock,
   cat,
-  classes
+  classes,
+  errorMessage
 }) => {
   return (
     <Dialog
@@ -30,9 +31,13 @@ const View3 = ({
     >
       <ModalTitle handleClose={props.handleClose} title="Add Category" />
       <DialogContent className="content">
-        <p className="error-message">
-          Create a valid name and a budget number over 0
-        </p>
+        {errorMessage ? (
+          <p className="error-message">
+            Create a valid name and a budget number over 0
+          </p>
+        ) : (
+          ""
+        )}
         <Select
           native
           onChange={handleEdit}

@@ -3,7 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
 import { connect } from "react-redux";
 import { axiosWithAuth } from "./AxiosWithAuth";
-import DemomanualBlocks from "./Modal_Components/demomanualBlocks";
+import ManualTransaction from "./Modal_Components/ManualTransaction";
 import environmentUrls from "../dispatch";
 
 function rand() {
@@ -64,7 +64,7 @@ function AddManualBlocks(props) {
         onClose={handleClose}
       >
         <div style={modalStyle} className={classes.paper}>
-          <DemomanualBlocks
+          <ManualTransaction
             open={true}
             handleClose={handleClose}
             blocks={blocks}

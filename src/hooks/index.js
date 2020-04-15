@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 
 
 /**
- * 
+ * A custom hook that can be used directly or by other hooks to make axios calls
  * @param {string} url url endpoint to hit
  * @param {string} method method of request
  * @param {object} data data to send in post request, for example
@@ -35,7 +35,13 @@ export const useAxios = (url, method, data, config) => {
   return { loading, axiosData };
 }
 
-export const useAxiosWithAuth = (url, method, data) => {
+
+/**
+ * Higher order hook that uses another hook to do axios with auth
+ * @param {string} url url endpoint to hit
+ * @param {string} method method of request
+ */
+export const useAxiosWithAuth = (url, method) => {
   return useAxios(url, method, {
     headers: {
       Authorization: `${sessionStorage.getItem("token")}`,

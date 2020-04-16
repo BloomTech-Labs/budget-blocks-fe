@@ -12,7 +12,7 @@ export function NavBar({ navState, logoutUser }) {
 
   const [initialClass, setClass] = useState(!!(sessionStorage.getItem('token')));
 
-  const changeClass  = () => {
+  const removeSessionStorage  = () => {
     sessionStorage.removeItem('token')
     sessionStorage.removeItem('navState')
     sessionStorage.removeItem('userID')
@@ -32,7 +32,7 @@ export function NavBar({ navState, logoutUser }) {
       </div>
       <div className="nav-action">
         {initialClass  ? (
-          <Link   onClick={changeClass} >
+          <Link   onClick={removeSessionStorage} >
           Log Out
         </Link>
         ) : (

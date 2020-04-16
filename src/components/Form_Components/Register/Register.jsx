@@ -36,7 +36,6 @@ export const Register = (props) => {
 
   });
 
-  console.log(props);
 
   useEffect(() => {
     PageView();
@@ -76,7 +75,6 @@ export const Register = (props) => {
 };
 
 function mapStateToProps(state) {
-  console.log(state.registerReducer);
   return {
     isFetching: state.registerReducer.isFetching,
     error: state.registerReducer.error,

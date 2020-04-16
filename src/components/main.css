@@ -39,12 +39,7 @@
 	margin-top: 50px;
 	color: blue;
 }
-.hiddenClass{
-	display:none
-}
-.displayclass{
-	display:flex
-}
+
 .image {
 	width: 2.5rem;
 	margin-right: 7px;

@@ -9,12 +9,11 @@ import { Redirect} from "react-router-dom";
 
 const Home = () => {
   useEffect(() =>{
-    //console.log(sessionStorage.getItem('token')) todo, need to redirect user to dashboard if token is found in storage
     PageView()
   })
 
   const [initial, setinitial] = useState(sessionStorage.getItem('token'));
-  // initial => "string" 
+
 
 
   let trackSignUp = () => {

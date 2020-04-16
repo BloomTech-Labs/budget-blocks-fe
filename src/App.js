@@ -15,11 +15,11 @@ import {PageView} from "./components/google_analytics/index.js"
 import CredentialsContext from "./contexts/CredentialsContext";
 
 /* return <button onClick={methodDoesNotExist}>Break the world</button>; */
-function App() {
-  // we need our pageview function to run with a useEffect hook here
-  useEffect(() =>{
-    PageView()
-  })
+// function App() {
+//   // we need our pageview function to run with a useEffect hook here
+//   useEffect(() =>{
+//     PageView()
+//   })
 
 
 // Added useContext because user email and password were being stored in localStorage (security risk) and we needed to resolve that.

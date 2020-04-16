@@ -1,4 +1,3 @@
-
 import React, { createContext, useState, useEffect } from "react";
 import "./App.css";
 import Home from "./components/home";
@@ -11,8 +10,9 @@ import Navbar from "./components/NavBar";
 import SelectCategories from "./components/Form_Components/Select_Categories/SelectCategories";
 import FirstOnboard from "./components/OnboardComponents/FirstOnboard";
 import ManualBlocks from "./components/Blocks_Components/ManualBlocks";
-import {PageView} from "./components/google_analytics/index.js"
+import { PageView } from "./components/google_analytics/index.js";
 import CredentialsContext from "./contexts/CredentialsContext";
+import ExpenseList from "./components/no-bank/ExpenseList";
 
 /* return <button onClick={methodDoesNotExist}>Break the world</button>; */
 // function App() {
@@ -20,7 +20,6 @@ import CredentialsContext from "./contexts/CredentialsContext";
 //   useEffect(() =>{
 //     PageView()
 //   })
-
 
 // Added useContext because user email and password were being stored in localStorage (security risk) and we needed to resolve that.
 function App() {
@@ -32,9 +31,8 @@ function App() {
   return (
     <div>
       <Navbar />
-      
-      <div className="App">
 
+      <div className="App">
         <CredentialsContext.Provider
           value={{
             email: credContext.email,
@@ -43,18 +41,19 @@ function App() {
           }}
         >
           <Switch>
-          <Route exact path="/" component={Home} />
-          <Route path="/login" component={Login} />
-          <Route path="/register" component={Register} />
-          <PrivateRoute path="/dashboard" component={Dashboard} />
-          <PrivateRoute path="/onBoard/select" component={SelectCategories} />
-          <Route path="/onBoard/1" component={FirstOnboard} />
-          <PrivateRoute path="/manual" component={ManualBlocks} />
+            <Route exact path="/" component={Home} />
+            <Route path="/login" component={Login} />
+            <Route path="/register" component={Register} />
+            <PrivateRoute path="/dashboard" component={Dashboard} />
+            <PrivateRoute path="/onBoard/select" component={SelectCategories} />
+            <Route path="/onBoard/1" component={FirstOnboard} />
+            <Route path="/maggie/" component={ExpenseList} />
+            <PrivateRoute path="/manual" component={ManualBlocks} />
           </Switch>
         </CredentialsContext.Provider>
       </div>
     </div>
   );
-} 
+}
 
 export default App;

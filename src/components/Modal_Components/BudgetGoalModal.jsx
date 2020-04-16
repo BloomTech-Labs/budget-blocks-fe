@@ -11,6 +11,7 @@ import TextField from "@material-ui/core/TextField";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import "./modalStyle.css";
 import { updateBlocks } from "../../redux/actions/userBlocks";
+import PropTypes from 'prop-types'
 
 const DialogContent = withStyles((theme) => ({
   root: {
@@ -18,7 +19,13 @@ const DialogContent = withStyles((theme) => ({
   },
 }))(MuiDialogContent);
 
+/**
+ * BudgetGoal (modal)
+ * (imported in ../Blocks_Components/LinkedBlocks.js)
+ * @param {object} props 
+ */
 export function BudgetGoal(props) {
+  useEffect(()=>console.log('budgetGoalProps', props), [props])
   // This component is used to edit blocks
   // goals is the data from the form
   // The only field that works functionally is the textfield for editing the budget
@@ -31,16 +38,20 @@ export function BudgetGoal(props) {
 
   useEffect(() => {
     // whenever the block being edited changes: apply these new values
-    if (props.values.budget === null) {
-      props.values.budget = 0;
+    if (props.budget === null) {
+      props.budget = 0;
     }
-    setGoals({
-      ...goals,
-      categoryid: props.values.catId,
-      budget: props.values.budget,
-    });
-    setUserID(props.values.userId);
-  }, [props.values.catId]);
+
+    
+      setGoals({
+        ...goals,
+        categoryid: props.catId,
+        budget: props.budget,
+      });
+      setUserID(props.userId);
+    
+
+  }, [props.userId, props.catId, props.budget]);
 
   const handleChange = (e) => {
     e.preventDefault();
@@ -94,7 +105,7 @@ export function BudgetGoal(props) {
         className="dialogModal"
         onClose={props.handleClose}
         aria-labelledby="customized-dialog-title"
-        open={props.handleOpen}
+        open={props.open}
         fullWidth={true}
         maxWidth="md"
       >
@@ -152,13 +163,13 @@ export function BudgetGoal(props) {
   );
 }
 
-function mapStateToProps(state) {
-  return {
-    values: state.values,
-    updateBlocks: state.updateBlocks,
-    handleClose: state.handleClose,
-    handleOpen: state.handleOpen,
-  };
+BudgetGoal.propTypes = {
+  budget: PropTypes.string,
+  open: PropTypes.bool,
+  updateBlocks: PropTypes.func,
+  catId: PropTypes.number,
+  userId: PropTypes.string,
+  handleClose: PropTypes.func
 }
 
-export default connect(mapStateToProps, { updateBlocks })(BudgetGoal);
+export default connect(null, { updateBlocks })(BudgetGoal);

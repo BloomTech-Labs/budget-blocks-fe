@@ -32,7 +32,11 @@ const DisplayBlocks = ({ arr, handleClick }) => {
             <DeleteBlockModal blockID={i.id} />
             <button
               id="edit-button"
-              onClick={() => handleClick(i.id, i.budget)}
+              onClick={
+                () => {
+                  handleClick(i.id, i.budget)
+                }
+              }
             >
               edit
             </button>

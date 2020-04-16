@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import { connect } from "react-redux";
 import { registerUser } from "../../../redux/actions/RegisterActions";
@@ -26,16 +26,13 @@ import "./registerStyle.css";
  * @returns <div className="register" .../>
  */
 export const Register = (props) => {
-
   const { updateCredentials } = useContext(CredentialsContext);
 
   const [state, setState] = useState({
     user: { ...default_user },
     values: { ...default_values },
     confirmPass: { confirmPassword: "" },
-
   });
-
 
   useEffect(() => {
     PageView();
@@ -46,21 +43,19 @@ export const Register = (props) => {
       Object.keys(state.values[key]).includes("error")
     );
     const errs = vals.filter((value) => state.values[value].error === true);
-
   };
-  
+
   const handleSubmit = (e) =>
     handlers.handleSubmit({ e, state, setState, props });
   const handleConfirm = (e) => handlers.handleConfirm({ e, state, setState });
   const handleUserChange = (e) =>
     handlers.handleUserChange({ e, state, setState, canSubmit });
 
-
   return (
     <div className="register">
       <Container maxWidth="sm">
         <div style={{ backgroundColor: "#ffffff" }}>
-          <Title title="Sign Up" />
+          <Title title="Create Profile" />
           <RegForm
             rProps={props}
             rState={state}

@@ -1,13 +1,16 @@
-import React, { useState } from "react";
-import { connect } from "react-redux";
-import { selectCategories } from "../../redux/actions/ManualActions";
+import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
+import {
+	selectCategories,
+} from '../../redux/actions/ManualActions';
 import BackContinue from "../Modal_Components/BackContinue";
-import { TableHeads } from "./TableHead";
-import DisplayBlocks from "./DisplayBlocks";
-import "./index.css";
-import Table from "@material-ui/core/Table";
-import TableContainer from "@material-ui/core/TableContainer";
-import Paper from "@material-ui/core/Paper";
+import { TableHeads } from './TableHead';
+import DisplayBlocks from './DisplayBlocks';
+import './index.css';
+import Table from '@material-ui/core/Table';
+import TableContainer from '@material-ui/core/TableContainer';
+import Paper from '@material-ui/core/Paper';
+import {PageView} from "../google_analytics/index.js"
 
 import  BudgetGoalModal  from '../Modal_Components/BudgetGoalModal';
 
@@ -22,15 +25,19 @@ export function ManualBlocks(props) {
     budget: 0.0
   });
 
-  const handleClose = () => {
-    setOpen(false);
-  };
-  const [filter, setFilter] = useState([]);
-  const handleClick = e => {
-    setFilter(!filter);
-  };
-  const handleClickOpen = (id, budget) => {
-    setValues({ ...values, userId: props.userID, catId: id, budget });
+	useEffect(() =>{
+		PageView()
+	  })
+
+	const handleClose = () => {
+		setOpen(false);
+	};
+	const [filter, setFilter] = useState([]);
+	const handleClick = e => {
+		setFilter(!filter);
+	};
+	const handleClickOpen = (id, budget) => {
+		setValues({ ...values, userId: props.userID, catId: id, budget });
 
     setOpen(true);
   };

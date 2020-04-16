@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { Redirect} from "react-router-dom";
+
 import { connect } from "react-redux";
 import { loginUser } from "../../../redux/actions/LoginActions";
 import Title from "../Title";
@@ -11,9 +13,12 @@ import { ChangeCheckField } from "../ChangeCheckField";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Button from "@material-ui/core/Button";
 import Container from "@material-ui/core/Container";
+import {PageView} from "../../google_analytics/index.js"
 
 import LANG from "../Lang";
 import "./loginStyle.css";
+
+
 
 const default_values = {
   showPassword: false,
@@ -42,6 +47,11 @@ export const Login = (props) => {
     user: { ...default_user },
   });
 
+  const [initial, setinitial] = useState(sessionStorage.getItem('token'));
+
+  useEffect(() =>{
+    PageView()
+  })
   useEffect(() => {
     if (
       state.values.password.error === false &&
@@ -79,6 +89,7 @@ export const Login = (props) => {
 
   return (
     <div className="SignIn">
+      {initial ? (<Redirect to="/onBoard/1" />) : (
       <Container maxWidth="sm">
         <Title title={LANG.SIGN_IN} titleClass="SignInTitle" />
 
@@ -121,6 +132,7 @@ export const Login = (props) => {
           </Button>
         </form>
       </Container>
+       )}
     </div>
   );
 };

@@ -1,151 +1,238 @@
-🚫 The numbers 1️⃣ through 5️⃣ next to each item represent the week that part of the docs needs to be comepleted by. Make sure to delete the numbers by the end of Labs.
-
-🚫 Each student has a required minimum number of meaningful PRs each week per the rubric. Contributing to docs does NOT count as a PR to meet your weekly requirements.
-
 # Budget Blocks
 
-1️⃣ You can find the deployed project at [🚫URL NAME GOES HERE](🚫copy and paste URL here).
+You can find the deployed project at [Budget Blocks](https://www.budgetblocks.org).
 
-## Badges
+## Contributors
 
-[![Maintainability](https://api.codeclimate.com/v1/badges/8b04e4cce9d199b72a46/maintainability)](https://codeclimate.com/github/Lambda-School-Labs/budget-blocks-fe)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/8b04e4cce9d199b72a46/test_coverage)](https://codeclimate.com/github/Lambda-School-Labs/budget-blocks-fe)
-
-## 4️⃣ Contributors
-
-🚫Add contributor info below, make sure add images and edit the social links for each member. Add to or delete these place-holders as needed
-
-|                                                      [Student 1](https://github.com/)                                                       |                                                       [Student 2](https://github.com/)                                                        |                                                      [Student 3](https://github.com/)                                                       |                                                       [Student 4](https://github.com/)                                                        |                                                      [Student 5](https://github.com/)                                                       |
-| :-----------------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------: |
-| [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/) | [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-female.png" width = "200" />](https://github.com/) | [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/) | [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-female.png" width = "200" />](https://github.com/) | [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/) |
-|                                [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/)                                |                            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/honda0306)                             |                          [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Mister-Corn)                           |                          [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/NandoTheessen)                           |                           [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/wvandolah)                            |
-|                [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/)                |                 [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/)                 |                [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/)                |                 [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/)                 |                [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/)                |
+|                                                                                          [Edwin Chajon](https://github.com/Edwin-Chajon)                                                                                          |                                                                                          [Maggie Price](https://github.com/maaggieprice)                                                                                          |                                                                                         [Trevor Martin](https://github.com/debauchery1st)                                                                                          |                                     [Carlos de Santiago](https://github.com/heyclos)                                      |     |
+| :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------: | :-: |
+| [<img src="https://media-exp1.licdn.com/dms/image/C5603AQGTrAxV9MkTIw/profile-displayphoto-shrink_200_200/0?e=1591833600&v=beta&t=3hHm8bHD3_k3lnRCALWcnbtItNj5U1y7a2lNH7HNrOU" width = "200" />](https://github.com/Edwin-Chajon) | [<img src="https://media-exp1.licdn.com/dms/image/C4E03AQG_gsfcnOF77Q/profile-displayphoto-shrink_200_200/0?e=1591833600&v=beta&t=oDTduLPwsAN_9xhKpcwUa4Bip4kHCFitKcVK_HMvpm8" width = "200" />](https://github.com/maaggieprice) | [<img src="https://media-exp1.licdn.com/dms/image/C4E03AQH7-xvDsUKMzQ/profile-displayphoto-shrink_200_200/0?e=1591833600&v=beta&t=ip374Xx-Ysx_v9TIRXx7RgiYjoshRZIUxJWaOrWUPiI" width = "200" />](https://github.com/debauchery1st) | [<img src="https://ca.slack-edge.com/T4JUEB3ME-UG19JMJTC-2fb50b0a5a41-5124" width = "200" />](https://github.com/heyclos) |
+|                                                                     [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Edwin-Chajon)                                                                     |                                                                     [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/maaggieprice)                                                                     |                                                                     [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/debauchery1st)                                                                     |                   [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/heyclos)                    |
+|                                              [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/edwin-chajon-3bb43b186/)                                              |                                                   [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/maggieprice1/)                                                   |                                                          [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](linkedin.com/in/trevor4hire/)                                                          |       [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/)       |
 
 <br>
 <br>
 
-🚫 4️⃣ Optional examples of using images with links for your tech stack, make sure to change these to fit your project
+|                                          [Tyler Christian](https://github.com/TylerChristian711)                                          |                                            [Ivan Martinez](https://github.com/TheOriginalSNP)                                            |                                             [Igor Atakhanov](https://github.com/embiggenerd)                                             |                                                                                            [Israel Gonzalez](github.com/israelgonzalezb)                                                                                             |     |
+| :---------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :-: |
+|    [<img src="https://ca.slack-edge.com/T4JUEB3ME-ULZSEQXAR-3b670f940ff2-512" width = "200" />](https://github.com/TylerChristian711)     |     [<img src="https://ca.slack-edge.com/T4JUEB3ME-UJDAGQ14J-38159f934179-512" width = "200" />](https://github.com/TheOriginalSNP)      |       [<img src="https://ca.slack-edge.com/T4JUEB3ME-UNUUFU0UB-8968d23fc9c5-512" width = "200" />](https://github.com/embiggenerd)       | [<img src="https://media-exp1.licdn.com/dms/image/C4D03AQFokXmRlXfEbQ/profile-displayphoto-shrink_200_200/0?e=1591833600&v=beta&t=pwWTsymyq1uOCqdrjrokRwXRAuvyGP0aKhDJNz4G7G4" width = "200" />](https://github.com/israelgonzalezb) |
+|                      [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/TylerChristian711)                       |                       [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/TheOriginalSNP)                        |                         [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/embiggenerd)                         |                                                                     [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/israelgonzalezb)                                                                     |
+| [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/feed/?trk=onboarding-landing) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/ivan-martinez-7409a9114/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/igor-atakhanov-70890942/) |                                          [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/israel-gonzalez-brooks-15173a101/)                                           |
+
+<br>
+<br>
 
 ![MIT](https://img.shields.io/packagist/l/doctrine/orm.svg)
 ![React](https://img.shields.io/badge/react-v16.7.0--alpha.2-blue.svg)
 ![Typescript](https://img.shields.io/npm/types/typescript.svg?style=flat)
-[![Netlify Status](https://api.netlify.com/api/v1/badges/b5c4db1c-b10d-42c3-b157-3746edd9e81d/deploy-status)](netlify link goes in these parenthesis)
+![Netlify Status](https://api.netlify.com/api/v1/badges/b5c4db1c-b10d-42c3-b157-3746edd9e81d/deploy-status)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
-🚫 more info on using badges [here](https://github.com/badges/shields)
+more info on using badges [here](https://github.com/badges/shields)
 
 ## Project Overview
 
-[Trello Board] https://trello.com/b/emmxnHtH/labs-20-budget-blocks
+[Trello ](https://trello.com/b/fNhATNTC/labs-22-budget-blocks)
 
-[Product Canvas] https://www.notion.so/Budget-Blocks-6251cc75b71c4988af56529409f6f07f
+[Notion](https://www.notion.so/Budget-Blocks-6251cc75b71c4988af56529409f6f07f)
 
-1️⃣ [UX Design files](🚫add link to design files here) - 🚫 delete if not applicable
+[Figma Design files](https://www.figma.com/file/2yjo18aU6tUtB0gObkeeiE/Budget-Blocks%2C-Ivan?node-id=177%3A6)
 
-🚫 Replace lorem ipsum with a description of your project
+#### The easiest budgeting tool that simplifies your finances and doesn't over-complicate things. Budget Blocks seeks to unify budgeting personal finances accessibly . Budgeting tools add too much complexity to the already complex situation of money and spending. Managing a budget is a lot of effort, and should be much simpler.
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+### Key Features
 
-Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+- Ability to sign up and connect via Oauth
+- Create custom envelope categories
+- Category Types
+- Different views based upon weekly, monthly, yearly budget
+- Invite others to view their budget (family accounts?)
 
-### 4️⃣ Key Features
-
-- feature one
-- feature two
-- feature three
-- feature four
-- feature five
-
-## 1️⃣ Tech Stack
+## Tech Stack
 
 ### Front end built using:
 
-#### _Front end framework goes here_
+#### _React, NodeJS, Swift, UI Kit, Redux_
 
-🚫 Why did you choose this framework?
+Why did you choose this framework?
 
-- point one
-- point two
-- point three
-- point four
+- React and NodeJS for web application, Swift & UIKit for iOS application since the team is most comfortable using these frameworks. For state management, we will probably use redux since we will be managing a lot of different data in various components.
+- Using redux the challenges we will face is creating the various actions and reducers. The setup of redux can take a long time, but once the system is implemented, adding new actions and reducers is very easy.
+- For iOS, we will be using UIKit with Swift as it is the native way of creating iOS interfaces and is much more used and well-documented than Apple's newer Swift UI. Core Data will be used for local persistence. SwiftyJSON will also be used for easy JSON decoding, as it is easier to use than the built-in JSON serialization from Foundation.
 
-🚫List the rest of the front end features and libraries in the same format as the framework above.
+#### Front end deployed to Heroku
 
-#### Front end deployed to `🚫insert service here`
+#### [Back end](https://github.com/Lambda-School-Labs/budget-blocks-fe/tree/development) built using:
 
-#### [Back end](🚫link to back end repo here) built using:
+#### _PostgreSQL, GraphQL/REST API_
 
-#### 🚫 back end framework goes here
-
-- point one
-- point two
-- point three
-
-🚫 List the rest of the back end end features and libraries in the same format as the framework above
+- We will use PostgreSQL to setup our database using NodeJS alongside express and knex. We will take a look at using GraphQL to retrieve the data from our API and look into various implementation options. If not, we will use a REST API to gather our data resources.
+- Using GraphQL allows us to quickly retrieve specific information without having to right out a lot of endpoints. It's has more of a natural query flow and is very readable. Since most of the team does not have experience using GraphQL we will definitely have to refer to the documentation and do some practice exercises.
+- Both iOS and web need to have a JSON object returned back to display the data on the interface. NodeJS will allow us to setup a server and return a JSON object back within the API interface.
 
 # APIs
 
-## 2️⃣ Authentication API here
+## Plaid API
 
-🚫Replace text below with a description of the API
+1.  ### What Feature(s) is/are this API connected to?
 
-Water's like me. It's laaazy ... Boy, it always looks for the easiest way to do things A little happy sunlight shining through there. Let all these little things happen. Don't fight them. Learn to use them. Even the worst thing we can do here is good.
+    - #### Transactions
+      - Allow us to retrieve 24 months of transaction data
+      - Can view the `amount, category, date, location, and name` of the merchant
+    - #### Liabilities
+      - Retrieve details for `student loans` and `credit card debt`
+      - Student loans → Provides information regarding `disbursement dates, payoff date, interest rate, next payment date, remittances address`
+      - Credit Cards → Provides information regarding `APR, credit limit, minimum payment amount, next payment due date, last statement issue date, last statement balance`
+    - #### Balance
+      - View the available amount of funds that can be withdrawn
+      - View the current amount of funds within the users account
+    - #### Assets
+      - Can view historial balance on the account
+      - See who are the owner's of each account
+      - View a list of the transactions
+      - Can view what account type such as credit, brokerage, loan, etc
 
-## 2️⃣ Payment API here
+2.  ### What will this API integration accomplish in the feature(s) to which it’s connected?
 
-🚫Replace text below with a description of the API
+    Using this API, we will be able to download banking transactions for the user automatically and help to assign them to categories automatically
 
-This is the way you take out your flustrations. Get away from those little Christmas tree things we used to make in school. Isn't it fantastic that you can change your mind and create all these happy things? Everything's not great in life, but we can still find beauty in it.
+    Also, we can load in debt information and guide the user on setting up a plan on paying off debt and budgeting their money. This may be outside of the scope of the project.
 
-## 3️⃣ Misc API here
+3.  ### What alternatives did you consider?
 
-🚫Replace text below with a description of the API
+    - Stripe
 
-You can do anything your heart can imagine. In life you need colors. This is where you take out all your hostilities and frustrations. It's better than kicking the puppy dog around and all that so. I'm sort of a softy, I couldn't shoot Bambi except with a camera. Trees get lonely too, so we'll give him a little friend. We'll lay all these little funky little things in there.
+4.  ### Why did you decide on this solution? (what are the advantages?)
 
-## 3️⃣ Misc API here
+    - Plaid seems to provide the user with more information and will help to accomplish the needs of our MVP.
+    - Stripe is good for handling authentication and processing payments, but Plaid seems to have better asset and transaction reporting
 
-🚫Replace text below with a description of the API
+5.  ### What are the potential challenges can you foresee?
 
-When you do it your way you can go anywhere you choose. Let your heart take you to wherever you want to be. If I paint something, I don't want to have to explain what it is. A tree needs to be your friend if you're going to paint him. That's a son of a gun of a cloud. Even the worst thing we can do here is good.
+    - Authentication between banks that are not very popular (credit unions, pre-paid cards, etc). If a user doesn't have a supported bank, they wouldn't be able to use the automated transaction feature.
+    - The API is very robust and has a lot of features and can return a lot of data. We will need to manage all of the data and retrieve only the pertinent information for our user.
 
-## 3️⃣ Misc API here
-
-🚫Replace text below with a description of the API
-
-Volunteering your time; it pays you and your whole community fantastic dividends. Maybe there's a happy little waterfall happening over here. You can spend all day playing with mountains. We don't have to be committed. We are just playing here. You have freedom here. The only guide is your heart. It's cold, but it's beautiful.
-
-# 3️⃣ Environment Variables
+# Environment Variables
 
 In order for the app to function correctly, the user must set up their own environment variables. There should be a .env file containing the following:
 
-    *  REACT_APP_PUBLIC_KEY - key given to our budget blocks account from plaid for use of plaid API.
+    *  REACT_APP_apiKey - this is your Google API key, which can be generated in the Google Cloud Console
+    *  REACT_APP_authDomain - when you set up your Firebase project, this information will be in the dashboard
+    *  REACT_APP_databaseURL - in the Firebase dashboard
+    *  REACT_APP_projectID - in the Firebase dashboard
+    *  REACT_APP_storageBucket - in the Firebase dashboard
+    *  REACT_APP_messagingSenderId - in the Firebase dashboard
+    *  REACT_APP_stripe_API - this is your public Stripe API key, generated in the Stripe dashboard
+    *  REACT_APP_backendURL - optional for your local development server
+    *  REACT_APP_clientid - this is the Stripe_connect clientID, generated in Stripe_connect settings
+    *  REACT_APP_stripe_plan - this is the ID for a second Stripe subscription plan, generated under Stripe products
 
-# 5️⃣ Content Licenses
-
-🚫For all content - images, icons, etc, use this table to document permission of use. Remove the two placeholders and add you content to this table
+# Content Licenses
 
 | Image Filename | Source / Creator | License                                                                      |
 | -------------- | ---------------- | ---------------------------------------------------------------------------- |
 | doodles.png    | Nicole Bennett   | [Creative Commons](https://www.toptal.com/designers/subtlepatterns/doodles/) |
 | rings.svg      | Sam Herbert      | [MIT](https://github.com/SamHerbert/SVG-Loaders)                             |
 
-# 4️⃣ Testing
+# Testing
 
-🚫Document what you used for testing and why
+### [Enzyme](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=21&cad=rja&uact=8&ved=2ahUKEwj5zPGRg9_oAhWNu54KHQ8fCCAQFjAUegQIDBAQ&url=https%3A%2F%2Fenzymejs.github.io%2Fenzyme%2F&usg=AOvVaw0EE4UgaDot1emL34oATCh2)
 
-# 4️⃣ Installation Instructions
+# Installation Instructions
 
-🚫explain how to install the required dependencies to get this project up and running with yarn and NPM
+#### start - "react-scripts start",
 
-## Other Scripts
+#### start-dev - "react-scripts -r @cypress/instrument-cra start",
 
-🚫replace these examples with your own
+#### cypress - "npx cypress run",
 
-    * typecheck - runs the TypeScript compiler
-    * build - creates a build of the application
-    * start - starts the production server after a build is created
-    * test - runs tests in **tests** directory \* eject - copy the configuration files and dependencies into the project so you have full control over them
+#### dev - "start-test 3000 cypress",
+
+#### build - "react-scripts build",
+
+#### test - "react-scripts test --watchAll=false",
+
+#### eject - "react-scripts eject",
+
+#### coverage - "CI=true yarn test --coverage || true",
+
+#### md-docs - "find ./src -name \\\*.js | xargs npx jsdoc2md --template ./README.hbs --files | cat > ./FE\_[DOC.md](http://doc.md/)",
+
+#### html-docs - "npx jsdoc -c ./docs/config.json",
+
+#### madge - "npx madge ./src -i madge.png",
+
+#### gen-docs - "echo 'generating visual graphs' && npx madge ./src -i madge.png && echo 'generating markdown' && find ./src -name \\\*.js | xargs npx jsdoc2md --template ./README.hbs --files | cat > ./FE\_[DOC.md](http://doc.md/) && echo 'generating html' && npx jsdoc -c ./docs/config.json"
+
+### To get backend up and running:
+
+1.  clone this repo: [](https://github.com/Lambda-School-Labs/budget-blocks-fe)[https://github.com/Lambda-School-Labs/budget-blocks-be](https://github.com/Lambda-School-Labs/budget-blocks-be), run 'npm install'
+
+2.  create a file named '.env' in the root directory.
+
+3.  Paste the following data:
+
+DEV_DATABASE_URL=postgres://kkxdhymo:0NOQ4o1rKprHkCCAXwOl-064ETUXK8eT@drona.db.elephantsql.com:5432/kkxdhymo PLAID_CLIENT_ID=5e29d37100a2c100129f7394 PLAID_COUNTERY_CODES=US,CA,GB,FR,ES,IE PLAID_ENV=sandbox PLAID_PRODUCTS=transactions PLAID_PUBLIC_KEY=7b47db1cfa540573d15cea302e5988 PLAID_SECRET=98b231dd6b24111a00000c7def80bd
+
+4.  In the knexfile.js file, create the following changes:
+
+// development: {
+
+// client: "sqlite3",
+
+// useNullAsDefault: true,
+
+// connection: {
+
+// filename: "./data/users.db3"
+
+// },
+
+// seeds: {
+
+// directory: "./data/seeds"
+
+// },
+
+// migrations: {
+
+// directory: "./data/migrations"
+
+// },
+
+// pool: {
+
+// afterCreate: (conn, done) => {
+
+// conn.run("PRAGMA foreign_keys = ON", done);
+
+// }
+
+// }
+
+// },
+
+development: {
+
+client: "pg",
+
+connection: process.env.DEV_DATABASE_URL,
+
+migrations: {
+
+directory: "./data/migrations"
+
+},
+
+seeds: {
+
+directory: "./data/seeds"
+
+}
+
+},
+
+5.  run 'node .' inside terminal in root folder
 
 # Contributing
 
@@ -183,9 +270,3 @@ Remember that this project is licensed under the MIT license, and by submitting 
 ### Attribution
 
 These contribution guidelines have been adapted from [this good-Contributing.md-template](https://gist.github.com/PurpleBooth/b24679402957c63ec426).
-
-## Documentation
-
-[Frontend Documentation](FE_DOC.md)
-
-[Backend Documentation](https://github.com/Lambda-School-Labs/budget-blocks-be/blob/master/README.md)

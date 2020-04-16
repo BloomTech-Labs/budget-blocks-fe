@@ -1,6 +1,9 @@
 import axios from "axios";
 import environmentUrls from "../../dispatch";
+import { Redirect} from "react-router-dom";
+import React from 'react'
 import promiseTimeout from "../../helpers/promiseTimeout";
+
 
 export const REGISTER_USER_LOADING = "REGISTER_USER_LOADING";
 export const REGISTER_USER_SUCCESS = "REGISTER_USER_SUCCESS";
@@ -29,6 +32,7 @@ export function registerUser(data, history) {
       .then((response) => {
         dispatch(registerUserSuccess(response.data));
         history.push("/onBoard/1");
+        
       })
       .catch((error) => {
         dispatch(registerUserFailure(error.response.data.error));

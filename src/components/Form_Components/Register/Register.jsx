@@ -9,6 +9,11 @@ import handlers from "./handlers";
 import { useContext } from "react";
 import CredentialsContext from "../../../contexts/CredentialsContext";
 
+import { CheckEmptyFields } from "../CheckEmpyFields";
+import { ChangeCheckField } from "../ChangeCheckField";
+import { PageView, GAevent } from "../../google_analytics/index.js";
+
+import FormControl from "@material-ui/core/FormControl";
 import Container from "@material-ui/core/Container";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import "./registerStyle.css";
@@ -21,11 +26,19 @@ import "./registerStyle.css";
  * @returns <div className="register" .../>
  */
 export const Register = (props) => {
+
   const { updateCredentials } = useContext(CredentialsContext);
+
   const [state, setState] = useState({
     user: { ...default_user },
     values: { ...default_values },
     confirmPass: { confirmPassword: "" },
+
+  });
+
+
+  useEffect(() => {
+    PageView();
   });
 
   const canSubmit = () => {
@@ -33,18 +46,15 @@ export const Register = (props) => {
       Object.keys(state.values[key]).includes("error")
     );
     const errs = vals.filter((value) => state.values[value].error === true);
-    setState({
-      ...state,
-      values: { ...state.values, button: { disabled: errs.length > 0 } },
-    });
-    updateCredentials(state.user.email, state.user.password);
-  };
 
+  };
+  
   const handleSubmit = (e) =>
     handlers.handleSubmit({ e, state, setState, props });
   const handleConfirm = (e) => handlers.handleConfirm({ e, state, setState });
   const handleUserChange = (e) =>
     handlers.handleUserChange({ e, state, setState, canSubmit });
+
 
   return (
     <div className="register">

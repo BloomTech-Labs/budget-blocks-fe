@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { TableHeads } from './TableHead';
 import DisplayBlocks from './DisplayBlocks';
 
@@ -13,13 +13,17 @@ import Paper from '@material-ui/core/Paper';
 import AddManualBlocks from "../AddManualBlocks"
 import BudgetGoalModal from '../Modal_Components/BudgetGoalModal';
 
+import PropTypes from 'prop-types'
+
+/**
+ * Blocks (Modal)
+ * (called from '../Dashboard.js)
+ * Displays the a user's blocks for editing
+ * @param {Object} props 
+ */
 export function Blocks(props) {
-	// This component displays the blocks table. 
-	// filter determines the amount of blocks that are displayed. (True = 5 blocks, false = all blocks)
-	// handleClick toggles the filter
-	// open is used to display the edit block modal
-	// handleClickOpen is used to populate the edit block modal with the data from the selected block (passed down to DiplayBlocks component)
-	// values is an object to populate the modal (passed down to the edit block modal)
+	
+	useEffect(()=> console.log('linkedBLocksProps', props), [props])
 	const [filter, setFilter] = useState([]);
 	const [open, setOpen] = useState(false);
 	const handleClick = e => {
@@ -31,10 +35,10 @@ export function Blocks(props) {
 		budget: 0.0
 	});
 	const handleClickOpen = (id, budget) => {
-		setValues({ ...values, userId: props.userID, catId: id, budget });
-
-		setOpen(true);
+		setValues({ ...values, userId: props.userID, catId: id, budget});
+		setOpen(true)
 	};
+
 	const handleClose = () => {
 		setOpen(false);
 	};
@@ -43,7 +47,7 @@ export function Blocks(props) {
 			<TableContainer className='table' component={Paper}>
 				<Table className='table-content'>
 					<TableHeads
-						CellNames={['Block', 'Total Expenses', 'Limit',""]}
+						CellNames={['Block', 'Total Expenses', 'Limit', ""]}
 						className='lightgrey'
 					/>
 					<DisplayBlocks
@@ -51,13 +55,13 @@ export function Blocks(props) {
 						handleClick={handleClickOpen}
 					/>
 				</Table>
-				<BudgetGoalModal handleOpen={open} values={values} handleClose={handleClose} />
+				{open ? <BudgetGoalModal open={open} {...values} handleClose={handleClose} /> : null}
 			</TableContainer>
 			<div>
 				<button className='blocks-button' onClick={handleClick}>
 					{filter ? 'View All' : 'View Less'}
-					</button>	
-					<AddManualBlocks/>
+				</button>
+				<AddManualBlocks />
 			</div>
 		</div>
 	);
@@ -70,6 +74,12 @@ function mapStateToProps(state) {
 			return a.id - b.id;
 		})
 	};
+}
+
+Blocks.propTypes = {
+	blocks: PropTypes.array,
+	getTransactions: PropTypes.func,
+	userID: PropTypes.string
 }
 
 export default connect(mapStateToProps, { getTransactions })(Blocks);

@@ -88,3 +88,30 @@
 	font-family: 'Exo', sans-serif !important;
 	color: #282c34;
 }
+
+.expenses, .blocks {
+	width: 30%;
+	height: 500px;
+	border: black solid 2px;
+	border-radius: 10px;
+}
+
+.exp-blocks-container{
+	width: 90%;
+	height: 500px;
+	display: flex;
+	justify-content: space-around;
+}
+
+.block {
+	margin: 10px;
+	border: red 1px solid;
+	border-radius: 5px;
+}
+
+.expense {
+	margin: 10px;
+	border: blue 1px solid;
+	border-radius: 5px;
+}
+

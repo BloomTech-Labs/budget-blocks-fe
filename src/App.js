@@ -47,7 +47,7 @@ function App() {
             <PrivateRoute path="/dashboard" component={Dashboard} />
             <PrivateRoute path="/onBoard/select" component={SelectCategories} />
             <Route path="/onBoard/1" component={FirstOnboard} />
-            <Route path="/maggie/" component={ExpenseList} />
+            <Route path="/maggie" component={ExpenseList} />
             <PrivateRoute path="/manual" component={ManualBlocks} />
           </Switch>
         </CredentialsContext.Provider>

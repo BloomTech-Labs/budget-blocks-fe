@@ -6,22 +6,6 @@ import { createMemoryHistory } from "history";
 import { configure, mount, shallow } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import CredentialsContext from "../../contexts/CredentialsContext";
-/*
-Tests
-1. Structural
-  a. Is the nav bar being rendered? ... might be a separate concern
-  b. Does the form title say "Create Profile"?
-  c. Are all the inputs we need being rendered?
-  D. Do the password inputs render as password inputs?
-  e. Do the password inputs have the "reveal password" toggles?
-  f. Does the submit button get rendered with the text "Cotinue"?
-2. Interaction
-  a. What do we do if a user tries to register with an email that is already registered?
-  b. What do we do if a user tries to enter an invalid email address?
-  c. What do we do if the Password and Confirm Password inputs don't match?
-  d. Where do we get redirected once we hit continue?
-  e. What happens if any of the inputs are not filled in when the user clicks continue?
-*/
 
 configure({ adapter: new Adapter() });
 

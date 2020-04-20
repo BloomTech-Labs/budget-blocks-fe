@@ -2,11 +2,8 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { fakeExpenses, fakeBlocks } from './fakeData'
 import Modal from '@material-ui/core/Modal';
+import ExpenseFormModal from './ExpenseFormModal'
 
-const initialExpense = {
-  name: "",
-  amount: "",
-};
 
 const initialBlock = {
   name: "",
@@ -17,8 +14,7 @@ const ExpenseList = ({ Expenses }) => {
   console.log(Expenses);
   const [data, setData] = useState([]);
   const [editing, setEditing] = useState(false);
-  const [expenseToEdit, setExpenseToEdit] = useState(initialExpense);
-  const [newExpense, setNewExpense] = useState(initialExpense);
+  const [expenseToEdit, setExpenseToEdit] = useState({});
   const [expenseToDelete, setExpenseToDelete] = useState();
   const [openTransactionForm, setOpenTransactionForm] = useState(false)
   const [openBlockForm, setOpenBlockForm] = useState(false)
@@ -72,20 +68,8 @@ const ExpenseList = ({ Expenses }) => {
 
   const addExpense = (expense, event) => {
     event.preventDefault()
-    // props.expenses.push(expense)
     setExpenses([...expenses, expense])
-    // axios
-    //   .post(
-    //     `https://lambda-budget-blocks.herokuapp.com//manual/transaction/:userId`,
-    //     expense
-    //   )
-    //   .then((res) => {
-    //     console.log(res);
-    //   })
-    //   .catch((err) => {
-    //     console.log(err.response);
-    //   });
-    // window.location.reload();
+    
   };
 
   // useEffect(() => {
@@ -144,46 +128,11 @@ const ExpenseList = ({ Expenses }) => {
         )}
       </div>
 
-      <Modal
+      <ExpenseFormModal
         open={openTransactionForm}
-        onClose={handleTransactionFormClose}
-        aria-labelledby="simple-modal-title"
-        aria-describedby="simple-modal-description"
-      >
-        <div className="add-form">
-          <h3>Add A New Expense</h3>
-          <form onSubmit={(event) => {
-            addExpense(newExpense, event)
-            setOpenTransactionForm(false)
-          }}>
-            <h4>New Expense</h4>
-            <input
-              id="name"
-              name="name"
-              type="text"
-              placeholder="Name"
-              value={newExpense.name}
-              onChange={(e) =>
-                setNewExpense({ ...newExpense, [e.target.name]: e.target.value })
-              }
-            />
-            <h4>Amount</h4>
-            <input
-              id="amount"
-              name="amount"
-              type="text"
-              placeholder="amount"
-              value={newExpense.amount}
-              onChange={(e) =>
-                setNewExpense({ ...newExpense, [e.target.name]: e.target.value })
-              }
-            />
-
-            <button type="submit">Add New Expense</button>
-          </form>
-        </div>
-        {/* <h1>TRANSACTION FORM</h1> */}
-      </Modal>
+        handleClose={handleTransactionFormClose}
+        addExpense={addExpense}
+        handleOpen={setOpenTransactionForm} />
       <Modal
         open={openBlockForm}
         onClose={handleBlockFormClose}

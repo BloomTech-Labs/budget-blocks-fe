@@ -1,27 +1,25 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { fakeExpenses, fakeBlocks } from './fakeData'
-import Modal from '@material-ui/core/Modal';
 import ExpenseFormModal from './ExpenseFormModal'
+import BlockFormModal from './BlockFormModal'
+import Block from './Block'
 
-
-const initialBlock = {
-  name: "",
-  limit: ""
-}
 
 const ExpenseList = ({ Expenses }) => {
-  console.log(Expenses);
   const [data, setData] = useState([]);
   const [editing, setEditing] = useState(false);
   const [expenseToEdit, setExpenseToEdit] = useState({});
   const [expenseToDelete, setExpenseToDelete] = useState();
   const [openTransactionForm, setOpenTransactionForm] = useState(false)
   const [openBlockForm, setOpenBlockForm] = useState(false)
-  const [newBlock, setNewBlock] = useState(initialBlock);
 
   const [expenses, setExpenses] = useState(fakeExpenses)
   const [blocks, setBlocks] = useState(fakeBlocks)
+  const [selectedExpense, setSelectedExpense] = useState({
+    selected: false,
+    expense: {}
+  })
 
   // const props = {
   //   expenses: fakeExpenses,
@@ -42,6 +40,15 @@ const ExpenseList = ({ Expenses }) => {
         console.log(err.response);
       });
   };
+
+  const unSelectExpense = (id) => {
+    setSelectedExpense({
+      selected: false,
+      expense: {}
+    })
+    const newExpenses = expenses.filter(exp => exp.id !== id)
+    setExpenses(newExpenses)
+  }
 
   const saveEdit = (e) => {
     console.log(expenseToEdit.id);
@@ -69,8 +76,12 @@ const ExpenseList = ({ Expenses }) => {
   const addExpense = (expense, event) => {
     event.preventDefault()
     setExpenses([...expenses, expense])
-    
+
   };
+
+  useEffect(()=>{
+    console.log('selectedExpense', selectedExpense)
+  }, [selectedExpense])
 
   // useEffect(() => {
   //   axios
@@ -106,7 +117,25 @@ const ExpenseList = ({ Expenses }) => {
         {expenses.map(
           exp => {
             return (
-              <div className="expense">
+              <div className={selectedExpense.selected && selectedExpense.expense.id === exp.id ? "expense green" : "expense"  } onClick={
+                () => {
+                  console.log('onClickExpense', selectedExpense)
+                  if (!selectedExpense.selected) {
+                
+                    setSelectedExpense({
+                      selected: true,
+                      expense: exp
+                    })
+                  
+                  } else if(selectedExpense.expense.id === exp.id){
+                    setSelectedExpense({
+                      selected: false,
+                      expense: {}
+                    })
+                  }
+                }
+
+              }>
                 <h2>{exp.name}</h2>
                 <p>{exp.amount}</p>
               </div>)
@@ -119,10 +148,13 @@ const ExpenseList = ({ Expenses }) => {
         {blocks.map(
           block => {
             return (
-              <div className="block">
-                <h2>{block.name}</h2>
-                <p>{block.limit}</p>
-              </div>
+              <Block
+                handleUnselect={unSelectExpense}
+                selectedExpense={selectedExpense}
+                name={block.name}
+                limit={block.limit}
+
+              />
             )
           }
         )}
@@ -132,47 +164,14 @@ const ExpenseList = ({ Expenses }) => {
         open={openTransactionForm}
         handleClose={handleTransactionFormClose}
         addExpense={addExpense}
-        handleOpen={setOpenTransactionForm} />
-      <Modal
+        handleOpen={setOpenTransactionForm}
+      />
+      <BlockFormModal
         open={openBlockForm}
-        onClose={handleBlockFormClose}
-        aria-labelledby="simple-modal-title"
-        aria-describedby="simple-modal-description"
-      >
-        <div className="add-form">
-          <h3>Add A New Expense</h3>
-          <form onSubmit={(event) => {
-            addBlock(newBlock, event)
-            setOpenBlockForm(false)
-          }}>
-            <h4>New Block</h4>
-            <input
-              id="name"
-              name="name"
-              type="text"
-              placeholder="Name"
-              value={newBlock.name}
-              onChange={(e) =>
-                setNewBlock({ ...newBlock, [e.target.name]: e.target.value })
-              }
-            />
-            <h4>Amount</h4>
-            <input
-              id="limit"
-              name="limit"
-              type="text"
-              placeholder="limit"
-              value={newBlock.limit}
-              onChange={(e) =>
-                setNewBlock({ ...newBlock, [e.target.name]: e.target.value })
-              }
-            />
-
-            <button type="submit">Add New Block</button>
-          </form>
-        </div>
-        {/* <h1>TRANSACTION FORM</h1> */}
-      </Modal>
+        handleCLose={handleBlockFormClose}
+        addBlock={addBlock}
+        handleOpen={setOpenBlockForm}
+      />
     </div>
     // <div>
     //   <div className="add-form">

@@ -17,7 +17,7 @@ test('Login renders correctly',()=>{
 });
 
 
-test('Changing the text inputs changes the values on screen',()=>{
+describe('Changing the text inputs changes the values on screen',()=>{
     const callAPI = jest.fn();
     const wrapper = mount(
     <Router>
@@ -25,21 +25,26 @@ test('Changing the text inputs changes the values on screen',()=>{
     </Router>
     );
 
-
-    let passInput = wrapper.find("input").get(1);
-    let emailInput = wrapper.find("input").get(0);
+    let passInput = wrapper.find("input").first();
+    let emailInput = wrapper.find("input").first();
 
     wrapper.find("input").last().simulate('change',{ target: { value: 'test',name:"password" } });
     wrapper.find("input").first().simulate('change',{ target: { value: 'sendhelp@gmail.com',name:"email" } });
 
-    passInput = wrapper.find("input").get(1);
-    emailInput = wrapper.find("input").get(0);
+    passInput = wrapper.find("input").first();
+    emailInput = wrapper.find("input").first();
 
-    expect(passInput.props.value).toBe("test");
-    expect(emailInput.props.value).toBe("sendhelp@gmail.com");
+    test("Password Input", () => {
+        expect(passInput.props.value).toBe("test");
+    });
+    
+    test("Email Input", () => {
+        expect(emailInput.props.value).toBe("sendhelp@gmail.com");
+    });
+    
 });
 
-test('Form calls api when form is filled out',()=>{
+describe('Form calls api when form is filled out',()=>{
     const callAPI = jest.fn();
 
     const wrapper = mount(
@@ -49,23 +54,29 @@ test('Form calls api when form is filled out',()=>{
     );
 
 
-    let passInput = wrapper.find("input").get(1);
-    let emailInput = wrapper.find("input").get(0);
-    let signInButton = wrapper.find("button").get(1);
+    let passInput = wrapper.find("input").first();
+    let emailInput = wrapper.find("input").first();
+    let signInButton = wrapper.find("button").first();
+    let signInButton = wrapper.find("button").first();
 
+    wrapper.find("form").simulate("submit");
     wrapper.find("input").last().simulate('change',{ target: { value: 'test',name:"password" } });
     wrapper.find("input").first().simulate('change',{ target: { value: 'sendhelp@gmail.com',name:"email" } });
 
-    passInput = wrapper.find("input").get(1);
-    emailInput = wrapper.find("input").get(0);
+    passInput = wrapper.find("input").first();
+    emailInput = wrapper.find("input").first();
 
-    expect(passInput.props.value).toBe("test");
-    expect(emailInput.props.value).toBe("sendhelp@gmail.com");
+    test("Password Input", () => {
+        expect(passInput.props.value).toBe("test");
+    });
+    test("Email Input", () => {
+        expect(emailInput.props.value).toBe("sendhelp@gmail.com");
+    });
+    test("Sign in Button", () => {
+        expect(signInButton.props.disabled).toBe(false);
+    });
 
-    wrapper.find("form").simulate("submit");
-    signInButton = wrapper.find("button").get(1);
-    
-
-    expect(signInButton.props.disabled).toBe(false);
-    expect(callAPI).toHaveBeenCalled();
+    test("API Called", () => {
+        expect(callAPI).toHaveBeenCalled();
+    });
 });

@@ -45,7 +45,7 @@ export const Login = (props) => {
     user: { ...default_user },
   });
 
-  const [initial, setinitial] = useState(sessionStorage.getItem("token"));
+  const [initial, setInitial] = useState(sessionStorage.getItem("token"));
 
   useEffect(() => {
     PageView();

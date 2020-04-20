@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { fakeExpenses, fakeBlocks } from './fakeData'
+import Modal from '@material-ui/core/Modal';
 
 const initialExpense = {
   name: "",
@@ -14,6 +15,7 @@ const ExpenseList = ({ Expenses }) => {
   const [expenseToEdit, setExpenseToEdit] = useState(initialExpense);
   const [newExpense, setNewExpense] = useState(initialExpense);
   const [expenseToDelete, setExpenseToDelete] = useState();
+  const [openTransactionForm, setOpenTransactionForm] = useState(false)
 
   const props = {
     expenses: fakeExpenses,
@@ -87,6 +89,10 @@ const ExpenseList = ({ Expenses }) => {
     setExpenseToEdit(expense);
   };
 
+  const handleTransactionFormClose = () => {
+    setOpenTransactionForm(false)
+  }
+
   return (
     <div className="exp-blocks-container">
       <div className="expenses">
@@ -113,6 +119,15 @@ const ExpenseList = ({ Expenses }) => {
           }
         )}
       </div>
+      <button onClick={()=>{setOpenTransactionForm(true)}} >OPEN TRASACTION FORM</button>
+      <Modal
+        open={openTransactionForm}
+        onClose={handleTransactionFormClose}
+        aria-labelledby="simple-modal-title"
+        aria-describedby="simple-modal-description"
+      >
+        <h1>TRANSACTION FORM</h1>
+      </Modal>
     </div>
     // <div>
     //   <div className="add-form">

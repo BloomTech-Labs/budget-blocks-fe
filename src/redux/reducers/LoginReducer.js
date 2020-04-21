@@ -28,7 +28,7 @@ export const reducer = (state = initialState, action) => {
         user: action.payload,
         isFetching: false,
         error: null,
-        navState: "I am logged in. Display logout button.",
+        navState: sessionStorage.getItem('token'),
       };
     case SEND_LINK_TOKEN_SUCCESS:
       return {
@@ -48,7 +48,7 @@ export const reducer = (state = initialState, action) => {
         },
         error: null,
         isFetching: false,
-        navState: "",
+        navState: sessionStorage.removeItem("token"),
       };
     default:
       return state;

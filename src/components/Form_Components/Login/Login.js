@@ -115,7 +115,7 @@ export const Login = (props) => {
 
           {props.error ? (
             <p style={{ display: "inline" }} className="errorMessage">
-              {props.error}
+              {/* {props.error} */}
             </p>
           ) : (
             <p className="errorMessage"></p>

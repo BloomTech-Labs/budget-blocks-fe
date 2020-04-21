@@ -5,7 +5,7 @@ import ExpenseFormModal from './ExpenseFormModal'
 import BlockFormModal from './BlockFormModal'
 import Block from './Block'
 import Expense from './Expense';
-import Modal from '@material-ui/core/Modal';
+import { Modal, Container } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 
 const ExpenseList = ({ Expenses }) => {
@@ -143,7 +143,7 @@ const ExpenseList = ({ Expenses }) => {
 
   return (
     <div className="exp-blocks-container">
-      <div className="expenses">
+      <Container maxWidth="" >
         <button onClick={() => { setOpenTransactionForm(true) }} >OPEN TRASACTION FORM</button>
         {expenses.map(
           (exp, index) => {
@@ -161,8 +161,8 @@ const ExpenseList = ({ Expenses }) => {
           }
         )}
 
-      </div>
-      <div className="blocks">
+      </Container>
+      <Container >
         <button onClick={() => { setOpenBlockForm(true) }} >OPEN BLOCK FORM</button>
         {blocks.map(
           (block, index) => {
@@ -182,7 +182,7 @@ const ExpenseList = ({ Expenses }) => {
             )
           }
         )}
-      </div>
+      </Container >
 
       <ExpenseFormModal
         open={openTransactionForm}
@@ -240,18 +240,18 @@ const ExpenseList = ({ Expenses }) => {
               value="submit"
             > Save </button>
           </form>
-          <button onClick={()=>{
-              const newExpenses= [...expenses]
-              newExpenses.splice(indexOfExpense, 1)
-              setExpenses(newExpenses)
-              setOpenExpenseDetail(false)
-            }}
-           
-              className="delete-sub-btn"
-              type="submit"
-              value="submit"
-            > 
-            Delete 
+          <button onClick={() => {
+            const newExpenses = [...expenses]
+            newExpenses.splice(indexOfExpense, 1)
+            setExpenses(newExpenses)
+            setOpenExpenseDetail(false)
+          }}
+
+            className="delete-sub-btn"
+            type="submit"
+            value="submit"
+          >
+            Delete
             </button>
         </div>
       </Modal>

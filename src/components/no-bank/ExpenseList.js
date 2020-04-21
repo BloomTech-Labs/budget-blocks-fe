@@ -13,6 +13,7 @@ const ExpenseList = ({ Expenses }) => {
   const [expenseToDelete, setExpenseToDelete] = useState();
   const [openTransactionForm, setOpenTransactionForm] = useState(false)
   const [openBlockForm, setOpenBlockForm] = useState(false)
+  const [openBlockDetail, setOpenBlockDetail] = useState(false)
 
   const [expenses, setExpenses] = useState(fakeExpenses)
   const [blocks, setBlocks] = useState(fakeBlocks)
@@ -25,6 +26,13 @@ const ExpenseList = ({ Expenses }) => {
   //   expenses: fakeExpenses,
   //   blocks: fakeBlocks
   // }
+
+  const editBlock = (index, block) => {
+    const newBlocks = [...blocks]
+    newBlocks[index] = block
+    setBlocks(newBlocks)
+  }
+
   const deleteExpense = (expense) => {
     console.log('*****************************************expense List Rendered')
     axios
@@ -73,13 +81,19 @@ const ExpenseList = ({ Expenses }) => {
     setBlocks([...blocks, block])
   }
 
+  const deleteBlock = index => {
+    const newBlocks = [...blocks]
+    newBlocks.splice(index, 1)
+    setBlocks(newBlocks)
+   }
+
   const addExpense = (expense, event) => {
     event.preventDefault()
     setExpenses([...expenses, expense])
 
   };
 
-  useEffect(()=>{
+  useEffect(() => {
     console.log('selectedExpense', selectedExpense)
   }, [selectedExpense])
 
@@ -117,24 +131,23 @@ const ExpenseList = ({ Expenses }) => {
         {expenses.map(
           exp => {
             return (
-              <div className={selectedExpense.selected && selectedExpense.expense.id === exp.id ? "expense green" : "expense"  } onClick={
+              <div className={selectedExpense.selected && selectedExpense.expense.id === exp.id ? "expense green" : "expense"} onClick={
                 () => {
                   console.log('onClickExpense', selectedExpense)
                   if (!selectedExpense.selected) {
-                
+
                     setSelectedExpense({
                       selected: true,
                       expense: exp
                     })
-                  
-                  } else if(selectedExpense.expense.id === exp.id){
+
+                  } else if (selectedExpense.expense.id === exp.id) {
                     setSelectedExpense({
                       selected: false,
                       expense: {}
                     })
                   }
                 }
-
               }>
                 <h2>{exp.name}</h2>
                 <p>{exp.amount}</p>
@@ -146,9 +159,13 @@ const ExpenseList = ({ Expenses }) => {
       <div className="blocks">
         <button onClick={() => { setOpenBlockForm(true) }} >OPEN BLOCK FORM</button>
         {blocks.map(
-          block => {
+          (block, index) => {
             return (
               <Block
+                addExpense={addExpense}
+                editBlock={editBlock}
+                deleteBlock={deleteBlock}
+                index={index}
                 handleUnselect={unSelectExpense}
                 selectedExpense={selectedExpense}
                 name={block.name}
@@ -171,6 +188,8 @@ const ExpenseList = ({ Expenses }) => {
         handleCLose={handleBlockFormClose}
         addBlock={addBlock}
         handleOpen={setOpenBlockForm}
+      />
+
       />
     </div>
     // <div>

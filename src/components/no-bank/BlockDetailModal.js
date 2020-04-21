@@ -8,27 +8,21 @@ const BlockDetailModal = (props) => {
     event.preventDefault()
     console.log('blockProps', props)
     props.editBlock(props.index, newBlock)
-    // setOpenBlockDetail(false)
     props.handleClose(event)
-
     // find block in parent's blocks array by props.index
     // change that block in the array
-
   }
 
 
   return (
     <Modal
       open={props.open}
-      // onClose={(event) => {
-      //   event.stopPropagation()
-      //   console.log('onCLoseBLockDetail')
-      //   setOpenBlockDetail(false)
-      // }
-      // }
       onClose={props.handleClose}
     >
       <div>
+        <button onClick={ () => props.handleDelete(props.index)}>Delete</button>
+        <button onClick={() => props.handleDeleteAndSave(props.index, props.ownExpenses)}>Delete And Save</button>
+
         <h2>{`${props.name}'s Expense History`}</h2>
         <form onSubmit={handleSubmit}>
           <h4>Edit Name</h4>

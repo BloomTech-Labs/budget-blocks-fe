@@ -87,6 +87,12 @@ const ExpenseList = ({ Expenses }) => {
     setBlocks(newBlocks)
    }
 
+  const deleteAndSave = (index, ownExpenses) => {
+    setExpenses([...expenses, ...ownExpenses])
+    deleteBlock(index)
+    console.log('deleteAndSaveOwnExpenses', ownExpenses)
+  }
+
   const addExpense = (expense, event) => {
     event.preventDefault()
     setExpenses([...expenses, expense])
@@ -165,6 +171,7 @@ const ExpenseList = ({ Expenses }) => {
                 addExpense={addExpense}
                 editBlock={editBlock}
                 deleteBlock={deleteBlock}
+                deleteAndSave={deleteAndSave}
                 index={index}
                 handleUnselect={unSelectExpense}
                 selectedExpense={selectedExpense}

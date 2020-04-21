@@ -52,11 +52,12 @@ function Block(props) {
     }
   }
 
+  
   return (
     <div
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      className={selectedAndHovering ? "block green" : "block"} 
+      className={selectedAndHovering ? "block green" : "block"}
       onClick={() => {
         if (props.selectedExpense.selected) {
           setOwnExpenses([...ownExpenses, props.selectedExpense.expense])
@@ -73,6 +74,7 @@ function Block(props) {
       <h2>{props.name}</h2>
       {/* <p>{props.limit}</p> */}
       <span style={{ "color": "green" }}>{`${total}`} </span>
+      <span> of </span> 
       <span>{`${props.limit}`}</span>
       {/* <button onClick={(event) => {
         event.stopPropagation()
@@ -105,6 +107,8 @@ function Block(props) {
         props={props.limit}
         ownExpenses={ownExpenses}
         setOwnExpenses={setOwnExpenses}
+        handleDelete={props.deleteBlock}
+        handleDeleteAndSave={props.deleteAndSave}
       />
       {/* <Modal
         open={openDeleteAskModal}

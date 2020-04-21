@@ -1,10 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import Modal from '@material-ui/core/Modal'
-import Radio from '@material-ui/core/Radio';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormControl from '@material-ui/core/FormControl';
-import FormLabel from '@material-ui/core/FormLabel';
 import BlockDetailModal from './BlockDetailModal'
 
 function Block(props) {
@@ -82,6 +76,7 @@ function Block(props) {
         setOwnExpenses={setOwnExpenses}
         handleDelete={props.deleteBlock}
         handleDeleteAndSave={props.deleteAndSave}
+        handleAddExpense={props.addExpense}
       />
     </div>
   )

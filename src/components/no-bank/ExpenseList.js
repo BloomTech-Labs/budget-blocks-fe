@@ -4,7 +4,8 @@ import { fakeExpenses, fakeBlocks } from './fakeData'
 import ExpenseFormModal from './ExpenseFormModal'
 import BlockFormModal from './BlockFormModal'
 import Block from './Block'
-
+import Expense from './Expense';
+import Modal from '@material-ui/core/Modal';
 
 const ExpenseList = ({ Expenses }) => {
   const [data, setData] = useState([]);
@@ -13,8 +14,10 @@ const ExpenseList = ({ Expenses }) => {
   const [expenseToDelete, setExpenseToDelete] = useState();
   const [openTransactionForm, setOpenTransactionForm] = useState(false)
   const [openBlockForm, setOpenBlockForm] = useState(false)
-  const [openBlockDetail, setOpenBlockDetail] = useState(false)
+  const [openExpenseDetail, setOpenExpenseDetail] = useState(false);
+  const [editExpense, setEditExpense] = useState({})
 
+  const [indexOfExpense, setIndexOfExpense] = useState(null);
   const [expenses, setExpenses] = useState(fakeExpenses)
   const [blocks, setBlocks] = useState(fakeBlocks)
   const [selectedExpense, setSelectedExpense] = useState({
@@ -85,7 +88,7 @@ const ExpenseList = ({ Expenses }) => {
     const newBlocks = [...blocks]
     newBlocks.splice(index, 1)
     setBlocks(newBlocks)
-   }
+  }
 
   const deleteAndSave = (index, ownExpenses) => {
     setExpenses([...expenses, ...ownExpenses])
@@ -117,10 +120,10 @@ const ExpenseList = ({ Expenses }) => {
   //     });
   // }, []);
 
-  const editExpense = (expense) => {
-    setEditing(true);
-    setExpenseToEdit(expense);
-  };
+  // const editExpense = (expense) => {
+  //   setEditing(true);
+  //   setExpenseToEdit(expense);
+  // };
 
   const handleTransactionFormClose = () => {
     setOpenTransactionForm(false)
@@ -129,35 +132,31 @@ const ExpenseList = ({ Expenses }) => {
   const handleBlockFormClose = () => {
     setOpenBlockForm(false)
   }
+  const handleEditExpense = (e, editExp, index) => {
+    e.preventDefault();
+    const newExpenses = [...expenses]
+    newExpenses[index].name = editExp.name
+    newExpenses[index].amount = editExp.amount
+    setExpenses(newExpenses)
+  }
 
   return (
     <div className="exp-blocks-container">
       <div className="expenses">
         <button onClick={() => { setOpenTransactionForm(true) }} >OPEN TRASACTION FORM</button>
         {expenses.map(
-          exp => {
+          (exp, index) => {
             return (
-              <div className={selectedExpense.selected && selectedExpense.expense.id === exp.id ? "expense green" : "expense"} onClick={
-                () => {
-                  console.log('onClickExpense', selectedExpense)
-                  if (!selectedExpense.selected) {
-
-                    setSelectedExpense({
-                      selected: true,
-                      expense: exp
-                    })
-
-                  } else if (selectedExpense.expense.id === exp.id) {
-                    setSelectedExpense({
-                      selected: false,
-                      expense: {}
-                    })
-                  }
-                }
-              }>
-                <h2>{exp.name}</h2>
-                <p>{exp.amount}</p>
-              </div>)
+              <Expense
+                setEditExpense={setEditExpense}
+                selectedExpense={selectedExpense}
+                setSelectedExpense={setSelectedExpense}
+                setIndexOfExpense={setIndexOfExpense}
+                exp={exp}
+                index={index}
+                setOpenExpenseDetail={setOpenExpenseDetail}
+              />
+            )
           }
         )}
 
@@ -196,8 +195,54 @@ const ExpenseList = ({ Expenses }) => {
         addBlock={addBlock}
         handleOpen={setOpenBlockForm}
       />
+      <Modal
+        open={openExpenseDetail}
+        onClose={(e) => {
+          e.stopPropagation()
+          setOpenExpenseDetail(false)
+        }}>
+        <div style={{
+          display: "flex",
+          "flex-direction": "column",
 
-      />
+
+        }}>
+          <h2> Edit Transaction </h2>
+          <form onSubmit={(event) => {
+            handleEditExpense(event, editExpense, indexOfExpense)
+            setOpenExpenseDetail(false)
+          }
+          }>
+            <input
+              id="name"
+              name="name"
+              type="text"
+              value={editExpense.name}
+              onFocus={event => event.stopPropagation()}
+              onChange={(e) => {
+                setEditExpense({ ...editExpense, [e.target.name]: e.target.value })
+              }}
+            />
+            <input
+              id="amount"
+              name="amount"
+              type="text"
+              value={editExpense.amount}
+              onFocus={event => event.stopPropagation()}
+              onChange={(e) => {
+                setEditExpense({ ...editExpense, [e.target.name]: e.target.value })
+              }}
+            />
+            <button
+              className="edit-sub-btn"
+              type="submit"
+              value="submit"
+            > Save </button>
+
+          </form>
+        </div>
+      </Modal>
+
     </div>
     // <div>
     //   <div className="add-form">

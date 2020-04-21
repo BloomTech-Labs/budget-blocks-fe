@@ -54,7 +54,7 @@ const BlockDetailModal = (props) => {
           {props.ownExpenses.map((exp, index) => (
             <div onClick={(event) => {
               // take out expense from block
-              props.addExpense(exp, event)
+              props.handleAddExpense(exp, event)
               const newExpenses = [...props.ownExpenses]
               newExpenses.splice(index, 1)
               props.setOwnExpenses(newExpenses)

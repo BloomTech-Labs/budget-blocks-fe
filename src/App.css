@@ -119,3 +119,8 @@
 .green {
   background-color: lightgreen;
 }
+
+.edit-sub-btn{
+  height:60px;
+  width:100px
+}

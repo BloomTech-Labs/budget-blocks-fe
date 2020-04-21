@@ -5,13 +5,13 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
+import BlockDetailModal from './BlockDetailModal'
 
 function Block(props) {
   const [ownExpenses, setOwnExpenses] = useState([])
   const [total, setTotal] = useState(0)
   const [openBlockDetail, setOpenBlockDetail] = useState(false)
 
-  const [newBlock, setNewBlock] = useState({ name: props.name, limit: props.limit })
   const [openDeleteAskModal, setOpenDeleteAskModal] = useState(false)
   const [keepExpenses, setKeepExpenses] = useState("keep")
 
@@ -31,6 +31,12 @@ function Block(props) {
     setTotal(total)
   }, [ownExpenses])
 
+  const handleClose = event => {
+    event.stopPropagation()
+    console.log('onCLoseBLockDetail')
+    setOpenBlockDetail(false)
+
+  }
 
   return (
     <div className="block" onClick={() => {
@@ -63,78 +69,24 @@ function Block(props) {
         } else {
           // ask
           setOpenDeleteAskModal(true)
-          if(keepExpenses === "keep"){
+          if (keepExpenses === "keep") {
             ownExpenses.forEach(exp => props.addExpense(exp, event))
             props.deleteBlock(props.index)
             return
-          } 
+          }
           props.deleteBlock(props.index)
         }
       }}>Delete</button>
-      <Modal
+      <BlockDetailModal
         open={openBlockDetail}
-        onClose={(event) => {
-          event.stopPropagation()
-          console.log('onCLoseBLockDetail')
-          setOpenBlockDetail(false)
-        }
-        }
-      >
-        <div>
-          <h2>{`${props.name}'s Expense History`}</h2>
-          <form onSubmit={(event) => {
-            event.preventDefault()
-            console.log('blockProps', props)
-            props.editBlock(props.index, newBlock)
-            setOpenBlockDetail(false)
-
-            // find block in parent's blocks array by props.index
-            // change that block in the array
-          }}>
-            <h4>Edit Name</h4>
-            <input
-              id="name"
-              name="name"
-              type="text"
-              placeholder="Name"
-              value={newBlock.name}
-              onChange={(e) =>
-                setNewBlock({ ...newBlock, [e.target.name]: e.target.value })
-              }
-            />
-            <h4>Edit Block Limit</h4>
-            <input
-              id="limit"
-              name="limit"
-              type="text"
-              placeholder="limit"
-              value={newBlock.limit}
-              onChange={(e) =>
-                setNewBlock({ ...newBlock, [e.target.name]: e.target.value })
-              }
-            />
-
-            <button type="submit">Add New Block</button>
-          </form>
-          <div className="expenses">
-            {ownExpenses.map((exp, index) => (
-              <div onClick={(event) => {
-                // take out expense from block
-                props.addExpense(exp, event)
-                const newExpenses = [...ownExpenses]
-                newExpenses.splice(index, 1)
-                setOwnExpenses(newExpenses)
-
-                // put in expense in parent's expenses array
-              }} className="green expense">
-                <h3>{exp.name}</h3>
-                <p>{exp.amount}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-
-      </Modal>
+        handleClose={handleClose}
+        editBlock={props.editBlock}
+        index={props.index}
+        name={props.name}
+        props={props.limit}
+        ownExpenses={ownExpenses}
+        setOwnExpenses={setOwnExpenses}
+      />
       <Modal
         open={openDeleteAskModal}
         onClose={(event) => {
@@ -143,7 +95,7 @@ function Block(props) {
         }}
       >
         <div style={{ height: "100px", width: "230px" }}>
-          
+
           <FormControl component="fieldset">
             <FormLabel component="legend">Keep or discard expenses?</FormLabel>
             <RadioGroup aria-label="gender" name="gender1" value={keepExpenses} onChange={handleChooseKeep}>

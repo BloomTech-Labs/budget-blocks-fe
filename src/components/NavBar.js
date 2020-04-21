@@ -31,7 +31,7 @@ export function NavBar({ navState, logoutUser }) {
         <img className="heading" src={head} />
       </div>
       <div className="nav-action">
-        {initialClass  ? (
+        {navState === sessionStorage.getItem('token')  ? (
           <Link   onClick={removeSessionStorage} >
           Log Out
         </Link>

@@ -6,6 +6,7 @@ import BlockFormModal from './BlockFormModal'
 import Block from './Block'
 import Expense from './Expense';
 import Modal from '@material-ui/core/Modal';
+import Button from '@material-ui/core/Button';
 
 const ExpenseList = ({ Expenses }) => {
   const [data, setData] = useState([]);
@@ -238,8 +239,20 @@ const ExpenseList = ({ Expenses }) => {
               type="submit"
               value="submit"
             > Save </button>
-
           </form>
+          <button onClick={()=>{
+              const newExpenses= [...expenses]
+              newExpenses.splice(indexOfExpense, 1)
+              setExpenses(newExpenses)
+              setOpenExpenseDetail(false)
+            }}
+           
+              className="delete-sub-btn"
+              type="submit"
+              value="submit"
+            > 
+            Delete 
+            </button>
         </div>
       </Modal>
 

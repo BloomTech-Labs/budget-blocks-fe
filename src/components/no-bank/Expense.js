@@ -33,7 +33,7 @@ const Expense = (props) => {
           props.setEditExpense(props.exp)
           props.setIndexOfExpense(props.index)
           props.setOpenExpenseDetail(true)
-        }}>Edit</button>
+        }}>Edit/Delete</button>
     </div>
   )
 }

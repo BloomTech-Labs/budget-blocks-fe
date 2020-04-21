@@ -12,14 +12,9 @@ function Block(props) {
   const [total, setTotal] = useState(0)
   const [openBlockDetail, setOpenBlockDetail] = useState(false)
 
-  const [openDeleteAskModal, setOpenDeleteAskModal] = useState(false)
-  const [keepExpenses, setKeepExpenses] = useState("keep")
   const [selectedAndHovering, setSelectedAndHovering] = useState(false)
 
-  const handleChooseKeep = (event) => {
-    event.stopPropagation()
-    setKeepExpenses(event.target.value);
-  };
+  
   useEffect(() => {
     console.log('blocks state', { ownExpenses, total })
   }, [ownExpenses, total])
@@ -72,32 +67,10 @@ function Block(props) {
         console.log('onClickBLock', props)
       }}>
       <h2>{props.name}</h2>
-      {/* <p>{props.limit}</p> */}
       <span style={{ "color": "green" }}>{`${total}`} </span>
       <span> of </span> 
       <span>{`${props.limit}`}</span>
-      {/* <button onClick={(event) => {
-        event.stopPropagation()
-        // if there are expenses, 
-        // ask user if he wants to keep them
-        // else delete
-
-        // if expenses, and he says yes, then
-        // add all ownexpenses to expenseList expenses
-        if (ownExpenses.length === 0) {
-          // run delete on block
-          props.deleteBlock(props.index)
-        } else {
-          // ask
-          setOpenDeleteAskModal(true)
-          if (keepExpenses === "keep") {
-            ownExpenses.forEach(exp => props.addExpense(exp, event))
-            props.deleteBlock(props.index)
-            return
-          }
-          props.deleteBlock(props.index)
-        }
-      }}>Delete</button> */}
+      
       <BlockDetailModal
         open={openBlockDetail}
         handleClose={handleClose}
@@ -110,25 +83,6 @@ function Block(props) {
         handleDelete={props.deleteBlock}
         handleDeleteAndSave={props.deleteAndSave}
       />
-      {/* <Modal
-        open={openDeleteAskModal}
-        onClose={(event) => {
-          event.stopPropagation()
-          setOpenDeleteAskModal(false)
-        }}
-      >
-        <div style={{ height: "100px", width: "230px" }}>
-
-          <FormControl component="fieldset">
-            <FormLabel component="legend">Keep or discard expenses?</FormLabel>
-            <RadioGroup aria-label="gender" name="gender1" value={keepExpenses} onChange={handleChooseKeep}>
-              <FormControlLabel value="keep" control={<Radio />} label="Keep" />
-              <FormControlLabel value="discard" control={<Radio />} label="Discard" />
-            </RadioGroup>
-          </FormControl>
-
-        </div>
-      </Modal> */}
     </div>
   )
 }

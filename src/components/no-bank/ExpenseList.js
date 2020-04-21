@@ -170,7 +170,7 @@ const ExpenseList = ({ Expenses }) => {
                 selectedExpense={selectedExpense}
                 name={block.name}
                 limit={block.limit}
-
+                selected={selectedExpense.selected}
               />
             )
           }

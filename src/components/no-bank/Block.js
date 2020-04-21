@@ -14,6 +14,7 @@ function Block(props) {
 
   const [openDeleteAskModal, setOpenDeleteAskModal] = useState(false)
   const [keepExpenses, setKeepExpenses] = useState("keep")
+  const [selectedAndHovering, setSelectedAndHovering] = useState(false)
 
   const handleChooseKeep = (event) => {
     event.stopPropagation()
@@ -38,24 +39,42 @@ function Block(props) {
 
   }
 
+  const handleMouseEnter = event => {
+    if (props.selectedExpense.selected) {
+      setSelectedAndHovering(true)
+    }
+  }
+
+
+  const handleMouseLeave = event => {
+    if (props.selectedExpense.selected) {
+      setSelectedAndHovering(false)
+    }
+  }
+
   return (
-    <div className="block" onClick={() => {
-      if (props.selectedExpense.selected) {
-        setOwnExpenses([...ownExpenses, props.selectedExpense.expense])
-        props.handleUnselect(props.selectedExpense.expense.id)
-      } else {
-        // open open up modal
-        // handleOpenBlockModal(ownExpenses, total)
-        setOpenBlockDetail(true)
-        console.log('ownExpenses', ownExpenses)
-      }
-      console.log('onClickBLock', props)
-    }}>
+    <div
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      className={selectedAndHovering ? "block green" : "block"} 
+      onClick={() => {
+        if (props.selectedExpense.selected) {
+          setOwnExpenses([...ownExpenses, props.selectedExpense.expense])
+          props.handleUnselect(props.selectedExpense.expense.id)
+          setSelectedAndHovering(false)
+        } else {
+          // open open up modal
+          // handleOpenBlockModal(ownExpenses, total)
+          setOpenBlockDetail(true)
+          console.log('ownExpenses', ownExpenses)
+        }
+        console.log('onClickBLock', props)
+      }}>
       <h2>{props.name}</h2>
       {/* <p>{props.limit}</p> */}
       <span style={{ "color": "green" }}>{`${total}`} </span>
       <span>{`${props.limit}`}</span>
-      <button onClick={(event) => {
+      {/* <button onClick={(event) => {
         event.stopPropagation()
         // if there are expenses, 
         // ask user if he wants to keep them
@@ -76,7 +95,7 @@ function Block(props) {
           }
           props.deleteBlock(props.index)
         }
-      }}>Delete</button>
+      }}>Delete</button> */}
       <BlockDetailModal
         open={openBlockDetail}
         handleClose={handleClose}
@@ -87,7 +106,7 @@ function Block(props) {
         ownExpenses={ownExpenses}
         setOwnExpenses={setOwnExpenses}
       />
-      <Modal
+      {/* <Modal
         open={openDeleteAskModal}
         onClose={(event) => {
           event.stopPropagation()
@@ -105,7 +124,7 @@ function Block(props) {
           </FormControl>
 
         </div>
-      </Modal>
+      </Modal> */}
     </div>
   )
 }

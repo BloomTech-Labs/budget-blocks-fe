@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { Modal, Button, TextField } from '@material-ui/core';
 import { makeStyles, styled } from '@material-ui/core/styles';
-import BBModal from './BBModal'
 
 
 const BBButton = styled(Button)({
@@ -53,21 +52,15 @@ function ExpenseFormModal(props) {
 
   return (
 
-    // <Modal
-    //   open={props.open}
-    //   onClose={props.handleClose}
-    //   aria-labelledby="simple-modal-title"
-    //   aria-describedby="simple-modal-description"
-    // >
-    //   <div style={style} className={useStyles().paper}>
-    <BBModal
+    <Modal
       open={props.open}
-      handleClose={props.handleClose}
-      addExpense={props.addExpense}
-      handleOpen={props.handleOpen}
+      onClose={props.handleClose}
+      aria-labelledby="simple-modal-title"
+      aria-describedby="simple-modal-description"
     >
-      <>
-        <h3>Add A New Expense</h3>
+      <div style={style} className={useStyles().paper}>
+        {props.children}
+        {/* <h3>Add A New Expense</h3>
         <form onSubmit={(event) => {
           props.addExpense(newExpense, event)
           props.handleOpen(false)
@@ -107,10 +100,9 @@ function ExpenseFormModal(props) {
             }
           />
           <BBButton type="submit" color={"yellow"} >Add New Expense</BBButton>
-        </form>
-      </>
-    </BBModal>
-
+        </form> */}
+      </div>
+    </Modal>
 
   )
 }

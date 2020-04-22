@@ -6,6 +6,10 @@
   width: 100vw;
 }
 
+* {
+  font-family: "Exo", sans-serif !important;
+}
+
 .App-logo {
   margin-top: 30px;
   height: 40vmin;
@@ -120,7 +124,8 @@
   background-color: lightgreen;
 }
 
-.edit-sub-btn, .delete-sub-btn{
-  height:60px;
-  width:100px
+.edit-sub-btn,
+.delete-sub-btn {
+  height: 60px;
+  width: 100px;
 }

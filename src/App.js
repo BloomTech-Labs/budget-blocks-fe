@@ -23,7 +23,6 @@ import CredentialsContext from "./contexts/CredentialsContext";
 
 
 // Added useContext because user email and password were being stored in localStorage (security risk) and we needed to resolve that.
-function App() {
   const [credContext, setCredContext] = useState({ email: "", password: "" });
   const updateCredentials = (email, password) => {
     setCredContext({ email, password });

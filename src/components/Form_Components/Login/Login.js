@@ -113,26 +113,27 @@ export const Login = (props) => {
             </div>
             <Account message={LANG.NEED_AN_ACCOUNT} link="/register" />
 
-            {props.error ? (
-              <p style={{ display: "inline" }} className="errorMessage">
-                {props.error}
-              </p>
-            ) : (
-              <p className="errorMessage"></p>
-            )}
-            <Button
-              variant="outlined"
-              className="signInBtn"
-              type="submit"
-              fullWidth={true}
-              small="small"
-              disabled={state.values.button.disabled}
-            >
-              {props.isFetching ? <SpinnerLoading /> : <p>{LANG.SIGN_IN}</p>}
-            </Button>
-          </form>
-        </Container>
-      )}
+
+          {props.error ? (
+            <p style={{ display: "inline" }} className="errorMessage">
+              {/* {props.error} */}
+            </p>
+          ) : (
+            <p className="errorMessage"></p>
+          )}
+          <Button
+            variant="outlined"
+            className="signInBtn"
+            type="submit"
+            fullWidth={true}
+            small="small"
+            disabled={state.values.button.disabled}
+          >
+            {props.isFetching ? <SpinnerLoading /> : <p>{LANG.SIGN_IN}</p>}
+          </Button>
+        </form>
+      </Container>
+       )}
     </div>
   );
 };

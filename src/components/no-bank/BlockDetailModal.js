@@ -1,5 +1,10 @@
 import React, { useState } from 'react'
 import Modal from '@material-ui/core/Modal'
+import BBModal from './BBModal'
+import BBButton from './BBButton'
+import BBTextField from './BBTextField'
+import BBCard from './BBCard'
+// import SaveIcon from '@material-ui/icons/Save';
 
 const BlockDetailModal = (props) => {
   const [newBlock, setNewBlock] = useState({ name: props.name, limit: props.limit })
@@ -15,18 +20,25 @@ const BlockDetailModal = (props) => {
 
 
   return (
-    <Modal
+    <BBModal
       open={props.open}
-      onClose={props.handleClose}
+      handleClose={props.handleClose}
     >
       <div>
-        <button onClick={ () => props.handleDelete(props.index)}>Delete</button>
-        <button onClick={() => props.handleDeleteAndSave(props.index, props.ownExpenses)}>Delete And Save</button>
+        <BBButton
+          onClick={() => props.handleDelete(props.index)}
+          role={"delete"}>
+          Delete
+        </BBButton>
+        <BBButton
+          onClick={() => props.handleDeleteAndSave(props.index, props.ownExpenses)}
+          role={"deleteAndSave"}
+        >Delete And Save</BBButton>
 
         <h2>{`${props.name}'s Expense History`}</h2>
         <form onSubmit={handleSubmit}>
           <h4>Edit Name</h4>
-          <input
+          <BBTextField
             id="name"
             name="name"
             type="text"
@@ -37,7 +49,7 @@ const BlockDetailModal = (props) => {
             }
           />
           <h4>Edit Block Limit</h4>
-          <input
+          <BBTextField
             id="limit"
             name="limit"
             type="text"
@@ -48,27 +60,30 @@ const BlockDetailModal = (props) => {
             }
           />
 
-          <button type="submit">Add New Block</button>
+          <BBButton type="submit">Save Block</BBButton>
         </form>
-        <div className="expenses">
+        <div>
           {props.ownExpenses.map((exp, index) => (
-            <div onClick={(event) => {
-              // take out expense from block
-              props.handleAddExpense(exp, event)
-              const newExpenses = [...props.ownExpenses]
-              newExpenses.splice(index, 1)
-              props.setOwnExpenses(newExpenses)
+            <BBCard
+              onClick={(event) => {
+                // take out expense from block
+                props.handleAddExpense(exp, event)
+                const newExpenses = [...props.ownExpenses]
+                newExpenses.splice(index, 1)
+                props.setOwnExpenses(newExpenses)
+                // put in expense in parent's expenses array
+              }}
+              role="blocksOwnExpense"
+              
+              title={exp.name}
+              text={exp.amount}
+            />
 
-              // put in expense in parent's expenses array
-            }} className="green expense">
-              <h3>{exp.name}</h3>
-              <p>{exp.amount}</p>
-            </div>
           ))}
         </div>
       </div>
 
-    </Modal>
+    </BBModal>
   )
 }
 

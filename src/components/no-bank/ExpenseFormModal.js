@@ -2,17 +2,19 @@ import React, { useState } from 'react'
 import { Modal, Button, TextField } from '@material-ui/core';
 import { makeStyles, styled } from '@material-ui/core/styles';
 import BBModal from './BBModal'
+import BBButton from './BBButton'
+import BBTextField from './BBTextField'
 
 
-const BBButton = styled(Button)({
-  backgroundColor: "#3BC14A",
-  marginLeft: "50px",
-  marginTop: "3px"
-})
+// const BBButton = styled(Button)({
+//   backgroundColor: "#3BC14A",
+//   marginLeft: "50px",
+//   marginTop: "3px"
+// })
 
-const BBTextField = styled(TextField)({
+// const BBTextField = styled(TextField)({
 
-})
+// })
 
 
 function getModalStyle() {
@@ -74,12 +76,6 @@ function ExpenseFormModal(props) {
         }}>
           <h4>New Expense</h4>
           <BBTextField
-            inputProps={{
-              style: {
-                height: "5px",
-              }
-            }}
-            variant="outlined"
             id="name"
             name="name"
             type="text"
@@ -91,22 +87,18 @@ function ExpenseFormModal(props) {
           />
           <h4>Amount</h4>
           <BBTextField
-            inputProps={{
-              style: {
-                height: "5px",
-              }
-            }}
+            
             variant="outlined"
             id="amount"
             name="amount"
             type="text"
-            placeholder="amount"
+            placeholder="Amount"
             value={newExpense.amount}
             onChange={(e) =>
               setNewExpense({ ...newExpense, [e.target.name]: e.target.value })
             }
           />
-          <BBButton type="submit" color={"yellow"} >Add New Expense</BBButton>
+          <BBButton type="submit" >Add New Expense</BBButton>
         </form>
       </>
     </BBModal>

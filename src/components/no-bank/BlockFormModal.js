@@ -1,5 +1,8 @@
 import React, { useState } from 'react'
 import Modal from '@material-ui/core/Modal'
+import BBModal from './BBModal'
+import BBButton from './BBButton'
+import BBTextField from './BBTextField'
 
 function BlockFormModal(props) {
   const [newBlock, setNewBlock] = useState({
@@ -8,20 +11,20 @@ function BlockFormModal(props) {
   });
 
   return (
-    <Modal
+    <BBModal
       open={props.open}
-      onClose={props.handleClose}
+      handleClose={props.handleClose}
       aria-labelledby="simple-modal-title"
       aria-describedby="simple-modal-description"
     >
       <div className="add-form">
-        <h3>Add A New Expense</h3>
+        <h3>Add A New Block</h3>
         <form onSubmit={(event) => {
           props.addBlock(newBlock, event)
           props.handleOpen(false)
         }}>
           <h4>New Block</h4>
-          <input
+          <BBTextField
             id="name"
             name="name"
             type="text"
@@ -32,22 +35,24 @@ function BlockFormModal(props) {
             }
           />
           <h4>Amount</h4>
-          <input
+          <BBTextField
             id="limit"
             name="limit"
             type="text"
-            placeholder="limit"
+            placeholder="Limit"
             value={newBlock.limit}
             onChange={(e) =>
               setNewBlock({ ...newBlock, [e.target.name]: e.target.value })
             }
           />
+          <BBButton type="submit">
+            Add New Block
+            </BBButton>
 
-          <button type="submit">Add New Block</button>
         </form>
       </div>
       {/* <h1>TRANSACTION FORM</h1> */}
-    </Modal>
+    </BBModal>
   )
 }
 

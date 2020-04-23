@@ -4,6 +4,11 @@
   margin: 5px auto;
   align-content: center;
   width: 100vw;
+  background: #e5e5e5;
+}
+
+body {
+  background-color: #e5e5e5;
 }
 
 * {
@@ -106,8 +111,50 @@
   height: 500px;
   display: flex;
   justify-content: space-around;
+  background: #e5e5e5;
+  width: 100%;
+  height: 100%;
 }
 
+.blocks-bar {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 22px;
+  color: white;
+  background-color: #3bc14a;
+  width: 80%;
+  height: 46px;
+  border-left: solid 2px #3bc14a;
+  
+}
+
+.expense-bar {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 22px;
+  color: white;
+  background-color: #003FE1;
+  width: 80%;
+  height: 46px;
+  border-left: solid 2px #003FE1;
+}
+
+.fifty-width {
+  width:50px;
+}
+
+.seventy-width {
+  width:70px;
+}
+.hundred-width {
+  width: 100px;
+}
 .block {
   margin: 10px;
   border: red 1px solid;
@@ -123,9 +170,14 @@
 .green {
   background-color: lightgreen;
 }
-
+.green-font {
+  color: #3BC14A;
+}
 .edit-sub-btn,
 .delete-sub-btn {
   height: 60px;
   width: 100px;
+}
+.red{
+  color: red
 }

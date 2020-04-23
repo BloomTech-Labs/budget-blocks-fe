@@ -1,8 +1,31 @@
 import React from "react";
-
+import BBCard from './BBCard'
+import EditIcon from '@material-ui/icons/Edit';
+import MoreVertIcon from '@material-ui/icons/MoreVert';
 const Expense = (props) => {
   return (
-    <div className={props.selectedExpense.selected && props.selectedExpense.expense.id === props.exp.id ? "expense green" : "expense"} 
+    <BBCard
+    role="usersExpense"
+    // title={props.exp.name}
+    text={ 
+    <div style={{display:'flex', justifyContent: 'space-around'}}>
+      <span className="hundred-width">{props.exp.name}</span>
+      <span className="red seventy-width">-${props.exp.amount}</span>
+      <MoreVertIcon
+      className="edit-sub-btn green-font"
+      onClick={(e) => {
+        console.log('before, editbtnclick')
+
+        e.stopPropagation()
+        console.log('after, editbtnclick')
+        props.setEditExpense(props.exp)
+        props.setIndexOfExpense(props.index)
+        props.setOpenExpenseDetail(true)
+      }}/>
+    </div> 
+    }
+    cardSelected={props.selectedExpense.selected && props.selectedExpense.expense.id === props.exp.id ? true :false}  
+    className={props.selectedExpense.selected && props.selectedExpense.expense.id === props.exp.id ? "expense green" : "expense"} 
     onClick={
       () => {
         console.log('onClickExpense', props.selectedExpense)
@@ -21,20 +44,7 @@ const Expense = (props) => {
         }
       }
     }>
-      <h2>{props.exp.name}</h2>
-      <p>{props.exp.amount}</p>
-      <button 
-      className="edit-sub-btn"
-        onClick={(e) => {
-          console.log('before, editbtnclick')
-
-          e.stopPropagation()
-          console.log('after, editbtnclick')
-          props.setEditExpense(props.exp)
-          props.setIndexOfExpense(props.index)
-          props.setOpenExpenseDetail(true)
-        }}>Edit/Delete</button>
-    </div>
+    </BBCard>
   )
 }
 

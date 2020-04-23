@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import BlockDetailModal from './BlockDetailModal'
+import BBCard from './BBCard'
+import LinearProgress from '@material-ui/core/LinearProgress';
 
 function Block(props) {
   const [ownExpenses, setOwnExpenses] = useState([])
@@ -8,7 +10,7 @@ function Block(props) {
 
   const [selectedAndHovering, setSelectedAndHovering] = useState(false)
 
-  
+
   useEffect(() => {
     console.log('blocks state', { ownExpenses, total })
   }, [ownExpenses, total])
@@ -41,17 +43,34 @@ function Block(props) {
     }
   }
 
-  
+
   return (
-    <div
+    <BBCard
+      // title={props.name}
+      text={<div style={{ display: "flex", justifyContent: "space-around" }}>
+        <span className="fifty-width"> {props.name}</span>
+        <span className="fifty-width" style={{ "color": "green" }}>{`${total}`} </span>
+        <span className="fifty-width">{`${props.limit}`}</span>
+        <span className="fifty-width">{
+          <LinearProgress
+            variant="determinate"
+            value={total ===0 ? 0 : (total/props.limit)*100}
+          />
+        }</span>
+      </div >
+      }
+      role="usersBlock"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      className={selectedAndHovering ? "block green" : "block"}
+      cardHovered={selectedAndHovering ? true : false}
+      // className={selectedAndHovering ? "block green" : "block"}
       onClick={() => {
         if (props.selectedExpense.selected) {
           setOwnExpenses([...ownExpenses, props.selectedExpense.expense])
           props.handleUnselect(props.selectedExpense.expense.id)
           setSelectedAndHovering(false)
+          console.log('lalala', (total/props.limit)*100)
+
         } else {
           // open open up modal
           // handleOpenBlockModal(ownExpenses, total)
@@ -60,17 +79,14 @@ function Block(props) {
         }
         console.log('onClickBLock', props)
       }}>
-      <h2>{props.name}</h2>
-      <span style={{ "color": "green" }}>{`${total}`} </span>
-      <span> of </span> 
-      <span>{`${props.limit}`}</span>
-      
+
       <BlockDetailModal
         open={openBlockDetail}
         handleClose={handleClose}
         editBlock={props.editBlock}
         index={props.index}
         name={props.name}
+        limit={props.limit}
         props={props.limit}
         ownExpenses={ownExpenses}
         setOwnExpenses={setOwnExpenses}
@@ -78,7 +94,7 @@ function Block(props) {
         handleDeleteAndSave={props.deleteAndSave}
         handleAddExpense={props.addExpense}
       />
-    </div>
+    </BBCard>
   )
 }
 

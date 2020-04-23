@@ -5,8 +5,11 @@ import ExpenseFormModal from './ExpenseFormModal'
 import BlockFormModal from './BlockFormModal'
 import Block from './Block'
 import Expense from './Expense';
-import { Modal, Container } from '@material-ui/core';
-import Button from '@material-ui/core/Button';
+import { Container } from '@material-ui/core';
+import BBModal from './BBModal'
+import BBButton from './BBButton'
+import BBTextField from './BBTextField'
+import AddIcon from '@material-ui/icons/Add';
 
 const ExpenseList = ({ Expenses }) => {
   const [data, setData] = useState([]);
@@ -131,6 +134,7 @@ const ExpenseList = ({ Expenses }) => {
   }
 
   const handleBlockFormClose = () => {
+    console.log('BlockFormCLosed')
     setOpenBlockForm(false)
   }
   const handleEditExpense = (e, editExp, index) => {
@@ -143,8 +147,14 @@ const ExpenseList = ({ Expenses }) => {
 
   return (
     <div className="exp-blocks-container">
+      {/* <h1>Welcome to Budget Blocks!</h1>  */}
       <Container maxWidth="" >
-        <button onClick={() => { setOpenTransactionForm(true) }} >OPEN TRASACTION FORM</button>
+        {/* <h1>Expenses</h1> */}
+        <div className="expense-bar" >
+          <span>Expenses</span>
+          <span>Amount</span>
+          <AddIcon style={{ fontSize: '30px', color: "white" }} onClick={() => { setOpenTransactionForm(true) }} />
+        </div>
         {expenses.map(
           (exp, index) => {
             return (
@@ -163,7 +173,18 @@ const ExpenseList = ({ Expenses }) => {
 
       </Container>
       <Container >
-        <button onClick={() => { setOpenBlockForm(true) }} >OPEN BLOCK FORM</button>
+        <div className="blocks-bar" >
+          <span className="fifty-width">Blocks</span>
+          <span className="fifty-width">Total</span>
+          <span className="fifty-width">Limit</span>
+          <span className='fifty-width'>
+            <AddIcon
+              style={{ fontSize: '30px', color: "white" }}
+              onClick={() => { setOpenBlockForm(true) }}
+            />
+          </span>
+
+        </div>
         {blocks.map(
           (block, index) => {
             return (
@@ -182,6 +203,7 @@ const ExpenseList = ({ Expenses }) => {
             )
           }
         )}
+
       </Container >
 
       <ExpenseFormModal
@@ -192,39 +214,37 @@ const ExpenseList = ({ Expenses }) => {
       />
       <BlockFormModal
         open={openBlockForm}
-        handleCLose={handleBlockFormClose}
+        handleClose={handleBlockFormClose}
         addBlock={addBlock}
         handleOpen={setOpenBlockForm}
       />
-      <Modal
+      <BBModal
         open={openExpenseDetail}
-        onClose={(e) => {
-          e.stopPropagation()
+        handleClose={(e) => {
+          // e.stopPropagation()
           setOpenExpenseDetail(false)
         }}>
-        <div style={{
-          display: "flex",
-          "flex-direction": "column",
-
-
-        }}>
+        <>
           <h2> Edit Transaction </h2>
           <form onSubmit={(event) => {
             handleEditExpense(event, editExpense, indexOfExpense)
             setOpenExpenseDetail(false)
           }
           }>
-            <input
+            <h3>Name</h3>
+
+            <BBTextField
               id="name"
               name="name"
               type="text"
               value={editExpense.name}
-              onFocus={event => event.stopPropagation()}
+              // onFocus={event => event.stopPropagation()}
               onChange={(e) => {
                 setEditExpense({ ...editExpense, [e.target.name]: e.target.value })
               }}
             />
-            <input
+            <h3>Amount</h3>
+            <BBTextField
               id="amount"
               name="amount"
               type="text"
@@ -234,27 +254,29 @@ const ExpenseList = ({ Expenses }) => {
                 setEditExpense({ ...editExpense, [e.target.name]: e.target.value })
               }}
             />
-            <button
-              className="edit-sub-btn"
+
+            <BBButton
               type="submit"
               value="submit"
-            > Save </button>
-          </form>
-          <button onClick={() => {
-            const newExpenses = [...expenses]
-            newExpenses.splice(indexOfExpense, 1)
-            setExpenses(newExpenses)
-            setOpenExpenseDetail(false)
-          }}
+            > Save </BBButton>
+            <BBButton
+              onClick={() => {
+                const newExpenses = [...expenses]
+                newExpenses.splice(indexOfExpense, 1)
+                setExpenses(newExpenses)
+                setOpenExpenseDetail(false)
+              }}
+              role={"delete"}
+              type="submit"
+              value="submit"
+            >
+              Delete
+            </BBButton>
 
-            className="delete-sub-btn"
-            type="submit"
-            value="submit"
-          >
-            Delete
-            </button>
-        </div>
-      </Modal>
+          </form>
+
+        </>
+      </BBModal>
 
     </div>
     // <div>

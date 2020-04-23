@@ -2,18 +2,6 @@ import React, { useState } from 'react'
 import { Modal, Button, TextField } from '@material-ui/core';
 import { makeStyles, styled } from '@material-ui/core/styles';
 
-
-const BBButton = styled(Button)({
-  backgroundColor: "#3BC14A",
-  marginLeft: "50px",
-  marginTop: "3px"
-})
-
-const BBTextField = styled(TextField)({
-
-})
-
-
 function getModalStyle() {
   const top = 45;
   const left = 50;
@@ -44,12 +32,6 @@ const useStyles = makeStyles(theme => ({
 
 
 function ExpenseFormModal(props) {
-
-  const [newExpense, setNewExpense] = useState({
-    name: "",
-    amount: "",
-  });
-
   return (
 
     <Modal

@@ -48,7 +48,7 @@ export const reducer = (state = initialState, action) => {
         },
         error: null,
         isFetching: false,
-        navState: sessionStorage.removeItem('token'),
+        navState: sessionStorage.removeItem("token"),
       };
     default:
       return state;

@@ -37,10 +37,9 @@ const BBCard = props => {
   });
 
   const classes = useStyles()
-  const [raised, setRaised] = useState(false)
 
   return (
-    <Card varian="outlined" {...props} className={classes[props.role ? props.role : "default"]}>
+    <Card variant="outlined" {...props} className={classes[props.role ? props.role : "default"]}>
       <CardContent>
         <Typography style={{fontWeight:"bold"}}component="h2" variant="h5">{props.title}</Typography>
         <Typography component="p">{props.text}</Typography>

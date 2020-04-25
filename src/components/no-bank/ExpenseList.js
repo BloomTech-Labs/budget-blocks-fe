@@ -11,7 +11,8 @@ import BBButton from './BBButton'
 import BBTextField from './BBTextField'
 import AddIcon from '@material-ui/icons/Add';
 
-const ExpenseList = ({ Expenses }) => {
+
+const ExpenseList = ({ expenses, handleDeleteExpense, userID }) => {
   const [data, setData] = useState([]);
   const [editing, setEditing] = useState(false);
   const [expenseToEdit, setExpenseToEdit] = useState({});
@@ -22,13 +23,16 @@ const ExpenseList = ({ Expenses }) => {
   const [editExpense, setEditExpense] = useState({})
 
   const [indexOfExpense, setIndexOfExpense] = useState(null);
-  const [expenses, setExpenses] = useState(fakeExpenses)
+  const [expensesTwo, setExpenses] = useState(fakeExpenses)
   const [blocks, setBlocks] = useState(fakeBlocks)
   const [selectedExpense, setSelectedExpense] = useState({
     selected: false,
     expense: {}
   })
 
+  useEffect(()=>{
+    console.log('****************epenseArrayExpenses**************', expenses)
+  })
   // const props = {
   //   expenses: fakeExpenses,
   //   blocks: fakeBlocks
@@ -40,29 +44,30 @@ const ExpenseList = ({ Expenses }) => {
     setBlocks(newBlocks)
   }
 
-  const deleteExpense = (expense) => {
-    console.log('*****************************************expense List Rendered')
-    axios
-      .delete(
-        `https://lambda-budget-blocks.herokuapp.com/manual/transaction/:userId/:tranId`
-      )
-      .then((res) => {
-        console.log(res);
-        setExpenseToDelete(res);
-        // window.location.reload();
-      })
-      .catch((err) => {
-        console.log(err.response);
-      });
-  };
+  // const deleteExpense = (expense) => {
+  //   console.log('*****************************************expense List Rendered')
+  //   axios
+  //     .delete(
+  //       `https://lambda-budget-blocks.herokuapp.com/manual/transaction/:userId/:tranId`
+  //     )
+  //     .then((res) => {
+  //       console.log(res);
+  //       setExpenseToDelete(res);
+  //       // window.location.reload();
+  //     })
+  //     .catch((err) => {
+  //       console.log(err.response);
+  //     });
+  // };
 
   const unSelectExpense = (id) => {
     setSelectedExpense({
       selected: false,
       expense: {}
     })
-    const newExpenses = expenses.filter(exp => exp.id !== id)
-    setExpenses(newExpenses)
+    // const newExpenses = expenses.filter(exp => exp.id !== id)
+    // setExpenses(newExpenses)
+    handleDeleteExpense(userID, id)
   }
 
   const saveEdit = (e) => {

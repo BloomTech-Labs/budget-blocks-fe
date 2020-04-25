@@ -11,30 +11,43 @@ import "./main.css";
 import { getManualTrans } from "../redux/actions/ManualActions";
 import Loading from "./Loading";
 import { PageView } from "./google_analytics/index.js";
+import { getExpenses, deleteExpense } from '../redux/actions/ExpenseActions'
+import ExpenseList from './no-bank/ExpenseList'
+
 
 export const Dashboard = (props) => {
   // This component displays the dashboard: Blocks, transactions, and budget
-  useEffect(() => {
-    props.LinkedAccount == true
-      ? props.getTransactions(props.userID)
-      : props.getManualTrans(props.userID, props.history);
-  }, [props.LinkedAccount]);
+  // useEffect(() => {
+  //   props.LinkedAccount == true
+  //     ? props.getTransactions(props.userID)
+  //     : props.getManualTrans(props.userID, props.history);
+  // }, [props.LinkedAccount]);
 
   useEffect(() => {
-    PageView();
-  });
+    // get all of a user's expeses
+    // pass expenses to expenseList
+    props.getExpenses(props.userID)
 
+  }, [])
+
+
+
+  // useEffect(() => {
+  //   PageView();
+  // });
+  // <ExpensList expenses={props.expenses} />
   return (
     <div className="app-container">
       <Loading />
       <div className="showcase">
-        <div className="right-showcase">
+        {/* <div className="right-showcase">
           <TotalBudget />
         </div>
         <div className="left-showcase">
           <LinkedBlocks />
           <LinkedTransactions />
-        </div>
+        </div> */}
+        <ExpenseList userID={props.userID} handleDeleteExpense={props.deleteExpense} expenses={props.expenses} />
       </div>
     </div>
   );
@@ -43,13 +56,14 @@ export const Dashboard = (props) => {
 function mapStateToProps(state) {
   return {
     userID: state.loginReducer.user.id,
-    LinkedAccount: state.loginReducer.user.LinkedAccount,
-    blocks: state.plaidReducer.categories,
-    plaidFetching: state.plaidReducer.isFetching,
-    blockFetching: state.blockReducer.isFetching,
+    expenses: state.expenses.expenses,
+    // LinkedAccount: state.loginReducer.user.LinkedAccount,
+    // blocks: state.plaidReducer.categories,
+    // plaidFetching: state.plaidReducer.isFetching,
+    // blockFetching: state.blockReducer.isFetching,
   };
 }
 
-export default connect(mapStateToProps, { getTransactions, getManualTrans })(
+export default connect(mapStateToProps, { getExpenses, deleteExpense })(
   Dashboard
 );

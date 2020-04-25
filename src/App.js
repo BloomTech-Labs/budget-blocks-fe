@@ -27,7 +27,7 @@ function App() {
   const updateCredentials = (email, password) => {
     setCredContext({ email, password });
   };
-
+  console.log('****************NODE_ENV******************', process.env.NODE_ENV )
   return (
     <div>
       <Navbar />

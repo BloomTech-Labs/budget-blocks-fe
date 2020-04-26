@@ -11,8 +11,14 @@ import BBButton from './BBButton'
 import BBTextField from './BBTextField'
 import AddIcon from '@material-ui/icons/Add';
 
+const ExpenseList = ({
+  expenses,
+  handleAddExpense,
+  handleDeleteExpense,
+  userID,
+  blocks,
+  handleAddBlock }) => {
 
-const ExpenseList = ({ expenses, handleDeleteExpense, userID }) => {
   const [data, setData] = useState([]);
   const [editing, setEditing] = useState(false);
   const [expenseToEdit, setExpenseToEdit] = useState({});
@@ -24,13 +30,13 @@ const ExpenseList = ({ expenses, handleDeleteExpense, userID }) => {
 
   const [indexOfExpense, setIndexOfExpense] = useState(null);
   const [expensesTwo, setExpenses] = useState(fakeExpenses)
-  const [blocks, setBlocks] = useState(fakeBlocks)
+  // const [blocks, setBlocks] = useState(fakeBlocks)
   const [selectedExpense, setSelectedExpense] = useState({
     selected: false,
     expense: {}
   })
 
-  useEffect(()=>{
+  useEffect(() => {
     console.log('****************epenseArrayExpenses**************', expenses)
   })
   // const props = {
@@ -41,7 +47,7 @@ const ExpenseList = ({ expenses, handleDeleteExpense, userID }) => {
   const editBlock = (index, block) => {
     const newBlocks = [...blocks]
     newBlocks[index] = block
-    setBlocks(newBlocks)
+    // setBlocks(newBlocks)
   }
 
   // const deleteExpense = (expense) => {
@@ -90,13 +96,14 @@ const ExpenseList = ({ expenses, handleDeleteExpense, userID }) => {
 
   const addBlock = (block, event) => {
     event.preventDefault()
-    setBlocks([...blocks, block])
+    // setBlocks([...blocks, block])
+    handleAddBlock(userID, block)
   }
 
   const deleteBlock = index => {
     const newBlocks = [...blocks]
     newBlocks.splice(index, 1)
-    setBlocks(newBlocks)
+    // setBlocks(newBlocks)
   }
 
   const deleteAndSave = (index, ownExpenses) => {
@@ -106,8 +113,10 @@ const ExpenseList = ({ expenses, handleDeleteExpense, userID }) => {
   }
 
   const addExpense = (expense, event) => {
+    console.log('*************addExpenseExpenseList**************', userID, expense)
     event.preventDefault()
-    setExpenses([...expenses, expense])
+    // setExpenses([...expenses, expense])
+    handleAddExpense(userID, expense)
 
   };
 

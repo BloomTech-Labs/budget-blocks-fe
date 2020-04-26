@@ -11,7 +11,9 @@ import "./main.css";
 import { getManualTrans } from "../redux/actions/ManualActions";
 import Loading from "./Loading";
 import { PageView } from "./google_analytics/index.js";
-import { getExpenses, deleteExpense } from '../redux/actions/ExpenseActions'
+import { getExpenses, deleteExpense, addExpense } from '../redux/actions/ExpenseActions'
+import { getBlocks, deleteBlock, addBlock } from '../redux/actions/BlockActions'
+
 import ExpenseList from './no-bank/ExpenseList'
 
 
@@ -27,7 +29,7 @@ export const Dashboard = (props) => {
     // get all of a user's expeses
     // pass expenses to expenseList
     props.getExpenses(props.userID)
-
+    props.getBlocks(props.userID)
   }, [])
 
 
@@ -47,7 +49,13 @@ export const Dashboard = (props) => {
           <LinkedBlocks />
           <LinkedTransactions />
         </div> */}
-        <ExpenseList userID={props.userID} handleDeleteExpense={props.deleteExpense} expenses={props.expenses} />
+        <ExpenseList
+          userID={props.userID}
+          handleDeleteExpense={props.deleteExpense}
+          expenses={props.expenses}
+          handleAddExpense={props.addExpense} 
+          handleAddBlock={props.addBlock}
+          blocks={props.blocks}/>
       </div>
     </div>
   );
@@ -57,6 +65,7 @@ function mapStateToProps(state) {
   return {
     userID: state.loginReducer.user.id,
     expenses: state.expenses.expenses,
+    blocks: state.blocks.blocks,
     // LinkedAccount: state.loginReducer.user.LinkedAccount,
     // blocks: state.plaidReducer.categories,
     // plaidFetching: state.plaidReducer.isFetching,
@@ -64,6 +73,6 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { getExpenses, deleteExpense })(
+export default connect(mapStateToProps, { getExpenses, deleteExpense, addExpense, getBlocks, addBlock })(
   Dashboard
 );

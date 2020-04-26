@@ -5,7 +5,7 @@ import environmentUrls from "../../dispatch";
 export const getExpenses = userID => async dispatch => {
   console.log('**********getExpenses************', userID)
   try {
-    const response = await axios(`${environmentUrls.base_url}/expenses/${userID}`)
+    const response = await axiosWithAuth()(`${environmentUrls.base_url}/expenses/exp`)
     // dispatch usersExpenses
     console.log('**************getExpenseData******************', response)
     dispatch({
@@ -13,8 +13,21 @@ export const getExpenses = userID => async dispatch => {
       payload: response.data
     })
   } catch (e) {
-    console.log('***********expenseActionError**************',e)
+    console.log('***********expenseActionError**************', e)
     // dispatch error
+  }
+}
+
+export const addExpense = (userID, expense) => async dispatch => {
+  console.log('************AddExpense**********', userID, expense)
+  try {
+    const response = await axiosWithAuth().post(`${environmentUrls.base_url}/expenses/exp`, expense)
+    dispatch({
+      type: "ADD_EXPENSE",
+      payload: response.data
+    })
+  } catch (e) {
+    console.log('***********addExpenseActionError**************', e)
   }
 }
 
@@ -28,7 +41,7 @@ export const deleteExpense = (userID, id) => async dispatch => {
       type: "DELETE_EXPENSE",
       payload: response.data
     })
-  } catch (e){
+  } catch (e) {
     console.log('**************deleteExpenseError*************', e)
   }
 }

@@ -10,6 +10,11 @@ export const expenseReducer = (state = { expenses: [] }, action) => {
         ...state,
         expenses: action.payload
       }
+    case "ADD_EXPENSE":
+      return {
+        ...state,
+        expenses: action.payload
+      }
     default: {
       return state
     }

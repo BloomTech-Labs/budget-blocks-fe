@@ -26,7 +26,7 @@ import "./registerStyle.css";
  * @returns <div className="register" .../>
  */
 export const Register = (props) => {
-  const { updateCredentials } = useContext(CredentialsContext);
+  // const { updateCredentials } = useContext(CredentialsContext);
 
   const [state, setState] = useState({
     user: { ...default_user },

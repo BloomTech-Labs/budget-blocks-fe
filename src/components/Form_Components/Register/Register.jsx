@@ -9,11 +9,8 @@ import handlers from "./handlers";
 import { useContext } from "react";
 import CredentialsContext from "../../../contexts/CredentialsContext";
 
-import { CheckEmptyFields } from "../CheckEmpyFields";
-import { ChangeCheckField } from "../ChangeCheckField";
-import { PageView, GAevent } from "../../google_analytics/index.js";
+import { PageView } from "../../google_analytics/index.js";
 
-import FormControl from "@material-ui/core/FormControl";
 import Container from "@material-ui/core/Container";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import "./registerStyle.css";

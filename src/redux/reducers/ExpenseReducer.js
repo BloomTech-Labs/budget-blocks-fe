@@ -6,11 +6,17 @@ export const expenseReducer = (state = { expenses: [] }, action) => {
         expenses: action.payload
       }
     case "DELETE_EXPENSE":
+      console.log('deleteEXpesneReducer', action)
       return {
         ...state,
         expenses: action.payload
       }
     case "ADD_EXPENSE":
+      return {
+        ...state,
+        expenses: action.payload
+      }
+    case "UPDATE_EXPENSE":
       return {
         ...state,
         expenses: action.payload

@@ -19,7 +19,7 @@ const Expense = (props) => {
         e.stopPropagation()
         console.log('after, editbtnclick')
         props.setEditExpense(props.exp)
-        props.setIndexOfExpense(props.index)
+        // props.setIndexOfExpense(props.index)
         props.setOpenExpenseDetail(true)
       }}/>
     </div> 

@@ -44,15 +44,17 @@ export const getUnassigned = (expenseID, blockID) => async dispatch => {
   }
 }
 
-export const deleteExpense = (userID, id) => async dispatch => {
-  console.log('**********deleteExpenses************', userID, id)
+export const deleteExpense = (id) => async dispatch => {
+  console.log('**********deleteExpenses************',  id)
   try {
-    const response = await axios.delete(`${environmentUrls.base_url}/expenses/${userID}/${id}`)
+    const response = await axiosWithAuth().delete(`${environmentUrls.base_url}/expenses/${id}`)
     console.log('**************deleteData*************', response.data)
     dispatch({
       type: "DELETE_EXPENSE",
       payload: response.data
     })
+    console.log('**************deleteDataAFTER*************', response.data)
+
   } catch (e) {
     console.log('**************deleteExpenseError*************', e)
   }
@@ -90,9 +92,23 @@ export const unassignExpense = (expenseID, blockID) => async dispatch => {
       type: 'HYDRATE_OWNEXPENSES',
       payload: { expenses: blockResponse.data, blockID }
     })
-    
+
   } catch (error) {
     console.log('****************unassignError************', error)
+  }
+}
+
+export const updateExpense = (id, expense) => async dispatch => {
+  console.log('UUUUUUUPDATEEXP', expense)
+  try {
+    const response = await axiosWithAuth().put(`${environmentUrls.base_url}/expenses/${id}`, expense)
+    console.log('UUUUUUUPDATEEXPDATA', response.data)
+    dispatch({
+      type: "UPDATE_EXPENSE",
+      payload: response.data
+    })
+  } catch (error) {
+    console.log(error)
   }
 }
 

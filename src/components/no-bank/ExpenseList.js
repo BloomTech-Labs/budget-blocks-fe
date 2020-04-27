@@ -23,7 +23,8 @@ const ExpenseList = ({
   blockExpenses,
   handleUnassignExpense,
   handleDeleteAndSave,
-  handleDeleteBlock
+  handleDeleteBlock,
+  handleUpdateExpense
 }) => {
 
   const [data, setData] = useState([]);
@@ -35,7 +36,7 @@ const ExpenseList = ({
   const [openExpenseDetail, setOpenExpenseDetail] = useState(false);
   const [editExpense, setEditExpense] = useState({})
 
-  const [indexOfExpense, setIndexOfExpense] = useState(null);
+  const [IdOfExpense, setIdOfExpense] = useState(null);
   const [expensesTwo, setExpenses] = useState(fakeExpenses)
   // const [blocks, setBlocks] = useState(fakeBlocks)
   const [selectedExpense, setSelectedExpense] = useState({
@@ -43,9 +44,7 @@ const ExpenseList = ({
     expense: {}
   })
 
-  useEffect(() => {
-    console.log('****************epenseArrayExpenses**************', expenses)
-  })
+  
   // const props = {
   //   expenses: fakeExpenses,
   //   blocks: fakeBlocks
@@ -185,7 +184,7 @@ const ExpenseList = ({
                 setEditExpense={setEditExpense}
                 selectedExpense={selectedExpense}
                 setSelectedExpense={setSelectedExpense}
-                setIndexOfExpense={setIndexOfExpense}
+                // setIdOfExpense={setIdOfExpense}
                 exp={exp}
                 index={index}
                 setOpenExpenseDetail={setOpenExpenseDetail}
@@ -256,7 +255,9 @@ const ExpenseList = ({
         <>
           <h2> Edit Transaction </h2>
           <form onSubmit={(event) => {
-            handleEditExpense(event, editExpense, indexOfExpense)
+            event.preventDefault()
+            handleUpdateExpense(editExpense.id, editExpense)
+            // handleEditExpense(event, editExpense, indexOfExpense)
             setOpenExpenseDetail(false)
           }
           }>
@@ -290,14 +291,15 @@ const ExpenseList = ({
             > Save </BBButton>
             <BBButton
               onClick={() => {
-                const newExpenses = [...expenses]
-                newExpenses.splice(indexOfExpense, 1)
-                setExpenses(newExpenses)
+                // const newExpenses = [...expenses]
+                // newExpenses.splice(indexOfExpense, 1)
+                // setExpenses(newExpenses)
+                handleDeleteExpense(editExpense.id)
                 setOpenExpenseDetail(false)
               }}
               role={"delete"}
-              type="submit"
-              value="submit"
+              // type="submit"
+              // value="submit"
             >
               Delete
             </BBButton>

@@ -20,7 +20,7 @@ const BBCard = props => {
       width: "80%",
       maxHeight: "46px",
       backgroundColor: '#ECEFF1',
-      borderLeft: props.cardSelected ? 'solid 2px #3BC14A' : "solid 2px #ECEFF1",
+      borderRight: props.cardSelected ? 'solid 4px #3BC14A' : "solid 4px #ECEFF1",
       // marginTop: '10px',
       boxShadow: 'none',
       borderRadius: 0
@@ -31,7 +31,7 @@ const BBCard = props => {
       maxHeight: "46px",
       backgroundColor: '#ECEFF1',
       boxShadow: 'none',
-      borderLeft: props.cardHovered ? 'solid 2px #003FE1' : "solid 2px #ECEFF1",
+      borderLeft: props.cardHovered ? 'solid 4px #003FE1' : "solid 4px #ECEFF1",
       borderRadius: 0
     }
   });

@@ -63,7 +63,7 @@ const BlockDetailModal = (props) => {
 
           <BBButton type="submit">Save Block</BBButton>
         </form>
-        <div>
+        <div style={{maxHeight:"300px"}}>
           {props.ownExpenses.map(exp => (
             <BBCard
               onClick={(event) => {

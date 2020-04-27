@@ -127,7 +127,7 @@ body {
   background-color: #3bc14a;
   width: 80%;
   height: 46px;
-  border-left: solid 2px #3bc14a;
+  border-left: solid 4px #3bc14a;
   
 }
 
@@ -142,7 +142,7 @@ body {
   background-color: #003FE1;
   width: 80%;
   height: 46px;
-  border-left: solid 2px #003FE1;
+  border-right: solid 4px #003FE1;
 }
 
 .fifty-width {

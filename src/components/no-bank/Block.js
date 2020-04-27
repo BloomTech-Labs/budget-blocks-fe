@@ -17,11 +17,11 @@ function Block(props) {
 
   useEffect(() => {
     let total = 0
-    ownExpenses.forEach(exp => {
+    props.ownExpenses.forEach(exp => {
       total = total + exp.amount
     })
     setTotal(total)
-  }, [ownExpenses])
+  }, [props.ownExpenses])
 
   const handleClose = event => {
     event.stopPropagation()

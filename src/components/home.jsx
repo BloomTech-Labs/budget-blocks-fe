@@ -42,7 +42,7 @@ const Home = () => {
         </div>
       </Container>
       ) : (
-        <Redirect to="/onBoard/1" />
+        <Redirect to="/dashboard" />
       )}
     </div>
   );

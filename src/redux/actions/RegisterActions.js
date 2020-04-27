@@ -31,7 +31,7 @@ export function registerUser(data, history) {
       .then(promiseTimeout(6000))
       .then((response) => {
         dispatch(registerUserSuccess(response.data));
-        history.push("/onBoard/1");
+        history.push("/login");
         
       })
       .catch((error) => {

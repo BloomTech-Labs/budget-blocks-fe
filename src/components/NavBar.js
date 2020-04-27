@@ -39,7 +39,7 @@ export function NavBar({ navState, logoutUser }) {
         <img className="heading" src={head} />
       </div>
 
-      {navState === sessionStorage.getItem('token')  ? (
+      {sessionStorage.getItem('token')  ? (
         <div className="nav-action">
           <div className="dropdown-menu">
             <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>

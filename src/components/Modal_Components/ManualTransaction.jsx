@@ -102,7 +102,6 @@ export const ManualTransaction = props => {
   props.blocks
     .filter(i => i.budget === null)
     .map(i => options.push({ value: i.id, label: i.name }));
-  // console.log(props.blocks);
   return (
     <div>
       {state.edit && state.failedEdit

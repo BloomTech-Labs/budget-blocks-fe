@@ -48,6 +48,7 @@
   "scripts": {
     "start": "react-scripts start",
     "start-dev": "react-scripts -r @cypress/instrument-cra start",
+    "clean-project": "mv .env .hold-this-env && git clean -fXd && mv .hold-this-env .env",
     "cypress": "npx cypress run",
     "dev": "start-test 3000 cypress",
     "build": "react-scripts build",

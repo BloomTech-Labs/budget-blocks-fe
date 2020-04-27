@@ -36,13 +36,11 @@ function Block(props) {
     }
   }
 
-
   const handleMouseLeave = event => {
     if (props.selectedExpense.selected) {
       setSelectedAndHovering(false)
     }
   }
-
 
   return (
     <BBCard
@@ -54,7 +52,7 @@ function Block(props) {
         <span className="fifty-width">{
           <LinearProgress
             variant="determinate"
-            value={total ===0 ? 0 : (total/props.limit)*100}
+            value={total === 0 ? 0 : (total / props.limit) * 100}
           />
         }</span>
       </div >
@@ -66,10 +64,11 @@ function Block(props) {
       // className={selectedAndHovering ? "block green" : "block"}
       onClick={() => {
         if (props.selectedExpense.selected) {
-          setOwnExpenses([...ownExpenses, props.selectedExpense.expense])
-          props.handleUnselect(props.selectedExpense.expense.id)
+          // setOwnExpenses([...ownExpenses, props.selectedExpense.expense])
+          props.handleUnselect(props.selectedExpense.expense.id, props.blockID)
+          // props.handleAddOwnExpense(props.blockID, props.selectedExpense.expense.id)
           setSelectedAndHovering(false)
-          console.log('lalala', (total/props.limit)*100)
+          console.log('lalala', (total / props.limit) * 100)
 
         } else {
           // open open up modal
@@ -88,11 +87,14 @@ function Block(props) {
         name={props.name}
         limit={props.limit}
         props={props.limit}
-        ownExpenses={ownExpenses}
+        ownExpenses={props.ownExpenses || []}
         setOwnExpenses={setOwnExpenses}
         handleDelete={props.deleteBlock}
-        handleDeleteAndSave={props.deleteAndSave}
+        handleDeleteAndSave={props.handleDeleteAndSave}
         handleAddExpense={props.addExpense}
+        handleUnassignExpense={props.handleUnassignExpense}
+        blockID={props.blockID}
+        
       />
     </BBCard>
   )

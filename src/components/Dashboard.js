@@ -11,8 +11,8 @@ import "./main.css";
 import { getManualTrans } from "../redux/actions/ManualActions";
 import Loading from "./Loading";
 import { PageView } from "./google_analytics/index.js";
-import { getExpenses, deleteExpense, addExpense } from '../redux/actions/ExpenseActions'
-import { getBlocks, deleteBlock, addBlock } from '../redux/actions/BlockActions'
+import { getExpenses, deleteExpense, addExpense, assignBlock, unassignExpense } from '../redux/actions/ExpenseActions'
+import { getBlocks, deleteBlock, addBlock, addOwnExpense, deleteAndSave } from '../redux/actions/BlockActions'
 
 import ExpenseList from './no-bank/ExpenseList'
 
@@ -53,9 +53,15 @@ export const Dashboard = (props) => {
           userID={props.userID}
           handleDeleteExpense={props.deleteExpense}
           expenses={props.expenses}
-          handleAddExpense={props.addExpense} 
+          handleAddExpense={props.addExpense}
           handleAddBlock={props.addBlock}
-          blocks={props.blocks}/>
+          blocks={props.blocks}
+          handleAssignBlock={props.assignBlock}
+          handleAddOwnExpense={props.addOwnExpense}
+          blockExpenses={props.blockExpenses}
+          handleUnassignExpense={props.unassignExpense}
+          handleDeleteAndSave={props.deleteAndSave}
+        />
       </div>
     </div>
   );
@@ -66,13 +72,10 @@ function mapStateToProps(state) {
     userID: state.loginReducer.user.id,
     expenses: state.expenses.expenses,
     blocks: state.blocks.blocks,
-    // LinkedAccount: state.loginReducer.user.LinkedAccount,
-    // blocks: state.plaidReducer.categories,
-    // plaidFetching: state.plaidReducer.isFetching,
-    // blockFetching: state.blockReducer.isFetching,
+    blockExpenses: state.blocks.blockExpenses
   };
 }
 
-export default connect(mapStateToProps, { getExpenses, deleteExpense, addExpense, getBlocks, addBlock })(
+export default connect(mapStateToProps, { getExpenses, deleteExpense, addExpense, getBlocks, addBlock, assignBlock, addOwnExpense, unassignExpense, deleteAndSave })(
   Dashboard
 );

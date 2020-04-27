@@ -45,3 +45,42 @@ export const deleteBlock = (userID, id) => async dispatch => {
     console.log('**************deleteBlockError*************', e)
   }
 }
+
+export const addOwnExpense = (blockID, expenseID) => async dispatch => {
+  console.log('**************addOwnExpense************', blockID, expenseID)
+  try {
+    const response = await axiosWithAuth().get(`${environmentUrls.base_url}/blocks/${blockID}`)
+    
+    dispatch({
+      type: 'HYDRATE_OWNEXPENSES',
+      payload: { expenses: response.data, blockID }
+    })
+    console.log('hydrateOwnExpData', response.data)
+  } catch (error) {
+    console.log('***********addOwnExpError************', error)
+  }
+}
+
+export const deleteAndSave = (blockID, ownExpenses) => async dispatch => {
+  console.log('deleteAndSave', blockID, ownExpenses)
+  try {
+    const unassignArr = []
+    ownExpenses.forEach(exp => {
+      unassignArr.push(axiosWithAuth().put(`${environmentUrls.base_url}/expenses/${exp.id}/unassign`))
+    })
+    await Promise.all(unassignArr)
+    const newExpenses = await axiosWithAuth()(`${environmentUrls.base_url}/expenses/exp`)
+    dispatch({
+      type:"HYDRATE_EXPENSES",
+      payload: newExpenses.data
+    })
+    await axiosWithAuth().delete(`${environmentUrls.base_url}/blocks/${blockID}`)
+    const newBlocks = await axiosWithAuth()(`${environmentUrls.base_url}/blocks/blk`)
+    dispatch({
+      type:"HYDRATE_BLOCKS",
+      payload:newBlocks.data
+    })
+  } catch (error) {
+    console.log('error')
+  }
+}

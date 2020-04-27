@@ -17,7 +17,13 @@ const ExpenseList = ({
   handleDeleteExpense,
   userID,
   blocks,
-  handleAddBlock }) => {
+  handleAddBlock,
+  handleAssignBlock,
+  handleAddOwnExpense,
+  blockExpenses,
+  handleUnassignExpense,
+  handleDeleteAndSave
+}) => {
 
   const [data, setData] = useState([]);
   const [editing, setEditing] = useState(false);
@@ -66,14 +72,16 @@ const ExpenseList = ({
   //     });
   // };
 
-  const unSelectExpense = (id) => {
+  const unSelectExpense = (expenseID, blockID) => {
     setSelectedExpense({
       selected: false,
       expense: {}
     })
     // const newExpenses = expenses.filter(exp => exp.id !== id)
     // setExpenses(newExpenses)
-    handleDeleteExpense(userID, id)
+    // handleDeleteExpense(userID, id)
+    handleAssignBlock(expenseID, blockID)
+    // handleAddOwnExpense(blockID, expenseID)
   }
 
   const saveEdit = (e) => {
@@ -213,6 +221,10 @@ const ExpenseList = ({
                 name={block.name}
                 limit={block.limit}
                 selected={selectedExpense.selected}
+                blockID={block.id}
+                ownExpenses={blockExpenses[block.id]}
+                handleUnassignExpense={handleUnassignExpense}
+                handleDeleteAndSave={handleDeleteAndSave}
               />
             )
           }

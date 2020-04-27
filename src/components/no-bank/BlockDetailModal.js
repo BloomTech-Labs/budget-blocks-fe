@@ -31,7 +31,7 @@ const BlockDetailModal = (props) => {
           Delete
         </BBButton>
         <BBButton
-          onClick={() => props.handleDeleteAndSave(props.index, props.ownExpenses)}
+          onClick={() => props.handleDeleteAndSave(props.blockID, props.ownExpenses)}
           role={"deleteAndSave"}
         >Delete And Save</BBButton>
 
@@ -63,14 +63,16 @@ const BlockDetailModal = (props) => {
           <BBButton type="submit">Save Block</BBButton>
         </form>
         <div>
-          {props.ownExpenses.map((exp, index) => (
+          {props.ownExpenses.map(exp => (
             <BBCard
               onClick={(event) => {
+                props.handleUnassignExpense(exp.id, props.blockID )
+                console.log('blockDetailOnClick', exp.id)
                 // take out expense from block
-                props.handleAddExpense(exp, event)
-                const newExpenses = [...props.ownExpenses]
-                newExpenses.splice(index, 1)
-                props.setOwnExpenses(newExpenses)
+                // props.handleAddExpense(exp, event)
+                // const newExpenses = [...props.ownExpenses]
+                // newExpenses.splice(index, 1)
+                // props.setOwnExpenses(newExpenses)
                 // put in expense in parent's expenses array
               }}
               role="blocksOwnExpense"

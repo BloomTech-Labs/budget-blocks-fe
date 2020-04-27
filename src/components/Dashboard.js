@@ -52,10 +52,10 @@ export const Dashboard = (props) => {
         <ExpenseList
           userID={props.userID}
           handleDeleteExpense={props.deleteExpense}
-          expenses={props.expenses}
+          expenses={props.expenses || []}
           handleAddExpense={props.addExpense}
           handleAddBlock={props.addBlock}
-          blocks={props.blocks}
+          blocks={props.blocks || []}
           handleAssignBlock={props.assignBlock}
           handleAddOwnExpense={props.addOwnExpense}
           blockExpenses={props.blockExpenses}

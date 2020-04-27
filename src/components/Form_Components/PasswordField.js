@@ -24,7 +24,7 @@ const PasswordField = ({
   value,
   handleChange,
   error,
-  helperText
+  helperText,
 }) => {
   const [viewPass, setViewPass] = useState(false);
 
@@ -32,7 +32,7 @@ const PasswordField = ({
     setViewPass(!viewPass);
   };
 
-  const handleMouseDownPassword = event => {
+  const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
 
@@ -52,6 +52,7 @@ const PasswordField = ({
           endAdornment: (
             <InputAdornment position="end">
               <IconButton
+                id="passwordVisibilityToggle"
                 aria-label="toggle password visibility"
                 onClick={handleClickShowPassword}
                 onMouseDown={handleMouseDownPassword}
@@ -60,7 +61,7 @@ const PasswordField = ({
                 {viewPass ? <Visibility /> : <VisibilityOff />}
               </IconButton>
             </InputAdornment>
-          )
+          ),
         }}
       />
     </FormControl>

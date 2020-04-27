@@ -14,20 +14,20 @@ import { PageView } from "./components/google_analytics/index.js";
 import CredentialsContext from "./contexts/CredentialsContext";
 import ExpenseList from "./components/no-bank/ExpenseList";
 
-/* return <button onClick={methodDoesNotExist}>Break the world</button>; */
-// function App() {
-//   // we need our pageview function to run with a useEffect hook here
-//   useEffect(() =>{
-//     PageView()
-//   })
-
 // Added useContext because user email and password were being stored in localStorage (security risk) and we needed to resolve that.
+
 function App() {
+  // Added useContext because user email and password were being stored in localStorage (security risk) and we needed to resolve that.
   const [credContext, setCredContext] = useState({ email: "", password: "" });
   const updateCredentials = (email, password) => {
     setCredContext({ email, password });
   };
-  console.log('****************NODE_ENV******************', process.env.NODE_ENV )
+
+  useEffect(() => {
+    PageView();
+  }, []);
+
+
   return (
     <div>
       <Navbar />
@@ -47,7 +47,6 @@ function App() {
             <PrivateRoute path="/dashboard" component={Dashboard} />
             <PrivateRoute path="/onBoard/select" component={SelectCategories} />
             <Route path="/onBoard/1" component={FirstOnboard} />
-            <Route path="/maggie" component={ExpenseList} />
             <PrivateRoute path="/manual" component={ManualBlocks} />
           </Switch>
         </CredentialsContext.Provider>

@@ -14,14 +14,14 @@ import { reducer as registerReducer } from "./redux/reducers/RegisterReducer";
 import { reducer as blockReducer } from "./redux/reducers/BlockReducers";
 import { reducer as addTransactionReducer } from "./redux/reducers/AddTransactionReducer";
 import { BrowserRouter as Router } from "react-router-dom";
-import * as Sentry from '@sentry/browser';
-import dotenv from 'dotenv'
-import {initGA} from './components/google_analytics/index.js'
+import * as Sentry from "@sentry/browser";
+import dotenv from "dotenv";
+import { initGA } from "./components/google_analytics/index.js";
 
-//dotenv.config()
+dotenv.config();
 
-(function initAnalytics(){
-  initGA("UA-158581736-1"); // TODO: Hard-coding this for now, need to move it to .env later
+(function initAnalytics() {
+  initGA(process.env.REACT_APP_GOOGLE_ANALYTICS);
 })();
 
 const store = createStore(
@@ -37,7 +37,7 @@ const store = createStore(
   applyMiddleware(thunk, logger)
 );
 Sentry.init({
-  dsn: process.env.SENTRY_DSN
+  dsn: process.env.SENTRY_DSN,
 });
 
 ReactDOM.render(

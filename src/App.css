@@ -128,7 +128,6 @@ body {
   width: 80%;
   height: 46px;
   border-left: solid 4px #3bc14a;
-  
 }
 
 .expense-bar {
@@ -139,18 +138,18 @@ body {
   font-size: 14px;
   line-height: 22px;
   color: white;
-  background-color: #003FE1;
+  background-color: #003fe1;
   width: 80%;
   height: 46px;
-  border-right: solid 4px #003FE1;
+  border-right: solid 4px #003fe1;
 }
 
 .fifty-width {
-  width:50px;
+  width: 50px;
 }
 
 .seventy-width {
-  width:70px;
+  width: 70px;
 }
 .hundred-width {
   width: 100px;
@@ -171,13 +170,13 @@ body {
   background-color: lightgreen;
 }
 .green-font {
-  color: #3BC14A;
+  color: #3bc14a;
 }
 .edit-sub-btn,
 .delete-sub-btn {
   height: 60px;
   width: 100px;
 }
-.red{
-  color: red
+.red {
+  color: red;
 }

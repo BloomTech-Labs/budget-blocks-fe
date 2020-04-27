@@ -3,6 +3,10 @@
 .SignIn {
   display: flex;
   margin: 0 2rem;
+  /* padding: 1%;
+  border-radius: 1%;
+  margin: 2%;
+  background-color: white; */
 }
 .inputText {
   display: flex;
@@ -51,4 +55,16 @@
 .confirmPassword {
   margin-top: 30px;
   text-align: left;
+}
+
+.login {
+  padding: 5%;
+  border-radius: 1%;
+  margin: 7%;
+}
+.SignInForm {
+  border-radius: 1%;
+  margin: 2%;
+  background-color: white;
+  padding: 5%;
 }

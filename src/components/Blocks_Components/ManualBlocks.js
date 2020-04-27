@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { selectCategories } from "../../redux/actions/ManualActions";
-import { Back_Continue } from "../Modal_Components/Back_Continue";
+import { BackContinue } from "../Modal_Components/BackContinue";
 import { TableHeads } from "./TableHead";
 import DisplayBlocks from "./DisplayBlocks";
 import "./index.css";
 import Table from "@material-ui/core/Table";
 import TableContainer from "@material-ui/core/TableContainer";
 import Paper from "@material-ui/core/Paper";
-import { PageView, GAevent } from "../google_analytics/index.js";
+import { PageView } from "../google_analytics/index.js";
 
 import BudgetGoal from "../Modal_Components/BudgetGoalModal";
 
@@ -25,7 +25,7 @@ export function ManualBlocks(props) {
 
   useEffect(() => {
     PageView();
-  });
+  }, []);
 
   const handleClose = () => {
     setOpen(false);
@@ -68,7 +68,7 @@ export function ManualBlocks(props) {
           </button>
         </div>
         <div>
-          <Back_Continue
+          <BackContinue
             BackClick={() => props.history.push("/onBoard/select")}
             ContClick={() => props.history.push("/dashboard")}
           />

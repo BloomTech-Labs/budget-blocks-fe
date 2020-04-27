@@ -1,4 +1,5 @@
 import { axiosWithAuth } from "../../components/AxiosWithAuth";
+import environmentUrls from "../../dispatch";
 
 export const SEND_LINK_TOKEN_LOADING = "SEND_LINK_TOKEN_LOADING";
 export const SEND_LINK_TOKEN_SUCCESS = "SEND_LINK_TOKEN_SUCCESS";
@@ -37,10 +38,10 @@ export function sendLinkToken(token, userID) {
   return function(dispatch) {
     dispatch(sendLinkLoading());
     return axiosWithAuth()
-      .post(
-        "https://cors-anywhere.herokuapp.com/https://lambda-budget-blocks.herokuapp.com/plaid/token_exchange",
-        { publicToken: token, userid: userID }
-      )
+      .post(`${environmentUrls.plaid}/token_exchange`, {
+        publicToken: token,
+        userid: userID
+      })
       .then(response => {
         dispatch(sendLinkSuccess(response.data));
         dispatch(sendLoginSuccess());
@@ -58,9 +59,7 @@ export function getTransactions(userID) {
   return function(dispatch) {
     dispatch(getTransLoading());
     return axiosWithAuth()
-      .get(
-        `https://cors-anywhere.herokuapp.com/https://lambda-budget-blocks.herokuapp.com/plaid/transactions/${userID}`
-      )
+      .get(`${environmentUrls.plaid}/transactions/${userID}`)
       .then(response => {
         dispatch(getTransSuccess(response.data));
       })

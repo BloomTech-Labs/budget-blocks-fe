@@ -20,7 +20,6 @@
     "axios": "^0.19.2",
     "bootstrap": "^4.4.1",
     "date-fns": "^2.9.0",
-    "dotenv": "^8.2.0",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.2",
     "immutable": "^4.0.0-rc.12",
@@ -54,7 +53,11 @@
     "build": "react-scripts build",
     "test": "react-scripts test --watchAll=false",
     "eject": "react-scripts eject",
-    "coverage": "CI=true yarn test --coverage || true"
+    "coverage": "CI=true yarn test --coverage || true",
+    "md-docs": "find ./src -name \\*.js | xargs npx jsdoc2md --template ./README.hbs --files | cat > ./FE_DOC.md",
+    "html-docs": "npx jsdoc -c ./docs/config.json",
+    "madge": "npx madge ./src -i madge.svg",
+    "gen-docs": "echo 'generating visual graphs' && npx madge ./src -i madge.svg && echo 'generating markdown' && find ./src -name \\*.js | xargs npx jsdoc2md --template ./README.hbs --files | cat > ./FE_DOC.md && echo 'generating html' && npx jsdoc -c ./docs/config.json"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -76,6 +79,8 @@
     "axios-mock-adapter": "^1.17.0",
     "babel-plugin-istanbul": "^6.0.0",
     "cypress": "^4.2.0",
+    "jsdoc-to-markdown": "^5.0.3",
+    "madge": "^3.8.0",
     "redux-mock-store": "^1.5.4",
     "start-server-and-test": "^1.10.11"
   },

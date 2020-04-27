@@ -1,10 +1,12 @@
 import * as actions from "../../redux/actions/LoginActions";
+import axios from "axios";
+import { reducer } from "../../redux/reducers/LoginReducer";
 import configureMockStore from "redux-mock-store";
 import thunk from "redux-thunk";
 import logger from "redux-logger";
+import environmentUrls from "../../dispatch";
+
 var MockAdapter = require("axios-mock-adapter");
-import axios from "axios";
-import { reducer } from "../../redux/reducers/LoginReducer";
 
 const middlewares = [thunk, logger];
 const mockStore = configureMockStore(middlewares);
@@ -66,7 +68,7 @@ test("creates LOGIN_USER_SUCCESS when login is successful", () => {
   };
 
   mock
-    .onPost("https://lambda-budget-blocks.herokuapp.com/api/auth/login")
+    .onPost(`${environmentUrls.base_url}/api/auth/login`)
     .reply(200, returnBody);
 
   const expectedActions = [

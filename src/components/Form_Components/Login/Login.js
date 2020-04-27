@@ -43,8 +43,9 @@ export const Login = props => {
   const [state, setState] = useState({
     values: { ...default_values },
     user: { ...default_user }
+    
   });
-
+ 
   useEffect(() =>{
     PageView()
   })
@@ -52,7 +53,7 @@ export const Login = props => {
     if (
       state.values.password.error === false &&
       state.values.email.error === false
-    ) {
+    ){
       setState({
         ...state,
         values: { ...state.values, button: { disabled: false } }
@@ -68,7 +69,8 @@ export const Login = props => {
   const handleChange = e => {
     setState({
       user: { ...state.user, [e.target.name]: e.target.value.trim() },
-      values: ChangeCheckField(e, state.values)
+      values: ChangeCheckField(e, state.values) 
+      
     });
   };
 

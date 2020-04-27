@@ -1,8 +1,8 @@
 import ReactGA from "react-ga";
 
-export const initGA = trackingID => {
+export const initGA = (trackingID) => {
   ReactGA.initialize(trackingID, {
-    debug: true
+    debug: true,
   });
 };
 
@@ -14,6 +14,6 @@ export const GAevent = (category, action, label) => {
   ReactGA.event({
     category,
     action,
-    label
+    label,
   });
 };

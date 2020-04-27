@@ -3,6 +3,10 @@ import BlockDetailModal from './BlockDetailModal'
 import BBCard from './BBCard'
 import LinearProgress from '@material-ui/core/LinearProgress';
 
+const trunc = (str, n) => {
+  return (str.length > n) ? str.substr(0, n-1) + '...' : str;
+}
+
 function Block(props) {
   const [ownExpenses, setOwnExpenses] = useState([])
   const [total, setTotal] = useState(0)
@@ -46,7 +50,7 @@ function Block(props) {
     <BBCard
       // title={props.name}
       text={<div style={{ display: "flex", justifyContent: "space-around" }}>
-        <span className="fifty-width"> {props.name}</span>
+        <span className="fifty-width"> {trunc(props.name, 6)}</span>
         <span className="fifty-width" style={{ "color": "green" }}>{`${total}`} </span>
         <span className="fifty-width">{`${props.limit}`}</span>
         <span className="fifty-width">{

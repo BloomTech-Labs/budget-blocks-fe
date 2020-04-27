@@ -7,6 +7,7 @@ const BBCard = props => {
   const useStyles = makeStyles({
     blocksOwnExpense: {
       maxWidth: 300,
+      maxHeight: '70px',
       "&:hover": {
         borderColor: "rgb(0, 0, 0, 0.87)"
       }

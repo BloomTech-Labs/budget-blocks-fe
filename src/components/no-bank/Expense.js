@@ -2,6 +2,10 @@ import React from "react";
 import BBCard from './BBCard'
 import EditIcon from '@material-ui/icons/Edit';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
+const trunc = (str, n) => {
+  return (str.length > n) ? str.substr(0, n-1) + '...' : str;
+}
+
 const Expense = (props) => {
   return (
     <BBCard
@@ -9,7 +13,7 @@ const Expense = (props) => {
     // title={props.exp.name}
     text={ 
     <div style={{display:'flex', justifyContent: 'space-around'}}>
-      <span className="hundred-width">{props.exp.name}</span>
+      <span className="hundred-width">{trunc(props.exp.name, 6)}</span>
       <span className="red seventy-width">-${props.exp.amount}</span>
       <MoreVertIcon
       className="edit-sub-btn green-font"

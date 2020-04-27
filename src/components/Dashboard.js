@@ -18,13 +18,8 @@ import ExpenseList from './no-bank/ExpenseList'
 
 
 export const Dashboard = (props) => {
-  // This component displays the dashboard: Blocks, transactions, and budget
-  // useEffect(() => {
-  //   props.LinkedAccount == true
-  //     ? props.getTransactions(props.userID)
-  //     : props.getManualTrans(props.userID, props.history);
-  // }, [props.LinkedAccount]);
-
+  // This component displays the dashboard: Blocks, transactions
+ 
   useEffect(() => {
     // get all of a user's expeses
     // pass expenses to expenseList
@@ -33,29 +28,17 @@ export const Dashboard = (props) => {
   }, [])
 
 
-
-  // useEffect(() => {
-  //   PageView();
-  // });
-  // <ExpensList expenses={props.expenses} />
   return (
     <div className="app-container">
       <Loading />
       <div className="showcase">
-        {/* <div className="right-showcase">
-          <TotalBudget />
-        </div>
-        <div className="left-showcase">
-          <LinkedBlocks />
-          <LinkedTransactions />
-        </div> */}
         <ExpenseList
           userID={props.userID}
           handleDeleteExpense={props.deleteExpense}
-          expenses={props.expenses || []}
+          expenses={props.expenses}
           handleAddExpense={props.addExpense}
           handleAddBlock={props.addBlock}
-          blocks={props.blocks || []}
+          blocks={props.blocks}
           handleAssignBlock={props.assignBlock}
           handleAddOwnExpense={props.addOwnExpense}
           blockExpenses={props.blockExpenses}

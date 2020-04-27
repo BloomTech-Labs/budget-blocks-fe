@@ -42,47 +42,7 @@ function ExpenseFormModal(props) {
     >
       <div style={style} className={useStyles().paper}>
         {props.children}
-        {/* <h3>Add A New Expense</h3>
-        <form onSubmit={(event) => {
-          props.addExpense(newExpense, event)
-          props.handleOpen(false)
-        }}>
-          <h4>New Expense</h4>
-          <BBTextField
-            inputProps={{
-              style: {
-                height: "5px",
-              }
-            }}
-            variant="outlined"
-            id="name"
-            name="name"
-            type="text"
-            placeholder="Name"
-            value={newExpense.name}
-            onChange={(e) =>
-              setNewExpense({ ...newExpense, [e.target.name]: e.target.value })
-            }
-          />
-          <h4>Amount</h4>
-          <BBTextField
-            inputProps={{
-              style: {
-                height: "5px",
-              }
-            }}
-            variant="outlined"
-            id="amount"
-            name="amount"
-            type="text"
-            placeholder="amount"
-            value={newExpense.amount}
-            onChange={(e) =>
-              setNewExpense({ ...newExpense, [e.target.name]: e.target.value })
-            }
-          />
-          <BBButton type="submit" color={"yellow"} >Add New Expense</BBButton>
-        </form> */}
+       
       </div>
     </Modal>
 

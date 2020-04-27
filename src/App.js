@@ -12,6 +12,9 @@ import FirstOnboard from "./components/OnboardComponents/FirstOnboard";
 import ManualBlocks from "./components/Blocks_Components/ManualBlocks";
 import { PageView } from "./components/google_analytics/index.js";
 import CredentialsContext from "./contexts/CredentialsContext";
+import ExpenseList from "./components/no-bank/ExpenseList";
+
+// Added useContext because user email and password were being stored in localStorage (security risk) and we needed to resolve that.
 
 function App() {
   // Added useContext because user email and password were being stored in localStorage (security risk) and we needed to resolve that.
@@ -23,6 +26,7 @@ function App() {
   useEffect(() => {
     PageView();
   }, []);
+
 
   return (
     <div>

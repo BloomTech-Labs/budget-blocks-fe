@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { selectCategories } from "../../redux/actions/ManualActions";
-import { BackContinue } from "../Modal_Components/BackContinue";
+import  BackContinue  from "../Modal_Components/BackContinue";
 import { TableHeads } from "./TableHead";
 import DisplayBlocks from "./DisplayBlocks";
 import "./index.css";

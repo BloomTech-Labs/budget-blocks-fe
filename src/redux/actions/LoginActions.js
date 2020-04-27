@@ -17,10 +17,11 @@ export const loginUserFailure = (error) => ({
 });
 
 export function loginUser(user, history) {
+  console.log('***********loginUserData**************', user)
   return function (dispatch) {
     return axios
       .post(`${environmentUrls.base_url}/api/auth/login`, user)
-      .then(promiseTimeout(6000))
+      .then(promiseTimeout(1000))
       .then((response) => {
         dispatch(loginUserLoading());
         // All Login data saved to sessionStorage and then saved to redux
@@ -35,14 +36,14 @@ export function loginUser(user, history) {
       .then((response) => {
         // If the user is not using manual nor plaid: take them to onboarding process. Otherwise take them to dashboard
         dispatch(loginUserSuccess(response.data));
-        if (
-          response.data.LinkedAccount === true ||
-          response.data.ManualOnly === true
-        ) {
+        // if (
+        //   response.data.LinkedAccount === true ||
+        //   response.data.ManualOnly === true
+        // ) {
           history.push("/dashboard");
-        } else {
-          history.push("/onBoard/1");
-        }
+        // } else {
+        //   history.push("/onBoard/1");
+        // }
       })
       .catch((error) => {
         console.log(error);

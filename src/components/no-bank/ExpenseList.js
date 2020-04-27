@@ -19,10 +19,11 @@ const ExpenseList = ({
   blocks,
   handleAddBlock,
   handleAssignBlock,
-  handleAddOwnExpense,
+  handleUpdateBlock,
   blockExpenses,
   handleUnassignExpense,
-  handleDeleteAndSave
+  handleDeleteAndSave,
+  handleDeleteBlock
 }) => {
 
   const [data, setData] = useState([]);
@@ -188,6 +189,7 @@ const ExpenseList = ({
                 exp={exp}
                 index={index}
                 setOpenExpenseDetail={setOpenExpenseDetail}
+              // handleDeleteBlock={handleDeleteBlock}
               />
             )
           }
@@ -213,7 +215,7 @@ const ExpenseList = ({
               <Block
                 addExpense={addExpense}
                 editBlock={editBlock}
-                deleteBlock={deleteBlock}
+                handleDeleteBlock={handleDeleteBlock}
                 deleteAndSave={deleteAndSave}
                 index={index}
                 handleUnselect={unSelectExpense}
@@ -225,6 +227,7 @@ const ExpenseList = ({
                 ownExpenses={blockExpenses[block.id]}
                 handleUnassignExpense={handleUnassignExpense}
                 handleDeleteAndSave={handleDeleteAndSave}
+                handleUpdateBlock={handleUpdateBlock}
               />
             )
           }

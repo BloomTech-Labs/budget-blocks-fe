@@ -12,7 +12,7 @@ import { getManualTrans } from "../redux/actions/ManualActions";
 import Loading from "./Loading";
 import { PageView } from "./google_analytics/index.js";
 import { getExpenses, deleteExpense, addExpense, assignBlock, unassignExpense } from '../redux/actions/ExpenseActions'
-import { getBlocks, deleteBlock, addBlock, addOwnExpense, deleteAndSave } from '../redux/actions/BlockActions'
+import { getBlocks, deleteBlock, updateBlock, addBlock, addOwnExpense, deleteAndSave } from '../redux/actions/BlockActions'
 
 import ExpenseList from './no-bank/ExpenseList'
 
@@ -61,6 +61,8 @@ export const Dashboard = (props) => {
           blockExpenses={props.blockExpenses}
           handleUnassignExpense={props.unassignExpense}
           handleDeleteAndSave={props.deleteAndSave}
+          handleDeleteBlock={props.deleteBlock}
+          handleUpdateBlock={props.updateBlock}
         />
       </div>
     </div>
@@ -76,6 +78,18 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { getExpenses, deleteExpense, addExpense, getBlocks, addBlock, assignBlock, addOwnExpense, unassignExpense, deleteAndSave })(
+export default connect(mapStateToProps, {
+  getExpenses,
+  deleteExpense,
+  addExpense,
+  getBlocks,
+  addBlock,
+  assignBlock,
+  addOwnExpense,
+  unassignExpense,
+  deleteAndSave,
+  deleteBlock, 
+  updateBlock
+})(
   Dashboard
 );

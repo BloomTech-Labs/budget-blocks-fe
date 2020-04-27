@@ -89,12 +89,12 @@ function Block(props) {
         props={props.limit}
         ownExpenses={props.ownExpenses || []}
         setOwnExpenses={setOwnExpenses}
-        handleDelete={props.deleteBlock}
+        handleDeleteBlock={props.handleDeleteBlock}
         handleDeleteAndSave={props.handleDeleteAndSave}
         handleAddExpense={props.addExpense}
         handleUnassignExpense={props.handleUnassignExpense}
         blockID={props.blockID}
-        
+        handleUpdateBlock={props.handleUpdateBlock}
       />
     </BBCard>
   )

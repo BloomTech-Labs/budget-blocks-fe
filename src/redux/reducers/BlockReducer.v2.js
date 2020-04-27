@@ -16,11 +16,16 @@ export const blocksReducer = (state = { blocks: [], blockExpenses: {} }, action)
         ...state,
         blocks: action.payload
       }
+    case "UPDATE_BLOCKS":
+      return {
+        ...state,
+        blocks: action.payload
+      }
     case "HYDRATE_OWNEXPENSES":
       const newBlockExpenses = { ...state.blockExpenses }
-      console.log('newBlockExpensesBEFORE', newBlockExpenses, action.payload.blockID,action.payload.expenses )
+      console.log('newBlockExpensesBEFORE', newBlockExpenses, action.payload.blockID, action.payload.expenses)
       newBlockExpenses[action.payload.blockID] = action.payload.expenses
-      console.log('newBlockExpensesAFTER', newBlockExpenses, action.payload.blockID,action.payload.expenses )
+      console.log('newBlockExpensesAFTER', newBlockExpenses, action.payload.blockID, action.payload.expenses)
 
       return {
         ...state,

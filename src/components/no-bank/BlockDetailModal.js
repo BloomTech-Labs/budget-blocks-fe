@@ -12,7 +12,8 @@ const BlockDetailModal = (props) => {
   const handleSubmit = event => {
     event.preventDefault()
     console.log('blockProps', props)
-    props.editBlock(props.index, newBlock)
+    // props.editBlock(props.index, newBlock)
+    props.handleUpdateBlock(props.blockID, newBlock)
     props.handleClose(event)
     // find block in parent's blocks array by props.index
     // change that block in the array
@@ -26,7 +27,7 @@ const BlockDetailModal = (props) => {
     >
       <div>
         <BBButton
-          onClick={() => props.handleDelete(props.index)}
+          onClick={() => props.handleDeleteBlock(props.blockID)}
           role={"delete"}>
           Delete
         </BBButton>
@@ -66,7 +67,7 @@ const BlockDetailModal = (props) => {
           {props.ownExpenses.map(exp => (
             <BBCard
               onClick={(event) => {
-                props.handleUnassignExpense(exp.id, props.blockID )
+                props.handleUnassignExpense(exp.id, props.blockID)
                 console.log('blockDetailOnClick', exp.id)
                 // take out expense from block
                 // props.handleAddExpense(exp, event)
@@ -76,7 +77,7 @@ const BlockDetailModal = (props) => {
                 // put in expense in parent's expenses array
               }}
               role="blocksOwnExpense"
-              
+
               title={exp.name}
               text={exp.amount}
             />

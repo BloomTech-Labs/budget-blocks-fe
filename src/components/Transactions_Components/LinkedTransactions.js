@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState} from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import DisplayTrans from "./DisplayTrans";
 
@@ -25,11 +25,15 @@ const Transactions = (props) => {
     setFilter(!filter);
   };
 
+
+
   var selected = props.transactions.slice(0, 3);
   const [open, setOpen] = useState(false);
   const handleClickOpen = () => {
     setOpen(true);
   };
+
+
   const handleClose = () => {
     setOpen(false);
   };

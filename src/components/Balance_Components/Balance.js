@@ -27,9 +27,6 @@ export const Balance = ({ LinkedAccount }) => {
   }
 };
 
-// axiosWithAuth()
-// .post(`${environmentUrls.base_url}/dashboard/accounts/balance/get`)
-
 function mapStateToProps(state) {
   return {
     LinkedAccount: state.loginReducer.user.LinkedAccount

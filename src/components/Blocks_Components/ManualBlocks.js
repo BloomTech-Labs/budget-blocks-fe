@@ -1,15 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { selectCategories } from "../../redux/actions/ManualActions";
-import BackContinue from "../Modal_Components/BackContinue";
+import  BackContinue  from "../Modal_Components/BackContinue";
 import { TableHeads } from "./TableHead";
 import DisplayBlocks from "./DisplayBlocks";
 import "./index.css";
 import Table from "@material-ui/core/Table";
 import TableContainer from "@material-ui/core/TableContainer";
 import Paper from "@material-ui/core/Paper";
+import { PageView } from "../google_analytics/index.js";
 
-import BudgetGoal from "../Modal_Components/BudgetGoalModal";
+import  BudgetGoalModal  from '../Modal_Components/BudgetGoalModal';
 
 export function ManualBlocks(props) {
   // This components displays the table of blocks for the Onboarding process.
@@ -19,14 +20,18 @@ export function ManualBlocks(props) {
   const [values, setValues] = useState({
     userId: "",
     catId: "",
-    budget: 0.0
+    budget: 0.0,
   });
+
+  useEffect(() => {
+    PageView();
+  }, []);
 
   const handleClose = () => {
     setOpen(false);
   };
   const [filter, setFilter] = useState([]);
-  const handleClick = e => {
+  const handleClick = (e) => {
     setFilter(!filter);
   };
   const handleClickOpen = (id, budget) => {
@@ -49,35 +54,35 @@ export function ManualBlocks(props) {
               className="lightgrey"
             />
 
-            <DisplayBlocks
-              arr={props.categoryArr}
-              handleClick={handleClickOpen}
-              LinkedAccount={props.LinkedAccount}
-            />
-          </Table>
-          <BudgetGoal open={open} values={values} handleClose={handleClose} />
-        </TableContainer>
-        <div>
-          <button className="blocks-button" onClick={handleClick}>
-            {filter ? "View All" : "View Less"}
-          </button>
-        </div>
-        <div>
-          <BackContinue
-            BackClick={() => props.history.push("/onBoard/select")}
-            ContClick={() => props.history.push("/dashboard")}
-          />
-        </div>
-      </div>
-    </div>
-  );
+						<DisplayBlocks
+							arr={props.categoryArr}
+							handleClick={handleClickOpen}
+							LinkedAccount={props.LinkedAccount}
+						/>
+					</Table>
+					<BudgetGoalModal handleOpen={open} values={values} handleClose={handleClose} />
+				</TableContainer>
+				<div>
+					<button className='blocks-button' onClick={handleClick}>
+						{filter ? 'View All' : 'View Less'}
+					</button>
+				</div>
+				<div>
+					<BackContinue 
+					BackClick={()=>props.history.push("/onBoard/select")}
+					ContClick={()=>props.history.push("/dashboard")}
+					/>
+				</div>
+			</div>
+		</div>
+	);
 }
 
 function mapStateToProps(state) {
   return {
     userID: state.loginReducer.user.id,
     LinkedAccount: state.loginReducer.user.LinkedAccount,
-    categoryArr: state.plaidReducer.categories
+    categoryArr: state.plaidReducer.categories,
   };
 }
 

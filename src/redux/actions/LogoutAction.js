@@ -15,6 +15,7 @@ export function logoutUser(){
         dispatch(logoutClearLogin());
         dispatch(logoutClearPlaid());
         dispatch(logoutClearBlocks());
+        
 
     }
 }

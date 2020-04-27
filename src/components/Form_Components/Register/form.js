@@ -24,18 +24,20 @@ const RegForm = ({
   rState: state,
   rConfirm: handleConfirm,
   rSubmit: handleSubmit,
-  rUserChange: handleUserChange
+  rUserChange: handleUserChange,
 }) => {
   return (
     <form className="RegisterForm" onSubmit={handleSubmit}>
       <FormControl variant="outlined">
         <EmailField
+          id="email"
           values={state.values}
           handleChange={handleUserChange}
           user={state.user}
           fullWidth={true}
         />
         <GenText
+          id="firstName"
           langKey="FIRST_NAME"
           handleChange={handleUserChange}
           value={state.user.first_name}
@@ -43,6 +45,7 @@ const RegForm = ({
           helperText={state.values.first_name.helperText}
         />
         <GenText
+          id="lastName"
           langKey="LAST_NAME"
           handleChange={handleUserChange}
           value={state.user.last_name}
@@ -50,6 +53,7 @@ const RegForm = ({
           helperText={state.values.last_name.helperText}
         />
         <PasswordField
+          id="password"
           name="password"
           placeholder={LANG.PASSWORD}
           label={LANG.PASSWORD}
@@ -59,6 +63,7 @@ const RegForm = ({
           helperText={state.values.password.helperText}
         />
         <PasswordField
+          id="confirmPassword"
           name="confirmPassword"
           placeholder={LANG.CONFIRM_PW}
           label={LANG.CONFIRM_PW}
@@ -75,6 +80,7 @@ const RegForm = ({
           <p className="errorMessage"></p>
         )}
         <Button
+          id="formButton"
           variant="outlined"
           className="signUpBtn"
           type="submit"

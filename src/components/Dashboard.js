@@ -10,24 +10,31 @@ import '../App.css';
 import './main.css';
 import { getManualTrans } from "../redux/actions/ManualActions";
 import Loading from "./Loading";
+import {PageView} from "./google_analytics/index.js"
+
 
 export const Dashboard = props => {
-    // This component displays the dashboard: Blocks, transactions, and budget
+	// This component displays the dashboard: Blocks, transactions, and budget
 	useEffect(() => {
-        props.LinkedAccount == true 
-            ? props.getTransactions(props.userID) 
-            : props.getManualTrans(props.userID,props.history);
+		props.LinkedAccount == true
+			? props.getTransactions(props.userID)
+			: props.getManualTrans(props.userID, props.history);
 	}, [props.LinkedAccount]);
+
+	useEffect(() =>{
+		PageView()
+	  })
+
 	return (
 		<div className='app-container'>
-			<Loading/>
+			<Loading />
 			<div className='showcase'>
 				<div className='right-showcase'>
-						<TotalBudget />
+					<TotalBudget />
 				</div>
 				<div className='left-showcase'>
-						<LinkedBlocks /> 
-						<LinkedTransactions />		
+					<LinkedBlocks />
+					<LinkedTransactions />
 				</div>
 			</div>
 		</div>

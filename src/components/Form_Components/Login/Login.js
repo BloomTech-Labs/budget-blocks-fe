@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { Redirect } from "react-router-dom";
+
 import { connect } from "react-redux";
 import { loginUser } from "../../../redux/actions/LoginActions";
 import Title from "../Title";
@@ -11,6 +13,7 @@ import { ChangeCheckField } from "../ChangeCheckField";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Button from "@material-ui/core/Button";
 import Container from "@material-ui/core/Container";
+import { PageView } from "../../google_analytics/index.js";
 
 import LANG from "../Lang";
 import "./loginStyle.css";
@@ -19,15 +22,15 @@ const default_values = {
   showPassword: false,
   password: {
     error: false,
-    helperText: ""
+    helperText: "",
   },
   email: {
     error: false,
-    helperText: ""
+    helperText: "",
   },
   button: {
-    disabled: false
-  }
+    disabled: false,
+  },
 };
 const default_user = { email: "", password: "" };
 
@@ -36,12 +39,17 @@ const default_user = { email: "", password: "" };
  * @param {*} props
  * @renders login page
  */
-export const Login = props => {
+export const Login = (props) => {
   const [state, setState] = useState({
     values: { ...default_values },
-    user: { ...default_user }
+    user: { ...default_user },
   });
 
+  const [initial, setInitial] = useState(sessionStorage.getItem("token"));
+
+  useEffect(() => {
+    PageView();
+  });
   useEffect(() => {
     if (
       state.values.password.error === false &&
@@ -49,24 +57,24 @@ export const Login = props => {
     ) {
       setState({
         ...state,
-        values: { ...state.values, button: { disabled: false } }
+        values: { ...state.values, button: { disabled: false } },
       });
     } else {
       setState({
         ...state,
-        values: { ...state.values, button: { disabled: true } }
+        values: { ...state.values, button: { disabled: true } },
       });
     }
   }, [state.user]); // refactor this useEffect?
 
-  const handleChange = e => {
+  const handleChange = (e) => {
     setState({
       user: { ...state.user, [e.target.name]: e.target.value.trim() },
-      values: ChangeCheckField(e, state.values)
+      values: ChangeCheckField(e, state.values),
     });
   };
 
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     const check = CheckEmptyFields(state.user, state.values);
     if (check instanceof Object) {
@@ -79,32 +87,36 @@ export const Login = props => {
 
   return (
     <div className="SignIn">
-      <Container maxWidth="sm">
-        <Title title={LANG.SIGN_IN} titleClass="SignInTitle" />
+      {initial ? (
+        <Redirect to="/onBoard/1" />
+      ) : (
+        <Container maxWidth="sm">
+          <Title title={LANG.SIGN_IN} titleClass="SignInTitle" />
 
-        <form className="SignInForm" onSubmit={handleSubmit}>
-          <div className="inputText">
-            <EmailField
-              values={state.values}
-              handleChange={handleChange}
-              user={state.user}
-              fullWidth={true}
-            />
-            <PasswordField
-              name="password"
-              placeholder={LANG.PASSWORD}
-              label={LANG.PASSWORD}
-              error={state.values.password.error}
-              value={state.user.password}
-              handleChange={handleChange}
-              helperText={state.values.password.helperText}
-            />
-          </div>
-          <Account message={LANG.NEED_AN_ACCOUNT} link="/register" />
+          <form className="SignInForm" onSubmit={handleSubmit}>
+            <div className="inputText">
+              <EmailField
+                values={state.values}
+                handleChange={handleChange}
+                user={state.user}
+                fullWidth={true}
+              />
+              <PasswordField
+                name="password"
+                placeholder={LANG.PASSWORD}
+                label={LANG.PASSWORD}
+                error={state.values.password.error}
+                value={state.user.password}
+                handleChange={handleChange}
+                helperText={state.values.password.helperText}
+              />
+            </div>
+            <Account message={LANG.NEED_AN_ACCOUNT} link="/register" />
+
 
           {props.error ? (
             <p style={{ display: "inline" }} className="errorMessage">
-              {props.error}
+              {/* {props.error} */}
             </p>
           ) : (
             <p className="errorMessage"></p>
@@ -121,6 +133,7 @@ export const Login = props => {
           </Button>
         </form>
       </Container>
+       )}
     </div>
   );
 };
@@ -128,7 +141,7 @@ export const Login = props => {
 function mapStateToProps(state) {
   return {
     isFetching: state.loginReducer.isFetching,
-    error: state.loginReducer.error
+    error: state.loginReducer.error,
   };
 }
 

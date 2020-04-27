@@ -8,15 +8,18 @@ export const renderSpinner = () => (
   </div>
 );
 
-export const pushToDashboard = history => history.push("/dashboard");
+export const pushToDashboard = (history) => history.push("/dashboard");
 
-export const renderManualBtn = ({ handleClick, error }) => (
-  <div className="main">
-    <p className="error">Sorry Please Try Again</p>
-    <div className="manualBudgetButton">
-      {error ? error : " "}
-      <button onClick={handleClick}>Manually set your budget goals here</button>
+export const renderManualBtn = ({ handleClick, error }) => {
+  return (
+    <div className="main">
+      <p className="error">Sorry Please Try Again</p>
+      <div className="manualBudgetButton">
+        <button onClick={handleClick}>
+          Manually set your budget goals here
+        </button>
+      </div>
+      <Balance />
     </div>
-    <Balance />
-  </div>
-);
+  );
+};

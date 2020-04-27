@@ -12,7 +12,15 @@ import { reducer as registerReducer } from "./redux/reducers/RegisterReducer";
 import { reducer as blockReducer } from "./redux/reducers/BlockReducers";
 import { reducer as addTransactionReducer } from "./redux/reducers/AddTransactionReducer";
 import { BrowserRouter as Router } from "react-router-dom";
-import * as Sentry from "@sentry/browser";
+import * as Sentry from '@sentry/browser';
+import dotenv from 'dotenv'
+import {initGA} from './components/google_analytics/index.js'
+
+//dotenv.config()
+
+(function initAnalytics(){
+  initGA("UA-158581736-1"); // TODO: Hard-coding this for now, need to move it to .env later
+})();
 
 const store = createStore(
   combineReducers({

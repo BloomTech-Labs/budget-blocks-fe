@@ -10,17 +10,6 @@ import { connect } from "react-redux";
 import "./dialogViews/dialogComponents";
 import "./modalStyle.css";
 
-/*
-... && || 
-..... current_user&.admin === current_user && current_user.admin
-Code is not considered more complex when it uses shorthand that the language provides for collapsing multiple statements into one
-
-Code is considered more complex for each "break in the linear flow of the code"
-loops, conditionals, try/catch, switch/case, sequence of operators like a && b && c, recursion, jumps to labels
-
-Code is considered more complex when "flow breaking structures are nested"
-*/
-
 /**
  * ManualTransaction (Modal)
  *
@@ -87,10 +76,11 @@ export const ManualTransaction = (props) => {
     /*
     Refactored this to reduce cog complexity*/
     const failing =
-      state.customBlock.name === null || isNaN(state.customBlock.budget) || !isNaN(state.customBlock.name); // +1
-      
+      state.customBlock.name === null ||
+      isNaN(state.customBlock.budget) ||
+      !isNaN(state.customBlock.name); // +1
 
-      /*
+    /*
     let failing = false;
     if (typeof state.customBlock.name !== "string"){ // +1
       failing = true;
@@ -104,11 +94,11 @@ export const ManualTransaction = (props) => {
       failedCustom: failing,
     });
 
-    if (!failing) { // +2
+    if (!failing) {
+      // +2
       props.addManualBlocks(props.userID, state.customBlock);
       props.handleClose();
     }
-
   };
 
   const cat = Object.entries(props.blocks);
@@ -126,17 +116,16 @@ export const ManualTransaction = (props) => {
       failedEdit: failing,
     });
 
-    if (!failing) { // +2
+    if (!failing) {
+      // +2
       props.editManualBlocks(props.userID, state.editBlock);
       props.handleClose();
     }
-
   };
 
   props.blocks
     .filter((i) => i.budget === null)
     .map((i) => options.push({ value: i.id, label: i.name }));
-
   return (
     <div>
       {state.edit && state.failedEdit // +2
@@ -149,41 +138,39 @@ export const ManualTransaction = (props) => {
             cat,
             classes,
           })
-
-          : state.edit && !state.failedEdit // +3
-          ? dialogView2({
-              props,
-              handleEdit,
-              handleBudget,
-              editBlock: state.editBlock,
-              submitEdit,
-              cat,
-              classes,
-            })
-
-            : state.failedCustom && !state.edit // +4
-            ? dialogView3({
-                props,
-                handleEdit,
-                handleChange,
-                handleBudget,
-                handleSubmit,
-                editBlock: state.editBlock,
-                customBlock: state.customBlock,
-                cat,
-                classes,
-              })
-            : dialogView3({
-                props,
-                handleEdit,
-                handleChange,
-                handleBudget,
-                handleSubmit,
-                editBlock: state.editBlock,
-                customBlock: state.customBlock,
-                cat,
-                classes,
-                errorMessage: "Create a valid name and a budget number over 0",
+        : state.edit && !state.failedEdit // +3
+        ? dialogView2({
+            props,
+            handleEdit,
+            handleBudget,
+            editBlock: state.editBlock,
+            submitEdit,
+            cat,
+            classes,
+          })
+        : state.failedCustom && !state.edit // +4
+        ? dialogView3({
+            props,
+            handleEdit,
+            handleChange,
+            handleBudget,
+            handleSubmit,
+            editBlock: state.editBlock,
+            customBlock: state.customBlock,
+            cat,
+            classes,
+          })
+        : dialogView3({
+            props,
+            handleEdit,
+            handleChange,
+            handleBudget,
+            handleSubmit,
+            editBlock: state.editBlock,
+            customBlock: state.customBlock,
+            cat,
+            classes,
+            errorMessage: "Create a valid name and a budget number over 0",
           })}
     </div>
   );

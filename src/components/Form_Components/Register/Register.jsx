@@ -6,7 +6,14 @@ import Title from "../Title";
 import RegForm from "./form";
 import { default_user, default_values } from "./defaults";
 import handlers from "./handlers";
+import { useContext } from "react";
+import CredentialsContext from "../../../contexts/CredentialsContext";
 
+import { CheckEmptyFields } from "../CheckEmpyFields";
+import { ChangeCheckField } from "../ChangeCheckField";
+import { PageView, GAevent } from "../../google_analytics/index.js";
+
+import FormControl from "@material-ui/core/FormControl";
 import Container from "@material-ui/core/Container";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import "./registerStyle.css";
@@ -18,36 +25,37 @@ import "./registerStyle.css";
  * @param {Object} props React component props
  * @returns <div className="register" .../>
  */
-export const Register = props => {
+export const Register = (props) => {
+  const { updateCredentials } = useContext(CredentialsContext);
+
   const [state, setState] = useState({
     user: { ...default_user },
     values: { ...default_values },
-    confirmPass: { confirmPassword: "" }
+    confirmPass: { confirmPassword: "" },
   });
+
+  useEffect(() => {
+    PageView();
+  });
+
   const canSubmit = () => {
-    const vals = Object.keys(state.values).filter(key =>
+    const vals = Object.keys(state.values).filter((key) =>
       Object.keys(state.values[key]).includes("error")
     );
-    const errs = vals.filter(value => state.values[value].error === true);
-    setState({
-      ...state,
-      values: { ...state.values, button: { disabled: errs.length > 0 } }
-    });
+    const errs = vals.filter((value) => state.values[value].error === true);
   };
-  const handleSubmit = e =>
+
+  const handleSubmit = (e) =>
     handlers.handleSubmit({ e, state, setState, props });
-  const handleConfirm = e => handlers.handleConfirm({ e, state, setState });
-  const handleUserChange = e =>
-    handlers.handleUserChange({ e, state, setState });
-  useEffect(() => {
-    canSubmit();
-  }, [state.user]);
+  const handleConfirm = (e) => handlers.handleConfirm({ e, state, setState });
+  const handleUserChange = (e) =>
+    handlers.handleUserChange({ e, state, setState, canSubmit });
 
   return (
     <div className="register">
       <Container maxWidth="sm">
         <div style={{ backgroundColor: "#ffffff" }}>
-          <Title title="Sign Up" />
+          <Title title="Create Profile" />
           <RegForm
             rProps={props}
             rState={state}
@@ -64,7 +72,7 @@ export const Register = props => {
 function mapStateToProps(state) {
   return {
     isFetching: state.registerReducer.isFetching,
-    error: state.registerReducer.error
+    error: state.registerReducer.error,
   };
 }
 

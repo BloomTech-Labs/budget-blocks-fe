@@ -38,7 +38,6 @@ export function NavBar({ navState, logoutUser }) {
         <img className="image" src={logo} />
         <img className="heading" src={head} />
       </div>
-
       {sessionStorage.getItem('token')  ? (
         <div className="nav-action">
           <div className="dropdown-menu">

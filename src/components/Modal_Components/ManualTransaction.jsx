@@ -117,7 +117,7 @@ export const ManualTransaction = (props) => {
     .map((i) => options.push({ value: i.id, label: i.name }));
   return (
     <div>
-      {state.edit && state.failedEdit // +2
+      {state.edit && state.failedEdit
         ? dialogView1({
             props,
             handleEdit,
@@ -127,7 +127,7 @@ export const ManualTransaction = (props) => {
             cat,
             classes,
           })
-        : state.edit && !state.failedEdit // +3
+        : state.edit && !state.failedEdit
         ? dialogView2({
             props,
             handleEdit,
@@ -137,7 +137,7 @@ export const ManualTransaction = (props) => {
             cat,
             classes,
           })
-        : state.failedCustom && !state.edit // +4
+        : state.failedCustom && !state.edit
         ? dialogView3({
             props,
             handleEdit,

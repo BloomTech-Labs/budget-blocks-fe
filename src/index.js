@@ -6,6 +6,8 @@ import { applyMiddleware, createStore, combineReducers } from "redux";
 import thunk from "redux-thunk";
 import logger from "redux-logger";
 import { Provider } from "react-redux";
+import { blocksReducer } from './redux/reducers/BlockReducer.v2'
+import { expenseReducer } from './redux/reducers/ExpenseReducer'
 import { reducer as loginReducer } from "./redux/reducers/LoginReducer";
 import { reducer as plaidReducer } from "./redux/reducers/PlaidReducer";
 import { reducer as registerReducer } from "./redux/reducers/RegisterReducer";
@@ -29,6 +31,8 @@ const store = createStore(
     registerReducer,
     blockReducer,
     addTransactionReducer,
+    expenses:expenseReducer,
+    blocks: blocksReducer
   }),
   applyMiddleware(thunk, logger)
 );

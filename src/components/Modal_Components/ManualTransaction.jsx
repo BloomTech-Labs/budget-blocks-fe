@@ -73,21 +73,10 @@ export const ManualTransaction = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    /*
-    Refactored this to reduce cog complexity*/
     const failing =
       state.customBlock.name === null ||
       isNaN(state.customBlock.budget) ||
-      !isNaN(state.customBlock.name); // +1
-
-    /*
-    let failing = false;
-    if (typeof state.customBlock.name !== "string"){ // +1
-      failing = true;
-    } else if (isNaN(state.customBlock.budget)){ // +1
-      failing = true;
-    }
-    */
+      !isNaN(state.customBlock.name);
 
     setState({
       ...state,

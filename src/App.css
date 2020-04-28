@@ -4,12 +4,12 @@
   margin: 5px auto;
   align-content: center;
   width: 100vw;
-  background: #e5e5e5;
+  /* background: #e5e5e5; */
 }
 
-body {
+/* body {
   background-color: #e5e5e5;
-}
+} */
 
 * {
   font-family: "Exo", sans-serif !important;

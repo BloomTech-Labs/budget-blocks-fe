@@ -11,22 +11,38 @@ import "./main.css";
 import { getManualTrans } from "../redux/actions/ManualActions";
 import Loading from "./Loading";
 import { PageView } from "./google_analytics/index.js";
-import { updateExpense, getExpenses, deleteExpense, addExpense, assignBlock, unassignExpense } from '../redux/actions/ExpenseActions'
-import { getBlocks, deleteBlock, updateBlock, addBlock, addOwnExpense, deleteAndSave } from '../redux/actions/BlockActions'
+import {
+  updateExpense,
+  getExpenses,
+  deleteExpense,
+  addExpense,
+  assignBlock,
+  unassignExpense,
+} from "../redux/actions/ExpenseActions";
+import {
+  getBlocks,
+  deleteBlock,
+  updateBlock,
+  addBlock,
+  addOwnExpense,
+  deleteAndSave,
+} from "../redux/actions/BlockActions";
 
-import ExpenseList from './no-bank/ExpenseList'
-
+import ExpenseList from "./no-bank/ExpenseList";
 
 export const Dashboard = (props) => {
   // This component displays the dashboard: Blocks, transactions
- 
+
   useEffect(() => {
     // get all of a user's expeses
     // pass expenses to expenseList
-    props.getExpenses(props.userID)
-    props.getBlocks(props.userID)
-  }, [])
+    props.getExpenses(props.userID);
+    props.getBlocks(props.userID);
+  }, []);
 
+  useEffect(() => {
+    PageView();
+  }, []);
 
   return (
     <div className="app-container">
@@ -58,7 +74,7 @@ function mapStateToProps(state) {
     userID: state.loginReducer.user.id,
     expenses: state.expenses.expenses,
     blocks: state.blocks.blocks,
-    blockExpenses: state.blocks.blockExpenses
+    blockExpenses: state.blocks.blockExpenses,
   };
 }
 
@@ -72,9 +88,7 @@ export default connect(mapStateToProps, {
   addOwnExpense,
   unassignExpense,
   deleteAndSave,
-  deleteBlock, 
+  deleteBlock,
   updateBlock,
-  updateExpense
-})(
-  Dashboard
-);
+  updateExpense,
+})(Dashboard);

@@ -174,10 +174,7 @@ In order for the app to function correctly, the user must set up their own envir
     
 2.  create a file named '.env' in the root directory.
     
-3.  Paste the following data:
-    
-
-DEV_DATABASE_URL=postgres://kkxdhymo:0NOQ4o1rKprHkCCAXwOl-064ETUXK8eT@drona.db.elephantsql.com:5432/kkxdhymo PLAID_CLIENT_ID=5e29d37100a2c100129f7394 PLAID_COUNTERY_CODES=US,CA,GB,FR,ES,IE PLAID_ENV=sandbox PLAID_PRODUCTS=transactions PLAID_PUBLIC_KEY=7b47db1cfa540573d15cea302e5988 PLAID_SECRET=98b231dd6b24111a00000c7def80bd
+3.  Use the provided template above.
 
 4.  In the knexfile.js file, create the following changes:
 

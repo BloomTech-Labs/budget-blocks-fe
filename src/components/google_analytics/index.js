@@ -5,23 +5,25 @@ const envCheck = (callback) => {
 };
 
 export const initGA = (trackingID) => {
-  envCheck(
+  envCheck(() => {
     ReactGA.initialize(trackingID, {
       debug: true,
-    })
-  );
+    });
+  });
 };
 
 export const PageView = (url = window.location.pathname) => {
-  envCheck(ReactGA.pageview(`${url}`));
+  envCheck(() => {
+    ReactGA.pageview(`${url}`);
+  });
 };
 
 export const GAevent = (category, action, label) => {
-  envCheck(
+  envCheck(() => {
     ReactGA.event({
       category,
       action,
       label,
-    })
-  );
+    });
+  });
 };

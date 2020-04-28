@@ -1,17 +1,17 @@
 name: Code Climate Coverage Action
 
-on: 
+on:
   push:
-    branches: 
-    - development
+    branches:
+      - development
   pull_request:
-    branches: 
-    - development
+    branches:
+      - development
 
 jobs:
   test:
     name: running front end tests
-    runs-on:  ubuntu-latest
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         node-version: [12]
@@ -26,11 +26,11 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: yarn install
       - run: yarn test
-        env: 
+        env:
           CI: true
   coverage:
     name: coverage
-    needs: [ test ]
+    needs: [test]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
@@ -41,7 +41,4 @@ jobs:
         env:
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
         with:
-          coverageCommand: yarn coverage
-          debug: false 
-    
- 
+          coverageCommand: yarn cypress:coverage

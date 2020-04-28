@@ -5,22 +5,6 @@ import { configure, mount, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import { NavBar } from '../NavBar';
 
-// Nav Bar	
-// 1. Structural	
-//   a. Is the nav bar being rendered? DONE
-//   b. Does sessionStorage remove ‘navState’?	
-//   C. Does sessionStorage remove ‘userID’?
-//   D. Does sessionStorage remove ‘LinkedAccount’?	
-//   E. Does handleClick make setAnchorEl = event.currentTarget?	
-//   F. Does handleClose make setAnchor = null?
-  
-
-// 2. Interaction	
-//   a. What do we do if a user tries to click a link like logout and doesnt get loged out or can still         see account?	
-//   b. What do we do if a user doesn't get all session storage removed?	
-//   c. What do we do if the navState from redux and logout events  don't match?	
-//   d. What if theres no redirection from the mini menu or with the logout button?	
-
 test('Navbar renders correctly', () => {
     const wrapper = mount(<NavBar />);
     expect(wrapper.exists()).toBe(true);
@@ -36,7 +20,6 @@ describe("removeSessionStorage tests", () => {
         <NavBar removeSessionStorage={removeSessionStorage} />
       </Router>
     );
-    // wrapper.find => [<input>,<input>,...]
   
     let lName = wrapper.find("input").first();
     let passInput = wrapper.find("input").first();

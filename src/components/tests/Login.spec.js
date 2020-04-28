@@ -4,18 +4,13 @@ import { render } from "@testing-library/react";
 import { BrowserRouter as Router } from "react-router-dom";
 import { configure } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
-import { mount } from "enzyme";
+import { mount, shallow } from "enzyme";
 
 configure({ adapter: new Adapter() });
 
 test("Login renders correctly", () => {
-  expect(
-    render(
-      <Router>
-        <Login />
-      </Router>
-    )
-  ).toMatchSnapshot();
+  let wrapper = shallow(<Login />)
+  expect(wrapper.exists()).toBe(true);
 });
 
 describe("Changing the text inputs changes the values on screen", () => {

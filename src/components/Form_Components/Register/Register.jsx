@@ -33,7 +33,7 @@ export const Register = (props) => {
 
   useEffect(() => {
     PageView();
-  });
+  }, []);
 
   const canSubmit = () => {
     const vals = Object.keys(state.values).filter((key) =>

@@ -112,9 +112,10 @@
   height: 500px;
   display: flex;
   justify-content: space-around;
-  background: #e5e5e5;
+  background: white;
   width: 100%;
   height: 100%;
+  padding: 5%;
 }
 
 .blocks-bar {
@@ -180,4 +181,12 @@
 }
 .red {
   color: red;
+}
+
+.manual-container1,
+.manual-container2 {
+  padding: 2%;
+  margin: 4%;
+  background: #e5e5e5;
+  max-width: 100%;
 }

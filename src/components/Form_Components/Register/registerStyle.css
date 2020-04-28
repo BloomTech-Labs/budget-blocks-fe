@@ -65,7 +65,9 @@
 }
 
 .register {
+  margin: 2%;
+  background-color: white;
   padding: 5%;
-  border-radius: 1%;
-  margin: 7%;
+  border: #e5e5e5 1px solid;
+  border-radius: 5px;
 }

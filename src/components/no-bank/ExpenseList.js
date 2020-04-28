@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { fakeExpenses, fakeBlocks } from './fakeData'
-import ExpenseFormModal from './ExpenseFormModal'
-import BlockFormModal from './BlockFormModal'
-import Block from './Block'
-import Expense from './Expense';
-import { Container } from '@material-ui/core';
-import BBModal from './BBModal'
-import BBButton from './BBButton'
-import BBTextField from './BBTextField'
-import AddIcon from '@material-ui/icons/Add';
+import { fakeExpenses, fakeBlocks } from "./fakeData";
+import ExpenseFormModal from "./ExpenseFormModal";
+import BlockFormModal from "./BlockFormModal";
+import Block from "./Block";
+import Expense from "./Expense";
+import { Container } from "@material-ui/core";
+import BBModal from "./BBModal";
+import BBButton from "./BBButton";
+import BBTextField from "./BBTextField";
+import AddIcon from "@material-ui/icons/Add";
 
 const ExpenseList = ({
   expenses,
@@ -24,37 +24,35 @@ const ExpenseList = ({
   handleUnassignExpense,
   handleDeleteAndSave,
   handleDeleteBlock,
-  handleUpdateExpense
+  handleUpdateExpense,
 }) => {
-
   const [data, setData] = useState([]);
   const [editing, setEditing] = useState(false);
   const [expenseToEdit, setExpenseToEdit] = useState({});
   const [expenseToDelete, setExpenseToDelete] = useState();
-  const [openTransactionForm, setOpenTransactionForm] = useState(false)
-  const [openBlockForm, setOpenBlockForm] = useState(false)
+  const [openTransactionForm, setOpenTransactionForm] = useState(false);
+  const [openBlockForm, setOpenBlockForm] = useState(false);
   const [openExpenseDetail, setOpenExpenseDetail] = useState(false);
-  const [editExpense, setEditExpense] = useState({})
+  const [editExpense, setEditExpense] = useState({});
 
   const [IdOfExpense, setIdOfExpense] = useState(null);
-  const [expensesTwo, setExpenses] = useState(fakeExpenses)
+  const [expensesTwo, setExpenses] = useState(fakeExpenses);
   // const [blocks, setBlocks] = useState(fakeBlocks)
   const [selectedExpense, setSelectedExpense] = useState({
     selected: false,
-    expense: {}
-  })
+    expense: {},
+  });
 
-  
   // const props = {
   //   expenses: fakeExpenses,
   //   blocks: fakeBlocks
   // }
 
   const editBlock = (index, block) => {
-    const newBlocks = [...blocks]
-    newBlocks[index] = block
+    const newBlocks = [...blocks];
+    newBlocks[index] = block;
     // setBlocks(newBlocks)
-  }
+  };
 
   // const deleteExpense = (expense) => {
   //   console.log('*****************************************expense List Rendered')
@@ -75,14 +73,14 @@ const ExpenseList = ({
   const unSelectExpense = (expenseID, blockID) => {
     setSelectedExpense({
       selected: false,
-      expense: {}
-    })
+      expense: {},
+    });
     // const newExpenses = expenses.filter(exp => exp.id !== id)
     // setExpenses(newExpenses)
     // handleDeleteExpense(userID, id)
-    handleAssignBlock(expenseID, blockID)
+    handleAssignBlock(expenseID, blockID);
     // handleAddOwnExpense(blockID, expenseID)
-  }
+  };
 
   const saveEdit = (e) => {
     console.log(expenseToEdit.id);
@@ -103,34 +101,37 @@ const ExpenseList = ({
   };
 
   const addBlock = (block, event) => {
-    event.preventDefault()
+    event.preventDefault();
     // setBlocks([...blocks, block])
-    handleAddBlock(userID, block)
-  }
+    handleAddBlock(userID, block);
+  };
 
-  const deleteBlock = index => {
-    const newBlocks = [...blocks]
-    newBlocks.splice(index, 1)
+  const deleteBlock = (index) => {
+    const newBlocks = [...blocks];
+    newBlocks.splice(index, 1);
     // setBlocks(newBlocks)
-  }
+  };
 
   const deleteAndSave = (index, ownExpenses) => {
-    setExpenses([...expenses, ...ownExpenses])
-    deleteBlock(index)
-    console.log('deleteAndSaveOwnExpenses', ownExpenses)
-  }
+    setExpenses([...expenses, ...ownExpenses]);
+    deleteBlock(index);
+    console.log("deleteAndSaveOwnExpenses", ownExpenses);
+  };
 
   const addExpense = (expense, event) => {
-    console.log('*************addExpenseExpenseList**************', userID, expense)
-    event.preventDefault()
+    console.log(
+      "*************addExpenseExpenseList**************",
+      userID,
+      expense
+    );
+    event.preventDefault();
     // setExpenses([...expenses, expense])
-    handleAddExpense(userID, expense)
-
+    handleAddExpense(userID, expense);
   };
 
   useEffect(() => {
-    console.log('selectedExpense', selectedExpense)
-  }, [selectedExpense])
+    console.log("selectedExpense", selectedExpense);
+  }, [selectedExpense]);
 
   // useEffect(() => {
   //   axios
@@ -152,87 +153,87 @@ const ExpenseList = ({
   // };
 
   const handleTransactionFormClose = () => {
-    setOpenTransactionForm(false)
-  }
+    setOpenTransactionForm(false);
+  };
 
   const handleBlockFormClose = () => {
-    console.log('BlockFormCLosed')
-    setOpenBlockForm(false)
-  }
+    console.log("BlockFormCLosed");
+    setOpenBlockForm(false);
+  };
   const handleEditExpense = (e, editExp, index) => {
     e.preventDefault();
-    const newExpenses = [...expenses]
-    newExpenses[index].name = editExp.name
-    newExpenses[index].amount = editExp.amount
-    setExpenses(newExpenses)
-  }
+    const newExpenses = [...expenses];
+    newExpenses[index].name = editExp.name;
+    newExpenses[index].amount = editExp.amount;
+    setExpenses(newExpenses);
+  };
 
   return (
     <div className="exp-blocks-container">
       {/* <h1>Welcome to Budget Blocks!</h1>  */}
-      <Container maxWidth="" >
+      <Container className="manual-container1" maxWidth="">
         {/* <h1>Expenses</h1> */}
-        <div className="expense-bar" >
+        <div className="expense-bar">
           <span>Expenses</span>
           <span>Amount</span>
-          <AddIcon style={{ fontSize: '30px', color: "white" }} onClick={() => { setOpenTransactionForm(true) }} />
+          <AddIcon
+            style={{ fontSize: "30px", color: "white" }}
+            onClick={() => {
+              setOpenTransactionForm(true);
+            }}
+          />
         </div>
-        {expenses.map(
-          (exp, index) => {
-            return (
-              <Expense
-                setEditExpense={setEditExpense}
-                selectedExpense={selectedExpense}
-                setSelectedExpense={setSelectedExpense}
-                // setIdOfExpense={setIdOfExpense}
-                exp={exp}
-                index={index}
-                setOpenExpenseDetail={setOpenExpenseDetail}
+        {expenses.map((exp, index) => {
+          return (
+            <Expense
+              setEditExpense={setEditExpense}
+              selectedExpense={selectedExpense}
+              setSelectedExpense={setSelectedExpense}
+              // setIdOfExpense={setIdOfExpense}
+              exp={exp}
+              index={index}
+              setOpenExpenseDetail={setOpenExpenseDetail}
               // handleDeleteBlock={handleDeleteBlock}
-              />
-            )
-          }
-        )}
-
+            />
+          );
+        })}
       </Container>
-      <Container >
-        <div className="blocks-bar" >
+      <Container className="manual-container2" maxWidth="">
+        <div className="blocks-bar">
           <span className="fifty-width">Blocks</span>
           <span className="fifty-width">Total</span>
           <span className="fifty-width">Limit</span>
-          <span className='fifty-width'>
+          <span className="fifty-width">
             <AddIcon
-              style={{ fontSize: '30px', color: "white" }}
-              onClick={() => { setOpenBlockForm(true) }}
+              style={{ fontSize: "30px", color: "white" }}
+              onClick={() => {
+                setOpenBlockForm(true);
+              }}
             />
           </span>
-
         </div>
-        {blocks.map(
-          (block, index) => {
-            return (
-              <Block
-                addExpense={addExpense}
-                editBlock={editBlock}
-                handleDeleteBlock={handleDeleteBlock}
-                deleteAndSave={deleteAndSave}
-                index={index}
-                handleUnselect={unSelectExpense}
-                selectedExpense={selectedExpense}
-                name={block.name}
-                limit={block.limit}
-                selected={selectedExpense.selected}
-                blockID={block.id}
-                ownExpenses={blockExpenses[block.id] || []}
-                handleUnassignExpense={handleUnassignExpense}
-                handleDeleteAndSave={handleDeleteAndSave}
-                handleUpdateBlock={handleUpdateBlock}
-              />
-            )
-          }
-        )}
-
-      </Container >
+        {blocks.map((block, index) => {
+          return (
+            <Block
+              addExpense={addExpense}
+              editBlock={editBlock}
+              handleDeleteBlock={handleDeleteBlock}
+              deleteAndSave={deleteAndSave}
+              index={index}
+              handleUnselect={unSelectExpense}
+              selectedExpense={selectedExpense}
+              name={block.name}
+              limit={block.limit}
+              selected={selectedExpense.selected}
+              blockID={block.id}
+              ownExpenses={blockExpenses[block.id] || []}
+              handleUnassignExpense={handleUnassignExpense}
+              handleDeleteAndSave={handleDeleteAndSave}
+              handleUpdateBlock={handleUpdateBlock}
+            />
+          );
+        })}
+      </Container>
 
       <ExpenseFormModal
         open={openTransactionForm}
@@ -250,17 +251,19 @@ const ExpenseList = ({
         open={openExpenseDetail}
         handleClose={(e) => {
           // e.stopPropagation()
-          setOpenExpenseDetail(false)
-        }}>
+          setOpenExpenseDetail(false);
+        }}
+      >
         <>
           <h2> Edit Transaction </h2>
-          <form onSubmit={(event) => {
-            event.preventDefault()
-            handleUpdateExpense(editExpense.id, editExpense)
-            // handleEditExpense(event, editExpense, indexOfExpense)
-            setOpenExpenseDetail(false)
-          }
-          }>
+          <form
+            onSubmit={(event) => {
+              event.preventDefault();
+              handleUpdateExpense(editExpense.id, editExpense);
+              // handleEditExpense(event, editExpense, indexOfExpense)
+              setOpenExpenseDetail(false);
+            }}
+          >
             <h3>Name</h3>
 
             <BBTextField
@@ -270,7 +273,10 @@ const ExpenseList = ({
               value={editExpense.name}
               // onFocus={event => event.stopPropagation()}
               onChange={(e) => {
-                setEditExpense({ ...editExpense, [e.target.name]: e.target.value })
+                setEditExpense({
+                  ...editExpense,
+                  [e.target.name]: e.target.value,
+                });
               }}
             />
             <h3>Amount</h3>
@@ -279,23 +285,26 @@ const ExpenseList = ({
               name="amount"
               type="text"
               value={editExpense.amount}
-              onFocus={event => event.stopPropagation()}
+              onFocus={(event) => event.stopPropagation()}
               onChange={(e) => {
-                setEditExpense({ ...editExpense, [e.target.name]: e.target.value })
+                setEditExpense({
+                  ...editExpense,
+                  [e.target.name]: e.target.value,
+                });
               }}
             />
 
-            <BBButton
-              type="submit"
-              value="submit"
-            > Save </BBButton>
+            <BBButton type="submit" value="submit">
+              {" "}
+              Save{" "}
+            </BBButton>
             <BBButton
               onClick={() => {
                 // const newExpenses = [...expenses]
                 // newExpenses.splice(indexOfExpense, 1)
                 // setExpenses(newExpenses)
-                handleDeleteExpense(editExpense.id)
-                setOpenExpenseDetail(false)
+                handleDeleteExpense(editExpense.id);
+                setOpenExpenseDetail(false);
               }}
               role={"delete"}
               // type="submit"
@@ -303,12 +312,9 @@ const ExpenseList = ({
             >
               Delete
             </BBButton>
-
           </form>
-
         </>
       </BBModal>
-
     </div>
     // <div>
     //   <div className="add-form">
@@ -405,7 +411,5 @@ const ExpenseList = ({
     // </div>
   );
 };
-
-
 
 export default ExpenseList;

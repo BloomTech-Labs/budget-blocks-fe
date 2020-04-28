@@ -63,8 +63,9 @@
   margin: 7%;
 }
 .SignInForm {
-  border-radius: 1%;
   margin: 2%;
   background-color: white;
   padding: 5%;
+  border: #e5e5e5 1px solid;
+  border-radius: 5px;
 }

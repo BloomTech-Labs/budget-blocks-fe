@@ -75,7 +75,6 @@ export function NavBar({ navState, logoutUser }) {
 
 function mapStateToProps(state) {
   return {
-    
     navState: state.loginReducer.navState
   };
 }

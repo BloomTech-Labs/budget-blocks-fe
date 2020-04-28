@@ -79,10 +79,13 @@ describe("Register page renders as expected", () => {
   });
 });
 
+
+
 test("Register renders correctly", () => {
   const wrapper = shallow(<Register />);
   expect(wrapper.exists()).toBe(true);
 });
+
 
 test("Form errors when passwords do not match", () => {
   const callAPI = jest.fn();
@@ -98,26 +101,27 @@ test("Form errors when passwords do not match", () => {
   let lName = wrapper.find("input").first();
   let confirmPassInput = wrapper.find("input").first();
 
-  fName.simulate("change", { target: { value: "FName", name: "first_name" } });
-  lName.simulate("change", { target: { value: "LName", name: "last_name" } });
-  passInput.simulate("change", { target: { value: "true", name: "password" } });
-  emailInput.simulate("change", {
-    target: { value: "tests@gmail.com", name: "email" },
-  });
-  confirmPassInput.simulate("change", {
-    target: { value: "false", name: "confirmPassword" },
-  });
+  fName.simulate("change", { target: { value: "FName", name: "first_name" }});
+  lName.simulate("change", { target: { value: "LName", name: "last_name" }});
+  passInput.simulate("change", { target: { value: "true", name: "password" }});
+  emailInput.simulate("change", { target: { value: "tests@gmail.com", name: "email" }});
+  confirmPassInput.simulate("change", {target: { value: "false", name: "confirmPassword"}});
   wrapper.find("form").simulate("submit");
 
   let errorText = wrapper.find("p").first();
 
+  
   test("Password Mismatch", () => {
     expect(errorText.props.children).toBe("Password Mismatch");
   });
   test("callAPI not called", () => {
     expect(callAPI).not.toHaveBeenCalled();
   });
+
 });
+
+
+
 
 describe("Register form submission tests", () => {
   const callAPI = jest.fn(); // Mocks our API call
@@ -153,12 +157,8 @@ describe("Register form submission tests", () => {
   fName.simulate("change", { target: { value: "Fname", name: "first_name" } });
   lName.simulate("change", { target: { value: "Lname", name: "last_name" } });
   passInput.simulate("change", { target: { value: "true", name: "password" } });
-  emailInput.simulate("change", {
-    target: { value: "sendtests@gmail.com", name: "email" },
-  });
-  confirmPassInput.simulate("change", {
-    target: { value: "true", name: "confirmPassword" },
-  });
+  emailInput.simulate("change", {target: { value: "sendtests@gmail.com", name: "email" }});
+  confirmPassInput.simulate("change", {target: { value: "true", name: "confirmPassword" }});
   wrapper.find("form").simulate("submit");
 
   test("Form calls api when form is filled out correctly", () => {

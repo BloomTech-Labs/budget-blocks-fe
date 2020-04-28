@@ -49,9 +49,9 @@ export const Register = (props) => {
     handlers.handleUserChange({ e, state, setState, canSubmit });
 
   return (
-    <div className="register">
+    <div>
       <Container maxWidth="sm">
-        <div style={{ backgroundColor: "#ffffff" }}>
+        <div className="register" style={{ backgroundColor: "#ffffff" }}>
           <Title title="Create Profile" />
           <RegForm
             rProps={props}

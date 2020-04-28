@@ -1,25 +1,19 @@
 import { axiosWithAuth } from "../../components/AxiosWithAuth";
-import axios from 'axios'
 import environmentUrls from "../../dispatch";
 
 export const getExpenses = userID => async dispatch => {
-  console.log('**********getExpenses************', userID)
   try {
     const response = await axiosWithAuth()(`${environmentUrls.base_url}/expenses/exp`)
-    // dispatch usersExpenses
-    console.log('**************getExpenseData******************', response)
     dispatch({
       type: 'HYDRATE_EXPENSES',
       payload: response.data
     })
   } catch (e) {
-    console.log('***********expenseActionError**************', e)
-    // dispatch error
+    console.log(e)
   }
 }
 
 export const addExpense = (userID, expense) => async dispatch => {
-  console.log('************AddExpense**********', userID, expense)
   try {
     const response = await axiosWithAuth().post(`${environmentUrls.base_url}/expenses/exp`, expense)
     dispatch({
@@ -40,15 +34,12 @@ export const getUnassigned = (expenseID, blockID) => async dispatch => {
     })
 
   } catch (error) {
-    console.log('**********assignBLockError**************', error)
   }
 }
 
 export const deleteExpense = (id) => async dispatch => {
-  console.log('**********deleteExpenses************',  id)
   try {
     const response = await axiosWithAuth().delete(`${environmentUrls.base_url}/expenses/${id}`)
-    console.log('**************deleteData*************', response.data)
     dispatch({
       type: "DELETE_EXPENSE",
       payload: response.data
@@ -61,7 +52,6 @@ export const deleteExpense = (id) => async dispatch => {
 }
 
 export const assignBlock = (expenseID, blockID) => async dispatch => {
-  console.log('**********assignBlock************', blockID, expenseID)
   try {
     const response = await axiosWithAuth().put(`${environmentUrls.base_url}/expenses/${expenseID}/assignBlock`, { blockID })
     dispatch({
@@ -73,13 +63,30 @@ export const assignBlock = (expenseID, blockID) => async dispatch => {
       type: 'HYDRATE_OWNEXPENSES',
       payload: { expenses: blockResponse.data, blockID }
     })
+    dispatch({
+      type: "SELECT_EXPENSE",
+      payload: {
+        selected: false,
+        expense: {}
+      }
+    })
+    dispatch({
+      type: "BLOCK_HOVER",
+      payload: false
+    })
   } catch (error) {
     console.log('****************assignError************', error)
   }
 }
 
+export const selectExpense = selected => dispatch => {
+  dispatch({
+    type: "SELECT_EXPENSE",
+    payload: selected
+  })
+}
+
 export const unassignExpense = (expenseID, blockID) => async dispatch => {
-  console.log('**********unassignExp************', expenseID)
   try {
     const response = await axiosWithAuth().put(`${environmentUrls.base_url}/expenses/${expenseID}/unassign`)
     dispatch({
@@ -98,8 +105,14 @@ export const unassignExpense = (expenseID, blockID) => async dispatch => {
   }
 }
 
+export const setBlockHover = (bool) => dispatch => {
+  dispatch({
+    type: "BLOCK_HOVER",
+    payload: bool
+  })
+}
+
 export const updateExpense = (id, expense) => async dispatch => {
-  console.log('UUUUUUUPDATEEXP', expense)
   try {
     const response = await axiosWithAuth().put(`${environmentUrls.base_url}/expenses/${id}`, expense)
     console.log('UUUUUUUPDATEEXPDATA', response.data)

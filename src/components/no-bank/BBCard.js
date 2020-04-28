@@ -21,13 +21,12 @@ const BBCard = props => {
       width: "80%",
       maxHeight: "46px",
       backgroundColor: '#ECEFF1',
-      borderRight: props.cardSelected ? 'solid 4px #3BC14A' : "solid 4px #ECEFF1",
-      // marginTop: '10px',
+      borderRight: "solid 4px #ECEFF1",
       boxShadow: 'none',
       borderRadius: 0
 
     },
-    usersBlock : {
+    usersBlock: {
       width: "80%",
       maxHeight: "46px",
       backgroundColor: '#ECEFF1',
@@ -42,7 +41,7 @@ const BBCard = props => {
   return (
     <Card variant="outlined" {...props} className={classes[props.role ? props.role : "default"]}>
       <CardContent>
-        <Typography style={{fontWeight:"bold"}}component="h2" variant="h5">{props.title}</Typography>
+        <Typography style={{ fontWeight: "bold" }} component="h2" variant="h5">{props.title}</Typography>
         <Typography component="p">{props.text}</Typography>
         <CardActions>
           {props.children}

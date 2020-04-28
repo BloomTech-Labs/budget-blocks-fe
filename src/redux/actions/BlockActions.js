@@ -1,25 +1,19 @@
 import { axiosWithAuth } from "../../components/AxiosWithAuth";
-import axios from 'axios'
 import environmentUrls from "../../dispatch";
 
 export const getBlocks = userID => async dispatch => {
-  console.log('**********getExpenses************', userID)
   try {
     const response = await axiosWithAuth()(`${environmentUrls.base_url}/blocks/blk`)
-    // dispatch usersExpenses
-    console.log('**************getblocksData******************', response)
     dispatch({
       type: 'HYDRATE_BLOCKS',
       payload: response.data
     })
   } catch (e) {
     console.log('***********blocksActionError**************', e)
-    // dispatch error
   }
 }
 
 export const addBlock = (userID, block) => async dispatch => {
-  console.log('************AddBlock**********', userID, block)
   try {
     const response = await axiosWithAuth().post(`${environmentUrls.base_url}/blocks/blk`, block)
     dispatch({
@@ -33,10 +27,8 @@ export const addBlock = (userID, block) => async dispatch => {
 
 
 export const deleteBlock = (id) => async dispatch => {
-  console.log('**********deleteBlock************', id)
   try {
     const response = await axiosWithAuth().delete(`${environmentUrls.base_url}/blocks/${id}`)
-    console.log('**************deleteDataBlock*************', response.data)
     dispatch({
       type: "DELETE_BLOCK",
       payload: response.data
@@ -47,7 +39,6 @@ export const deleteBlock = (id) => async dispatch => {
 }
 
 export const addOwnExpense = (blockID, expenseID) => async dispatch => {
-  console.log('**************addOwnExpense************', blockID, expenseID)
   try {
     const response = await axiosWithAuth().get(`${environmentUrls.base_url}/blocks/${blockID}`)
 
@@ -55,14 +46,12 @@ export const addOwnExpense = (blockID, expenseID) => async dispatch => {
       type: 'HYDRATE_OWNEXPENSES',
       payload: { expenses: response.data, blockID }
     })
-    console.log('hydrateOwnExpData', response.data)
   } catch (error) {
     console.log('***********addOwnExpError************', error)
   }
 }
 
 export const deleteAndSave = (blockID, ownExpenses) => async dispatch => {
-  console.log('deleteAndSave', blockID, ownExpenses)
   try {
     const unassignArr = []
     ownExpenses.forEach(exp => {
@@ -85,8 +74,7 @@ export const deleteAndSave = (blockID, ownExpenses) => async dispatch => {
   }
 }
 
-export const updateBlock = (id,block) => async dispatch => {
-  console.log('updating vlock', block)
+export const updateBlock = (id, block) => async dispatch => {
   try {
     const response = await axiosWithAuth().put(`${environmentUrls.base_url}/blocks/${id}`, block)
     dispatch({

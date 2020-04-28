@@ -4,20 +4,14 @@ import BBCard from './BBCard'
 import LinearProgress from '@material-ui/core/LinearProgress';
 
 const trunc = (str, n) => {
-  return (str.length > n) ? str.substr(0, n-1) + '...' : str;
+  return (str.length > n) ? str.substr(0, n - 1) + '...' : str;
 }
 
 function Block(props) {
-  const [ownExpenses, setOwnExpenses] = useState([])
   const [total, setTotal] = useState(0)
   const [openBlockDetail, setOpenBlockDetail] = useState(false)
-
   const [selectedAndHovering, setSelectedAndHovering] = useState(false)
 
-
-  useEffect(() => {
-    console.log('blocks state', { ownExpenses, total })
-  }, [ownExpenses, total])
 
   useEffect(() => {
     let total = 0
@@ -27,28 +21,51 @@ function Block(props) {
     setTotal(total)
   }, [props.ownExpenses])
 
+
+  const handleDragOver = (event) => {
+    event.preventDefault();
+    setSelectedAndHovering(true)
+    props.handleSetBlockHovered(true)
+
+  }
+
+  const handleDrop = (event) => {
+
+    if (props.selectedExpense.selected &&
+      (props.selectedExpense.expense.amount + total <= props.limit)) {
+      props.handleUnselect(props.selectedExpense.expense.id, props.blockID)
+      props.handleSelectExpense({
+        selected: true,
+        expense: {
+
+        }
+      })
+      setSelectedAndHovering(false)
+    } else {
+
+      props.handleSetBlockHovered(false)
+      props.handleSelectExpense({
+        selected: false,
+        expense: {}
+      })
+    }
+  }
+
   const handleClose = event => {
     event.stopPropagation()
-    console.log('onCLoseBLockDetail')
     setOpenBlockDetail(false)
-
   }
 
-  const handleMouseEnter = event => {
-    if (props.selectedExpense.selected) {
-      setSelectedAndHovering(true)
-    }
-  }
 
-  const handleMouseLeave = event => {
-    if (props.selectedExpense.selected) {
-      setSelectedAndHovering(false)
-    }
+
+  const handleDragLeave = event => {
+    event.preventDefault()
+    setSelectedAndHovering(false)
+    props.handleSetBlockHovered(false)
   }
 
   return (
     <BBCard
-      // title={props.name}
       text={<div style={{ display: "flex", justifyContent: "space-around" }}>
         <span className="fifty-width"> {trunc(props.name, 6)}</span>
         <span className="fifty-width" style={{ "color": "green" }}>{`${total}`} </span>
@@ -61,28 +78,16 @@ function Block(props) {
         }</span>
       </div >
       }
+      onDragOver={handleDragOver}
+      onDrop={handleDrop}
       role="usersBlock"
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
+      onDragLeave={handleDragLeave}
       cardHovered={selectedAndHovering ? true : false}
-      // className={selectedAndHovering ? "block green" : "block"}
+      className={selectedAndHovering ? "block green" : "block"}
       onClick={() => {
-        if (props.selectedExpense.selected) {
-          // setOwnExpenses([...ownExpenses, props.selectedExpense.expense])
-          props.handleUnselect(props.selectedExpense.expense.id, props.blockID)
-          // props.handleAddOwnExpense(props.blockID, props.selectedExpense.expense.id)
-          setSelectedAndHovering(false)
-          console.log('lalala', (total / props.limit) * 100)
-
-        } else {
-          // open open up modal
-          // handleOpenBlockModal(ownExpenses, total)
-          setOpenBlockDetail(true)
-          console.log('ownExpenses', ownExpenses)
-        }
-        console.log('onClickBLock', props)
-      }}>
-
+        setOpenBlockDetail(true)
+      }}
+    >
       <BlockDetailModal
         open={openBlockDetail}
         handleClose={handleClose}
@@ -92,7 +97,6 @@ function Block(props) {
         limit={props.limit}
         props={props.limit}
         ownExpenses={props.ownExpenses || []}
-        setOwnExpenses={setOwnExpenses}
         handleDeleteBlock={props.handleDeleteBlock}
         handleDeleteAndSave={props.handleDeleteAndSave}
         handleAddExpense={props.addExpense}

@@ -15,6 +15,16 @@ import Avatar from '@material-ui/core/Avatar';
 export function NavBar({ navState, logoutUser }) {
 
   const [anchorEl, setAnchorEl] = useState(null);
+  const [clickableLogo, setClickableLogo] = useState(null);
+  const [logoBackground, setLogoBackground] = useState(null);
+
+  //helper function so that logo on our nav is clickable
+  const setLogo = ( event ) => {
+    setClickableLogo(event.currentTarget);
+    return ( 
+      <Redirect to="/" /> 
+    // setLogoBackground = (logoBackground);
+  )}
 
   const removeSessionStorage  = () => {
     sessionStorage.removeItem('token')
@@ -34,7 +44,7 @@ export function NavBar({ navState, logoutUser }) {
   return (
     
     <div className="nav-bar">
-      <div className="nav-logo">
+      <div className="nav-logo" onClick={setLogo} >
         <img className="image" src={logo} />
         <img className="heading" src={head} />
       </div>

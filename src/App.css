@@ -3,7 +3,8 @@
   text-align: center;
   margin: 5px auto;
   align-content: center;
-  width: 100vw;
+  max-width: 100vw;
+  max-height: 100%;
   /* background: #e5e5e5; */
 }
 

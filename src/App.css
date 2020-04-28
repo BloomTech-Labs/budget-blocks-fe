@@ -101,7 +101,6 @@
 
 .expenses,
 .blocks {
-  width: 30%;
   height: 500px;
   border: black solid 2px;
   border-radius: 10px;
@@ -127,7 +126,7 @@
   line-height: 22px;
   color: white;
   background-color: #3bc14a;
-  width: 80%;
+  width: 100%;
   height: 46px;
   border-left: solid 4px #3bc14a;
 }
@@ -141,7 +140,7 @@
   line-height: 22px;
   color: white;
   background-color: #003fe1;
-  width: 80%;
+  width: 100%;
   height: 46px;
   border-right: solid 4px #003fe1;
 }
@@ -157,13 +156,11 @@
   width: 100px;
 }
 .block {
-  margin: 10px;
   border: red 1px solid;
   border-radius: 5px;
 }
 
 .expense {
-  margin: 10px;
   border: blue 1px solid;
   border-radius: 5px;
 }
@@ -185,8 +182,13 @@
 
 .manual-container1,
 .manual-container2 {
-  padding: 2%;
-  margin: 4%;
+  padding: 1%;
   background: #e5e5e5;
-  max-width: 100%;
+  max-width: 48%;
+  border-radius: 5px;
+  padding-left: 0;
+  text-align: center;
+}
+Expense {
+  width: 100%;
 }

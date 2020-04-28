@@ -52,12 +52,12 @@ test("should create an action to add an error when login fails", () => {
   expect(actions.registerUserFailure(payload)).toEqual(expectedAction);
 });
 
-test("creates REGISTER_USER_SUCCESS when register is successful", () => {
+test("creates REGISTER_USER_SUCCESS when register is successful", async () => {
   const returnBody = {
     hello: "hello"
   };
 
-  mock
+  await mock
     .onPost(`${environmentUrls.base_url}/api/auth/register`)
     .reply(200, returnBody);
 

@@ -20,7 +20,7 @@
 .nav-bar {
 	display: flex;
 	flex-direction: row;
-	width: 99vh;
+	width: 99vw;
 	height: 8vh;
 }
 .nav-logo {

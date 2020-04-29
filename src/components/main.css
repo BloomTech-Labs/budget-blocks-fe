@@ -20,9 +20,8 @@
 .nav-bar {
 	display: flex;
 	flex-direction: row;
-	width: 100%;
-	background-color: #FFFFFF;
-	border: 1px solid #E7E7E7;
+	width: 99vh;
+	height: 8vh;
 }
 .nav-logo {
 	display: flex;
@@ -35,6 +34,11 @@
 	margin-top: 8px;
 	margin-bottom: 8px;
 }
+
+.nav-logo:hover { 
+	transform: translateY(-3px); 
+}
+
 .nav-action {
 	width: 100%;
 	margin-top: 8px;

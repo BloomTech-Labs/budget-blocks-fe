@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import logo from "../media/image/Logo.svg";
 import budgetImg from "../media/image/budget_blocks.png";
 import Container from "@material-ui/core/Container";
@@ -10,36 +10,43 @@ import IconButton from '@material-ui/core/IconButton';
 import PhoneIphoneIcon from '@material-ui/icons/PhoneIphone';
 
 const Home = () => {
-  useEffect(() =>{
-    PageView()
-  })
+  useEffect(() => {
+    PageView();
+  });
 
-  const [initial, setinitial] = useState(sessionStorage.getItem('token'));
-
-
+  const [initial, setinitial] = useState(sessionStorage.getItem("token"));
 
   let trackSignUp = () => {
-    GAevent("Landing Page Buttons", "User clicked sign-up button", "New User Flow")
-  }
-
-  return ( 
+    GAevent(
+      "Landing Page Buttons",
+      "User clicked sign-up button",
+      "New User Flow"
+    );
+  };
+ 
+  return (
     <div className="home">
-    {!initial ? (
-      <Container maxWidth="sm">
-        <div style={{ backgroundColor: "#ffffff", height: "100vh" }}>
-          <img src={logo} className="App-logo" alt="logo" />
-          <img src={budgetImg} className="budget_img" alt="budget_blocks" />
-          <div className="buttons">
-            <Link to="/register" className="links">
-              <Button variant="outlined" className="signup" onClick={trackSignUp}>
-                Sign Up
-              </Button>
-            </Link>
-            <Link to="/login" className="links">
-              <Button variant="outlined" className="signin">
-                Sign In
-              </Button>
-            </Link>
+      {!initial ? (
+        <Container maxWidth="sm">
+          <div style={{ backgroundColor: "#ffffff", height: "75vh" }}>
+            <img src={logo} className="App-logo" alt="logo" />
+            <img src={budgetImg} className="budget_img" alt="budget_blocks" />
+            <div className="buttons">
+              <Link to="/register" className="links">
+                <Button
+                  variant="outlined"
+                  className="signin"
+                  onClick={trackSignUp}
+                >
+                  Register
+                </Button>
+              </Link>
+              <Link to="/login" className="links">
+                <Button variant="outlined" className="signin">
+                  Login
+                </Button>
+              </Link>
+            </div>
           </div>
           <a href="https://testflight.apple.com/join/pUS0UdsD" target="_blank" >
           <div>
@@ -49,7 +56,6 @@ const Home = () => {
               Get Budget Blocks for iPhone<br/>On TestFlight
           </div>
           </a>
-        </div>
       </Container>
       ) : (
         <Redirect to="/dashboard" />

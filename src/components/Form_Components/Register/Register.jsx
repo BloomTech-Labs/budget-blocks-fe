@@ -23,7 +23,7 @@ import "./registerStyle.css";
  * @returns <div className="register" .../>
  */
 export const Register = (props) => {
-  const { updateCredentials } = useContext(CredentialsContext);
+  // const { updateCredentials } = useContext(CredentialsContext);
 
   const [state, setState] = useState({
     user: { ...default_user },
@@ -33,7 +33,7 @@ export const Register = (props) => {
 
   useEffect(() => {
     PageView();
-  });
+  }, []);
 
   const canSubmit = () => {
     const vals = Object.keys(state.values).filter((key) =>
@@ -49,9 +49,9 @@ export const Register = (props) => {
     handlers.handleUserChange({ e, state, setState, canSubmit });
 
   return (
-    <div className="register">
+    <div>
       <Container maxWidth="sm">
-        <div style={{ backgroundColor: "#ffffff" }}>
+        <div className="register" style={{ backgroundColor: "#ffffff" }}>
           <Title title="Create Profile" />
           <RegForm
             rProps={props}

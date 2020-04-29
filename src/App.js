@@ -10,9 +10,10 @@ import Navbar from "./components/NavBar";
 import SelectCategories from "./components/Form_Components/Select_Categories/SelectCategories";
 import FirstOnboard from "./components/OnboardComponents/FirstOnboard";
 import ManualBlocks from "./components/Blocks_Components/ManualBlocks";
-import { PageView } from "./components/google_analytics/index.js";
+import { initGA, PageView } from "./components/google_analytics/index.js";
 import CredentialsContext from "./contexts/CredentialsContext";
 import ExpenseList from "./components/no-bank/ExpenseList";
+
 
 // Added useContext because user email and password were being stored in localStorage (security risk) and we needed to resolve that.
 
@@ -23,10 +24,10 @@ function App() {
     setCredContext({ email, password });
   };
 
-  useEffect(() => {
+  useEffect(()=>{
+    initGA();
     PageView();
-  }, []);
-
+  }, [])
 
   return (
     <div>

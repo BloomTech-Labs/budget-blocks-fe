@@ -16,17 +16,21 @@ import { getBlocks, deleteBlock, updateBlock, addBlock, addOwnExpense, deleteAnd
 
 import ExpenseList from './no-bank/ExpenseList'
 
+import ExpenseList from "./no-bank/ExpenseList";
 
 export const Dashboard = (props) => {
   // This component displays the dashboard: Blocks, transactions
- 
+
   useEffect(() => {
     // get all of a user's expeses
     // pass expenses to expenseList
-    props.getExpenses(props.userID)
-    props.getBlocks(props.userID)
-  }, [])
+    props.getExpenses(props.userID);
+    props.getBlocks(props.userID);
+  }, []);
 
+  useEffect(() => {
+    PageView();
+  }, []);
 
   return (
     <div className="app-container">
@@ -63,8 +67,11 @@ function mapStateToProps(state) {
     expenses: state.expenses.expenses,
     blocks: state.blocks.blocks,
     blockExpenses: state.blocks.blockExpenses,
+<<<<<<< HEAD
     selectedExpense: state.expenses.selectedExpense,
     blockHover: state.expenses.blockHover
+=======
+>>>>>>> development
   };
 }
 
@@ -78,7 +85,7 @@ export default connect(mapStateToProps, {
   addOwnExpense,
   unassignExpense,
   deleteAndSave,
-  deleteBlock, 
+  deleteBlock,
   updateBlock,
   updateExpense,
   selectExpense,

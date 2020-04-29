@@ -19,6 +19,7 @@
 /* navbar */
 .nav-bar {
 	display: flex;
+	flex-direction: row;
 	width: 100%;
 	background-color: #FFFFFF;
 	border: 1px solid #E7E7E7;
@@ -36,9 +37,12 @@
 }
 .nav-action {
 	width: 100%;
-	margin-top: 50px;
-	background-color: blue;
+	margin-top: 8px;
+	margin-bottom: 8px;
+	border-right: none;
+	align-items: flex-end;
 }
+
 .image {
 	width: 2.5rem;
 	margin-right: 7px;
@@ -49,6 +53,11 @@
 	height: 1.1rem;
 	margin-right: 3px;
 	margin-top: 5px;
+}
+
+.dropdown-menu {
+	float: right;
+	margin-right: 2%;
 }
 
 /* phone screen */

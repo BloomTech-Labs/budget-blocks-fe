@@ -23,12 +23,12 @@ const Home = () => {
       "New User Flow"
     );
   };
-
+ 
   return (
     <div className="home">
       {!initial ? (
         <Container maxWidth="sm">
-          <div style={{ backgroundColor: "#ffffff", height: "100vh" }}>
+          <div style={{ backgroundColor: "#ffffff", height: "75vh" }}>
             <img src={logo} className="App-logo" alt="logo" />
             <img src={budgetImg} className="budget_img" alt="budget_blocks" />
             <div className="buttons">
@@ -56,7 +56,6 @@ const Home = () => {
               Get Budget Blocks for iPhone<br/>On TestFlight
           </div>
           </a>
-        </div>
       </Container>
       ) : (
         <Redirect to="/dashboard" />

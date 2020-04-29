@@ -21,9 +21,7 @@
 	display: flex;
 	flex-direction: row;
 	width: 99vh;
-	background-color: #FFFFFF;
-	border: 1px solid #E7E7E7;
-	height: 6vh;
+	height: 8vh;
 }
 .nav-logo {
 	display: flex;

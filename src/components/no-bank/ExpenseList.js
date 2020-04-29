@@ -112,7 +112,7 @@ const ExpenseList = ({
           );
         })}
       </Container>
-      <Container className="manual-container2" maxWidth="">
+      <Container maxWidth="">
         <div className="blocks-bar">
           <span className="fifty-width">Blocks</span>
           <span className="fifty-width">Total</span>

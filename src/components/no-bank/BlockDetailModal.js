@@ -1,22 +1,16 @@
 import React, { useState } from 'react'
-import Modal from '@material-ui/core/Modal'
 import BBModal from './BBModal'
 import BBButton from './BBButton'
 import BBTextField from './BBTextField'
 import BBCard from './BBCard'
-// import SaveIcon from '@material-ui/icons/Save';
 
 const BlockDetailModal = (props) => {
   const [newBlock, setNewBlock] = useState({ name: props.name, limit: props.limit })
 
   const handleSubmit = event => {
     event.preventDefault()
-    console.log('blockProps', props)
-    // props.editBlock(props.index, newBlock)
     props.handleUpdateBlock(props.blockID, newBlock)
     props.handleClose(event)
-    // find block in parent's blocks array by props.index
-    // change that block in the array
   }
 
 
@@ -63,21 +57,13 @@ const BlockDetailModal = (props) => {
 
           <BBButton type="submit">Save Block</BBButton>
         </form>
-        <div style={{maxHeight:"300px"}}>
+        <div style={{ maxHeight: "300px" }}>
           {props.ownExpenses.map(exp => (
             <BBCard
               onClick={(event) => {
                 props.handleUnassignExpense(exp.id, props.blockID)
-                console.log('blockDetailOnClick', exp.id)
-                // take out expense from block
-                // props.handleAddExpense(exp, event)
-                // const newExpenses = [...props.ownExpenses]
-                // newExpenses.splice(index, 1)
-                // props.setOwnExpenses(newExpenses)
-                // put in expense in parent's expenses array
               }}
               role="blocksOwnExpense"
-
               title={exp.name}
               text={exp.amount}
             />

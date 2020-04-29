@@ -34,10 +34,12 @@ export function NavBar({ navState, logoutUser }) {
   return (
     
     <div className="nav-bar">
-      <div className="nav-logo">
-        <img className="image" src={logo} />
-        <img className="heading" src={head} />
-      </div>
+      <a href = "/" >
+        <div className="nav-logo" >
+          <img className="image" src={logo} />
+          <img className="heading" src={head} />
+        </div> 
+      </a>
       {sessionStorage.getItem('token')  ? (
         <div className="nav-action">
           <div className="dropdown-menu">
@@ -73,7 +75,6 @@ export function NavBar({ navState, logoutUser }) {
 
 function mapStateToProps(state) {
   return {
-    
     navState: state.loginReducer.navState
   };
 }

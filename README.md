@@ -19,6 +19,7 @@ You can find the deployed project at [Budget Blocks](https://www.budgetblocks.or
 |                      [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/TylerChristian711)                       |                       [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/TheOriginalSNP)                        |                         [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/embiggenerd)                         |                                                                     [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/israelgonzalezb)                                                                     |
 | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/feed/?trk=onboarding-landing) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/ivan-martinez-7409a9114/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/igor-atakhanov-70890942/) |                                          [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/israel-gonzalez-brooks-15173a101/)                                           |
 
+
 <br>
 <br>
 
@@ -173,6 +174,7 @@ In order for the app to function correctly, the user must set up their own envir
 3.  Paste the following data:
 
 DEV_DATABASE_URL=postgres://kkxdhymo:0NOQ4o1rKprHkCCAXwOl-064ETUXK8eT@drona.db.elephantsql.com:5432/kkxdhymo PLAID_CLIENT_ID=5e29d37100a2c100129f7394 PLAID_COUNTERY_CODES=US,CA,GB,FR,ES,IE PLAID_ENV=sandbox PLAID_PRODUCTS=transactions PLAID_PUBLIC_KEY=7b47db1cfa540573d15cea302e5988 PLAID_SECRET=98b231dd6b24111a00000c7def80bd
+
 
 4.  In the knexfile.js file, create the following changes:
 

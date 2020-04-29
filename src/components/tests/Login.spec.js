@@ -16,6 +16,7 @@ test("Login renders correctly", () => {
 describe("Changing the text inputs changes the values on screen", () => {
   const callAPI = jest.fn();
   const wrapper = mount(
+
     <Router>
       <Login loginUser={callAPI} />
     </Router>
@@ -49,6 +50,7 @@ describe("Changing the text inputs changes the values on screen", () => {
 
 describe("Form calls api when form is filled out", () => {
   const callAPI = jest.fn();
+
 
   const wrapper = mount(
     <Router>
@@ -88,4 +90,5 @@ describe("Form calls api when form is filled out", () => {
   test("API Called", () => {
     expect(callAPI).toHaveBeenCalled();
   });
+
 });

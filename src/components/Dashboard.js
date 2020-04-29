@@ -11,22 +11,10 @@ import "./main.css";
 import { getManualTrans } from "../redux/actions/ManualActions";
 import Loading from "./Loading";
 import { PageView } from "./google_analytics/index.js";
-import {
-  updateExpense,
-  getExpenses,
-  deleteExpense,
-  addExpense,
-  assignBlock,
-  unassignExpense,
-} from "../redux/actions/ExpenseActions";
-import {
-  getBlocks,
-  deleteBlock,
-  updateBlock,
-  addBlock,
-  addOwnExpense,
-  deleteAndSave,
-} from "../redux/actions/BlockActions";
+import { updateExpense, setBlockHover,selectExpense, getExpenses, deleteExpense, addExpense, assignBlock, unassignExpense } from '../redux/actions/ExpenseActions'
+import { getBlocks, deleteBlock, updateBlock, addBlock, addOwnExpense, deleteAndSave } from '../redux/actions/BlockActions'
+
+import ExpenseList from './no-bank/ExpenseList'
 
 import ExpenseList from "./no-bank/ExpenseList";
 
@@ -63,6 +51,10 @@ export const Dashboard = (props) => {
           handleDeleteBlock={props.deleteBlock}
           handleUpdateBlock={props.updateBlock}
           handleUpdateExpense={props.updateExpense}
+          handleSelectExpense={props.selectExpense}
+          selectedExpense={props.selectedExpense}
+          blockHover={props.blockHover}
+          handleSetBlockHover={props.setBlockHover}
         />
       </div>
     </div>
@@ -75,6 +67,11 @@ function mapStateToProps(state) {
     expenses: state.expenses.expenses,
     blocks: state.blocks.blocks,
     blockExpenses: state.blocks.blockExpenses,
+<<<<<<< HEAD
+    selectedExpense: state.expenses.selectedExpense,
+    blockHover: state.expenses.blockHover
+=======
+>>>>>>> development
   };
 }
 
@@ -91,4 +88,8 @@ export default connect(mapStateToProps, {
   deleteBlock,
   updateBlock,
   updateExpense,
-})(Dashboard);
+  selectExpense,
+  setBlockHover
+})(
+  Dashboard
+);

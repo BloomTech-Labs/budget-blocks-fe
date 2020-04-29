@@ -1,4 +1,8 @@
-export const expenseReducer = (state = { expenses: [] }, action) => {
+export const expenseReducer = (state = {
+  selectedExpense: { selected: false, expense: {} },
+  expenses: [],
+  blockHover: false
+}, action) => {
   switch (action.type) {
     case "HYDRATE_EXPENSES":
       return {
@@ -20,6 +24,16 @@ export const expenseReducer = (state = { expenses: [] }, action) => {
       return {
         ...state,
         expenses: action.payload
+      }
+    case "SELECT_EXPENSE":
+      return {
+        ...state,
+        selectedExpense: action.payload
+      }
+    case "BLOCK_HOVER":
+      return {
+        ...state,
+        blockHover: action.payload
       }
     default: {
       return state

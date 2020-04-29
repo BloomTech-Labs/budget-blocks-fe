@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import { connect } from "react-redux";
 import { registerUser } from "../../../redux/actions/RegisterActions";
@@ -8,6 +8,8 @@ import { default_user, default_values } from "./defaults";
 import handlers from "./handlers";
 import { useContext } from "react";
 import CredentialsContext from "../../../contexts/CredentialsContext";
+
+import { PageView } from "../../google_analytics/index.js";
 
 import Container from "@material-ui/core/Container";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
@@ -21,23 +23,23 @@ import "./registerStyle.css";
  * @returns <div className="register" .../>
  */
 export const Register = (props) => {
-  const { updateCredentials } = useContext(CredentialsContext);
+  // const { updateCredentials } = useContext(CredentialsContext);
+
   const [state, setState] = useState({
     user: { ...default_user },
     values: { ...default_values },
     confirmPass: { confirmPassword: "" },
   });
 
+  useEffect(() => {
+    PageView();
+  }, []);
+
   const canSubmit = () => {
     const vals = Object.keys(state.values).filter((key) =>
       Object.keys(state.values[key]).includes("error")
     );
     const errs = vals.filter((value) => state.values[value].error === true);
-    setState({
-      ...state,
-      values: { ...state.values, button: { disabled: errs.length > 0 } },
-    });
-    updateCredentials(state.user.email, state.user.password);
   };
 
   const handleSubmit = (e) =>
@@ -47,10 +49,10 @@ export const Register = (props) => {
     handlers.handleUserChange({ e, state, setState, canSubmit });
 
   return (
-    <div className="register">
+    <div>
       <Container maxWidth="sm">
-        <div style={{ backgroundColor: "#ffffff" }}>
-          <Title title="Sign Up" />
+        <div className="register" style={{ backgroundColor: "#ffffff" }}>
+          <Title title="Create Profile" />
           <RegForm
             rProps={props}
             rState={state}

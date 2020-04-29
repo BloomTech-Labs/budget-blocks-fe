@@ -6,6 +6,8 @@ import { applyMiddleware, createStore, combineReducers } from "redux";
 import thunk from "redux-thunk";
 import logger from "redux-logger";
 import { Provider } from "react-redux";
+import { blocksReducer } from './redux/reducers/BlockReducer.v2'
+import { expenseReducer } from './redux/reducers/ExpenseReducer'
 import { reducer as loginReducer } from "./redux/reducers/LoginReducer";
 import { reducer as plaidReducer } from "./redux/reducers/PlaidReducer";
 import { reducer as registerReducer } from "./redux/reducers/RegisterReducer";
@@ -13,6 +15,14 @@ import { reducer as blockReducer } from "./redux/reducers/BlockReducers";
 import { reducer as addTransactionReducer } from "./redux/reducers/AddTransactionReducer";
 import { BrowserRouter as Router } from "react-router-dom";
 import * as Sentry from "@sentry/browser";
+import dotenv from "dotenv";
+import { initGA } from "./components/google_analytics/index.js";
+
+dotenv.config();
+
+(function initAnalytics() {
+  initGA(process.env.REACT_APP_GOOGLE_ANALYTICS);
+})();
 
 const store = createStore(
   combineReducers({
@@ -20,12 +30,14 @@ const store = createStore(
     plaidReducer,
     registerReducer,
     blockReducer,
-    addTransactionReducer
+    addTransactionReducer,
+    expenses:expenseReducer,
+    blocks: blocksReducer
   }),
   applyMiddleware(thunk, logger)
 );
 Sentry.init({
-  dsn: process.env.SENTRY_DSN
+  dsn: process.env.SENTRY_DSN,
 });
 
 ReactDOM.render(

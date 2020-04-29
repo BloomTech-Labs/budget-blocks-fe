@@ -1,4 +1,4 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useState, useEffect } from "react";
 import "./App.css";
 import Home from "./components/home";
 import Login from "./components/Form_Components/Login/Login";
@@ -10,16 +10,29 @@ import Navbar from "./components/NavBar";
 import SelectCategories from "./components/Form_Components/Select_Categories/SelectCategories";
 import FirstOnboard from "./components/OnboardComponents/FirstOnboard";
 import ManualBlocks from "./components/Blocks_Components/ManualBlocks";
+import { initGA, PageView } from "./components/google_analytics/index.js";
 import CredentialsContext from "./contexts/CredentialsContext";
+import ExpenseList from "./components/no-bank/ExpenseList";
+
+
 // Added useContext because user email and password were being stored in localStorage (security risk) and we needed to resolve that.
+
 function App() {
+  // Added useContext because user email and password were being stored in localStorage (security risk) and we needed to resolve that.
   const [credContext, setCredContext] = useState({ email: "", password: "" });
   const updateCredentials = (email, password) => {
     setCredContext({ email, password });
   };
+
+  useEffect(()=>{
+    initGA();
+    PageView();
+  }, [])
+
   return (
     <div>
       <Navbar />
+
       <div className="App">
         <CredentialsContext.Provider
           value={{
@@ -33,9 +46,9 @@ function App() {
             <Route path="/login" component={Login} />
             <Route path="/register" component={Register} />
             <PrivateRoute path="/dashboard" component={Dashboard} />
-            <Route path="/onBoard/select" component={SelectCategories} />
+            <PrivateRoute path="/onBoard/select" component={SelectCategories} />
             <Route path="/onBoard/1" component={FirstOnboard} />
-            <Route path="/manual" component={ManualBlocks} />
+            <PrivateRoute path="/manual" component={ManualBlocks} />
           </Switch>
         </CredentialsContext.Provider>
       </div>

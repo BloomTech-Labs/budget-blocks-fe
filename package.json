@@ -4,7 +4,6 @@
   "private": true,
   "dependencies": {
     "@babel/runtime": "^7.8.4",
-    "@cypress/code-coverage": "^1.8.0",
     "@date-io/date-fns": "^2.4.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.27",
     "@fortawesome/free-solid-svg-icons": "^5.12.1",
@@ -19,11 +18,13 @@
     "@testing-library/react": "^9.4.0",
     "axios": "^0.19.2",
     "bootstrap": "^4.4.1",
+    "cypress": "^4.4.1",
     "date-fns": "^2.9.0",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.2",
     "immutable": "^4.0.0-rc.12",
     "istanbul-lib-coverage": "^2.0.5",
+    "jest-cucumber": "^2.0.11",
     "jest-dom": "^4.0.0",
     "nyc": "^14.1.1",
     "react": "^16.12.0",
@@ -43,17 +44,21 @@
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
     "semantic-ui-react": "^0.88.2",
-    "styled-components": "^5.0.0"
+    "styled-components": "^5.0.0",
+    "supertest": "^4.0.2"
   },
   "scripts": {
     "start": "react-scripts start",
     "start-dev": "react-scripts -r @cypress/instrument-cra start",
-    "cypress": "npx cypress run",
-    "dev": "start-test 3000 cypress",
+    "start-local": "NODE_ENV=local npm start",
+    "clean-project": "mv .env .hold-this-env && git clean -fXd && mv .hold-this-env .env",
+    "cypress:coverage:run": "cypress run || true",
+    "start:coverage": "react-scripts -r @cypress/instrument-cra start",
+    "cypress:coverage": "start-server-and-test start:coverage http://localhost:3000 cypress:coverage:run || true",
     "build": "react-scripts build",
-    "test": "react-scripts test --watchAll=false",
+    "test": "env NODE_ENV=test react-scripts test --watchAll=false",
     "eject": "react-scripts eject",
-    "coverage": "CI=true yarn test --coverage || true",
+    "coverage": "env NODE_ENV=test CI=true yarn test --coverage || true",
     "md-docs": "find ./src -name \\*.js | xargs npx jsdoc2md --template ./README.hbs --files | cat > ./FE_DOC.md",
     "html-docs": "npx jsdoc -c ./docs/config.json",
     "madge": "npx madge ./src -i madge.svg",
@@ -75,14 +80,15 @@
     ]
   },
   "devDependencies": {
-    "@cypress/instrument-cra": "^1.0.0",
+    "@babel/register": "^7.9.0",
+    "@cypress/code-coverage": "^3.5.1",
+    "@cypress/instrument-cra": "^1.1.1",
     "axios-mock-adapter": "^1.17.0",
     "babel-plugin-istanbul": "^6.0.0",
-    "cypress": "^4.2.0",
     "jsdoc-to-markdown": "^5.0.3",
     "madge": "^3.8.0",
     "redux-mock-store": "^1.5.4",
-    "start-server-and-test": "^1.10.11"
+    "start-server-and-test": "^1.11.0"
   },
   "jest": {
     "collectCoverageFrom": [

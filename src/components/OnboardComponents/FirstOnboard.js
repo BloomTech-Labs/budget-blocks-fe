@@ -46,6 +46,12 @@ const FirstOnboard = ({
     renderSpinner()
   ) : !isFetching && !linkedAccount && error === null ? (
     <div className="main">
+      {/* <div className="manualBudgetButton">
+        {" "}
+        <button onClick={handleClick}>
+          Manually create/add Transactions here
+        </button>
+      </div> */}
       <div className="manualBudgetButton">
         {" "}
         <button onClick={handleClick}>

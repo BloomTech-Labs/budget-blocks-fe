@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { Redirect } from "react-router-dom";
+
 import { connect } from "react-redux";
 import { loginUser } from "../../../redux/actions/LoginActions";
 import Title from "../Title";
@@ -11,6 +13,7 @@ import { ChangeCheckField } from "../ChangeCheckField";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Button from "@material-ui/core/Button";
 import Container from "@material-ui/core/Container";
+import { PageView } from "../../google_analytics/index.js";
 
 import LANG from "../Lang";
 import "./loginStyle.css";
@@ -42,6 +45,11 @@ export const Login = (props) => {
     user: { ...default_user },
   });
 
+  const [initial, setInitial] = useState(sessionStorage.getItem("token"));
+
+  useEffect(() => {
+    PageView();
+  }, []);
   useEffect(() => {
     if (
       state.values.password.error === false &&
@@ -79,48 +87,52 @@ export const Login = (props) => {
 
   return (
     <div className="SignIn">
-      <Container maxWidth="sm">
-        <Title title={LANG.SIGN_IN} titleClass="SignInTitle" />
+      {initial ? (
+        <Redirect to="/onBoard/1" />
+      ) : (
+        <Container maxWidth="sm">
+          <Title title={LANG.SIGN_IN} titleClass="SignInTitle" />
 
-        <form className="SignInForm" onSubmit={handleSubmit}>
-          <div className="inputText">
-            <EmailField
-              values={state.values}
-              handleChange={handleChange}
-              user={state.user}
+          <form className="SignInForm" onSubmit={handleSubmit}>
+            <div className="inputText">
+              <EmailField
+                values={state.values}
+                handleChange={handleChange}
+                user={state.user}
+                fullWidth={true}
+              />
+              <PasswordField
+                name="password"
+                placeholder={LANG.PASSWORD}
+                label={LANG.PASSWORD}
+                error={state.values.password.error}
+                value={state.user.password}
+                handleChange={handleChange}
+                helperText={state.values.password.helperText}
+              />
+            </div>
+            <Account message={LANG.NEED_AN_ACCOUNT} link="/register" />
+
+            {props.error ? (
+              <p style={{ display: "inline" }} className="errorMessage">
+                {/* {props.error} */}
+              </p>
+            ) : (
+              <p className="errorMessage"></p>
+            )}
+            <Button
+              variant="outlined"
+              className="signInBtn"
+              type="submit"
               fullWidth={true}
-            />
-            <PasswordField
-              name="password"
-              placeholder={LANG.PASSWORD}
-              label={LANG.PASSWORD}
-              error={state.values.password.error}
-              value={state.user.password}
-              handleChange={handleChange}
-              helperText={state.values.password.helperText}
-            />
-          </div>
-          <Account message={LANG.NEED_AN_ACCOUNT} link="/register" />
-
-          {props.error ? (
-            <p style={{ display: "inline" }} className="errorMessage">
-              {props.error}
-            </p>
-          ) : (
-            <p className="errorMessage"></p>
-          )}
-          <Button
-            variant="outlined"
-            className="signInBtn"
-            type="submit"
-            fullWidth={true}
-            small="small"
-            disabled={state.values.button.disabled}
-          >
-            {props.isFetching ? <SpinnerLoading /> : <p>{LANG.SIGN_IN}</p>}
-          </Button>
-        </form>
-      </Container>
+              small="small"
+              disabled={state.values.button.disabled}
+            >
+              {props.isFetching ? <SpinnerLoading /> : <p>{LANG.SIGN_IN}</p>}
+            </Button>
+          </form>
+        </Container>
+      )}
     </div>
   );
 };

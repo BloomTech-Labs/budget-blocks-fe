@@ -19,9 +19,9 @@
 /* navbar */
 .nav-bar {
 	display: flex;
-	width: 100%;
-	background-color: #FFFFFF;
-	border: 1px solid #E7E7E7;
+	flex-direction: row;
+	width: 99vw;
+	height: 8vh;
 }
 .nav-logo {
 	display: flex;
@@ -34,11 +34,19 @@
 	margin-top: 8px;
 	margin-bottom: 8px;
 }
+
+.nav-logo:hover { 
+	transform: translateY(-3px); 
+}
+
 .nav-action {
 	width: 100%;
-	margin-top: 50px;
-	background-color: blue;
+	margin-top: 8px;
+	margin-bottom: 8px;
+	border-right: none;
+	align-items: flex-end;
 }
+
 .image {
 	width: 2.5rem;
 	margin-right: 7px;
@@ -49,6 +57,11 @@
 	height: 1.1rem;
 	margin-right: 3px;
 	margin-top: 5px;
+}
+
+.dropdown-menu {
+	float: right;
+	margin-right: 2%;
 }
 
 /* phone screen */

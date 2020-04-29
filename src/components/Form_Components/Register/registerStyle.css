@@ -39,28 +39,35 @@
 .password {
   margin-top: 30px;
   text-align: left;
-  }
+}
 .confirmPassword {
   margin-top: 30px;
   text-align: left;
-  }
-  .signUpBtn{
-    margin-top: 20px !important;
-    font-family: "Exo", sans-serif !important;
-    text-transform: none !important;
-    font-size: 16px !important;
-    background: #ffffff !important ;
-    border: 1px solid #1890ff !important;
-    color: #1890ff !important;
-  }
-  .account{
-    text-align: center !important;
-    display: flex;
-    flex-direction: row;
-    font-family: "Exo", sans-serif !important;
+}
+.signUpBtn {
+  margin-top: 20px !important;
+  font-family: "Exo", sans-serif !important;
+  text-transform: none !important;
+  font-size: 16px !important;
+  background: #ffffff !important ;
+  border: 1px solid #1890ff !important;
+  color: #1890ff !important;
+}
+.account {
+  text-align: center !important;
+  display: flex;
+  flex-direction: row;
+  font-family: "Exo", sans-serif !important;
+}
+.errorMessage {
+  color: red;
+  display: none;
+}
 
-  }
-  .errorMessage{
-    color: red;
-    display: none;
-  }
+.register {
+  margin: 2%;
+  background-color: white;
+  padding: 5%;
+  border: #e5e5e5 1px solid;
+  border-radius: 5px;
+}

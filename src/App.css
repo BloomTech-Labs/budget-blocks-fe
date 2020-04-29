@@ -91,7 +91,7 @@
   background: #ffffff !important ;
   border: 1px solid #1890ff !important;
   color: #1890ff !important;
-  width: 70% !important;
+  width: 80% !important;
 }
 .links {
   text-decoration: none;
@@ -188,7 +188,4 @@
   border-radius: 5px;
   padding-left: 0;
   text-align: center;
-}
-Expense {
-  width: 100%;
 }

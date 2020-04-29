@@ -16,8 +16,6 @@ import { getBlocks, deleteBlock, updateBlock, addBlock, addOwnExpense, deleteAnd
 
 import ExpenseList from './no-bank/ExpenseList'
 
-import ExpenseList from "./no-bank/ExpenseList";
-
 export const Dashboard = (props) => {
   // This component displays the dashboard: Blocks, transactions
 
@@ -67,11 +65,8 @@ function mapStateToProps(state) {
     expenses: state.expenses.expenses,
     blocks: state.blocks.blocks,
     blockExpenses: state.blocks.blockExpenses,
-<<<<<<< HEAD
     selectedExpense: state.expenses.selectedExpense,
     blockHover: state.expenses.blockHover
-=======
->>>>>>> development
   };
 }
 

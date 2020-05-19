@@ -1,59 +1,73 @@
-import React, { createContext, useState, useEffect } from "react";
-import "./App.css";
-import Home from "./components/home";
-import Login from "./components/Form_Components/Login/Login";
-import Register from "./components/Form_Components/Register/Register";
-import { Switch, Route } from "react-router-dom";
-import Dashboard from "./components/Dashboard";
-import PrivateRoute from "./components/PrivateRoute";
-import Navbar from "./components/NavBar";
-import SelectCategories from "./components/Form_Components/Select_Categories/SelectCategories";
-import FirstOnboard from "./components/OnboardComponents/FirstOnboard";
-import ManualBlocks from "./components/Blocks_Components/ManualBlocks";
-import { initGA, PageView } from "./components/google_analytics/index.js";
-import CredentialsContext from "./contexts/CredentialsContext";
-import ExpenseList from "./components/no-bank/ExpenseList";
+import React from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { Security, SecureRoute, LoginCallback } from '@okta/okta-react';
+import { Container } from 'semantic-ui-react';
+import config from './components/Form_Components/OktaLogin/config';
 
+import Test from './components/test';
+import Home from './components/home';
 
-// Added useContext because user email and password were being stored in localStorage (security risk) and we needed to resolve that.
-
-function App() {
-  // Added useContext because user email and password were being stored in localStorage (security risk) and we needed to resolve that.
-  const [credContext, setCredContext] = useState({ email: "", password: "" });
-  const updateCredentials = (email, password) => {
-    setCredContext({ email, password });
-  };
-
-  useEffect(()=>{
-    initGA();
-    PageView();
-  }, [])
-
-  return (
-    <div>
-      <Navbar />
-
-      <div className="App">
-        <CredentialsContext.Provider
-          value={{
-            email: credContext.email,
-            password: credContext.password,
-            updateCredentials,
-          }}
-        >
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route path="/login" component={Login} />
-            <Route path="/register" component={Register} />
-            <PrivateRoute path="/dashboard" component={Dashboard} />
-            <PrivateRoute path="/onBoard/select" component={SelectCategories} />
-            <Route path="/onBoard/1" component={FirstOnboard} />
-            <PrivateRoute path="/manual" component={ManualBlocks} />
-          </Switch>
-        </CredentialsContext.Provider>
-      </div>
-    </div>
-  );
-}
+const App = () => (
+  <Router>
+    <Security {...config.oidc}>
+      <Container text style={{ marginTop: '7em' }}>
+        <SecureRoute path='/test' component={Test} />
+        <Route path='/' exact component={Home} />
+        <Route path='/implicit/callback' component={LoginCallback} />
+      </Container>
+    </Security>
+  </Router>
+);
 
 export default App;
+
+////////////////////////////////////////////////////////////////////////// OLD
+// import React from 'react';
+// import { Route, useHistory } from 'react-router-dom';
+// import Home from './components/home';
+// import Register from './components/Form_Components/Register/Register';
+// import Dashboard from './components/Dashboard';
+// import Navbar from './components/NavBar';
+// import SelectCategories from './components/Form_Components/Select_Categories/SelectCategories';
+// import FirstOnboard from './components/OnboardComponents/FirstOnboard';
+// import ManualBlocks from './components/Blocks_Components/ManualBlocks';
+// import './App.css';
+
+// //SECTION Component Imports 5/18/20
+// import Login from './components/Form_Components/OktaLogin/Login';
+// import { Security, SecureRoute, LoginCallback } from '@okta/okta-react';
+// // import OktaConfig from './components/Form_Components/OktaLogin/OktaConfig';
+// import Test from '../src/components/test';
+
+// const App = () => {
+//   const history = useHistory();
+
+//   const customAuthHandler = () => {
+//     // FIXME This is not pushing to login page when a unauthorized user attempts to access a SecureRoute. It instead pushes to '/'
+//     history.push('/login');
+//   };
+
+//   const config = {
+//     issuer: 'https://dev-985629.okta.com/oauth2/default',
+//     redirectUri: 'http://localhost:3000/implicit/callback',
+//     clientId: '0oac54xygvhDyr4eg4x6',
+//     pkce: true,
+//   };
+
+//   return (
+//     <div className='App'>
+//       <Security {...config}>
+//         <Navbar />
+//         <Route exact path='/' component={Home} />
+//         <Route exact path='/test' component={Test} />
+//         <Route path='/implicit/callback' component={LoginCallback} />
+//         <Route path='/login' component={Login} />
+//         <Route path='/register' component={Register} />
+//         <Route path='/onBoard/1' component={FirstOnboard} />
+//         <SecureRoute path='/dashboard' component={Dashboard} />
+//         <SecureRoute path='/manual' component={ManualBlocks} />
+//         <SecureRoute path='/onBoard/select' component={SelectCategories} />
+//       </Security>
+//     </div>
+//   );
+// };

@@ -47,12 +47,8 @@ const Home = () => {
         {/* //NOTE Potentially display the LOGIN button and home page related things */}
         {!authState.isAuthenticated && (
           <div>
-            <button primary onClick={login}>
-              Login
-            </button>
-            <button primary onClick={logout}>
-              Logout
-            </button>
+            <button onClick={login}>Login</button>
+            <button onClick={logout}>Logout</button>
           </div>
         )}
       </div>

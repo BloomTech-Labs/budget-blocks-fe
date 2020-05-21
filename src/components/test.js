@@ -34,9 +34,7 @@ const Test = () => {
       <p style={{ color: 'blue', fontSize: '32px' }}>
         Message: {`${message}`}
       </p>
-      <button primary onClick={logout}>
-        Logout
-      </button>
+      <button onClick={logout}>Logout</button>
     </div>
   );
 };

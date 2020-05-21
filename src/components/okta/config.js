@@ -17,13 +17,3 @@ export default {
   //   messagesUrl: 'http://localhost:3000/api/messages',
   // },
 };
-
-////////////////////////////////////////////////// old
-// const config = {
-//   issuer: 'https://dev-985629.okta.com/oauth2/default',
-//   redirectUri: 'http://localhost:3000/implicit/callback',
-//   clientId: '0oac54xygvhDyr4eg4x6',
-//   pkce: true,
-// };
-
-// export default config;

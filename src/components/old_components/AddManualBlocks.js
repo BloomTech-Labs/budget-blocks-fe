@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import Modal from "@material-ui/core/Modal";
-import { connect } from "react-redux";
-import { useAxiosWithAuth } from '../hooks'
-import ManualTransaction from "./Modal_Components/ManualTransaction";
-import environmentUrls from "../dispatch";
+import React, { useState, useEffect } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import Modal from '@material-ui/core/Modal';
+import { connect } from 'react-redux';
+import { useAxiosWithAuth } from '../../hooks';
+import ManualTransaction from './Modal_Components/ManualTransaction';
+import environmentUrls from '../../dispatch';
 
 function rand() {
   return Math.round(Math.random() * 20) - 10;
@@ -17,19 +17,19 @@ function getModalStyle() {
   return {
     top: `${top}%`,
     left: `${left}%`,
-    transform: `translate(-${top}%, -${left}%)`
+    transform: `translate(-${top}%, -${left}%)`,
   };
 }
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   paper: {
-    position: "absolute",
+    position: 'absolute',
 
     backgroundColor: theme.palette.background.paper,
-    border: "2px solid #000",
+    border: '2px solid #000',
     boxShadow: theme.shadows[5],
-    padding: theme.spacing(2, 4, 3)
-  }
+    padding: theme.spacing(2, 4, 3),
+  },
 }));
 
 function AddManualBlocks(props) {
@@ -41,14 +41,13 @@ function AddManualBlocks(props) {
   const [blocks, setBlocks] = useState([]);
 
   const { axiosData } = useAxiosWithAuth(
-      `${environmentUrls.base_url}/api/users/categories/${props.userID}`,
-      'get'
-    )
+    `${environmentUrls.base_url}/api/users/categories/${props.userID}`,
+    'get'
+  );
 
   useEffect(() => {
-    setBlocks(axiosData)
-  }, [axiosData])
-
+    setBlocks(axiosData);
+  }, [axiosData]);
 
   const handleOpen = () => {
     setOpen(true);
@@ -60,12 +59,12 @@ function AddManualBlocks(props) {
 
   return (
     <div>
-      <button onClick={handleOpen} className="blocks-button">
+      <button onClick={handleOpen} className='blocks-button'>
         Add Manual Blocks
       </button>
       <Modal
-        aria-labelledby="simple-modal-title"
-        aria-describedby="simple-modal-description"
+        aria-labelledby='simple-modal-title'
+        aria-describedby='simple-modal-description'
         open={open}
         onClose={handleClose}
       >
@@ -87,8 +86,10 @@ function mapStateToProps(state) {
     userID: state.loginReducer.user.id,
     LinkedAccount: state.loginReducer.user.LinkedAccount,
     blocks: state.plaidReducer.categories,
-    categories: state.plaidReducer.categories
+    categories: state.plaidReducer.categories,
   };
 }
 
-export default connect(mapStateToProps, { AddManualBlocks })(AddManualBlocks);
+export default connect(mapStateToProps, { AddManualBlocks })(
+  AddManualBlocks
+);

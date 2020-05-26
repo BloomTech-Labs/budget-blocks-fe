@@ -1,10 +1,10 @@
-import React from "react";
-import "./linkAccountStyle.css";
-import PlaidLink from "react-plaid-link";
-import { connect } from "react-redux";
-import { sendLinkToken } from "../redux/actions/PlaidActions";
-import "../index.css";
-import environmentUrls from "../dispatch";
+import React from 'react';
+import './linkAccountStyle.css';
+import PlaidLink from 'react-plaid-link';
+import { connect } from 'react-redux';
+import { sendLinkToken } from '../../redux/actions/PlaidActions';
+import '../index.css';
+import environmentUrls from '../../dispatch';
 
 const LinkAccount = (props) => {
   // This component creates the button that brings up the modal for the user to enter banking information to connect via plaid
@@ -12,21 +12,21 @@ const LinkAccount = (props) => {
     props.sendLinkToken(token, props.user.id);
   }
   function handleOnExit() {
-    console.log("Plaid Component has exited");
+    console.log('Plaid Component has exited');
   }
 
   return (
-    <div className="plaid-container">
-      <div className="LinkAccount">
+    <div className='plaid-container'>
+      <div className='LinkAccount'>
         <PlaidLink
-          clientName="Budget Blocks"
-          env="sandbox"
-          product={["auth", "transactions", "identity"]}
+          clientName='Budget Blocks'
+          env='sandbox'
+          product={['auth', 'transactions', 'identity']}
           publicKey={process.env.REACT_APP_PUBLIC_KEY}
           onExit={handleOnExit}
           onSuccess={handleOnSuccess}
           webhook={`${environmentUrls.base_url}/plaid/webhook`}
-          className="plaidButton"
+          className='plaidButton'
         >
           Connect Bank Account
         </PlaidLink>

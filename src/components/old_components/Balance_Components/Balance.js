@@ -1,10 +1,10 @@
-import React from "react";
-import { connect } from "react-redux";
-import LinkAccount from "../LinkAccount";
-import plaidImg from "../../media/image/PlaidIcon.png";
-import { useStyles } from "./balanceStyle";
-import Card from "@material-ui/core/Card";
-import environmentUrls from "../../dispatch";
+import React from 'react';
+import { connect } from 'react-redux';
+import LinkAccount from '../../old_plaid_components/LinkAccount';
+import plaidImg from '../../media/image/PlaidIcon.png';
+import { useStyles } from './balanceStyle';
+import Card from '@material-ui/core/Card';
+import environmentUrls from '../../../dispatch';
 
 export const Balance = ({ LinkedAccount }) => {
   //This component was originally meant to be used on the dashboard. If the user had a manual account and wanted to switch to using plaid: this component would allow that
@@ -18,7 +18,7 @@ export const Balance = ({ LinkedAccount }) => {
     return (
       <Card className={classes.NoBalance}>
         <LinkAccount />
-        <img src={plaidImg} className="plaidIcon" alt="Plaid Icon" />
+        <img src={plaidImg} className='plaidIcon' alt='Plaid Icon' />
       </Card>
     );
   } else {
@@ -29,7 +29,7 @@ export const Balance = ({ LinkedAccount }) => {
 
 function mapStateToProps(state) {
   return {
-    LinkedAccount: state.loginReducer.user.LinkedAccount
+    LinkedAccount: state.loginReducer.user.LinkedAccount,
   };
 }
 

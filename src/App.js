@@ -1,59 +1,22 @@
-import React, { createContext, useState, useEffect } from "react";
-import "./App.css";
-import Home from "./components/home";
-import Login from "./components/Form_Components/Login/Login";
-import Register from "./components/Form_Components/Register/Register";
-import { Switch, Route } from "react-router-dom";
-import Dashboard from "./components/Dashboard";
-import PrivateRoute from "./components/PrivateRoute";
-import Navbar from "./components/NavBar";
-import SelectCategories from "./components/Form_Components/Select_Categories/SelectCategories";
-import FirstOnboard from "./components/OnboardComponents/FirstOnboard";
-import ManualBlocks from "./components/Blocks_Components/ManualBlocks";
-import { initGA, PageView } from "./components/google_analytics/index.js";
-import CredentialsContext from "./contexts/CredentialsContext";
-import ExpenseList from "./components/no-bank/ExpenseList";
+import React from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { Security, SecureRoute, LoginCallback } from '@okta/okta-react';
+import { Container } from 'semantic-ui-react';
+// SECTION Components
+import config from './components/okta/config';
+import Home from './components/Home';
+import Dashboard from './components/Dashboard';
 
-
-// Added useContext because user email and password were being stored in localStorage (security risk) and we needed to resolve that.
-
-function App() {
-  // Added useContext because user email and password were being stored in localStorage (security risk) and we needed to resolve that.
-  const [credContext, setCredContext] = useState({ email: "", password: "" });
-  const updateCredentials = (email, password) => {
-    setCredContext({ email, password });
-  };
-
-  useEffect(()=>{
-    initGA();
-    PageView();
-  }, [])
-
-  return (
-    <div>
-      <Navbar />
-
-      <div className="App">
-        <CredentialsContext.Provider
-          value={{
-            email: credContext.email,
-            password: credContext.password,
-            updateCredentials,
-          }}
-        >
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route path="/login" component={Login} />
-            <Route path="/register" component={Register} />
-            <PrivateRoute path="/dashboard" component={Dashboard} />
-            <PrivateRoute path="/onBoard/select" component={SelectCategories} />
-            <Route path="/onBoard/1" component={FirstOnboard} />
-            <PrivateRoute path="/manual" component={ManualBlocks} />
-          </Switch>
-        </CredentialsContext.Provider>
-      </div>
-    </div>
-  );
-}
+const App = () => (
+  <Router>
+    <Security {...config.oidc}>
+      <Container text style={{ marginTop: '7em' }}>
+        <SecureRoute path='/dashboard' component={Dashboard} />
+        <Route path='/' exact component={Home} />
+        <Route path='/implicit/callback' component={LoginCallback} />
+      </Container>
+    </Security>
+  </Router>
+);
 
 export default App;

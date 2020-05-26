@@ -3,10 +3,10 @@
  * @returns default Register component state.user
  */
 export const default_user = {
-  email: "",
-  password: "",
-  first_name: "",
-  last_name: ""
+  email: '',
+  password: '',
+  first_name: '',
+  last_name: '',
 };
 
 /**
@@ -16,21 +16,21 @@ export const default_user = {
 export const default_values = {
   password: {
     error: false,
-    helperText: ""
+    helperText: '',
   },
   email: {
     error: false,
-    helperText: ""
+    helperText: '',
   },
   first_name: {
     error: false,
-    helperText: ""
+    helperText: '',
   },
   last_name: {
     error: false,
-    helperText: ""
+    helperText: '',
   },
   button: {
-    disabled: false
-  }
+    disabled: false,
+  },
 };

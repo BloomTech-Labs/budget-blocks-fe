@@ -1,11 +1,11 @@
-import React, { useEffect, useContext } from "react";
-import { connect } from "react-redux";
-import { addDefault } from "../../redux/actions/ManualActions";
-import { loginUser } from "../../redux/actions/LoginActions";
-import { renderSpinner, pushToDashboard, renderManualBtn } from "./views";
-import "./onboard.css";
-import Balance from "../../components/Balance_Components/Balance";
-import CredentialsContext from "../../contexts/CredentialsContext";
+import React, { useEffect, useContext } from 'react';
+import { connect } from 'react-redux';
+import { addDefault } from '../../../redux/actions/ManualActions';
+import { loginUser } from '../../../redux/actions/LoginActions';
+import { renderSpinner, pushToDashboard, renderManualBtn } from './views';
+import './onboard.css';
+import Balance from '../../components/Balance_Components/Balance';
+import CredentialsContext from '../../../contexts/CredentialsContext';
 
 /**
  * FirstOnboard
@@ -45,15 +45,15 @@ const FirstOnboard = ({
   const View = waitingOnLink ? (
     renderSpinner()
   ) : !isFetching && !linkedAccount && error === null ? (
-    <div className="main">
+    <div className='main'>
       {/* <div className="manualBudgetButton">
         {" "}
         <button onClick={handleClick}>
           Manually create/add Transactions here
         </button>
       </div> */}
-      <div className="manualBudgetButton">
-        {" "}
+      <div className='manualBudgetButton'>
+        {' '}
         <button onClick={handleClick}>
           Manually set your budget goals here
         </button>

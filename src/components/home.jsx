@@ -18,7 +18,7 @@ const Home = () => {
 
   // NOTE Change this to wherever we want the user to be redirected to after login
   const login = async () => {
-    authService.login('/test');
+    authService.login('/dashboard');
   };
 
   const logout = async () => {
@@ -32,7 +32,7 @@ const Home = () => {
   return (
     <div>
       <div>
-        <h1>Welcome to Budget Blocks Login</h1>
+        <h1>Welcome to Budget Blocks Home Page</h1>
 
         {authState.isAuthenticated && !userInfo && (
           <div>Loading user information...</div>

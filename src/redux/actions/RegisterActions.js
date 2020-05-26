@@ -1,13 +1,10 @@
-import axios from "axios";
-import environmentUrls from "../../dispatch";
-import { Redirect} from "react-router-dom";
-import React from 'react'
-import promiseTimeout from "../../helpers/promiseTimeout";
+import axios from 'axios';
+import environmentUrls from '../../dispatch';
+import promiseTimeout from '../../helpers/promiseTimeout';
 
-
-export const REGISTER_USER_LOADING = "REGISTER_USER_LOADING";
-export const REGISTER_USER_SUCCESS = "REGISTER_USER_SUCCESS";
-export const REGISTER_USER_FAILED = "REGISTER_USER_FAILED";
+export const REGISTER_USER_LOADING = 'REGISTER_USER_LOADING';
+export const REGISTER_USER_SUCCESS = 'REGISTER_USER_SUCCESS';
+export const REGISTER_USER_FAILED = 'REGISTER_USER_FAILED';
 
 export const registerUserLoading = () => ({ type: REGISTER_USER_LOADING });
 export const registerUserSuccess = (data) => ({
@@ -31,8 +28,7 @@ export function registerUser(data, history) {
       .then(promiseTimeout(6000))
       .then((response) => {
         dispatch(registerUserSuccess(response.data));
-        history.push("/login");
-        
+        history.push('/login');
       })
       .catch((error) => {
         dispatch(registerUserFailure(error.response.data.error));

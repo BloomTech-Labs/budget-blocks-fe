@@ -19,7 +19,7 @@ const Dashboard = () => {
     } else {
       authService.getUser().then((info) => {
         const oktaUserInfo = info;
-
+        console.log('info', info);
         axios
           .post('http://localhost:5000/api/users', oktaUserInfo, {
             headers: {
@@ -28,15 +28,11 @@ const Dashboard = () => {
           })
           .then((res) => {
             setUserInfo(res.data.data);
-            setUserInfo(res.data.created);
-            console.log(res);
           })
           .catch((err) => err.message);
       });
     }
   }, [authState, authService]);
-
-  console.log(userInfo);
 
   return (
     <div>

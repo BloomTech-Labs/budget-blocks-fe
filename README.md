@@ -1,24 +1,32 @@
+
 # Budget Blocks
 
 You can find the deployed project at [Budget Blocks](https://www.budgetblocks.org).
 
-## Contributors
-
-|                                                                                          [Edwin Chajon](https://github.com/Edwin-Chajon)                                                                                          |                                                                                          [Maggie Price](https://github.com/maaggieprice)                                                                                          |                                                                                         [Trevor Martin](https://github.com/debauchery1st)                                                                                          |                                     [Carlos de Santiago](https://github.com/heyclos)                                      |     |
+## Budget Blocks Team
+|                                                                                          [Adam Skoog - Team Lead](https://github.com/skooger)                                                                                          |                                                                                          [Aleksei Zaichenko - Full Stack](https://github.com/Aleksei-Zaichenko)                                                                                          |                                                                                         [Daniel McNamara - Full Stack](https://github.com/Daniel-McNamara)                                                                                          |                                     [Edward Blanciak - Full Stack](https://github.com/eddieb2)                                      |     |
 | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------: | :-: |
-| [<img src="https://media-exp1.licdn.com/dms/image/C5603AQGTrAxV9MkTIw/profile-displayphoto-shrink_200_200/0?e=1591833600&v=beta&t=3hHm8bHD3_k3lnRCALWcnbtItNj5U1y7a2lNH7HNrOU" width = "200" />](https://github.com/Edwin-Chajon) | [<img src="https://media-exp1.licdn.com/dms/image/C4E03AQG_gsfcnOF77Q/profile-displayphoto-shrink_200_200/0?e=1591833600&v=beta&t=oDTduLPwsAN_9xhKpcwUa4Bip4kHCFitKcVK_HMvpm8" width = "200" />](https://github.com/maaggieprice) | [<img src="https://media-exp1.licdn.com/dms/image/C4E03AQH7-xvDsUKMzQ/profile-displayphoto-shrink_200_200/0?e=1591833600&v=beta&t=ip374Xx-Ysx_v9TIRXx7RgiYjoshRZIUxJWaOrWUPiI" width = "200" />](https://github.com/debauchery1st) | [<img src="https://ca.slack-edge.com/T4JUEB3ME-UG19JMJTC-2fb50b0a5a41-5124" width = "200" />](https://github.com/heyclos) |
-|                                                                     [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Edwin-Chajon)                                                                     |                                                                     [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/maaggieprice)                                                                     |                                                                     [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/debauchery1st)                                                                     |                   [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/heyclos)                    |
-|                                              [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/edwin-chajon-3bb43b186/)                                              |                                                   [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/maggieprice1/)                                                   |                                                          [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](linkedin.com/in/trevor4hire/)                                                          |       [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/)       |
+| [<img src="https://ca.slack-edge.com/ESZCHB482-W012JQ29NHH-3bdd972c908b-512" width = "200" />](https://github.com/skooger) | [<img src="https://avatars1.githubusercontent.com/u/36427914?s=460&u=ce23d9e69a1ccd6a45fcbaf556d046c26c53c1aa&v=4" width = "200" />](https://github.com/Aleksei-Zaichenko) | [<img src="https://avatars0.githubusercontent.com/u/57954981?s=88&v=4" width = "200" />](https://github.com/Daniel-McNamara) | [<img src="https://avatars0.githubusercontent.com/u/58380182?s=460&u=55201cd6228f4fc00efc332515421a72d7b40dfb&v=4" width = "200" />](https://github.com/eddieb2) |
+|                                                                     [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/skooger)                                                                     |                                                                     [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Aleksei-Zaichenko)                                                                     |                                                                     [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Daniel-McNamara)                                                                     |                   [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/eddieb2)                    |
+|                                              [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com)                                              |                                                   [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com)                                                   |                                                          [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com)                                                          |       [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/edward-blanciak-7a78b189/)       |
 
 <br>
 <br>
 
-|                                          [Tyler Christian](https://github.com/TylerChristian711)                                          |                                            [Ivan Martinez](https://github.com/TheOriginalSNP)                                            |                                             [Igor Atakhanov](https://github.com/embiggenerd)                                             |                                                                                            [Israel Gonzalez](github.com/israelgonzalezb)                                                                                             |     |
-| :---------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :-: |
-|    [<img src="https://ca.slack-edge.com/T4JUEB3ME-ULZSEQXAR-3b670f940ff2-512" width = "200" />](https://github.com/TylerChristian711)     |     [<img src="https://ca.slack-edge.com/T4JUEB3ME-UJDAGQ14J-38159f934179-512" width = "200" />](https://github.com/TheOriginalSNP)      |       [<img src="https://ca.slack-edge.com/T4JUEB3ME-UNUUFU0UB-8968d23fc9c5-512" width = "200" />](https://github.com/embiggenerd)       | [<img src="https://media-exp1.licdn.com/dms/image/C4D03AQFokXmRlXfEbQ/profile-displayphoto-shrink_200_200/0?e=1591833600&v=beta&t=pwWTsymyq1uOCqdrjrokRwXRAuvyGP0aKhDJNz4G7G4" width = "200" />](https://github.com/israelgonzalezb) |
-|                      [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/TylerChristian711)                       |                       [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/TheOriginalSNP)                        |                         [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/embiggenerd)                         |                                                                     [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/israelgonzalezb)                                                                     |
-| [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/feed/?trk=onboarding-landing) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/ivan-martinez-7409a9114/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/igor-atakhanov-70890942/) |                                          [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/israel-gonzalez-brooks-15173a101/)                                           |
+|                                                                                          [Jess Daniel - Full Stack](https://github.com/jess-daniel)                                                                                          |                                                                                          [William Ryan - Full Stack](https://github.com/William-Ryan)                                                                                          |                                                                                         [Chris Jakuc - Data Science](https://github.com/cjakuc)                                                                                          |                                     [Adriann Lefebvere - Data Science](https://github.com/aklefebvere)                                      |     |
+| :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------: | :-: |
+| [<img src="https://avatars1.githubusercontent.com/u/51868800?s=460&u=4a4e2b1d7ee8899ff6c5cc147f9a38119b099ccd&v=4" width = "200" />](https://github.com/jess-daniel) | [<img src="https://avatars2.githubusercontent.com/u/58437764?s=460&u=3971fc2c81fd31f2582aa165b6b6d93e5e806c99&v=4" width = "200" />](https://github.com/William-Ryan) | [<img src="https://ca.slack-edge.com/ESZCHB482-W012JHY84R0-ec1444d3530f-512" width = "200" />](https://github.com/cjakuc) | [<img src="https://ca.slack-edge.com/ESZCHB482-W012BRRNJES-860db8acc9a5-512" width = "200" />](https://github.com/eddieb2) |
+|                                                                     [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/jess-daniel)                                                                     |                                                                     [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/William-Ryan)                                                                     |                                                                     [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/cjakuc)                                                                     |                   [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/aklefebvere)                    |
+|                                              [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/jess-daniel/)                                              |                                                   [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/william-ryan-34a1981a1/)                                                   |                                                          [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/chrisjakuc/)                                                          |       [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ]((https://www.linkedin.com))       |                                           |
 
+<br>
+<br>
+
+|                                                                                          [Denise Fafette - UX Designer](https://github.com/DeniseFafette)                                                                                          |                                                                                          [Nick Nyugen - IOS Developer](https://github.com/tonic2000)                                                                                          |                                                                                         [Marcus Jones - Section Lead](https://github.com)                                                                                          |                                     [Bernie Durfee - Web Director](https://github.com)                                      |     |
+| :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------: | :-: |
+| [<img src="https://ca.slack-edge.com/ESZCHB482-W012H6K959T-5617a6ff0c04-512" width = "200" />](https://github.com/DeniseFafette) | [<img src="https://ca.slack-edge.com/ESZCHB482-W012H6RKYKX-157ac0ae3531-512" width = "200" />](https://github.com/tonic2000) | [<img src="https://ca.slack-edge.com/ESZCHB482-W012JHSHTAN-52dc043b8f1e-512" width = "200" />](https://github.com) | [<img src="https://ca.slack-edge.com/ESZCHB482-W012025UC9G-2ca264059e47-512" width = "200" />](https://github.com) |
+|                                                                     [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/DeniseFafette)                                                                     |                                                                     [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/tonic2000)                                                                     |                                                                     [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com)                                                                     |                   [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com)                    |
+|                                              [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com)                                              |                                                   [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com)                                                   |                                                          [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com)                                                          |       [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ]([https://www.linkedin.com/in/edward-blanciak-7a78b189/](https://www.linkedin.com))       |                                           |
 
 <br>
 <br>
@@ -33,100 +41,51 @@ more info on using badges [here](https://github.com/badges/shields)
 
 ## Project Overview
 
-[Trello ](https://trello.com/b/fNhATNTC/labs-22-budget-blocks)
+[Trello ](https://trello.com/b/2hhbnNHk/labs24-budget-blocks)
 
 [Notion](https://www.notion.so/Budget-Blocks-6251cc75b71c4988af56529409f6f07f)
 
-[Figma Design files](https://www.figma.com/file/2yjo18aU6tUtB0gObkeeiE/Budget-Blocks%2C-Ivan?node-id=177%3A6)
+### Figma Design Files
 
-#### The easiest budgeting tool that simplifies your finances and doesn't over-complicate things. Budget Blocks seeks to unify budgeting personal finances accessibly . Budgeting tools add too much complexity to the already complex situation of money and spending. Managing a budget is a lot of effort, and should be much simpler.
+[General Link](https://www.figma.com/file/vGYGHts4LZe2xJKf6oeHj0/Budget-Blocks-Denise?node-id=179%3A1)
+
+[Developer Onboarding](https://www.figma.com/file/vGYGHts4LZe2xJKf6oeHj0/Budget-Blocks-Denise?node-id=166%3A11)
+
+[Information Architecture](https://www.figma.com/file/vGYGHts4LZe2xJKf6oeHj0/Budget-Blocks-Denise?node-id=322%3A51)
+
+[Task Flows](https://www.figma.com/file/vGYGHts4LZe2xJKf6oeHj0/Budget-Blocks-Denise?node-id=322%3A22)
+
+[Typography](https://www.figma.com/file/vGYGHts4LZe2xJKf6oeHj0/Budget-Blocks-Denise?node-id=395%3A290)
+
+[Fintech Inspiration](https://www.figma.com/file/vGYGHts4LZe2xJKf6oeHj0/Budget-Blocks-Denise?node-id=290%3A0)
+
+### Mission Statement
+
+#### Our mission is to create a budgeting application that makes budgeting a simple, friendly, and intuitive process for our users. Many budgeting apps face the problem of being over complicated or underwhelming, we want our users to feel like their being helped rather then put to work. Above all us we want our users feel the weight lightened by our application in their pursuit to budget their income rather then be overwhelmed by it. 
 
 ### Key Features
 
-- Ability to sign up and connect via Oauth
-- Create custom envelope categories
-- Category Types
-- Different views based upon weekly, monthly, yearly budget
-- Invite others to view their budget (family accounts?)
+- Ability to sign up and connect via Okta
+- Ability to connect their bank accounts through Plaid API
+- Custom categories based on the preferences and needs of the users
+- Automated or Manual process of checking and handling their budgeting process
+- Information and suggestions on budgeting based off of users demographic and goals
 
 ## Tech Stack
 
-### Front end built using:
+### Front-End built using:
 
-#### _React, NodeJS, Swift, UI Kit, Redux_
+#### React, Redux, Okta, Axios, Dotenv
 
 Why did you choose this framework?
 
-- React and NodeJS for web application, Swift & UIKit for iOS application since the team is most comfortable using these frameworks. For state management, we will probably use redux since we will be managing a lot of different data in various components.
-- Using redux the challenges we will face is creating the various actions and reducers. The setup of redux can take a long time, but once the system is implemented, adding new actions and reducers is very easy.
-- For iOS, we will be using UIKit with Swift as it is the native way of creating iOS interfaces and is much more used and well-documented than Apple's newer Swift UI. Core Data will be used for local persistence. SwiftyJSON will also be used for easy JSON decoding, as it is easier to use than the built-in JSON serialization from Foundation.
+- React is a diverse and varied front-end framework with multiple intuitive dependencies/hooks that make for a not only clean but effective front-end codebase.
+- Redux is a flexible and efficient stage management framework that allows a front-end developer to not only distribute state freely across their application but also gives them the freedom to customize how it may be rendered. 
+- Okta is being used to be on par with engineering standards. It's the latest in safe and secure sign up/sign in processing as well as authentication. It is also built in with a number of useful features for the user to recover and update their information as needed. 
+- Axios is the dependency we choose for accessing API endpoints on the front-end through GET, POST, PUT, and DELETE requests.
+- Dotenv is what was used to store sensitive information that only our developers should be aware of and have access to for the security of our application.
 
-#### Front end deployed to Heroku
-
-#### [Back end](https://github.com/Lambda-School-Labs/budget-blocks-fe/tree/development) built using:
-
-#### _PostgreSQL, GraphQL/REST API_
-
-- We will use PostgreSQL to setup our database using NodeJS alongside express and knex. We will take a look at using GraphQL to retrieve the data from our API and look into various implementation options. If not, we will use a REST API to gather our data resources.
-- Using GraphQL allows us to quickly retrieve specific information without having to right out a lot of endpoints. It's has more of a natural query flow and is very readable. Since most of the team does not have experience using GraphQL we will definitely have to refer to the documentation and do some practice exercises.
-- Both iOS and web need to have a JSON object returned back to display the data on the interface. NodeJS will allow us to setup a server and return a JSON object back within the API interface.
-
-# APIs
-
-## Plaid API
-
-1.  ### What Feature(s) is/are this API connected to?
-
-    - #### Transactions
-      - Allow us to retrieve 24 months of transaction data
-      - Can view the `amount, category, date, location, and name` of the merchant
-    - #### Liabilities
-      - Retrieve details for `student loans` and `credit card debt`
-      - Student loans → Provides information regarding `disbursement dates, payoff date, interest rate, next payment date, remittances address`
-      - Credit Cards → Provides information regarding `APR, credit limit, minimum payment amount, next payment due date, last statement issue date, last statement balance`
-    - #### Balance
-      - View the available amount of funds that can be withdrawn
-      - View the current amount of funds within the users account
-    - #### Assets
-      - Can view historial balance on the account
-      - See who are the owner's of each account
-      - View a list of the transactions
-      - Can view what account type such as credit, brokerage, loan, etc
-
-2.  ### What will this API integration accomplish in the feature(s) to which it’s connected?
-
-    Using this API, we will be able to download banking transactions for the user automatically and help to assign them to categories automatically
-
-    Also, we can load in debt information and guide the user on setting up a plan on paying off debt and budgeting their money. This may be outside of the scope of the project.
-
-3.  ### What alternatives did you consider?
-
-    - Stripe
-
-4.  ### Why did you decide on this solution? (what are the advantages?)
-
-    - Plaid seems to provide the user with more information and will help to accomplish the needs of our MVP.
-    - Stripe is good for handling authentication and processing payments, but Plaid seems to have better asset and transaction reporting
-
-5.  ### What are the potential challenges can you foresee?
-
-    - Authentication between banks that are not very popular (credit unions, pre-paid cards, etc). If a user doesn't have a supported bank, they wouldn't be able to use the automated transaction feature.
-    - The API is very robust and has a lot of features and can return a lot of data. We will need to manage all of the data and retrieve only the pertinent information for our user.
-
-# Environment Variables
-
-In order for the app to function correctly, the user must set up their own environment variables. There should be a .env file containing the following:
-
-    *  REACT_APP_apiKey - this is your Google API key, which can be generated in the Google Cloud Console
-    *  REACT_APP_authDomain - when you set up your Firebase project, this information will be in the dashboard
-    *  REACT_APP_databaseURL - in the Firebase dashboard
-    *  REACT_APP_projectID - in the Firebase dashboard
-    *  REACT_APP_storageBucket - in the Firebase dashboard
-    *  REACT_APP_messagingSenderId - in the Firebase dashboard
-    *  REACT_APP_stripe_API - this is your public Stripe API key, generated in the Stripe dashboard
-    *  REACT_APP_backendURL - optional for your local development server
-    *  REACT_APP_clientid - this is the Stripe_connect clientID, generated in Stripe_connect settings
-    *  REACT_APP_stripe_plan - this is the ID for a second Stripe subscription plan, generated under Stripe products
+#### Front end deployed through Netlify
 
 # Content Licenses
 
@@ -135,106 +94,21 @@ In order for the app to function correctly, the user must set up their own envir
 | doodles.png    | Nicole Bennett   | [Creative Commons](https://www.toptal.com/designers/subtlepatterns/doodles/) |
 | rings.svg      | Sam Herbert      | [MIT](https://github.com/SamHerbert/SVG-Loaders)                             |
 
-# Testing
+## Testing
 
-### [Enzyme](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=21&cad=rja&uact=8&ved=2ahUKEwj5zPGRg9_oAhWNu54KHQ8fCCAQFjAUegQIDBAQ&url=https%3A%2F%2Fenzymejs.github.io%2Fenzyme%2F&usg=AOvVaw0EE4UgaDot1emL34oATCh2)
+### Tech Used:
 
-# Installation Instructions
+#### Jest
 
-#### start - "react-scripts start",
+- Jest is what we choose to use for our front-end testing because React has built in connections for Jest's testing library, Because of this we are to effectively create tests with little to no doubt in its accuracy with the results.
 
-#### start-dev - "react-scripts -r @cypress/instrument-cra start",
+# Start-Up Instructions
 
-#### cypress - "npx cypress run",
+#### Step 1 - Clone down front-end repo
 
-#### dev - "start-test 3000 cypress",
+#### Step 2 - npm install from root
 
-#### build - "react-scripts build",
-
-#### test - "react-scripts test --watchAll=false",
-
-#### eject - "react-scripts eject",
-
-#### coverage - "CI=true yarn test --coverage || true",
-
-#### md-docs - "find ./src -name \\\*.js | xargs npx jsdoc2md --template ./README.hbs --files | cat > ./FE\_[DOC.md](http://doc.md/)",
-
-#### html-docs - "npx jsdoc -c ./docs/config.json",
-
-#### madge - "npx madge ./src -i madge.png",
-
-#### gen-docs - "echo 'generating visual graphs' && npx madge ./src -i madge.png && echo 'generating markdown' && find ./src -name \\\*.js | xargs npx jsdoc2md --template ./README.hbs --files | cat > ./FE\_[DOC.md](http://doc.md/) && echo 'generating html' && npx jsdoc -c ./docs/config.json"
-
-### To get backend up and running:
-
-1.  clone this repo: [](https://github.com/Lambda-School-Labs/budget-blocks-fe)[https://github.com/Lambda-School-Labs/budget-blocks-be](https://github.com/Lambda-School-Labs/budget-blocks-be), run 'npm install'
-
-2.  create a file named '.env' in the root directory.
-
-3.  Paste the following data:
-
-DEV_DATABASE_URL=postgres://kkxdhymo:0NOQ4o1rKprHkCCAXwOl-064ETUXK8eT@drona.db.elephantsql.com:5432/kkxdhymo PLAID_CLIENT_ID=5e29d37100a2c100129f7394 PLAID_COUNTERY_CODES=US,CA,GB,FR,ES,IE PLAID_ENV=sandbox PLAID_PRODUCTS=transactions PLAID_PUBLIC_KEY=7b47db1cfa540573d15cea302e5988 PLAID_SECRET=98b231dd6b24111a00000c7def80bd
-
-
-4.  In the knexfile.js file, create the following changes:
-
-// development: {
-
-// client: "sqlite3",
-
-// useNullAsDefault: true,
-
-// connection: {
-
-// filename: "./data/users.db3"
-
-// },
-
-// seeds: {
-
-// directory: "./data/seeds"
-
-// },
-
-// migrations: {
-
-// directory: "./data/migrations"
-
-// },
-
-// pool: {
-
-// afterCreate: (conn, done) => {
-
-// conn.run("PRAGMA foreign_keys = ON", done);
-
-// }
-
-// }
-
-// },
-
-development: {
-
-client: "pg",
-
-connection: process.env.DEV_DATABASE_URL,
-
-migrations: {
-
-directory: "./data/migrations"
-
-},
-
-seeds: {
-
-directory: "./data/seeds"
-
-}
-
-},
-
-5.  run 'node .' inside terminal in root folder
+#### Step 3 - npm start for local hosting
 
 # Contributing
 

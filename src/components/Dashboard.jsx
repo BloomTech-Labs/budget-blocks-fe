@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useOktaAuth } from '@okta/okta-react';
 import axios from 'axios';
-import OnBoarding from './OnBoarding';
+import { Link } from 'react-router-dom';
+
+
 
 const Dashboard = () => {
   const { authState, authService } = useOktaAuth();
@@ -21,7 +23,7 @@ const Dashboard = () => {
         const oktaUserInfo = info;
         console.log('info', info);
         axios
-          .post('http://localhost:5000/api/users', oktaUserInfo, {
+          .post('https://budget-blocks-production-new.herokuapp.com/api/users', oktaUserInfo, {
             headers: {
               Authorization: `Bearer ${accessToken}`,
             },
@@ -53,7 +55,9 @@ const Dashboard = () => {
         {`Hi, ${userInfo && userInfo.name}. Welcome to the dashboard.`}
       </p>
       <p> USER INFO STATE: {userInfo && userInfo.email} </p>
+      <Link to="/onboarding">Plaid</Link>
       <button onClick={logout}> Logout </button>
+      
     </div>
   );
 };

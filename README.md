@@ -1,5 +1,7 @@
 
 # Budget Blocks
+[![Maintainability](https://api.codeclimate.com/v1/badges/48e243bd3d68a7d834b0/maintainability)](https://codeclimate.com/github/Lambda-School-Labs/budget-blocks-fe)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/48e243bd3d68a7d834b0/test_coverage)](https://codeclimate.com/github/Lambda-School-Labs/budget-blocks-fe)
 
 You can find the deployed project at [Budget Blocks](https://www.budgetblocks.org).
 

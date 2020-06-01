@@ -6,7 +6,7 @@ import { Container } from 'semantic-ui-react';
 import config from './components/okta/config';
 import Home from './components/Home';
 import Dashboard from './components/Dashboard';
-import Onboarding from './components/Onboarding';
+import Onboarding from './components/OnBoarding';
 
 const App = () => (
   <Router>

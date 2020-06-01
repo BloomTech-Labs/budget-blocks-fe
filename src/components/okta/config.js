@@ -8,12 +8,12 @@ export default {
   oidc: {
     clientId: CLIENT_ID,
     issuer: ISSUER,
-    redirectUri: 'http://localhost:3000/implicit/callback',
+    redirectUri: 'https://budgetblocks.org/implicit/callback',
     scopes: ['openid', 'profile', 'email'],
     pkce: true,
     disableHttpsCheck: OKTA_TESTING_DISABLEHTTPSCHECK,
   },
   // resourceServer: {
-  //   messagesUrl: 'http://localhost:3000/api/messages',
+  //   messagesUrl: 'https://budgetblocks.org/api/messages',
   // },
 };

@@ -2,8 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { useOktaAuth } from '@okta/okta-react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { Button } from '@material-ui/core';
 
-
+// Components
+import BankAccountsPage from './BankAccountsPage';
 
 const Dashboard = () => {
   const { authState, authService } = useOktaAuth();
@@ -23,11 +25,15 @@ const Dashboard = () => {
         const oktaUserInfo = info;
         console.log('info', info);
         axios
-          .post('https://budget-blocks-production-new.herokuapp.com/api/users', oktaUserInfo, {
-            headers: {
-              Authorization: `Bearer ${accessToken}`,
-            },
-          })
+          .post(
+            'https://budget-blocks-production-new.herokuapp.com/api/users',
+            oktaUserInfo,
+            {
+              headers: {
+                Authorization: `Bearer ${accessToken}`,
+              },
+            }
+          )
           .then((res) => {
             setUserInfo(res.data.data);
           })
@@ -55,9 +61,17 @@ const Dashboard = () => {
         {`Hi, ${userInfo && userInfo.name}. Welcome to the dashboard.`}
       </p>
       <p> USER INFO STATE: {userInfo && userInfo.email} </p>
-      <Link to="/onboarding">Plaid</Link>
-      <button onClick={logout}> Logout </button>
-      
+      <BankAccountsPage />
+      <Link to='/onboarding'>
+        <Button color='primary' variant='contained'>
+          Onboarding
+        </Button>
+        <br />
+        <br />
+      </Link>
+      <Button color='secondary' variant='contained' onClick={logout}>
+        Logout
+      </Button>
     </div>
   );
 };

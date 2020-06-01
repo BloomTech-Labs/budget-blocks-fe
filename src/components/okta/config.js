@@ -4,11 +4,13 @@ const ISSUER =
 const OKTA_TESTING_DISABLEHTTPSCHECK =
   process.env.OKTA_TESTING_DISABLEHTTPSCHECK || false;
 
+const HOST = window.location.host;
+
 export default {
   oidc: {
     clientId: CLIENT_ID,
     issuer: ISSUER,
-    redirectUri: 'https://budgetblocks.org/implicit/callback',
+    redirectUri: `https://${HOST}/implicit/callback`,
     scopes: ['openid', 'profile', 'email'],
     pkce: true,
     disableHttpsCheck: OKTA_TESTING_DISABLEHTTPSCHECK,

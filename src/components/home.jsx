@@ -33,7 +33,7 @@ const Home = () => {
   return (
     <div>
       <div>
-        <h1>Welcome to Budget Blocks Home Page</h1>
+        <h1>Welcome to Budget Blocks Home Page!</h1>
 
         {authState.isAuthenticated && !userInfo && (
           <div>Loading user information...</div>

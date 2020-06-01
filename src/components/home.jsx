@@ -1,5 +1,6 @@
 import { useOktaAuth } from '@okta/okta-react';
 import React, { useState, useEffect } from 'react';
+import { Button } from '@material-ui/core';
 
 const Home = () => {
   const { authState, authService } = useOktaAuth();
@@ -47,8 +48,14 @@ const Home = () => {
         {/* //NOTE Potentially display the LOGIN button and home page related things */}
         {!authState.isAuthenticated && (
           <div>
-            <button onClick={login}>Login</button>
-            <button onClick={logout}>Logout</button>
+            <Button color='primary' variant='contained' onClick={login}>
+              Login
+            </Button>
+            <br />
+            <br />
+            <Button color='secondary' variant='contained' onClick={logout}>
+              Logout
+            </Button>
           </div>
         )}
       </div>

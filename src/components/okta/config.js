@@ -6,7 +6,7 @@ export default {
   oidc: {
     clientId: CLIENT_ID,
     issuer: ISSUER,
-    redirectUri: `https://www.budgetblocks.org/implicit/callback`,
+    redirectUri: `${HOST}/implicit/callback`,
     scopes: ['openid', 'profile', 'email'],
     pkce: true,
   },

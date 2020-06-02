@@ -10,6 +10,7 @@ import Onboarding from './components/OnBoarding';
 
 const App = () => (
   <Router>
+    {console.log(config.oidc)}
     <Security {...config.oidc}>
       <Container text style={{ marginTop: '7em' }}>
         <SecureRoute path='/dashboard' component={Dashboard} />

@@ -23,7 +23,6 @@ const Dashboard = () => {
     } else {
       authService.getUser().then((info) => {
         const oktaUserInfo = info;
-        console.log('info', info);
         axios
           .post(
             'https://budget-blocks-production-new.herokuapp.com/api/users',

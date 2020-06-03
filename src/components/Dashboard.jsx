@@ -1,15 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useOktaAuth } from '@okta/okta-react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { Button } from '@material-ui/core';
-
-// Components
-import BankAccountsPage from './BankAccountsPage';
 
 const Dashboard = () => {
   const { authState, authService } = useOktaAuth();
-  const [userInfo, setUserInfo] = useState(null);
+  const [userInfo, setUserInfo] = useState({});
 
   const logout = async () => {
     authService.logout('/');
@@ -19,20 +16,20 @@ const Dashboard = () => {
     const { accessToken } = authState;
 
     if (!authState.isAuthenticated) {
-      setUserInfo(null);
+      setUserInfo({});
     } else {
       authService.getUser().then((info) => {
         const oktaUserInfo = info;
+        const SERVER_HOST = process.env.REACT_APP_SERVER_HOST;
+
+        console.log('info', info);
+
         axios
-          .post(
-            'https://budget-blocks-production-new.herokuapp.com/api/users',
-            oktaUserInfo,
-            {
-              headers: {
-                Authorization: `Bearer ${accessToken}`,
-              },
-            }
-          )
+          .post(`${SERVER_HOST}/api/users`, oktaUserInfo, {
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+            },
+          })
           .then((res) => {
             setUserInfo(res.data.data);
           })
@@ -41,10 +38,10 @@ const Dashboard = () => {
     }
   }, [authState, authService]);
 
+  console.log(userInfo);
+
   return (
     <div>
-      {/* //NOTE RENDER ONBOARDING IF ACCESS TOKEN DOESN'T EXISTS */}
-      {/* {userInfo && userInfo.token === undefined || null ? <OnBoarding /> : null} */}
       <h1> DASHBOARD </h1>
       <p>
         If you landed here, then you have successfully logged in with
@@ -60,7 +57,6 @@ const Dashboard = () => {
         {`Hi, ${userInfo && userInfo.name}. Welcome to the dashboard.`}
       </p>
       <p> USER INFO STATE: {userInfo && userInfo.email} </p>
-      <BankAccountsPage />
       <Link to='/onboarding'>
         <Button color='primary' variant='contained'>
           Onboarding

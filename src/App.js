@@ -6,15 +6,15 @@ import { Container } from 'semantic-ui-react';
 import config from './components/okta/config';
 import Home from './components/Home';
 import Dashboard from './components/Dashboard';
-import Onboarding from './components/OnBoarding';
+import Onboarding from './components/onboarding/OnBoarding';
 
 const App = () => (
   <Router>
     <Security {...config.oidc}>
       <Container text style={{ marginTop: '7em' }}>
         <SecureRoute path='/dashboard' component={Dashboard} />
+        <SecureRoute path='/onboarding' exact component={Onboarding} />
         <Route path='/' exact component={Home} />
-        <Route path='/onboarding' exact component={Onboarding} />
         <Route path='/implicit/callback' component={LoginCallback} />
       </Container>
     </Security>

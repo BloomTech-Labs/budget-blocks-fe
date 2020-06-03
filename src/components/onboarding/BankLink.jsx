@@ -4,16 +4,16 @@ import { PlaidLink } from 'react-plaid-link';
 import { Link } from 'react-router-dom';
 import { Button } from '@material-ui/core';
 
-const OnBoarding = () => {
+const BankLink = () => {
   const onSuccess = (publicToken, metadata) => {
+    const HOST = process.env.REACT_APP_SERVER_HOST;
+
     console.log('public_token:', publicToken);
     console.log(metadata);
-    axios.post(
-      `https://budget-blocks-production-new.herokuapp.com/plaid/token_exchange/${1}`,
-      {
-        publicToken: publicToken,
-      }
-    );
+
+    axios.post(`${HOST}/plaid/token_exchange/${1}`, {
+      publicToken: publicToken,
+    });
   };
 
   return (
@@ -38,4 +38,4 @@ const OnBoarding = () => {
   );
 };
 
-export default OnBoarding;
+export default BankLink;

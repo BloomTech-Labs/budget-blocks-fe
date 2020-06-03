@@ -20,6 +20,11 @@ const Home = () => {
   // NOTE Change this to wherever we want the user to be redirected to after login
   const login = async () => {
     authService.login('/dashboard');
+    // if (userInfo.onboarding_complete === true) {
+    //   authService.login('/dashboard');
+    // } else {
+    //   authService.login('/onboarding');
+    // }
   };
 
   const logout = async () => {
@@ -45,7 +50,6 @@ const Home = () => {
           </div>
         )}
         {/* //NOTE This is what is displayed prior to logging in */}
-        {/* //NOTE Potentially display the LOGIN button and home page related things */}
         {!authState.isAuthenticated && (
           <div>
             <Button color='primary' variant='contained' onClick={login}>

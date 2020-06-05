@@ -7,6 +7,7 @@ import { Button } from '@material-ui/core';
 const Dashboard = () => {
   const { authState, authService } = useOktaAuth();
   const [userInfo, setUserInfo] = useState({});
+  const [transactions, setTransactions] = useState([]);
 
   const logout = async () => {
     authService.logout('/');
@@ -37,6 +38,28 @@ const Dashboard = () => {
       });
     }
   }, [authState, authService]);
+
+  useEffect(() => {
+    const SERVER_HOST = process.env.REACT_APP_SERVER_HOST
+
+    axios.get(`${SERVER_HOST}/plaid/userTransactions/${1}`)
+      .then(res => {
+        setTransactions({ transactions: res.data })
+        console.log(res.data)
+      })
+
+    axios.post(`https://api.budgetblocks.org/transaction`, setTransactions, {
+      headers: {
+        AccessControlAllowOrigin: 'http://localhost:3000/dashboard'
+      }
+    })
+    .then(res => {
+      console.log(res)
+    })
+    .catch(err => {
+      console.log(err)
+    })
+  }, [])
 
   console.log(userInfo);
 

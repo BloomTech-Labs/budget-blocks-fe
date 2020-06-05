@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Container from "@material-ui/core/Container";
 import { Typography } from "@material-ui/core";
-import { useStyles } from "../utils/styles/materialUlStyling";
+import { makeStyles } from "@material-ui/core/styles";
 import { useTheme } from "@material-ui/core/styles";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
@@ -11,6 +11,25 @@ import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
 import LensIcon from "@material-ui/icons/Lens";
 
 import { Link } from "react-router-dom";
+
+export const useStyles = makeStyles({
+  BudgetH2Style: {
+    fontFamily: "Poppins",
+    fontStyle: "normal",
+    fontWeight: "bold",
+    fontSize: "32px",
+    lineHeight: "48px",
+    textAlign: "center",
+  },
+  BudgetWelcomeHeaderStyle: {
+    fontFamily: "Poppins",
+    fontStyle: "normal",
+    fontWeight: "600px",
+    fontSize: "36px",
+    lineHeight: "130.8%",
+    color: "#13B9AC",
+  },
+});
 
 const Welcome = () => {
   const classes = useStyles();
@@ -23,7 +42,7 @@ const Welcome = () => {
   ];
 
   const links = [
-    "/onboarding/accountinfo",
+    "/accountinfo",
     "/onboaring/banklink",
     "/onboarding/budgetgoals",
   ];

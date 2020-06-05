@@ -23,6 +23,7 @@
     "bootstrap": "^4.4.1",
     "cypress": "^4.4.1",
     "date-fns": "^2.14.0",
+    "destyle.css": "^1.0.13",
     "dotenv": "^8.2.0",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.2",
@@ -50,7 +51,6 @@
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
     "semantic-ui-react": "^0.88.2",
-    "styled-components": "^5.1.0",
     "supertest": "^4.0.2"
   },
   "scripts": {

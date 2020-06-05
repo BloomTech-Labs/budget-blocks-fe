@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import { useForm, Controller } from 'react-hook-form';
 import { useOktaAuth } from '@okta/okta-react';
@@ -26,11 +26,14 @@ const useStyles = makeStyles((theme) => ({
 const Income = () => {
   const { handleSubmit, control, register, errors } = useForm();
   const { accessToken } = useOktaAuth();
+  const [income, setIncome] = useState(null);
+  const [editMode, setEditMode] = useState(true);
   const classes = useStyles();
 
   const SERVER_HOST = process.env.REACT_APP_SERVER_HOST;
 
   const formSubmit = (data) => {
+    setIncome(data.income);
     axios
       .post(
         `${SERVER_HOST}/api/income`,
@@ -41,30 +44,43 @@ const Income = () => {
           },
         }
       )
-      .then((res) => console.log(res))
+      .then((res) => {
+        console.log(res);
+        setEditMode(!editMode);
+      })
       .catch((err) => console.log(err));
   };
 
   return (
     <div>
-      <div className={classes.root}>
-        <form className={classes.form} onSubmit={handleSubmit(formSubmit)}>
-          <Controller
-            as={TextField}
-            name="income"
-            control={control}
-            defaultValue=""
-            inputRef={register}
-            id="outlined-basic"
-            label="Income"
-            variant="outlined"
-          />
-          {errors.name && <p>{errors.name.message}</p>}
-          <Button type="submit" variant="contained" color="primary">
-            Submit
-          </Button>
-        </form>
-      </div>
+      {editMode === true && (
+        <div className={classes.root}>
+          <form className={classes.form} onSubmit={handleSubmit(formSubmit)}>
+            <Controller
+              as={TextField}
+              name="income"
+              control={control}
+              defaultValue=""
+              inputRef={register}
+              id="outlined-basic"
+              label="Income"
+              variant="outlined"
+            />
+            {errors.name && <p>{errors.name.message}</p>}
+            <Button type="submit" variant="contained" color="primary">
+              Submit
+            </Button>
+            <Button onClick={() => setEditMode(!editMode)}>Edit</Button>
+          </form>
+        </div>
+      )}
+
+      {editMode === false && (
+        <div>
+          <p>Income:</p> {income}
+          <Button onClick={() => setEditMode(!editMode)}>Edit</Button>
+        </div>
+      )}
     </div>
   );
 };

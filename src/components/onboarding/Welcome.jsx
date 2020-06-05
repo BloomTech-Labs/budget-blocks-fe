@@ -9,15 +9,36 @@ import Button from "@material-ui/core/Button";
 import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
 import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
 import LensIcon from "@material-ui/icons/Lens";
+import Box from "@material-ui/core/Box";
 
 import { Link } from "react-router-dom";
 
 export const useStyles = makeStyles({
+  root: {
+    marginBottom: "2%",
+  },
+  list: {
+    listStyleType: "none",
+    margin: "5% 0",
+    padding: "0",
+  },
+  listItem: {
+    listStyleType: "none",
+    margin: "2% 0",
+    padding: "0",
+  },
+  link: {
+    textDecoration: "none",
+  },
+  body1: {
+    fontWeight: "bold",
+  },
   BudgetH2Style: {
+    margin: "2% 0",
     fontFamily: "Poppins",
     fontStyle: "normal",
     fontWeight: "bold",
-    fontSize: "32px",
+    fontSize: "3.2rem",
     lineHeight: "48px",
     textAlign: "center",
   },
@@ -25,9 +46,21 @@ export const useStyles = makeStyles({
     fontFamily: "Poppins",
     fontStyle: "normal",
     fontWeight: "600px",
-    fontSize: "36px",
+    fontSize: "3.6rem",
     lineHeight: "130.8%",
     color: "#13B9AC",
+  },
+  icon: {
+    marginRight: "1.5%",
+    color: "#A4EAE6",
+  },
+  typography: {
+    fontSize: "1rem",
+    "&:hover": { color: "#13B9AC" },
+  },
+  skipButton: {
+    display: "flex",
+    justifyContent: "flex-end",
   },
 });
 
@@ -55,45 +88,54 @@ const Welcome = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
+  const handleSkip = () => {};
+
   return (
-    <Container>
+    <Container className={classes.root}>
       <Typography className={classes.BudgetH2Style} variant="h2">
         Budget
       </Typography>
       <Typography className={classes.BudgetWelcomeHeaderStyle} variant="h1">
         Welcome to Budget Blocks
       </Typography>
-      <Typography variant="body1">
+      <Typography className={classes.body1} variant="body1">
         Let us do the work for you! Budget blocks automatically links to your
         accounts and displays your cash flow at a glance. Start budgeting your
         way to financial freedom today.
       </Typography>
-      <List>
+      <List className={classes.list}>
         {steps.map((toDo, index) => (
-          <ListItem>
-            <LensIcon />
-            <Link to={links[index]}>
-              <Typography>{toDo}</Typography>
+          <ListItem key={index} className={classes.listItem}>
+            <LensIcon className={classes.icon} />
+            <Link className={classes.link} to={links[index]}>
+              <Typography className={classes.typography} variant="h3">
+                {toDo}
+              </Typography>
             </Link>
           </ListItem>
         ))}
       </List>
-      <Button size="small" onClick={handleBack} disabled={activeStep === 0}>
-        {theme.direction === "rtl" ? (
-          <KeyboardArrowRight />
-        ) : (
-          <KeyboardArrowLeft />
-        )}
-        Back
-      </Button>
-      <Button size="small" onClick={handleNext} disabled={activeStep === 3}>
-        Next
-        {theme.direction === "rtl" ? (
-          <KeyboardArrowLeft />
-        ) : (
-          <KeyboardArrowRight />
-        )}
-      </Button>
+      <Box>
+        <Button size="small" onClick={handleBack} disabled={activeStep === 0}>
+          {theme.direction === "rtl" ? (
+            <KeyboardArrowRight />
+          ) : (
+            <KeyboardArrowLeft />
+          )}
+          Back
+        </Button>
+        <Button size="small" onClick={handleNext} disabled={activeStep === 3}>
+          Next
+          {theme.direction === "rtl" ? (
+            <KeyboardArrowLeft />
+          ) : (
+            <KeyboardArrowRight />
+          )}
+        </Button>
+      </Box>
+      <Box className={classes.skipButton}>
+        <Button onClick={handleSkip}>skip</Button>
+      </Box>
     </Container>
   );
 };

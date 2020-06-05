@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import { DashboardReducer } from './DashboardReducer';
+import { transactionReducer } from './transactionReducer';
 import { onBoardReducer } from './onBoardReducer';
 
 export default combineReducers({
-    dash: DashboardReducer,
+    dash: transactionReducer,
     onBoard: onBoardReducer
 })

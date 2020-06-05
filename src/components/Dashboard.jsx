@@ -33,6 +33,7 @@ const Dashboard = () => {
           })
           .then((res) => {
             setUserInfo(res.data.data);
+            window.localStorage.setItem('user_id', res.data.data.id)
           })
           .catch((err) => err.message);
       });
@@ -61,7 +62,7 @@ const Dashboard = () => {
     })
   }, [])
 
-  console.log(userInfo);
+  console.log("user", userInfo);
 
   return (
     <div>

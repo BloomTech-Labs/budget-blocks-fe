@@ -2,9 +2,13 @@ import { useOktaAuth } from '@okta/okta-react';
 import React, { useState, useEffect } from 'react';
 import { Button } from '@material-ui/core';
 
+//FIXME Remove this after testing
+import { useHistory } from 'react-router-dom';
+
 const Home = () => {
   const { authState, authService } = useOktaAuth();
   const [userInfo, setUserInfo] = useState(null);
+  const history = useHistory();
 
   useEffect(() => {
     if (!authState.isAuthenticated) {
@@ -35,6 +39,11 @@ const Home = () => {
     return <div>Loading...</div>;
   }
 
+  //FIXME Delete after testing
+  const redirectAccountInfo = (event) => {
+    history.push('/accountinfo');
+  };
+
   return (
     <div>
       <div>
@@ -59,6 +68,12 @@ const Home = () => {
             <br />
             <Button color='secondary' variant='contained' onClick={logout}>
               Logout
+            </Button>
+            {/* //FIXME Remove after testing */}
+            <br />
+            <br />
+            <Button variant='contained' onClick={redirectAccountInfo}>
+              Account Info
             </Button>
           </div>
         )}

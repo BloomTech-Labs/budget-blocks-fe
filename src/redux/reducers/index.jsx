@@ -3,6 +3,6 @@ import { transactionReducer } from './transactionReducer';
 import { onBoardReducer } from './onBoardReducer';
 
 export default combineReducers({
-    dash: transactionReducer,
+    trans: transactionReducer,
     onBoard: onBoardReducer
 })

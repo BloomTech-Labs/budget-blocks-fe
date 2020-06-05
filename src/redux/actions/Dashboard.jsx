@@ -12,7 +12,7 @@ export const fetchTransactions = () => dispatch => {
     axios
         .get(`${SERVER_HOST}/plaid/userTransactions/${user_id}`)
         .then(res => {
-            console.log(res);
+            console.log(res.data);
             dispatch({ type: FETCH_TRANS_SUCCESS, payload: res.data })
         })
         .catch(err => {

@@ -46,14 +46,20 @@ const Dashboard = props => {
     props.fetchTransactions()
 }, [])
 
-  // useEffect(() => {
-  //   const SERVER_HOST = process.env.REACT_APP_SERVER_HOST
+  const plaid_transaction = props.transaction
 
-  //   axios.get(`${SERVER_HOST}/plaid/userTransactions/${1}`)
-  //     .then(res => {
-  //       setTransactions({ transactions: res.data })
-  //       console.log(res.data)
-  //     })
+  console.log("transaction", props.transaction)
+  useEffect(() => {
+    axios.post(`https://api.budgetblocks.org/transaction`, plaid_transaction)
+    .then(res => {
+      console.log("response", res)
+    })
+    .catch(err => {
+      console.log("error", err)
+    })
+  })
+
+  // useEffect(() => {
 
   //   axios.post(`https://api.budgetblocks.org/transaction`, setTransactions, {
   //     headers: {

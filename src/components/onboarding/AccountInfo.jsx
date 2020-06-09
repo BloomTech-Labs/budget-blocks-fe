@@ -55,7 +55,10 @@ const useStyles = makeStyles({
     fontSize: '14px',
     lineHeight: '21px',
   },
-  zipCodeInput: {
+  cityInput: {
+    borderColor: '#13B9AC',
+  },
+  stateInput: {
     borderColor: '#13B9AC',
   },
   nextButton: {
@@ -120,7 +123,8 @@ const AccountInfo = () => {
   const onSubmit = async (data) => {
     await setAccountInfo({
       ...accountInfo,
-      zipCode: data.zipCode,
+      state: data.state,
+      city: data.city,
     });
 
     await setEditMode(!editMode);
@@ -185,17 +189,24 @@ const AccountInfo = () => {
         <>
           <form onSubmit={handleSubmit(onSubmit)}>
             <Controller
-              name='zipCode'
-              label='Zip Code'
+              name='city'
+              label='City'
               as={ValidationTextField}
               control={control}
               variant='outlined'
               inputRef={register({ required: true })}
-              className={classes.zipCodeInput}
+              className={classes.cityInput}
             />
-            {errors.zipCode &&
-              errors.zipCode.type === 'required' &&
-              'Zip code is required!'}
+
+            <Controller
+              name='state'
+              label='State'
+              as={ValidationTextField}
+              control={control}
+              variant='outlined'
+              inputRef={register({ required: true })}
+              className={classes.stateInput}
+            />
 
             <Button variant='contained' color='secondary' type='submit'>
               {'<'} Back
@@ -212,9 +223,13 @@ const AccountInfo = () => {
       )}
       {editMode === false && (
         <div>
-          <h3 className={classes.accountInfoSubHeaders}>Zip Code</h3>
+          <p className={classes.accountInfoPara}>
+            City: {accountInfo.city}
+          </p>
 
-          <p className={classes.accountInfoPara}>{accountInfo.zipCode}</p>
+          <p className={classes.accountInfoPara}>
+            State: {accountInfo.state}
+          </p>
 
           <Button variant='contained' color='secondary' type='submit'>
             {'<'} Back

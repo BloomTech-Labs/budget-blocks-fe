@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import {
   TextField,
@@ -6,6 +6,7 @@ import {
   makeStyles,
   withStyles,
 } from '@material-ui/core';
+import { useOktaAuth } from '@okta/okta-react';
 
 //SECTION Styles
 const useStyles = makeStyles({
@@ -16,7 +17,6 @@ const useStyles = makeStyles({
     color: '#000000',
     fontSize: '18px',
     lineHeight: '27px',
-    fontFamily: "'Poppins', sans-serif",
     fontWeight: '700',
   },
   profileHeader: {
@@ -32,7 +32,7 @@ const useStyles = makeStyles({
   accountInfoWrapper: {
     display: 'flex',
   },
-  accountInfo: {
+  accountInfoHeader: {
     color: '#000000',
     fontSize: '16px',
     lineHeight: '24px',
@@ -44,7 +44,21 @@ const useStyles = makeStyles({
     fontSize: '12px',
     lineHeight: '18px',
   },
-  zipCodeInput: {
+  accountInfoSubHeaders: {
+    color: '#21242C',
+    fontWeight: '600',
+    fontSize: '14px',
+    lineHeight: '21px',
+  },
+  accountInfoPara: {
+    color: '#21242C',
+    fontSize: '14px',
+    lineHeight: '21px',
+  },
+  cityInput: {
+    borderColor: '#13B9AC',
+  },
+  stateInput: {
     borderColor: '#13B9AC',
   },
   nextButton: {
@@ -72,15 +86,33 @@ const ValidationTextField = withStyles({
 })(TextField);
 
 const AccountInfo = () => {
-  const classes = useStyles();
-
   const [accountInfo, setAccountInfo] = useState({
     name: '',
     email: '',
-    password: '',
     country: '',
     zipCode: '',
   });
+
+  //FIXME Remove after redux is implemented
+  const { authState, authService } = useOktaAuth();
+
+  useEffect(() => {
+    if (!authState.isAuthenticated) {
+      // When user isn't authenticated, forget any user info
+      setAccountInfo(null);
+    } else {
+      authService.getUser().then((info) => {
+        setAccountInfo({
+          name: info.name,
+          email: info.email,
+          country: 'United States',
+        });
+        console.log(info);
+      });
+    }
+  }, [authState, authService]); // Update if authState changes
+
+  const classes = useStyles();
 
   //NOTE When the next button is clicked editMode gets set to false. When the user comes back to this page editMode should remain false. The user then has to click edit to change the values that they previously entered.
 
@@ -90,15 +122,13 @@ const AccountInfo = () => {
 
   const onSubmit = async (data) => {
     await setAccountInfo({
-      name: data.name,
-      email: data.email,
-      password: data.password,
-      country: data.country,
-      zipCode: data.zipCode,
+      ...accountInfo,
+      state: data.state,
+      city: data.city,
     });
 
     await setEditMode(!editMode);
-    console.log(data);
+    console.log('data: ', data);
   };
 
   return (
@@ -114,82 +144,92 @@ const AccountInfo = () => {
       </div>
 
       <div className={classes.accountInfoWrapper}>
-        <h1 className={classes.accountInfo}>Account Information</h1>
-        <Button
-          className={classes.editButton}
-          onClick={() => {
-            setEditMode(!editMode);
-          }}
-        >
-          Edit
-        </Button>
+        <h1 className={classes.accountInfoHeader}>Account Information</h1>
+
+        {!editMode && (
+          <Button
+            className={classes.editButton}
+            onClick={() => {
+              setEditMode(!editMode);
+            }}
+          >
+            Edit
+          </Button>
+        )}
+        {editMode && (
+          <Button
+            className={classes.editButton}
+            onClick={() => {
+              setEditMode(!editMode);
+            }}
+          >
+            Editing
+          </Button>
+        )}
       </div>
 
       {console.log('accountInfo: ', accountInfo)}
 
+      {!accountInfo && <div>Loding...</div>}
+
+      {accountInfo && (
+        <div>
+          <h3 className={classes.accountInfoSubHeaders}>Name</h3>
+          <p className={classes.accountInfoPara}>{accountInfo.name}</p>
+
+          <h3 className={classes.accountInfoSubHeaders}>Email</h3>
+          <p className={classes.accountInfoPara}>{accountInfo.email}</p>
+
+          <h3 className={classes.accountInfoSubHeaders}>Country</h3>
+          <p className={classes.accountInfoPara}>{accountInfo.country}</p>
+        </div>
+      )}
+
       {editMode === true && (
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <Controller
-            label='Name'
-            name='name'
-            as={TextField}
-            variant='outlined'
-            control={control}
-            inputRef={register({ required: true })}
-          />
-          {errors.name &&
-            errors.name.type === 'required' &&
-            'Name is required!'}
+        <>
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <Controller
+              name='city'
+              label='City'
+              as={ValidationTextField}
+              control={control}
+              variant='outlined'
+              inputRef={register({ required: true })}
+              className={classes.cityInput}
+            />
 
-          <Controller
-            label='Email'
-            name='email'
-            as={TextField}
-            control={control}
-            variant='outlined'
-            inputRef={register({ required: true })}
-          />
-          {errors.email &&
-            errors.email.type === 'required' &&
-            'Email is required!'}
+            <Controller
+              name='state'
+              label='State'
+              as={ValidationTextField}
+              control={control}
+              variant='outlined'
+              inputRef={register({ required: true })}
+              className={classes.stateInput}
+            />
 
-          <Controller
-            label='Password'
-            name='password'
-            as={TextField}
-            control={control}
-            variant='outlined'
-            inputRef={register({ required: true })}
-          />
-          {errors.password &&
-            errors.password.type === 'required' &&
-            'Password is required!'}
+            <Button variant='contained' color='secondary' type='submit'>
+              {'<'} Back
+            </Button>
+            <Button
+              variant='contained'
+              type='submit'
+              className={classes.nextButton}
+            >
+              Next {'>'}
+            </Button>
+          </form>
+        </>
+      )}
+      {editMode === false && (
+        <div>
+          <p className={classes.accountInfoPara}>
+            City: {accountInfo.city}
+          </p>
 
-          <Controller
-            label='Country'
-            name='country'
-            as={TextField}
-            control={control}
-            variant='outlined'
-            inputRef={register({ required: true })}
-          />
-          {errors.country &&
-            errors.country.type === 'required' &&
-            'Country is required!'}
-          <p></p>
-
-          <Controller
-            name='zipCode'
-            label='Zip Code'
-            as={ValidationTextField}
-            control={control}
-            variant='outlined'
-            inputRef={register({ required: true })}
-            className={classes.zipCodeInput}
-          />
-          {/* {errors.zipCode &&
-            errors.zipCode.type === 'required' &&
-            'Zip code is required!'} */}
+          <p className={classes.accountInfoPara}>
+            State: {accountInfo.state}
+          </p>
 
           <Button variant='contained' color='secondary' type='submit'>
             {'<'} Back
@@ -201,15 +241,6 @@ const AccountInfo = () => {
           >
             Next {'>'}
           </Button>
-        </form>
-      )}
-      {editMode === false && (
-        <div>
-          <p>Name: {accountInfo.name}</p>
-          <p>Email: {accountInfo.email}</p>
-          <p>Password: {accountInfo.password}</p>
-          <p>Country: {accountInfo.country}</p>
-          <p>Zip Code: {accountInfo.zipCode}</p>
         </div>
       )}
     </div>

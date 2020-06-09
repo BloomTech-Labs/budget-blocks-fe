@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useOktaAuth } from '@okta/okta-react';
 import axios from 'axios';
+import { connect } from "react-redux"
 import { Link, Redirect } from 'react-router-dom';
 import { Button } from '@material-ui/core';
 
-const Dashboard = () => {
+import { fetchTransactions } from '../Redux/actions/Dashboard'
+
+const Dashboard = props => {
   const { authState, authService } = useOktaAuth();
   const [userInfo, setUserInfo] = useState({});
 
@@ -32,13 +35,46 @@ const Dashboard = () => {
           })
           .then((res) => {
             setUserInfo(res.data.data);
+            window.localStorage.setItem('user_id', res.data.data.id)
           })
           .catch((err) => err.message);
       });
     }
   }, [authState, authService]);
 
-  console.log(userInfo);
+  useEffect(() => {
+    props.fetchTransactions()
+}, [])
+
+  const plaid_transaction = props.transaction
+
+  console.log("transaction", props.transaction)
+  useEffect(() => {
+    axios.post(`https://api.budgetblocks.org/transaction`, plaid_transaction)
+    .then(res => {
+      console.log("response", res)
+    })
+    .catch(err => {
+      console.log("error", err)
+    })
+  })
+
+  // useEffect(() => {
+
+  //   axios.post(`https://api.budgetblocks.org/transaction`, setTransactions, {
+  //     headers: {
+  //       AccessControlAllowOrigin: 'http://localhost:3000/dashboard'
+  //     }
+  //   })
+  //   .then(res => {
+  //     console.log(res)
+  //   })
+  //   .catch(err => {
+  //     console.log(err)
+  //   })
+  // }, [])
+
+  console.log("user", userInfo);
 
   return (
     <div>
@@ -71,4 +107,15 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+const mapStateToProps = state => {
+  return {
+      transaction: state.trans.transaction,
+      isFetching: state.trans.isFetching,
+      errors: state.trans.errors
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  { fetchTransactions }
+)(Dashboard);

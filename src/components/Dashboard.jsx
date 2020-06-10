@@ -1,15 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useOktaAuth } from '@okta/okta-react';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
 import { Button } from '@material-ui/core';
 
+// SECTION Redux Imports
 import { fetchTransactions } from '../redux/actions/dashboardAction';
+import { userAction, notAuthenticated } from '../redux/actions/userAction';
 
 const Dashboard = (props) => {
   const { authState, authService } = useOktaAuth();
-  const [userInfo, setUserInfo] = useState({});
 
   const logout = async () => {
     authService.logout('/');
@@ -19,25 +20,12 @@ const Dashboard = (props) => {
     const { accessToken } = authState;
 
     if (!authState.isAuthenticated) {
-      setUserInfo({});
+      props.notAuthenticated();
     } else {
       authService.getUser().then((info) => {
         const oktaUserInfo = info;
-        const SERVER_HOST = process.env.REACT_APP_SERVER_HOST;
 
-        console.log('info', info);
-
-        axios
-          .post(`${SERVER_HOST}/api/users`, oktaUserInfo, {
-            headers: {
-              Authorization: `Bearer ${accessToken}`,
-            },
-          })
-          .then((res) => {
-            setUserInfo(res.data.data);
-            window.localStorage.setItem('user_id', res.data.data.id);
-          })
-          .catch((err) => err.message);
+        props.userAction(oktaUserInfo, accessToken);
       });
     }
   }, [authState, authService]);
@@ -75,14 +63,14 @@ const Dashboard = (props) => {
   //   })
   // }, [])
 
-  console.log('user', userInfo);
-
   return (
     <div>
+      {props.userInfo && props.userInfo.onboarding_complete === false ? (
+        <Redirect to="/onboarding" />
+      ) : null}
       <h1> DASHBOARD </h1>
       <p>
-        If you landed here, then you have successfully logged in with
-        Okta!!
+        If you landed here, then you have successfully logged in with Okta!!
       </p>
       <p
         style={{
@@ -91,17 +79,19 @@ const Dashboard = (props) => {
         }}
       >
         Message:
-        {`Hi, ${userInfo && userInfo.name}. Welcome to the dashboard.`}
+        {`Hi, ${
+          props.userInfo && props.userInfo.name
+        }. Welcome to the dashboard.`}
       </p>
-      <p> USER INFO STATE: {userInfo && userInfo.email} </p>
-      <Link to='/onboarding'>
-        <Button color='primary' variant='contained'>
+      <p> USER INFO STATE: {props.userInfo && props.userInfo.email} </p>
+      <Link to="/onboarding">
+        <Button color="primary" variant="contained">
           Onboarding
         </Button>
         <br />
         <br />
       </Link>
-      <Button color='secondary' variant='contained' onClick={logout}>
+      <Button color="secondary" variant="contained" onClick={logout}>
         Logout
       </Button>
     </div>
@@ -113,7 +103,12 @@ const mapStateToProps = (state) => {
     transaction: state.trans.transaction,
     isFetching: state.trans.isFetching,
     errors: state.trans.errors,
+    userInfo: state.users.userInfo,
   };
 };
 
-export default connect(mapStateToProps, { fetchTransactions })(Dashboard);
+export default connect(mapStateToProps, {
+  fetchTransactions,
+  userAction,
+  notAuthenticated,
+})(Dashboard);

@@ -25,7 +25,8 @@ const useStyles = makeStyles((theme) => ({
 
 const Income = () => {
   const { handleSubmit, control, register, errors } = useForm();
-  const { accessToken } = useOktaAuth();
+  const { authState } = useOktaAuth();
+  const { accessToken } = authState;
   const [income, setIncome] = useState(null);
   const [editMode, setEditMode] = useState(true);
   const classes = useStyles();

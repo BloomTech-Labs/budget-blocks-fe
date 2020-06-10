@@ -40,6 +40,7 @@ const Dashboard = (props) => {
   console.log("transaction", props.transaction)
   
   useEffect(() => {
+<<<<<<< HEAD
     axios.post(`https://api.budgetblocks.org/transaction`, plaid_transaction)
     .then(res => {
       console.log("response", res)
@@ -48,11 +49,23 @@ const Dashboard = (props) => {
       console.log("error", err)
     })
   }, [])
+=======
+    axios
+      .post(`https://api.budgetblocks.org/transaction`, plaid_transaction)
+      .then((res) => {
+        console.log('response', res);
+      })
+      .catch((err) => {
+        console.log('error', err);
+      });
+  });
+>>>>>>> 42f4cfe766b2474742ddb9bb0b15b0404172e7bc
 
   return (
     <div>
       {props.userInfo && props.userInfo.onboarding_complete === false ? (
         <Redirect to="/onboarding" />
+<<<<<<< HEAD
       ) : null}
       <h1> DASHBOARD </h1>
       <p>
@@ -87,6 +100,38 @@ const Dashboard = (props) => {
           </div>
         ))}
       </div> */}
+=======
+      ) : (
+        <div>
+          <h1> DASHBOARD </h1>
+          <p>
+            If you landed here, then you have successfully logged in with Okta!!
+          </p>
+          <p
+            style={{
+              color: 'blue',
+              fontSize: '32px',
+            }}
+          >
+            Message:
+            {`Hi, ${
+              props.userInfo && props.userInfo.name
+            }. Welcome to the dashboard.`}
+          </p>
+          <p> USER INFO STATE: {props.userInfo && props.userInfo.email} </p>
+          <Link to="/onboarding">
+            <Button color="primary" variant="contained">
+              Onboarding
+            </Button>
+            <br />
+            <br />
+          </Link>
+          <Button color="secondary" variant="contained" onClick={logout}>
+            Logout
+          </Button>
+        </div>
+      )}
+>>>>>>> 42f4cfe766b2474742ddb9bb0b15b0404172e7bc
     </div>
   );
 };

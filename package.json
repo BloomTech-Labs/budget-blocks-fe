@@ -91,6 +91,7 @@
     "axios-mock-adapter": "^1.17.0",
     "babel-plugin-istanbul": "^6.0.0",
     "jsdoc-to-markdown": "^5.0.3",
+    "prettier": "^2.0.5",
     "redux-mock-store": "^1.5.4",
     "start-server-and-test": "^1.11.0"
   },

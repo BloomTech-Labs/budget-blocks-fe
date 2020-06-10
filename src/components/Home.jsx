@@ -24,11 +24,6 @@ const Home = () => {
   // NOTE Change this to wherever we want the user to be redirected to after login
   const login = async () => {
     authService.login('/dashboard');
-    // if (userInfo.onboarding_complete === true) {
-    //   authService.login('/dashboard');
-    // } else {
-    //   authService.login('/onboarding');
-    // }
   };
 
   const logout = async () => {
@@ -38,11 +33,6 @@ const Home = () => {
   if (authState.isPending) {
     return <div>Loading...</div>;
   }
-
-  //FIXME Delete after testing
-  const redirectAccountInfo = (event) => {
-    history.push('/accountinfo');
-  };
 
   return (
     <div>
@@ -68,12 +58,6 @@ const Home = () => {
             <br />
             <Button color='secondary' variant='contained' onClick={logout}>
               Logout
-            </Button>
-            {/* //FIXME Remove after testing */}
-            <br />
-            <br />
-            <Button variant='contained' onClick={redirectAccountInfo}>
-              Account Info
             </Button>
           </div>
         )}

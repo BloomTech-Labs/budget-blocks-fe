@@ -10,6 +10,7 @@ import { fetchTransactions } from '../Redux/actions/Dashboard'
 const Dashboard = props => {
   const { authState, authService } = useOktaAuth();
   const [userInfo, setUserInfo] = useState({});
+  const [userData, setUserData] = useState([]);
 
   const logout = async () => {
     authService.logout('/');
@@ -49,6 +50,7 @@ const Dashboard = props => {
   const plaid_transaction = props.transaction
 
   console.log("transaction", props.transaction)
+  
   useEffect(() => {
     axios.post(`https://api.budgetblocks.org/transaction`, plaid_transaction)
     .then(res => {
@@ -57,22 +59,7 @@ const Dashboard = props => {
     .catch(err => {
       console.log("error", err)
     })
-  })
-
-  // useEffect(() => {
-
-  //   axios.post(`https://api.budgetblocks.org/transaction`, setTransactions, {
-  //     headers: {
-  //       AccessControlAllowOrigin: 'http://localhost:3000/dashboard'
-  //     }
-  //   })
-  //   .then(res => {
-  //     console.log(res)
-  //   })
-  //   .catch(err => {
-  //     console.log(err)
-  //   })
-  // }, [])
+  }, [])
 
   console.log("user", userInfo);
 
@@ -103,6 +90,13 @@ const Dashboard = props => {
       <Button color='secondary' variant='contained' onClick={logout}>
         Logout
       </Button>
+      {/* <div>
+        {userData.transactions.map((data) => (
+          <div>
+            <h3>{data.budget_blocks_category}</h3>
+          </div>
+        ))}
+      </div> */}
     </div>
   );
 };

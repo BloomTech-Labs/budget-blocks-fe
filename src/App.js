@@ -7,6 +7,7 @@ import config from './components/okta/config';
 import Home from './components/Home';
 import Dashboard from './components/Dashboard';
 import Onboarding from './components/onboarding/OnBoarding';
+import BankLink from './components/onboarding/BankLink'
 
 const App = () => (
   <Router>
@@ -14,6 +15,7 @@ const App = () => (
       <Container text style={{ marginTop: '7em' }}>
         <SecureRoute path='/dashboard' component={Dashboard} />
         <SecureRoute path='/onboarding' exact component={Onboarding} />
+        <SecureRoute path='/banklink' exact component={BankLink} />
         <Route path='/' exact component={Home} />
         <Route path='/implicit/callback' component={LoginCallback} />
       </Container>

@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useOktaAuth } from '@okta/okta-react';
 import axios from 'axios';
-import { connect } from "react-redux"
+import { connect } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
 import { Button } from '@material-ui/core';
 
-import { fetchTransactions } from '../Redux/actions/Dashboard'
+import { fetchTransactions } from '../redux/actions/dashboardAction';
 
-const Dashboard = props => {
+const Dashboard = (props) => {
   const { authState, authService } = useOktaAuth();
   const [userInfo, setUserInfo] = useState({});
   const [userData, setUserData] = useState([]);
@@ -36,7 +36,7 @@ const Dashboard = props => {
           })
           .then((res) => {
             setUserInfo(res.data.data);
-            window.localStorage.setItem('user_id', res.data.data.id)
+            window.localStorage.setItem('user_id', res.data.data.id);
           })
           .catch((err) => err.message);
       });
@@ -44,11 +44,12 @@ const Dashboard = props => {
   }, [authState, authService]);
 
   useEffect(() => {
-    props.fetchTransactions()
-}, [])
+    props.fetchTransactions();
+  }, []);
 
-  const plaid_transaction = props.transaction
+  const plaid_transaction = props.transaction;
 
+<<<<<<< HEAD
   console.log("transaction", props.transaction)
   
   useEffect(() => {
@@ -60,8 +61,36 @@ const Dashboard = props => {
       console.log("error", err)
     })
   }, [])
+=======
+  console.log('transaction', props.transaction);
+  useEffect(() => {
+    axios
+      .post(`https://api.budgetblocks.org/transaction`, plaid_transaction)
+      .then((res) => {
+        console.log('response', res);
+      })
+      .catch((err) => {
+        console.log('error', err);
+      });
+  });
 
-  console.log("user", userInfo);
+  // useEffect(() => {
+
+  //   axios.post(`https://api.budgetblocks.org/transaction`, setTransactions, {
+  //     headers: {
+  //       AccessControlAllowOrigin: 'http://localhost:3000/dashboard'
+  //     }
+  //   })
+  //   .then(res => {
+  //     console.log(res)
+  //   })
+  //   .catch(err => {
+  //     console.log(err)
+  //   })
+  // }, [])
+>>>>>>> 3a957a083982b1c53e22881d1fc95d088ddcd55e
+
+  console.log('user', userInfo);
 
   return (
     <div>
@@ -101,15 +130,12 @@ const Dashboard = props => {
   );
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-      transaction: state.trans.transaction,
-      isFetching: state.trans.isFetching,
-      errors: state.trans.errors
-  }
-}
+    transaction: state.trans.transaction,
+    isFetching: state.trans.isFetching,
+    errors: state.trans.errors,
+  };
+};
 
-export default connect(
-  mapStateToProps,
-  { fetchTransactions }
-)(Dashboard);
+export default connect(mapStateToProps, { fetchTransactions })(Dashboard);

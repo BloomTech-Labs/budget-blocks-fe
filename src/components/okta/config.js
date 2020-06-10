@@ -7,7 +7,7 @@ export default {
     clientId: CLIENT_ID,
     issuer: ISSUER,
     redirectUri: `${HOST}/implicit/callback`,
-    scopes: ['openid', 'profile', 'email'],
+    scopes: ["openid", "profile", "email"],
     pkce: true,
   },
   // resourceServer: {

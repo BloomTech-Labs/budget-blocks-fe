@@ -5,9 +5,11 @@ import { useOktaAuth } from '@okta/okta-react';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
+import { useHistory } from 'react-router-dom';
+import { useStyles } from '../../styles/theme_provider';
 
 // 13B9AC button primary color
-const useStyles = makeStyles((theme) => ({
+const customStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     flexDirection: 'column',
@@ -29,7 +31,9 @@ const Income = () => {
   const { accessToken } = authState;
   const [income, setIncome] = useState(null);
   const [editMode, setEditMode] = useState(true);
-  const classes = useStyles();
+  const classes = customStyles();
+  const buttonClasses = useStyles();
+  const history = useHistory();
 
   const SERVER_HOST = process.env.REACT_APP_SERVER_HOST;
 
@@ -82,6 +86,28 @@ const Income = () => {
           <Button onClick={() => setEditMode(!editMode)}>Edit</Button>
         </div>
       )}
+
+      <Button
+        variant="contained"
+        color="secondary"
+        type="submit"
+        className={buttonClasses.backButton}
+        onClick={() => {
+          history.push('/onboarding/budgetview');
+        }}
+      >
+        {'<'} Back
+      </Button>
+      <Button
+        variant="contained"
+        type="submit"
+        className={buttonClasses.nextButton}
+        onClick={() => {
+          history.push('/dashboard');
+        }}
+      >
+        Next {'>'}
+      </Button>
     </div>
   );
 };

@@ -5,10 +5,19 @@ import {
   Button,
   makeStyles,
   withStyles,
+  Select,
+  MenuItem,
 } from '@material-ui/core';
+import { useOktaAuth } from '@okta/okta-react';
+import { useHistory } from 'react-router-dom';
+import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
+import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
+import { useStyles } from '../../styles/theme_provider';
+import { connect } from 'react-redux';
+import { updateUser, notAuthenticated } from '../../redux/actions/userAction';
 
 //SECTION Styles
-const useStyles = makeStyles({
+const customStyles = makeStyles({
   mainWrapper: {
     height: '100vh',
   },
@@ -16,7 +25,6 @@ const useStyles = makeStyles({
     color: '#000000',
     fontSize: '18px',
     lineHeight: '27px',
-    fontFamily: "'Poppins', sans-serif",
     fontWeight: '700',
   },
   profileHeader: {
@@ -32,7 +40,7 @@ const useStyles = makeStyles({
   accountInfoWrapper: {
     display: 'flex',
   },
-  accountInfo: {
+  accountInfoHeader: {
     color: '#000000',
     fontSize: '16px',
     lineHeight: '24px',
@@ -44,7 +52,21 @@ const useStyles = makeStyles({
     fontSize: '12px',
     lineHeight: '18px',
   },
-  zipCodeInput: {
+  accountInfoSubHeaders: {
+    color: '#21242C',
+    fontWeight: '600',
+    fontSize: '14px',
+    lineHeight: '21px',
+  },
+  accountInfoPara: {
+    color: '#21242C',
+    fontSize: '14px',
+    lineHeight: '21px',
+  },
+  cityInput: {
+    borderColor: '#13B9AC',
+  },
+  stateInput: {
     borderColor: '#13B9AC',
   },
   nextButton: {
@@ -65,40 +87,33 @@ const ValidationTextField = withStyles({
     '& input:valid:focus + fieldset': {
       borderColor: '#13B9AC',
       borderWidth: 1,
-      // borderLeftWidth: 6,
-      // padding: '4px !important', // override inline-style
     },
   },
 })(TextField);
 
-const AccountInfo = () => {
-  const classes = useStyles();
+const AccountInfo = (props) => {
+  const history = useHistory();
+  const classes = customStyles();
+  const buttonClasses = useStyles();
+  console.log(props.userInfo);
 
-  const [accountInfo, setAccountInfo] = useState({
-    name: '',
-    email: '',
-    password: '',
-    country: '',
-    zipCode: '',
-  });
-
-  //NOTE When the next button is clicked editMode gets set to false. When the user comes back to this page editMode should remain false. The user then has to click edit to change the values that they previously entered.
+  const { authState } = useOktaAuth();
+  const { accessToken } = authState;
+  const userId = localStorage.getItem('user_id');
 
   const [editMode, setEditMode] = useState(true);
 
-  const { register, handleSubmit, errors, control } = useForm();
+  const { register, handleSubmit, control } = useForm();
 
   const onSubmit = async (data) => {
-    await setAccountInfo({
-      name: data.name,
-      email: data.email,
-      password: data.password,
-      country: data.country,
-      zipCode: data.zipCode,
-    });
+    const changes = {
+      state: data.state,
+      city: data.city,
+    };
+    await props.updateUser(userId, changes, accessToken);
 
     await setEditMode(!editMode);
-    console.log(data);
+    console.log('data: ', data);
   };
 
   return (
@@ -107,113 +122,184 @@ const AccountInfo = () => {
         <h1 className={classes.budgetHeader}>Budget</h1>
         <h2 className={classes.profileHeader}>Profile</h2>
         <p className={classes.sectionDescription}>
-          Ever wonder how much the average person spends on housing? Add
-          your zip code and you can compare your budget to the average in
-          your region.
+          Ever wonder how much the average person spends on housing? Add your
+          zip code and you can compare your budget to the average in your
+          region.
         </p>
       </div>
 
       <div className={classes.accountInfoWrapper}>
-        <h1 className={classes.accountInfo}>Account Information</h1>
-        <Button
-          className={classes.editButton}
-          onClick={() => {
-            setEditMode(!editMode);
-          }}
-        >
-          Edit
-        </Button>
+        <h1 className={classes.accountInfoHeader}>Account Information</h1>
+
+        {!editMode && (
+          <Button
+            className={classes.editButton}
+            onClick={() => {
+              setEditMode(!editMode);
+            }}
+          >
+            Edit
+          </Button>
+        )}
+        {editMode && (
+          <Button
+            className={classes.editButton}
+            onClick={() => {
+              setEditMode(!editMode);
+            }}
+          >
+            Editing
+          </Button>
+        )}
       </div>
 
-      {console.log('accountInfo: ', accountInfo)}
+      {!props.userInfo && <div>Loding...</div>}
+
+      {props.userInfo && (
+        <div>
+          <h3 className={classes.accountInfoSubHeaders}>Name</h3>
+          <p className={classes.accountInfoPara}>{props.userInfo.name}</p>
+
+          <h3 className={classes.accountInfoSubHeaders}>Email</h3>
+          <p className={classes.accountInfoPara}>{props.userInfo.email}</p>
+
+          <h3 className={classes.accountInfoSubHeaders}>Country</h3>
+          <p className={classes.accountInfoPara}>{props.userInfo.country}</p>
+        </div>
+      )}
 
       {editMode === true && (
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <Controller
-            label='Name'
-            name='name'
-            as={TextField}
-            variant='outlined'
-            control={control}
-            inputRef={register({ required: true })}
-          />
-          {errors.name &&
-            errors.name.type === 'required' &&
-            'Name is required!'}
+        <>
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <Controller
+              name="city"
+              label="City"
+              as={ValidationTextField}
+              control={control}
+              variant="outlined"
+              inputRef={register({ required: true })}
+              className={classes.cityInput}
+            />
 
-          <Controller
-            label='Email'
-            name='email'
-            as={TextField}
-            control={control}
-            variant='outlined'
-            inputRef={register({ required: true })}
-          />
-          {errors.email &&
-            errors.email.type === 'required' &&
-            'Email is required!'}
+            {/* //FIXME Too long.. when use CustomSelect the state comes back undefined */}
+            <Controller
+              name="state"
+              label="State"
+              as={
+                <Select>
+                  <MenuItem value="" selected="selected">
+                    Select a State
+                  </MenuItem>
+                  <MenuItem value="AL">Alabama</MenuItem>
+                  <MenuItem value="AK">Alaska</MenuItem>
+                  <MenuItem value="AZ">Arizona</MenuItem>
+                  <MenuItem value="AR">Arkansas</MenuItem>
+                  <MenuItem value="CA">California</MenuItem>
+                  <MenuItem value="CO">Colorado</MenuItem>
+                  <MenuItem value="CT">Connecticut</MenuItem>
+                  <MenuItem value="DE">Delaware</MenuItem>
+                  <MenuItem value="DC">District Of Columbia</MenuItem>
+                  <MenuItem value="FL">Florida</MenuItem>
+                  <MenuItem value="GA">Georgia</MenuItem>
+                  <MenuItem value="HI">Hawaii</MenuItem>
+                  <MenuItem value="ID">Idaho</MenuItem>
+                  <MenuItem value="IL">Illinois</MenuItem>
+                  <MenuItem value="IN">Indiana</MenuItem>
+                  <MenuItem value="IA">Iowa</MenuItem>
+                  <MenuItem value="KS">Kansas</MenuItem>
+                  <MenuItem value="KY">Kentucky</MenuItem>
+                  <MenuItem value="LA">Louisiana</MenuItem>
+                  <MenuItem value="ME">Maine</MenuItem>
+                  <MenuItem value="MD">Maryland</MenuItem>
+                  <MenuItem value="MA">Massachusetts</MenuItem>
+                  <MenuItem value="MI">Michigan</MenuItem>
+                  <MenuItem value="MN">Minnesota</MenuItem>
+                  <MenuItem value="MS">Mississippi</MenuItem>
+                  <MenuItem value="MO">Missouri</MenuItem>
+                  <MenuItem value="MT">Montana</MenuItem>
+                  <MenuItem value="NE">Nebraska</MenuItem>
+                  <MenuItem value="NV">Nevada</MenuItem>
+                  <MenuItem value="NH">New Hampshire</MenuItem>
+                  <MenuItem value="NJ">New Jersey</MenuItem>
+                  <MenuItem value="NM">New Mexico</MenuItem>
+                  <MenuItem value="NY">New York</MenuItem>
+                  <MenuItem value="NC">North Carolina</MenuItem>
+                  <MenuItem value="ND">North Dakota</MenuItem>
+                  <MenuItem value="OH">Ohio</MenuItem>
+                  <MenuItem value="OK">Oklahoma</MenuItem>
+                  <MenuItem value="OR">Oregon</MenuItem>
+                  <MenuItem value="PA">Pennsylvania</MenuItem>
+                  <MenuItem value="RI">Rhode Island</MenuItem>
+                  <MenuItem value="SC">South Carolina</MenuItem>
+                  <MenuItem value="SD">South Dakota</MenuItem>
+                  <MenuItem value="TN">Tennessee</MenuItem>
+                  <MenuItem value="TX">Texas</MenuItem>
+                  <MenuItem value="UT">Utah</MenuItem>
+                  <MenuItem value="VT">Vermont</MenuItem>
+                  <MenuItem value="VA">Virginia</MenuItem>
+                  <MenuItem value="WA">Washington</MenuItem>
+                  <MenuItem value="WV">West Virginia</MenuItem>
+                  <MenuItem value="WI">Wisconsin</MenuItem>
+                  <MenuItem value="WY">Wyoming</MenuItem>
+                </Select>
+              }
+              control={control}
+              variant="outlined"
+              inputRef={register({ required: true })}
+              className={classes.stateInput}
+            />
 
-          <Controller
-            label='Password'
-            name='password'
-            as={TextField}
-            control={control}
-            variant='outlined'
-            inputRef={register({ required: true })}
-          />
-          {errors.password &&
-            errors.password.type === 'required' &&
-            'Password is required!'}
-
-          <Controller
-            label='Country'
-            name='country'
-            as={TextField}
-            control={control}
-            variant='outlined'
-            inputRef={register({ required: true })}
-          />
-          {errors.country &&
-            errors.country.type === 'required' &&
-            'Country is required!'}
-          <p></p>
-
-          <Controller
-            name='zipCode'
-            label='Zip Code'
-            as={ValidationTextField}
-            control={control}
-            variant='outlined'
-            inputRef={register({ required: true })}
-            className={classes.zipCodeInput}
-          />
-          {/* {errors.zipCode &&
-            errors.zipCode.type === 'required' &&
-            'Zip code is required!'} */}
-
-          <Button variant='contained' color='secondary' type='submit'>
-            {'<'} Back
-          </Button>
-          <Button
-            variant='contained'
-            type='submit'
-            className={classes.nextButton}
-          >
-            Next {'>'}
-          </Button>
-        </form>
+            <Button
+              variant="contained"
+              type="submit"
+              className={buttonClasses.nextButton}
+            >
+              Confirm {'>'}
+            </Button>
+          </form>
+        </>
       )}
       {editMode === false && (
         <div>
-          <p>Name: {accountInfo.name}</p>
-          <p>Email: {accountInfo.email}</p>
-          <p>Password: {accountInfo.password}</p>
-          <p>Country: {accountInfo.country}</p>
-          <p>Zip Code: {accountInfo.zipCode}</p>
+          <p className={classes.accountInfoPara}>City: {props.userInfo.city}</p>
+
+          <p className={classes.accountInfoPara}>
+            State: {props.userInfo.state}
+          </p>
+
+          <Button
+            variant="contained"
+            color="secondary"
+            type="submit"
+            className={buttonClasses.backButton}
+            onClick={() => {
+              history.push('/onboarding/welcome');
+            }}
+          >
+            <KeyboardArrowLeft /> Back
+          </Button>
+          <Button
+            variant="contained"
+            type="submit"
+            className={buttonClasses.nextButton}
+            onClick={() => {
+              history.push('/onboarding/banklink');
+            }}
+          >
+            Next <KeyboardArrowRight />
+          </Button>
         </div>
       )}
     </div>
   );
 };
 
-export default AccountInfo;
+const mapStateToProps = (state) => {
+  return {
+    userInfo: state.users.userInfo,
+  };
+};
+
+export default connect(mapStateToProps, { updateUser, notAuthenticated })(
+  AccountInfo
+);

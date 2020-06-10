@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
+import { ThemeProvider } from '@material-ui/core';
+import { theme } from './styles/theme_provider';
 
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';

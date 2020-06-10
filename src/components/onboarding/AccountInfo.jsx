@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import {
   TextField,
@@ -13,8 +13,8 @@ import { useHistory } from 'react-router-dom';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import { useStyles } from '../../styles/theme_provider';
-
-import { CustomSelect } from '../../styles/custom_components';
+import { connect } from 'react-redux';
+import { updateUser, notAuthenticated } from '../../redux/actions/userAction';
 
 //SECTION Styles
 const customStyles = makeStyles({
@@ -87,55 +87,30 @@ const ValidationTextField = withStyles({
     '& input:valid:focus + fieldset': {
       borderColor: '#13B9AC',
       borderWidth: 1,
-      // borderLeftWidth: 6,
-      // padding: '4px !important', // override inline-style
     },
   },
 })(TextField);
 
-const AccountInfo = () => {
+const AccountInfo = (props) => {
   const history = useHistory();
   const classes = customStyles();
   const buttonClasses = useStyles();
+  console.log(props.userInfo);
 
-  const [accountInfo, setAccountInfo] = useState({
-    name: '',
-    email: '',
-    country: '',
-    zipCode: '',
-  });
-
-  //FIXME Remove after redux is implemented
-  const { authState, authService } = useOktaAuth();
-
-  useEffect(() => {
-    if (!authState.isAuthenticated) {
-      // When user isn't authenticated, forget any user info
-      setAccountInfo(null);
-    } else {
-      authService.getUser().then((info) => {
-        setAccountInfo({
-          name: info.name,
-          email: info.email,
-          country: 'United States',
-        });
-        console.log(info);
-      });
-    }
-  }, [authState, authService]); // Update if authState changes
-
-  //NOTE When the next button is clicked editMode gets set to false. When the user comes back to this page editMode should remain false. The user then has to click edit to change the values that they previously entered.
+  const { authState } = useOktaAuth();
+  const { accessToken } = authState;
+  const userId = localStorage.getItem('user_id');
 
   const [editMode, setEditMode] = useState(true);
 
-  const { register, handleSubmit, errors, control } = useForm();
+  const { register, handleSubmit, control } = useForm();
 
   const onSubmit = async (data) => {
-    await setAccountInfo({
-      ...accountInfo,
+    const changes = {
       state: data.state,
       city: data.city,
-    });
+    };
+    await props.updateUser(userId, changes, accessToken);
 
     await setEditMode(!editMode);
     console.log('data: ', data);
@@ -178,20 +153,18 @@ const AccountInfo = () => {
         )}
       </div>
 
-      {console.log('accountInfo: ', accountInfo)}
+      {!props.userInfo && <div>Loding...</div>}
 
-      {!accountInfo && <div>Loding...</div>}
-
-      {accountInfo && (
+      {props.userInfo && (
         <div>
           <h3 className={classes.accountInfoSubHeaders}>Name</h3>
-          <p className={classes.accountInfoPara}>{accountInfo.name}</p>
+          <p className={classes.accountInfoPara}>{props.userInfo.name}</p>
 
           <h3 className={classes.accountInfoSubHeaders}>Email</h3>
-          <p className={classes.accountInfoPara}>{accountInfo.email}</p>
+          <p className={classes.accountInfoPara}>{props.userInfo.email}</p>
 
           <h3 className={classes.accountInfoSubHeaders}>Country</h3>
-          <p className={classes.accountInfoPara}>{accountInfo.country}</p>
+          <p className={classes.accountInfoPara}>{props.userInfo.country}</p>
         </div>
       )}
 
@@ -288,9 +261,11 @@ const AccountInfo = () => {
       )}
       {editMode === false && (
         <div>
-          <p className={classes.accountInfoPara}>City: {accountInfo.city}</p>
+          <p className={classes.accountInfoPara}>City: {props.userInfo.city}</p>
 
-          <p className={classes.accountInfoPara}>State: {accountInfo.state}</p>
+          <p className={classes.accountInfoPara}>
+            State: {props.userInfo.state}
+          </p>
 
           <Button
             variant="contained"
@@ -319,4 +294,12 @@ const AccountInfo = () => {
   );
 };
 
-export default AccountInfo;
+const mapStateToProps = (state) => {
+  return {
+    userInfo: state.users.userInfo,
+  };
+};
+
+export default connect(mapStateToProps, { updateUser, notAuthenticated })(
+  AccountInfo
+);

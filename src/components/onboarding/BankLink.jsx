@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import { PlaidLink } from 'react-plaid-link';
 import { useHistory } from 'react-router-dom';
@@ -6,6 +6,12 @@ import { Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
+import { useOktaAuth } from '@okta/okta-react';
+import { useAlert } from 'react-alert';
+
+//SECTION REDUX
+import { connect } from 'react-redux';
+import { updateUser } from '../../redux/actions/userAction';
 
 // SECTION CUSTOM STYLES
 import { useStyles } from '../../styles/theme_provider';
@@ -45,10 +51,17 @@ const customStyles = makeStyles({
   },
 });
 
-const BankLink = () => {
+const BankLink = (props) => {
+  const { authState } = useOktaAuth();
+  const { accessToken } = authState;
   const buttonClasses = useStyles();
   const classes = customStyles();
   const history = useHistory();
+  const userId = localStorage.getItem('user_id');
+  const alert = useAlert();
+
+  const [bankCreated, setBackCreated] = useState(false);
+
   const onSuccess = (publicToken, metadata) => {
     const HOST = process.env.REACT_APP_SERVER_HOST;
 
@@ -56,9 +69,30 @@ const BankLink = () => {
     console.log(metadata);
 
     //FIXME Make this dynamic
-    axios.post(`${HOST}/plaid/token_exchange/${1}`, {
-      publicToken: publicToken,
-    });
+    axios
+      .post(`${HOST}/plaid/token_exchange/${userId}`, {
+        publicToken: publicToken,
+      })
+      .then((res) => {
+        if (publicToken) {
+          setBackCreated(true);
+        }
+      })
+      .catch((err) => {
+        setBackCreated(false);
+      });
+  };
+  console.log(props.userInfo);
+
+  const onSubmit = () => {
+    const changes = { ...props.userInfo, onboarding_complete: true };
+    console.log('on submit: ', props.userInfo);
+    if (bankCreated === true) {
+      props.updateUser(userId, changes, accessToken);
+      setTimeout(() => history.push('/dashboard'), 1000);
+    } else {
+      alert.show('You did not connect your bank account!');
+    }
   };
 
   return (
@@ -115,9 +149,7 @@ const BankLink = () => {
           variant="contained"
           type="submit"
           className={buttonClasses.nextButton}
-          onClick={() => {
-            history.push('/onboarding/budget');
-          }}
+          onClick={onSubmit}
         >
           Next <KeyboardArrowRight />
         </Button>
@@ -126,4 +158,10 @@ const BankLink = () => {
   );
 };
 
-export default BankLink;
+const mapStateToProps = (state) => {
+  return {
+    userInfo: state.users.userInfo,
+  };
+};
+
+export default connect(mapStateToProps, { updateUser })(BankLink);

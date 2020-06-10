@@ -48,52 +48,40 @@ const Dashboard = (props) => {
       });
   });
 
-  // useEffect(() => {
-
-  //   axios.post(`https://api.budgetblocks.org/transaction`, setTransactions, {
-  //     headers: {
-  //       AccessControlAllowOrigin: 'http://localhost:3000/dashboard'
-  //     }
-  //   })
-  //   .then(res => {
-  //     console.log(res)
-  //   })
-  //   .catch(err => {
-  //     console.log(err)
-  //   })
-  // }, [])
-
   return (
     <div>
       {props.userInfo && props.userInfo.onboarding_complete === false ? (
         <Redirect to="/onboarding" />
-      ) : null}
-      <h1> DASHBOARD </h1>
-      <p>
-        If you landed here, then you have successfully logged in with Okta!!
-      </p>
-      <p
-        style={{
-          color: 'blue',
-          fontSize: '32px',
-        }}
-      >
-        Message:
-        {`Hi, ${
-          props.userInfo && props.userInfo.name
-        }. Welcome to the dashboard.`}
-      </p>
-      <p> USER INFO STATE: {props.userInfo && props.userInfo.email} </p>
-      <Link to="/onboarding">
-        <Button color="primary" variant="contained">
-          Onboarding
-        </Button>
-        <br />
-        <br />
-      </Link>
-      <Button color="secondary" variant="contained" onClick={logout}>
-        Logout
-      </Button>
+      ) : (
+        <div>
+          <h1> DASHBOARD </h1>
+          <p>
+            If you landed here, then you have successfully logged in with Okta!!
+          </p>
+          <p
+            style={{
+              color: 'blue',
+              fontSize: '32px',
+            }}
+          >
+            Message:
+            {`Hi, ${
+              props.userInfo && props.userInfo.name
+            }. Welcome to the dashboard.`}
+          </p>
+          <p> USER INFO STATE: {props.userInfo && props.userInfo.email} </p>
+          <Link to="/onboarding">
+            <Button color="primary" variant="contained">
+              Onboarding
+            </Button>
+            <br />
+            <br />
+          </Link>
+          <Button color="secondary" variant="contained" onClick={logout}>
+            Logout
+          </Button>
+        </div>
+      )}
     </div>
   );
 };

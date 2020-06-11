@@ -9,7 +9,13 @@ import { Button } from '@material-ui/core';
 import { fetchTransactions } from '../redux/actions/dashboardAction';
 import { userAction, notAuthenticated } from '../redux/actions/userAction';
 
-const Dashboard = (props) => {
+const Dashboard = ({
+  userInfo,
+  transaction,
+  fetchTransactions,
+  userAction,
+  notAuthenticated,
+}) => {
   const { authState, authService } = useOktaAuth();
 
   const logout = async () => {
@@ -20,37 +26,34 @@ const Dashboard = (props) => {
     const { accessToken } = authState;
 
     if (!authState.isAuthenticated) {
-      props.notAuthenticated();
+      notAuthenticated();
     } else {
       authService.getUser().then((info) => {
         const oktaUserInfo = info;
 
-        props.userAction(oktaUserInfo, accessToken);
+        userAction(oktaUserInfo, accessToken);
       });
     }
   }, [authState, authService]);
 
   useEffect(() => {
-    props.fetchTransactions();
-  }, []);
+    fetchTransactions();
+  }, [userInfo.onboarding_complete]);
 
-  const plaid_transaction = props.transaction;
-
-  console.log('transaction', props.transaction);
   useEffect(() => {
     axios
-      .post(`https://api.budgetblocks.org/transaction`, plaid_transaction)
+      .post(`https://api.budgetblocks.org/transaction`, transaction)
       .then((res) => {
         console.log('response', res);
       })
       .catch((err) => {
         console.log('error', err);
       });
-  });
+  }, [transaction]);
 
   return (
     <div>
-      {props.userInfo && props.userInfo.onboarding_complete === false ? (
+      {userInfo && userInfo.onboarding_complete === false ? (
         <Redirect to="/onboarding" />
       ) : (
         <div>
@@ -65,11 +68,9 @@ const Dashboard = (props) => {
             }}
           >
             Message:
-            {`Hi, ${
-              props.userInfo && props.userInfo.name
-            }. Welcome to the dashboard.`}
+            {`Hi, ${userInfo && userInfo.name}. Welcome to the dashboard.`}
           </p>
-          <p> USER INFO STATE: {props.userInfo && props.userInfo.email} </p>
+          <p> USER INFO STATE: {userInfo && userInfo.email} </p>
           <Link to="/onboarding">
             <Button color="primary" variant="contained">
               Onboarding

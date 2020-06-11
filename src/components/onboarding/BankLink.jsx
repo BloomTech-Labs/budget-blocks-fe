@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { PlaidLink } from 'react-plaid-link';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Redirect } from 'react-router-dom';
 import { Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
@@ -68,7 +68,6 @@ const BankLink = (props) => {
     console.log('public_token:', publicToken);
     console.log(metadata);
 
-    //FIXME Make this dynamic
     axios
       .post(`${HOST}/plaid/token_exchange/${userId}`, {
         publicToken: publicToken,
@@ -82,6 +81,7 @@ const BankLink = (props) => {
         setBackCreated(false);
       });
   };
+
   console.log(props.userInfo);
 
   const onSubmit = () => {

@@ -1,14 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useOktaAuth } from '@okta/okta-react';
-import axios from 'axios';
 import { connect } from 'react-redux';
-import { Link, Redirect, useLocation } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { Button } from '@material-ui/core';
+// import { transitions } from 'react-alert';
 
 // SECTION Redux Imports
 import { fetchTransactions } from '../redux/actions/dashboardAction';
 import { userAction, notAuthenticated } from '../redux/actions/userAction';
-import { transitions } from 'react-alert';
 
 const Dashboard = ({
   userInfo,
@@ -16,11 +15,9 @@ const Dashboard = ({
   fetchTransactions,
   userAction,
   notAuthenticated,
-  onSuccess,
+  location,
 }) => {
   const { authState, authService } = useOktaAuth();
-  const [userData, setUserData] = useState();
-  const location = useLocation();
 
   const logout = async () => {
     authService.logout('/');
@@ -42,32 +39,10 @@ const Dashboard = ({
 
   useEffect(() => {
     fetchTransactions();
-  }, []);
+  }, [location]);
 
-  // setUserData(transaction);
-  // console.log('userData,: ', userData);
+  //FIXME Delete after testing
   console.log('ds transactions: ', transaction);
-
-  // useEffect(() => {
-  //   console.log(transaction);
-  //   axios
-  //     .post(`https://api.budgetblocks.org/transaction`, transaction)
-  //     .then((res) => {
-  //       console.log('DS API: ', res);
-  //       setUserData(res.data.transactions);
-  //     })
-  //     .catch((err) => {
-  //       console.log('error', err);
-  //     });
-  // }, [transaction]);
-
-  const reloadPage = () => {
-    return window.location.reload();
-  };
-
-  // if (transaction.length === 0) {
-  //   reloadPage();
-  // }
 
   return (
     <div>
@@ -102,7 +77,7 @@ const Dashboard = ({
           <div>
             {transaction &&
               transaction.map((data) => (
-                <div>
+                <div key={transaction.indexOf(data)}>
                   <h3>Category: {data.budget_blocks_category}</h3>
                   <p>Value: {data.amount}</p>
                 </div>

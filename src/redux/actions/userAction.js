@@ -19,7 +19,6 @@ export const userAction = (info, accessToken) => (dispatch) => {
     })
     .then((res) => {
       // setUserInfo(res.data.data);
-      console.log('hi');
       dispatch({ type: USER_SUCCESS, payload: res.data.data });
       window.localStorage.setItem('user_id', res.data.data.id);
     })

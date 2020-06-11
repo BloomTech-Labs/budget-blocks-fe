@@ -11,8 +11,19 @@ export const fetchTransactions = () => (dispatch) => {
   axios
     .get(`${SERVER_HOST}/plaid/userTransactions/${user_id}`)
     .then((res) => {
-      console.log(res.data);
-      dispatch({ type: FETCH_TRANS_SUCCESS, payload: res.data });
+      console.log('transactions action res: ', res.data);
+      axios
+        .post(`https://api.budgetblocks.org/transaction`, res.data)
+        .then((categorizedTransactions) => {
+          console.log('DS API action res: ', res);
+          dispatch({
+            type: FETCH_TRANS_SUCCESS,
+            payload: categorizedTransactions.data.transactions,
+          });
+        })
+        .catch((err) => {
+          console.log('error', err);
+        });
     })
     .catch((err) => {
       console.log(err);

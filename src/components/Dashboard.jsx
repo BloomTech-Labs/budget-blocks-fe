@@ -1,8 +1,15 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useOktaAuth } from '@okta/okta-react';
 import { connect } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
+
 import { Button } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import Typography from '@material-ui/core/Typography';
+import Grid from '@material-ui/core/Grid';
+
 // import { transitions } from 'react-alert';
 
 // SECTION Redux Imports
@@ -18,8 +25,10 @@ const Dashboard = ({
   location,
 }) => {
   const { authState, authService } = useOktaAuth();
+  const [userData, setUserData] = useState([]);
 
   const logout = async () => {
+    localStorage.clear();
     authService.logout('/');
   };
 
@@ -40,9 +49,6 @@ const Dashboard = ({
   useEffect(() => {
     fetchTransactions();
   }, [location]);
-
-  //FIXME Delete after testing
-  console.log('ds transactions: ', transaction);
 
   return (
     <div>
@@ -74,13 +80,15 @@ const Dashboard = ({
           <Button color="secondary" variant="contained" onClick={logout}>
             Logout
           </Button>
-          <div>
+          <div style={{textAlign: "center"}}>
             {transaction &&
               transaction.map((data) => (
-                <div key={transaction.indexOf(data)}>
-                  <h3>Category: {data.budget_blocks_category}</h3>
-                  <p>Value: {data.amount}</p>
-                </div>
+                <Card key={data.account_id}>
+                  <CardContent>
+                  <Typography style={{fontSize: "3rem"}}>{data.budget_blocks_category}</Typography>
+                  <Typography style={{fontSize: "2rem"}}>{data.amount}</Typography>
+                  </CardContent>
+                </Card>
               ))}
           </div>
         </div>

@@ -19,7 +19,6 @@ import { updateUser, notAuthenticated } from '../../redux/actions/userAction';
 //SECTION Styles
 const customStyles = makeStyles({
   mainWrapper: {
-    height: '100vh',
     margin: '5% 7%',
   },
   budgetHeader: {
@@ -108,7 +107,7 @@ const customStyles = makeStyles({
     display: 'flex',
     // justifyContent: 'center',
     marginTop: '25%',
-    marginLeft: '15%',
+    marginLeft: '12%',
   },
 });
 

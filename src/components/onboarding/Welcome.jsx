@@ -14,6 +14,7 @@ import Box from '@material-ui/core/Box';
 import { Link, useHistory } from 'react-router-dom';
 
 // SECTION CUSTOM STYLES
+import '../../App.css';
 import { useStyles } from '../../styles/theme_provider';
 
 export const customStyles = makeStyles({
@@ -22,19 +23,28 @@ export const customStyles = makeStyles({
   },
   list: {
     listStyleType: 'none',
-    margin: '5% 0',
-    padding: '0',
+    margin: '6% 0',
   },
   listItem: {
     listStyleType: 'none',
     margin: '2% 0',
-    padding: '0',
+    padding: '2%',
   },
   link: {
     textDecoration: 'none',
   },
   body1: {
-    fontWeight: 'bold',
+    fontFamily: 'Poppins',
+    fontWeight: 'normal',
+    fontSize: '1.6rem',
+    lineHeight: '2.4rem',
+    padding: '2%',
+  },
+  budgeth2Wrapper: {
+    display: 'flex',
+    marginBottom: '10%',
+    marginTop: '10%',
+    paddingLeft: '2%',
   },
   BudgetH2Style: {
     margin: '2% 0',
@@ -42,28 +52,42 @@ export const customStyles = makeStyles({
     fontStyle: 'normal',
     fontWeight: 'bold',
     fontSize: '3.2rem',
-    lineHeight: '48px',
+    lineHeight: '4.8rem',
     textAlign: 'center',
   },
   BudgetWelcomeHeaderStyle: {
     fontFamily: 'Poppins',
     fontStyle: 'normal',
-    fontWeight: '600px',
+    fontWeight: '600',
     fontSize: '3.6rem',
     lineHeight: '130.8%',
     color: '#13B9AC',
+    marginBottom: '0%',
+    padding: '2%',
   },
   icon: {
     marginRight: '1.5%',
     color: '#A4EAE6',
   },
   typography: {
-    fontSize: '1rem',
+    fontFamily: 'Poppins',
+    fontSize: '1.4rem',
+    lineHeight: '2.1rem',
+    fontWeight: 'normal',
+    color: 'rgba(0, 0, 0, 0.52)',
     '&:hover': { color: '#13B9AC' },
   },
   skipButton: {
     display: 'flex',
     justifyContent: 'flex-end',
+  },
+  buttonsWrapper: {
+    display: 'flex',
+    justifyContent: 'center',
+    marginTop: '20%',
+  },
+  nextButtonWrapper: {
+    marginLeft: '2%',
   },
 });
 
@@ -98,9 +122,11 @@ const Welcome = () => {
 
   return (
     <Container className={classes.root}>
-      <Typography className={classes.BudgetH2Style} variant="h2">
-        Budget
-      </Typography>
+      <div className={classes.budgeth2Wrapper}>
+        <Typography className={classes.BudgetH2Style} variant="h2">
+          Budget
+        </Typography>
+      </div>
       <Typography className={classes.BudgetWelcomeHeaderStyle} variant="h1">
         Welcome to Budget Blocks
       </Typography>
@@ -121,7 +147,7 @@ const Welcome = () => {
           </ListItem>
         ))}
       </List>
-      <Box>
+      <Box className={classes.buttonsWrapper}>
         <Button
           size="small"
           onClick={handleBack}
@@ -135,19 +161,21 @@ const Welcome = () => {
           )}
           Back
         </Button>
-        <Button
-          size="small"
-          className={buttonClasses.nextButton}
-          onClick={handleNext}
-          disabled={activeStep === 3}
-        >
-          Next
-          {theme.direction === 'rtl' ? (
-            <KeyboardArrowLeft />
-          ) : (
-            <KeyboardArrowRight />
-          )}
-        </Button>
+        <div className={classes.nextButtonWrapper}>
+          <Button
+            size="small"
+            className={buttonClasses.nextButton}
+            onClick={handleNext}
+            disabled={activeStep === 3}
+          >
+            Next
+            {theme.direction === 'rtl' ? (
+              <KeyboardArrowLeft />
+            ) : (
+              <KeyboardArrowRight />
+            )}
+          </Button>
+        </div>
       </Box>
       <Box className={classes.skipButton}>
         <Button onClick={handleSkip}>skip</Button>

@@ -68,7 +68,6 @@ const BankLink = (props) => {
     console.log('public_token:', publicToken);
     console.log(metadata);
 
-    //FIXME Make this dynamic
     axios
       .post(`${HOST}/plaid/token_exchange/${userId}`, {
         publicToken: publicToken,
@@ -82,6 +81,7 @@ const BankLink = (props) => {
         setBackCreated(false);
       });
   };
+
   console.log(props.userInfo);
 
   const onSubmit = () => {

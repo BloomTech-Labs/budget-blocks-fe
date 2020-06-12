@@ -1,19 +1,34 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useOktaAuth } from '@okta/okta-react';
-import axios from 'axios';
 import { connect } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
+
 import { Button } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import Typography from '@material-ui/core/Typography';
+import Grid from '@material-ui/core/Grid';
+
+// import { transitions } from 'react-alert';
 
 // SECTION Redux Imports
 import { fetchTransactions } from '../redux/actions/dashboardAction';
 import { userAction, notAuthenticated } from '../redux/actions/userAction';
 
-const Dashboard = (props) => {
+const Dashboard = ({
+  userInfo,
+  transaction,
+  fetchTransactions,
+  userAction,
+  notAuthenticated,
+  location,
+}) => {
   const { authState, authService } = useOktaAuth();
   const [userData, setUserData] = useState([]);
 
   const logout = async () => {
+    localStorage.clear();
     authService.logout('/');
   };
 
@@ -21,86 +36,24 @@ const Dashboard = (props) => {
     const { accessToken } = authState;
 
     if (!authState.isAuthenticated) {
-      props.notAuthenticated();
+      notAuthenticated();
     } else {
       authService.getUser().then((info) => {
         const oktaUserInfo = info;
 
-        props.userAction(oktaUserInfo, accessToken);
+        userAction(oktaUserInfo, accessToken);
       });
     }
   }, [authState, authService]);
 
   useEffect(() => {
-    props.fetchTransactions();
-  }, []);
-
-  const plaid_transaction = props.transaction;
-
-  console.log("transaction", props.transaction)
-  
-  useEffect(() => {
-<<<<<<< HEAD
-    axios.post(`https://api.budgetblocks.org/transaction`, plaid_transaction)
-    .then(res => {
-      console.log("response", res)
-    })
-    .catch(err => {
-      console.log("error", err)
-    })
-  }, [])
-=======
-    axios
-      .post(`https://api.budgetblocks.org/transaction`, plaid_transaction)
-      .then((res) => {
-        console.log('response', res);
-      })
-      .catch((err) => {
-        console.log('error', err);
-      });
-  });
->>>>>>> 42f4cfe766b2474742ddb9bb0b15b0404172e7bc
+    fetchTransactions();
+  }, [location]);
 
   return (
     <div>
-      {props.userInfo && props.userInfo.onboarding_complete === false ? (
+      {userInfo && userInfo.onboarding_complete === false ? (
         <Redirect to="/onboarding" />
-<<<<<<< HEAD
-      ) : null}
-      <h1> DASHBOARD </h1>
-      <p>
-        If you landed here, then you have successfully logged in with Okta!!
-      </p>
-      <p
-        style={{
-          color: 'blue',
-          fontSize: '32px',
-        }}
-      >
-        Message:
-        {`Hi, ${
-          props.userInfo && props.userInfo.name
-        }. Welcome to the dashboard.`}
-      </p>
-      <p> USER INFO STATE: {props.userInfo && props.userInfo.email} </p>
-      <Link to="/onboarding">
-        <Button color="primary" variant="contained">
-          Onboarding
-        </Button>
-        <br />
-        <br />
-      </Link>
-      <Button color="secondary" variant="contained" onClick={logout}>
-        Logout
-      </Button>
-      {/* <div>
-        {userData.transactions.map((data) => (
-          <div>
-            <h3>{data.budget_blocks_category}</h3>
-          </div>
-        ))}
-      </div> */}
-=======
       ) : (
         <div>
           <h1> DASHBOARD </h1>
@@ -114,11 +67,9 @@ const Dashboard = (props) => {
             }}
           >
             Message:
-            {`Hi, ${
-              props.userInfo && props.userInfo.name
-            }. Welcome to the dashboard.`}
+            {`Hi, ${userInfo && userInfo.name}. Welcome to the dashboard.`}
           </p>
-          <p> USER INFO STATE: {props.userInfo && props.userInfo.email} </p>
+          <p> USER INFO STATE: {userInfo && userInfo.email} </p>
           <Link to="/onboarding">
             <Button color="primary" variant="contained">
               Onboarding
@@ -129,9 +80,19 @@ const Dashboard = (props) => {
           <Button color="secondary" variant="contained" onClick={logout}>
             Logout
           </Button>
+          <div style={{textAlign: "center"}}>
+            {transaction &&
+              transaction.map((data) => (
+                <Card key={data.account_id}>
+                  <CardContent>
+                  <Typography style={{fontSize: "3rem"}}>{data.budget_blocks_category}</Typography>
+                  <Typography style={{fontSize: "2rem"}}>{data.amount}</Typography>
+                  </CardContent>
+                </Card>
+              ))}
+          </div>
         </div>
       )}
->>>>>>> 42f4cfe766b2474742ddb9bb0b15b0404172e7bc
     </div>
   );
 };
@@ -142,6 +103,7 @@ const mapStateToProps = (state) => {
     isFetching: state.trans.isFetching,
     errors: state.trans.errors,
     userInfo: state.users.userInfo,
+    onSuccess: state.trans.onSuccess,
   };
 };
 

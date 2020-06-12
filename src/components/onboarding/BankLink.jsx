@@ -17,37 +17,73 @@ import { updateUser } from '../../redux/actions/userAction';
 import { useStyles } from '../../styles/theme_provider';
 
 const customStyles = makeStyles({
+  mainWrapper: {
+    margin: '5% 7%',
+  },
   budgetHeader: {
     color: '#000000',
-    fontSize: '18px',
-    lineHeight: '27px',
+    fontSize: '1.8rem',
+    lineHeight: '2.7rem',
     fontWeight: '700',
+    marginBottom: '20%',
   },
   mainHeader: {
     color: '#13B9AC',
-    fontSize: '36px',
-    lineHeight: '54px',
+    fontSize: '3.6rem',
+    lineHeight: '5.4rem',
     fontWeight: '600',
+    marginBottom: '10%',
   },
   sectionDescription: {
     color: '#000000',
-    fontSize: '16px',
-    lineHeight: '24px',
+    fontSize: '1.6rem',
+    lineHeight: '2.4rem',
     fontWeight: 'normal',
+    marginBottom: '5%',
   },
-  subSectionTitle: {
-    color: '#21242C',
-    fontSize: '16px',
-    lineHeight: '24px',
-    fontWeight: '600',
-  },
-  subSectionDescriptions: {
-    color: '#000000',
-    fontSize: '14px',
-    lineHeight: '21px',
+  securePrivateWrapper: {
+    display: 'flex',
+    marginBottom: '3%',
   },
   checkmark: {
-    width: '10px',
+    height: '1rem',
+    marginTop: '2%',
+  },
+  listHeading: {
+    fontSize: '1.6rem',
+    lineHeight: '2.4rem',
+    fontWeight: '600',
+    color: '#21242C',
+    marginLeft: '3%',
+  },
+  subSectionDescription: {
+    color: '#000000',
+    fontSize: '1.4rem',
+    lineHeight: '2.1rem',
+    marginLeft: '6%',
+  },
+  plaidLinkWrapper: {
+    margin: '10% 0%',
+    display: 'flex',
+    justifyContent: 'center',
+  },
+  plainLinkButton: {
+    fontSize: '14px',
+    lineHeight: '21px',
+    fontWeight: '600',
+    textTransform: 'capitalize',
+    color: 'white',
+    background: '#13B9AC',
+    width: '25rem',
+    // marginLeft: '10%',
+    '&:hover': {
+      background: '#13B9AC',
+      textDecoration: 'underline',
+    },
+  },
+  backNextButtonWrapper: {
+    marginTop: '25%',
+    marginLeft: '12%',
   },
 });
 
@@ -96,45 +132,52 @@ const BankLink = (props) => {
   };
 
   return (
-    <div>
+    <div className={classes.mainWrapper}>
       <div>
         <h1 className={classes.budgetHeader}>Budget</h1>
         <h2 className={classes.mainHeader}>Link Your Bank Accounts</h2>
         <p className={classes.sectionDescription}>
           Linking your bank accounts means no more manual data entry!
         </p>
-        <img
-          src={require('../../media/arrow-drodpdown.png')}
-          alt="check mark"
-          className={classes.checkmark}
-        />
-        <span> Secure</span>
-        <p className={classes.subSectionDescription}>
-          Your bank data transfers are encrypted end-to-end!
-        </p>
-        <img
-          src={require('../../media/arrow-drodpdown.png')}
-          alt="check mark"
-          className={classes.checkmark}
-        />
-        <span> Private</span>
-        <p className={classes.subSectionDescription}>
-          Your credentials will never be shared with Budget!
-        </p>
+        <div className={classes.securePrivateWrapper}>
+          <img
+            src={require('../../media/arrow-drodpdown.png')}
+            alt="check mark"
+            className={classes.checkmark}
+          />
+
+          <p className={classes.listHeading}> Secure</p>
+          <p className={classes.subSectionDescription}>
+            Your bank data transfers are <br /> encrypted end-to-end!
+          </p>
+        </div>
+        <div className={classes.securePrivateWrapper}>
+          <img
+            src={require('../../media/arrow-drodpdown.png')}
+            alt="check mark"
+            className={classes.checkmark}
+          />
+          <p className={classes.listHeading}> Private</p>
+          <p className={classes.subSectionDescription}>
+            Your credentials will never be <br /> shared with Budget!
+          </p>
+        </div>
       </div>
 
-      <PlaidLink
-        clientName="Budget Blocks"
-        env="sandbox"
-        product={['transactions']}
-        publicKey="7b47db1cfa540573d15cea302e5988"
-        onSuccess={onSuccess}
-      >
-        <Button className={buttonClasses.nextButton} variant="contained">
-          Connect a bank account
-        </Button>
-      </PlaidLink>
-      <div>
+      <div className={classes.plaidLinkWrapper}>
+        <PlaidLink
+          clientName="Budget Blocks"
+          env="sandbox"
+          product={['transactions']}
+          publicKey="7b47db1cfa540573d15cea302e5988"
+          onSuccess={onSuccess}
+        >
+          <Button className={classes.plainLinkButton} variant="contained">
+            Connect a bank account
+          </Button>
+        </PlaidLink>
+      </div>
+      <div className={classes.backNextButtonWrapper}>
         <Button
           variant="contained"
           type="submit"

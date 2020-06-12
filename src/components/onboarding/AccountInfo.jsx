@@ -20,22 +20,27 @@ import { updateUser, notAuthenticated } from '../../redux/actions/userAction';
 const customStyles = makeStyles({
   mainWrapper: {
     height: '100vh',
+    margin: '5% 7%',
   },
   budgetHeader: {
     color: '#000000',
     fontSize: '18px',
     lineHeight: '27px',
     fontWeight: '700',
+    marginBottom: '20%',
   },
   profileHeader: {
     color: '#13B9AC',
     fontSize: '36px',
     lineHeight: '54px',
+    fontWeight: '600',
+    marginBottom: '5%',
   },
   sectionDescription: {
     color: '#000000',
     fontSize: '16px',
     lineHeight: '24px',
+    marginBottom: '8%',
   },
   accountInfoWrapper: {
     display: 'flex',
@@ -62,15 +67,48 @@ const customStyles = makeStyles({
     color: '#21242C',
     fontSize: '14px',
     lineHeight: '21px',
+    marginBottom: '2%',
   },
   cityInput: {
     borderColor: '#13B9AC',
+    marginBottom: '2%',
+    marginTop: '2%',
+    width: '22.5rem',
   },
   stateInput: {
+    //FIXME need to figure out how to override material ui's border color.. below isn't working.
     borderColor: '#13B9AC',
+    marginTop: '2%',
+    marginBottom: '8%',
+    width: '22.5rem',
   },
-  nextButton: {
+  confirmButton: {
+    fontSize: '14px',
+    lineHeight: '21px',
+    fontWeight: '600',
+    textTransform: 'capitalize',
+    color: 'white',
     background: '#13B9AC',
+    width: '15rem',
+    // marginLeft: '10%',
+    '&:hover': {
+      background: '#13B9AC',
+      textDecoration: 'underline',
+    },
+  },
+  confirmButtonWrapper: {
+    display: 'flex',
+    // justifyContent: 'center',
+  },
+  formWrapper: {
+    display: 'flex',
+    flexDirection: 'column',
+  },
+  backNextButtonWrapper: {
+    display: 'flex',
+    // justifyContent: 'center',
+    marginTop: '25%',
+    marginLeft: '15%',
   },
 });
 
@@ -162,15 +200,16 @@ const AccountInfo = (props) => {
 
           <h3 className={classes.accountInfoSubHeaders}>Email</h3>
           <p className={classes.accountInfoPara}>{props.userInfo.email}</p>
-
-          <h3 className={classes.accountInfoSubHeaders}>Country</h3>
-          <p className={classes.accountInfoPara}>{props.userInfo.country}</p>
         </div>
       )}
 
       {editMode === true && (
         <>
-          <form onSubmit={handleSubmit(onSubmit)}>
+          <form
+            className={classes.formWrapper}
+            onSubmit={handleSubmit(onSubmit)}
+          >
+            <label className={classes.accountInfoSubHeaders}>City</label>
             <Controller
               name="city"
               label="City"
@@ -182,6 +221,7 @@ const AccountInfo = (props) => {
             />
 
             {/* //FIXME Too long.. when use CustomSelect the state comes back undefined */}
+            <label className={classes.accountInfoSubHeaders}>State</label>
             <Controller
               name="state"
               label="State"
@@ -249,45 +289,49 @@ const AccountInfo = (props) => {
               className={classes.stateInput}
             />
 
-            <Button
-              variant="contained"
-              type="submit"
-              className={buttonClasses.nextButton}
-            >
-              Confirm {'>'}
-            </Button>
+            <div className={classes.confirmButtonWrapper}>
+              <Button
+                variant="contained"
+                type="submit"
+                className={classes.confirmButton}
+              >
+                Confirm {'>'}
+              </Button>
+            </div>
           </form>
         </>
       )}
       {editMode === false && (
         <div>
-          <p className={classes.accountInfoPara}>City: {props.userInfo.city}</p>
+          <h3 className={classes.accountInfoSubHeaders}>City</h3>
+          <p className={classes.accountInfoPara}>{props.userInfo.city}</p>
 
-          <p className={classes.accountInfoPara}>
-            State: {props.userInfo.state}
-          </p>
+          <h3 className={classes.accountInfoSubHeaders}>State</h3>
+          <p className={classes.accountInfoPara}>{props.userInfo.state}</p>
 
-          <Button
-            variant="contained"
-            color="secondary"
-            type="submit"
-            className={buttonClasses.backButton}
-            onClick={() => {
-              history.push('/onboarding/welcome');
-            }}
-          >
-            <KeyboardArrowLeft /> Back
-          </Button>
-          <Button
-            variant="contained"
-            type="submit"
-            className={buttonClasses.nextButton}
-            onClick={() => {
-              history.push('/onboarding/banklink');
-            }}
-          >
-            Next <KeyboardArrowRight />
-          </Button>
+          <div className={classes.backNextButtonWrapper}>
+            <Button
+              variant="contained"
+              color="secondary"
+              type="submit"
+              className={buttonClasses.backButton}
+              onClick={() => {
+                history.push('/onboarding/welcome');
+              }}
+            >
+              <KeyboardArrowLeft /> Back
+            </Button>
+            <Button
+              variant="contained"
+              type="submit"
+              className={buttonClasses.nextButton}
+              onClick={() => {
+                history.push('/onboarding/banklink');
+              }}
+            >
+              Next <KeyboardArrowRight />
+            </Button>
+          </div>
         </div>
       )}
     </div>

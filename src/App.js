@@ -16,6 +16,7 @@ import BankLink from './components/onboarding/BankLink';
 import BuildYourBudget from './components/onboarding/BuildYourBudget';
 import BudgetView from './components/onboarding/BudgetView';
 import Income from './components/onboarding/Income';
+import BudgetCategory from './components/onboarding/BudgetCatergory'
 
 //SECTION CSS
 import './App.css';
@@ -34,6 +35,7 @@ const App = () => (
         <Route path="/onboarding/budget" exact component={BuildYourBudget} />
         <Route path="/onboarding/budgetview" exact component={BudgetView} />
         <Route path="/onboarding/income" exact component={Income} />
+        <Route path="/onboarding/budgetcategory" exact component={BudgetCategory} />
       </Container>
     </Security>
   </Router>

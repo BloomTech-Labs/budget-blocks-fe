@@ -10,6 +10,7 @@ html {
 }
 
 .progressBar{
+  background: rgba(164, 234, 230, 0.43);
   position: relative;
   height: 20px;
   width: 199px;

@@ -154,10 +154,10 @@ const AnalyzerDashboard = (props) => {
                         </Grid>
                         <Grid item xs={12}>
                             <Typography >Income ${}</Typography>
-                            <ProgressBar totalPercent={10} percentfilled={0} />
-                            <ProgressBar totalPercent={20} percentfilled={20} />
-                            <ProgressBar totalPercent={30} percentfilled={50} />
                             <ProgressBar totalPercent={40} percentfilled={100} />
+                            <ProgressBar totalPercent={30} percentfilled={50} />
+                            <ProgressBar totalPercent={20} percentfilled={20} />
+                            <ProgressBar totalPercent={10} percentfilled={0} />
                         </Grid>
                     </Grid>
                 ) : (<h1>Spending button was clicked</h1>)}

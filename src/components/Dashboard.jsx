@@ -25,7 +25,6 @@ const Dashboard = ({
   location,
 }) => {
   const { authState, authService } = useOktaAuth();
-  const [userData, setUserData] = useState([]);
 
   const logout = async () => {
     localStorage.clear();
@@ -103,7 +102,6 @@ const mapStateToProps = (state) => {
     isFetching: state.trans.isFetching,
     errors: state.trans.errors,
     userInfo: state.users.userInfo,
-    onSuccess: state.trans.onSuccess,
   };
 };
 

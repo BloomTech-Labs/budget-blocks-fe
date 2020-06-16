@@ -1,18 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import Container from '@material-ui/core/Container';
 import { Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
 import Button from '@material-ui/core/Button';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
-import LensIcon from '@material-ui/icons/Lens';
-import Box from '@material-ui/core/Box';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import { useStyles } from '../../styles/theme_provider';
 
-const useStyles = makeStyles({
+import { fetchTransactions } from '../../redux/actions/dashboardAction';
+
+const customStyles = makeStyles({
     budgetContainer: {
         display: "flex",
         justifyContent: "space-between",
@@ -59,11 +61,22 @@ const useStyles = makeStyles({
     },
 });
 
-const BudgetCategory = () => {
+const BudgetCategory = 
+({
+    transaction,
+    fetchTransactions,
+    location
+}) => {
 
-    const classes = useStyles();
+    const classes = customStyles();
     const buttonClasses = useStyles();
     const history = useHistory()
+
+    useEffect(() => {
+        fetchTransactions();
+    }, [location]);
+
+    console.log(transaction)
 
     return (
         <Container>
@@ -79,6 +92,17 @@ const BudgetCategory = () => {
             </div>
             <div>
                 <Typography className={classes.subSectionTitle}>Set goals for basic expenses</Typography>
+            </div>
+            <div style={{textAlign: "center"}}>
+            {transaction &&
+              transaction.map((data) => (
+                <Card key={data.transaction_id}>
+                  <CardContent>
+                  <Typography>{data.budget_blocks_category}</Typography>
+                  <Typography>{data.amount}</Typography>
+                  </CardContent>
+                </Card>
+              ))}
             </div>
             <div className={classes.backNextButtonWrapper}>
                 <Button
@@ -106,4 +130,15 @@ const BudgetCategory = () => {
     )
 };
 
-export default BudgetCategory
+const mapStateToProps = (state) => {
+    return {
+      transaction: state.trans.transaction,
+      isFetching: state.trans.isFetching,
+      errors: state.trans.errors,
+      
+    };
+};
+
+export default connect(mapStateToProps, {
+    fetchTransactions
+  })(BudgetCategory)

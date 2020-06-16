@@ -7,6 +7,8 @@ import { Container } from 'semantic-ui-react';
 import config from './components/okta/config';
 import Home from './components/Home';
 import Dashboard from './components/Dashboard';
+import Clickthrough from './components/Clickthrough';
+import Totals from './components/Totals'
 
 // SECTION Onboarding Components
 import Onboarding from './components/onboarding/OnBoarding';
@@ -27,6 +29,7 @@ const App = () => (
         <SecureRoute path="/dashboard" component={Dashboard} />
         <SecureRoute path="/onboarding" exact component={Onboarding} />
         <Route path="/" exact component={Home} />
+        <Route path="/clickthrough" component={Clickthrough} />
         <Route path="/implicit/callback" component={LoginCallback} />
         <Route path="/onboarding/welcome" component={Welcome} />
         <Route path="/onboarding/accountinfo" component={AccountInfo} />
@@ -34,6 +37,7 @@ const App = () => (
         <Route path="/onboarding/budget" exact component={BuildYourBudget} />
         <Route path="/onboarding/budgetview" exact component={BudgetView} />
         <Route path="/onboarding/income" exact component={Income} />
+        <Route path="/totals" exact component={Totals} />
       </Container>
     </Security>
   </Router>

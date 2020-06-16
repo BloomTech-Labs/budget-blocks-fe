@@ -8,3 +8,18 @@
 html {
   font-size: 62.5%; /* equals to 10 px */
 }
+
+.progressBar{
+  position: relative;
+  height: 20px;
+  width: 199px;
+  border-radius: 6px;
+  border: 1px solid rgba(164, 234, 230, 0.43);
+}
+
+.filler{
+  height: 100%;
+  background: #5ACEC5;
+  border-radius: inherit;
+  transition: width .2s ease-in;
+}

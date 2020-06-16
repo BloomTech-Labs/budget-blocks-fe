@@ -38,11 +38,8 @@ const App = () => (
         <Route path="/onboarding/budget" exact component={BuildYourBudget} />
         <Route path="/onboarding/budgetview" exact component={BudgetView} />
         <Route path="/onboarding/income" exact component={Income} />
-<<<<<<< HEAD
         <Route path="/onboarding/budgetcategory" exact component={BudgetCategory} />
-=======
         <Route path="/totals" exact component={Totals} />
->>>>>>> 7927900d1ed928156e8ce6992f1c7bb7c586f1ab
       </Container>
     </Security>
   </Router>

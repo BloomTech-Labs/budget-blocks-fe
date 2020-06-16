@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import { Link, useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 
@@ -71,13 +72,25 @@ const BudgetCategory =
     const classes = customStyles();
     const buttonClasses = useStyles();
     const history = useHistory()
+    const [totals, setTotals] = useState([])
 
     useEffect(() => {
         fetchTransactions();
     }, [location]);
 
-    console.log(transaction)
+    console.log("transaction", transaction)
+    useEffect(() => {
+      axios.post(`https://api.budgetblocks.org/transaction`, transaction)
+      .then(res => {
+        console.log("response", res)
+      })
+      .catch(err => {
+        console.log("error", err)
+      })
+    }, [])
 
+    console.log(totals)
+    
     return (
         <Container>
             <div className={classes.budgetContainer}>
@@ -93,16 +106,14 @@ const BudgetCategory =
             <div>
                 <Typography className={classes.subSectionTitle}>Set goals for basic expenses</Typography>
             </div>
+
             <div style={{textAlign: "center"}}>
-            {transaction &&
-              transaction.map((data) => (
-                <Card key={data.transaction_id}>
+                <Card>
                   <CardContent>
-                  <Typography>{data.budget_blocks_category}</Typography>
-                  <Typography>{data.amount}</Typography>
+                  <Typography style={{fontSize: "3rem"}}></Typography>
                   </CardContent>
                 </Card>
-              ))}
+              
             </div>
             <div className={classes.backNextButtonWrapper}>
                 <Button
@@ -135,7 +146,6 @@ const mapStateToProps = (state) => {
       transaction: state.trans.transaction,
       isFetching: state.trans.isFetching,
       errors: state.trans.errors,
-      
     };
 };
 

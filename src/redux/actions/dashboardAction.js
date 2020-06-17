@@ -13,10 +13,22 @@ export const fetchTransactions = () => (dispatch) => {
     .then((res) => {
       //FIXME Delete after testing
       console.log('transactions action res: ', res.data);
-      dispatch({
-        type: FETCH_TRANS_SUCCESS,
-        payload: res.data,
-      });
+
+      axios
+        .post(`https://api.budgetblocks.org/transaction`, res.data)
+        .then((categorizedTransactions) => {
+          //FIXME Delete after testing
+          // console.log('ds res: ', res);
+          console.log('DS API action res: ', categorizedTransactions);
+
+          dispatch({
+            type: FETCH_TRANS_SUCCESS,
+            payload: categorizedTransactions.data.transactions,
+          });
+        })
+        .catch((err) => {
+          console.log('error', err);
+        });
     })
     .catch((err) => {
       console.log(err);

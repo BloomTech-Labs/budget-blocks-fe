@@ -105,9 +105,9 @@ const customStyles = makeStyles({
   },
   backNextButtonWrapper: {
     display: 'flex',
-    // justifyContent: 'center',
-    marginTop: '25%',
-    marginLeft: '12%',
+    justifyContent: 'center',
+    marginTop: '50%',
+    // marginLeft: '12%',
   },
 });
 

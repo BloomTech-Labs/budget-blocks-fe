@@ -1,24 +1,41 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { makeStyles, Button, ButtonGroup } from '@material-ui/core';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 
+// SECTION REDUX
+import { connect } from 'react-redux';
+
 // SECTION CUSTOM STYLES
 import { useStyles } from '../../styles/theme_provider';
 
 const customStyles = makeStyles({
+  mainWrapper: {
+    margin: '5% 6%',
+  },
   budgetHeader: {
     color: '#000000',
     fontSize: '1.8rem',
     lineHeight: '2.7rem',
     fontWeight: '700',
+    marginBottom: '14%',
+  },
+  skipButton: {
+    position: 'relative',
+    left: '30rem',
+    top: '-7rem',
+    width: '6%',
+    color: 'rgba(0, 0, 0, 0.52)',
+    fontSize: '1.2rem',
+    lineHeight: '1.8rem',
   },
   mainHeader: {
     color: '#13B9AC',
     fontSize: '3.6rem',
     lineHeight: '130.8%',
     fontWeight: '600',
+    marginBottom: '3%',
   },
   sectionDescription: {
     color: '#000000',
@@ -26,21 +43,59 @@ const customStyles = makeStyles({
     lineHeight: '2.7rem',
     fontWeight: 'normal',
   },
-  subSectionTitle: {
+  subHeader1: {
     color: '#21242C',
     fontSize: '1.6rem',
     lineHeight: '2.4rem',
     fontWeight: '600',
+    marginTop: '5%',
+    marginBottom: '5%',
+  },
+  subHeader2: {
+    color: '#21242C',
+    fontSize: '1.8rem',
+    lineHeight: '2.7rem',
+    fontWeight: 'normal',
+    marginBottom: '5%',
   },
   subSectionDescriptions: {
     color: '#959595',
     fontSize: '1.2rem',
     lineHeight: '1.8rem',
   },
+  monthWeekWrapper: {
+    display: 'flex',
+    justifyContent: 'center',
+    marginBottom: '2%',
+  },
+  monthButton: {
+    width: '17rem',
+    height: '3rem',
+    textTransform: 'capitalize',
+    fontSize: '1.4rem',
+    lineHeight: '2.1rem',
+    color: 'white',
+    background: '#13B9AC',
+    border: '1px solid #13B9AC',
+    '&:hover': {
+      background: '#13B9AC',
+    },
+  },
+  weekButton: {
+    width: '17rem',
+    height: '3rem',
+    textTransform: 'capitalize',
+    fontSize: '1.4rem',
+    lineHeight: '2.1rem',
+    color: '#959595',
+    border: '1px solid #13B9AC',
+  },
   goalExampleWrapper: {
     display: 'flex',
     justifyContent: 'center',
     width: '100%',
+    marginTop: '13%',
+    marginBottom: '17%',
   },
   goalExample: {
     display: 'flex',
@@ -49,8 +104,8 @@ const customStyles = makeStyles({
     border: '1px solid rgba(200, 216, 215, 0.46)',
     borderRadius: '3px',
     background: 'rgba(200, 216, 215, 0.1)',
-    width: '155px',
-    height: '111px',
+    width: '15.5rem',
+    height: '11.1rem',
   },
   houseIncomeWrapper: {
     display: 'flex',
@@ -74,6 +129,10 @@ const customStyles = makeStyles({
     alignItems: 'center',
     marginLeft: '4%',
   },
+  buttonWrapper: {
+    display: 'flex',
+    justifyContent: 'center',
+  },
 });
 
 const BudgetView = () => {
@@ -81,26 +140,51 @@ const BudgetView = () => {
   const buttonClasses = useStyles();
   const history = useHistory();
 
+  const skipPage = (e) => {
+    history.push('/onboarding/income');
+  };
+
+  const [view, setView] = useState(false);
+
+  const toggleButton = (e) => {
+    console.log(e.target);
+    const monthButton = document.querySelector('.monthButton');
+    const weekButton = document.querySelector('weekButton');
+
+    console.log(monthButton);
+    setView(!view);
+
+    if (view === false) {
+      // month background == green
+      // document.
+    } else {
+      // week background == green
+    }
+  };
+
   return (
-    <div>
+    <div className={classes.mainWrapper}>
       <div>
         <h1 className={classes.budgetHeader}>Budget</h1>
-      </div>
-      <div>
+        <p className={classes.skipButton} onClick={skipPage}>
+          skip
+        </p>
         <h2 className={classes.mainHeader}>Build Your Budget</h2>
         <p className={classes.sectionDescription}>
           Your income transactions are already tracked for you. Now you can set
           a goal for your income to track your progress!
         </p>
-        <p>Start setting goals</p>
+        <h2 className={classes.subHeader1}>Start setting goals</h2>
+        <h2 className={classes.subHeader2}>View goals by month</h2>
       </div>
-      <div>
-        <h2>View goals by month</h2>
-        <ButtonGroup variant="outlined">
-          <Button>Month</Button>
-          <Button>Week</Button>
-        </ButtonGroup>
-      </div>
+      <ButtonGroup variant="outlined" className={classes.monthWeekWrapper}>
+        <Button className={classes.monthButton} onClick={toggleButton}>
+          Month
+        </Button>
+        <Button className={classes.weekButton} onClick={toggleButton}>
+          Week
+        </Button>
+      </ButtonGroup>
       <div className={classes.goalExampleWrapper}>
         <div className={classes.goalExample}>
           <div className={classes.houseIncomeWrapper}>
@@ -118,13 +202,13 @@ const BudgetView = () => {
           </div>
         </div>
       </div>
-      <div>
+      <div className={classes.buttonWrapper}>
         <Button
           variant="contained"
           type="submit"
           className={buttonClasses.backButton}
           onClick={() => {
-            history.push('/onboarding/budget');
+            history.push('/onboarding/budgetpreview');
           }}
         >
           <KeyboardArrowLeft /> Back
@@ -144,4 +228,10 @@ const BudgetView = () => {
   );
 };
 
-export default BudgetView;
+const mapStateToProps = (state) => {
+  return {
+    transaction: state.trans.transaction,
+  };
+};
+
+export default connect(mapStateToProps, {})(BudgetView);

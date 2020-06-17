@@ -23,9 +23,10 @@ const Dashboard = ({
   userAction,
   notAuthenticated,
   location,
+  isFetching,
 }) => {
   const { authState, authService } = useOktaAuth();
-  const [userData, setUserData] = useState([]);
+  const [userData, setUserData] = useState();
 
   const logout = async () => {
     localStorage.clear();
@@ -46,12 +47,19 @@ const Dashboard = ({
     }
   }, [authState, authService]);
 
+  //FIXME FOR REFRESH BUTTON
   useEffect(() => {
     fetchTransactions();
   }, [location]);
 
+  // if (isFetching === true) {
+  //   return <p>Loading...</p>;
+  // } else {
+  // }
+
   return (
     <div>
+      {transaction && console.log(transaction)}
       {userInfo && userInfo.onboarding_complete === false ? (
         <Redirect to="/onboarding" />
       ) : (
@@ -80,13 +88,17 @@ const Dashboard = ({
           <Button color="secondary" variant="contained" onClick={logout}>
             Logout
           </Button>
-          <div style={{textAlign: "center"}}>
+          <div style={{ textAlign: 'center' }}>
             {transaction &&
               transaction.map((data) => (
                 <Card key={data.account_id}>
                   <CardContent>
-                  <Typography style={{fontSize: "3rem"}}>{data.budget_blocks_category}</Typography>
-                  <Typography style={{fontSize: "2rem"}}>{data.amount}</Typography>
+                    <Typography style={{ fontSize: '3rem' }}>
+                      {data.budget_blocks_category}
+                    </Typography>
+                    <Typography style={{ fontSize: '2rem' }}>
+                      {data.amount}
+                    </Typography>
                   </CardContent>
                 </Card>
               ))}

@@ -13,7 +13,7 @@ import Onboarding from './components/onboarding/OnBoarding';
 import Welcome from './components/onboarding/Welcome';
 import AccountInfo from './components/onboarding/AccountInfo';
 import BankLink from './components/onboarding/BankLink';
-import BuildYourBudget from './components/onboarding/BuildYourBudget';
+import BudgetPreview from './components/onboarding/BudgetPreview';
 import BudgetView from './components/onboarding/BudgetView';
 import Income from './components/onboarding/Income';
 
@@ -31,7 +31,11 @@ const App = () => (
         <Route path="/onboarding/welcome" component={Welcome} />
         <Route path="/onboarding/accountinfo" component={AccountInfo} />
         <Route path="/onboarding/banklink" exact component={BankLink} />
-        <Route path="/onboarding/budget" exact component={BuildYourBudget} />
+        <Route
+          path="/onboarding/budgetpreview"
+          exact
+          component={BudgetPreview}
+        />
         <Route path="/onboarding/budgetview" exact component={BudgetView} />
         <Route path="/onboarding/income" exact component={Income} />
       </Container>

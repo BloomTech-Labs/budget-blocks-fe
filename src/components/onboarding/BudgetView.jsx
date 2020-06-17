@@ -133,6 +133,9 @@ const customStyles = makeStyles({
     display: 'flex',
     justifyContent: 'center',
   },
+  toggle: {
+    background: '#13B9AC',
+  },
 });
 
 const BudgetView = () => {
@@ -148,17 +151,18 @@ const BudgetView = () => {
 
   const toggleButton = (e) => {
     console.log(e.target);
-    const monthButton = document.querySelector('.monthButton');
-    const weekButton = document.querySelector('weekButton');
+    const monthButton = document.querySelector('#month');
+    const weekButton = document.querySelector('#week');
 
     console.log(monthButton);
     setView(!view);
 
     if (view === false) {
       // month background == green
-      // document.
+      monthButton.classList.toggle(`${classes.toggle}`);
     } else {
       // week background == green
+      weekButton.classList.toggle(`${classes.toggle}`);
     }
   };
 
@@ -178,10 +182,14 @@ const BudgetView = () => {
         <h2 className={classes.subHeader2}>View goals by month</h2>
       </div>
       <ButtonGroup variant="outlined" className={classes.monthWeekWrapper}>
-        <Button className={classes.monthButton} onClick={toggleButton}>
+        <Button
+          className={classes.monthButton}
+          id="month"
+          onClick={toggleButton}
+        >
           Month
         </Button>
-        <Button className={classes.weekButton} onClick={toggleButton}>
+        <Button className={classes.weekButton} id="week" onClick={toggleButton}>
           Week
         </Button>
       </ButtonGroup>

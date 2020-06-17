@@ -151,7 +151,10 @@ const BudgetPreview = ({ transaction }) => {
                   </Paper>
                 </Grid>
                 <Grid item xs={3}>
-                  <Paper className={classes.tableSection}>{item.amount}</Paper>
+                  <Paper className={classes.tableSection}>
+                    {'$ '}
+                    {`${item.amount}`}
+                  </Paper>
                 </Grid>
               </Grid>
             </>

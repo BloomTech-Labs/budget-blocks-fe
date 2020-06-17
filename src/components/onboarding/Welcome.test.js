@@ -9,4 +9,6 @@ test('Test text does exist', () => {
     const {getByText} = render(<Router><Welcome /></Router>)
 
     expect(getByText(/financial/i)).toBeTruthy()
+    expect(getByText(/flow/i)).toBeTruthy()
+    expect(getByText(/freedom/i)).toBeTruthy()
 })

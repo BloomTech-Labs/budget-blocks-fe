@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { PlaidLink } from 'react-plaid-link';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import { Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
@@ -12,6 +12,7 @@ import { useAlert } from 'react-alert';
 //SECTION REDUX
 import { connect } from 'react-redux';
 import { updateUser } from '../../redux/actions/userAction';
+import { fetchTransactions } from '../../redux/actions/dashboardAction';
 
 // SECTION CUSTOM STYLES
 import { useStyles } from '../../styles/theme_provider';
@@ -82,8 +83,10 @@ const customStyles = makeStyles({
     },
   },
   backNextButtonWrapper: {
-    marginTop: '25%',
-    marginLeft: '12%',
+    display: 'flex',
+    justifyContent: 'center',
+    marginTop: '33%',
+    // marginLeft: '12%',
   },
 });
 
@@ -95,7 +98,7 @@ const BankLink = (props) => {
   const history = useHistory();
   const userId = localStorage.getItem('user_id');
   const alert = useAlert();
-
+  const location = useLocation();
   const [bankCreated, setBackCreated] = useState(false);
 
   const onSuccess = (publicToken, metadata) => {
@@ -124,8 +127,9 @@ const BankLink = (props) => {
     const changes = { ...props.userInfo, onboarding_complete: true };
     console.log('on submit: ', props.userInfo);
     if (bankCreated === true) {
+      props.fetchTransactions();
       props.updateUser(userId, changes, accessToken);
-      setTimeout(() => history.push('/dashboard'), 1000);
+      setTimeout(() => history.push('/onboarding/budgetpreview', 2000));
     } else {
       alert.show('You did not connect your bank account!');
     }
@@ -204,7 +208,10 @@ const BankLink = (props) => {
 const mapStateToProps = (state) => {
   return {
     userInfo: state.users.userInfo,
+    transaction: state.trans.transaction,
   };
 };
 
-export default connect(mapStateToProps, { updateUser })(BankLink);
+export default connect(mapStateToProps, { updateUser, fetchTransactions })(
+  BankLink
+);

@@ -18,7 +18,8 @@ export const fetchTransactions = () => (dispatch) => {
         .post(`https://api.budgetblocks.org/transaction`, res.data)
         .then((categorizedTransactions) => {
           //FIXME Delete after testing
-          console.log('DS API action res: ', res);
+          // console.log('ds res: ', res);
+          console.log('DS API action res: ', categorizedTransactions);
 
           dispatch({
             type: FETCH_TRANS_SUCCESS,

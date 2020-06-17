@@ -2,13 +2,10 @@ import { useOktaAuth } from '@okta/okta-react';
 import React, { useState, useEffect } from 'react';
 import { Button } from '@material-ui/core';
 
-//FIXME Remove this after testing
-import { useHistory } from 'react-router-dom';
 
 const Home = () => {
   const { authState, authService } = useOktaAuth();
   const [userInfo, setUserInfo] = useState(null);
-  const history = useHistory();
 
   useEffect(() => {
     if (!authState.isAuthenticated) {

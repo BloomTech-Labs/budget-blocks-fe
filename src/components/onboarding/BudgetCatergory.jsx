@@ -78,19 +78,16 @@ const BudgetCategory =
         fetchTransactions();
     }, [location]);
 
-    console.log("transaction", transaction)
-    useEffect(() => {
-      axios.post(`https://api.budgetblocks.org/transaction`, transaction)
-      .then(res => {
-        console.log("response", res)
-      })
-      .catch(err => {
-        console.log("error", err)
-      })
-    }, [])
+    console.log(transaction)
 
+    // let total = Object.entries(transaction.totals)
+
+    for (let property in transaction.totals) {
+        console.log(`${property}: ${transaction.totals[property]}`)
+        console.log(property)
+        // setTotals(Object.keys(transaction.totals))
+    }
     console.log(totals)
-    
     return (
         <Container>
             <div className={classes.budgetContainer}>

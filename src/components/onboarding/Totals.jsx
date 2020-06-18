@@ -228,7 +228,8 @@ const Totals = () => {
       })
 
     }, []); 
-    
+
+    console.log(trans)
     
     return(
 

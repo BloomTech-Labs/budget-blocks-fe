@@ -296,32 +296,69 @@ const AnalyzerDashboard = (props) => {
             </Grid>
             <Divider className={classes.divider} />
             <Grid item xs={12} style={{ margin: '0 3%' }}>
-              <Typography variant="h6">Income ${income}</Typography>
-              {/* <Box className={classes.incomeBoxClass}>
-                <Typography
-                  style={{
-                    fontWeight: 'bold',
-                  }}
-                >
-                  Category
-                </Typography>
-                <Typography
-                  style={{
-                    fontWeight: 'bold',
-                  }}
-                >
-                  Total
-                </Typography>
-              </Box>
-              {totalsArray.map((item) => (
-                <Box style={{ display: 'flex', flexDirection: 'row' }}>
-                  <Typography>{item.category}</Typography>
-                  <Typography style={{ padding: '0 3%' }}>
-                    {item.value}
+              <Typography variant="h6" style={{ marginBootom: '2%' }}>
+                Income ${income}
+              </Typography>
+              <Grid container style={{ margin: '1% 0' }}>
+                <Grid item style={{ width: '15%' }}>
+                  <Typography
+                    style={{
+                      fontWeight: 'bold',
+                    }}
+                  >
+                    Category
                   </Typography>
-                  {displayGraph(2000, item.value)}
-                </Box>
-              ))} */}
+                </Grid>
+                <Grid item style={{ width: '10%' }}>
+                  <Typography
+                    style={{
+                      fontWeight: 'bold',
+                    }}
+                  >
+                    Total
+                  </Typography>
+                </Grid>
+              </Grid>
+              <Grid container>
+                {totalsArray.map((item) => (
+                  <Grid
+                    container
+                    style={{
+                      display: 'flex',
+                      flexDirection: 'row',
+                      marginBottom: '4%',
+                    }}
+                  >
+                    <Grid style={{ width: '15%' }}>
+                      <Typography>{item.category}</Typography>
+                    </Grid>
+                    <Grid item style={{ width: '7%' }}>
+                      <Typography>${item.value}</Typography>
+                    </Grid>
+                    <Grid item item xs={8}>
+                      {displayGraph()}
+                    </Grid>
+                  </Grid>
+                ))}
+                {/* <Grid item style={{ width: '8%', border: '1px solid black' }}>
+                  {totalsArray.map((item) => (
+                    <Typography
+                      style={{
+                        margin: '10% 0',
+                      }}
+                    >
+                      {item.value}
+                    </Typography>
+                  ))}
+                </Grid> */}
+                {/* <Grid item xs={8} style={{ border: '1px solid black' }}>
+                  {totalsArray.map((item) => (
+                    <Box style={{ margin: '2% 0', border: '1px solid black' }}>
+                      {displayGraph()}
+                    </Box>
+                  ))}
+                </Grid> */}
+              </Grid>
             </Grid>
           </Box>
         ) : (

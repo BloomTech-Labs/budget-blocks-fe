@@ -1,15 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Typography from '@material-ui/core/Typography';
-import { Button, makeStyles, Grid, Box } from '@material-ui/core';
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Paper,
-} from '@material-ui/core';
+import { Button, makeStyles, Grid, Box, Divider } from '@material-ui/core';
 import ProgressBar from './ProgressBar';
 import { connect } from 'react-redux';
 import axios from 'axios';
@@ -25,9 +16,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: 'rgba(19, 185, 172, 0.7)',
     color: 'white',
   },
-  lowerContainer: {
-    margin: '0 3%',
-  },
+  lowerContainer: {},
   componentButton: {
     fontSize: '1.4rem',
     lineHeight: '2.1rem',
@@ -58,22 +47,25 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: '#5ACEC5',
   },
   thirdContainer: {
-    margin: '3% 0 2% 0',
+    margin: '2% 3% 2% 3%',
   },
   monthsButtonsBoxClass: {
     border: '1px solid black',
   },
   blocksButtonsBoxClass: {
-    width: '55%',
+    width: '58.5%',
     display: 'flex',
     justifyContent: 'space-between',
   },
   incomeBoxClass: {
-    width: '16%',
+    width: '17%',
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
     margin: '3% 0 2% 0',
+  },
+  divider: {
+    margin: theme.spacing(1, 0),
   },
 }));
 
@@ -122,7 +114,7 @@ const AnalyzerDashboard = (props) => {
 
   const displayGraph = (totalValue, actualValue) => {
     const percentFilled = Math.round(totalValue / actualValue);
-    return <ProgressBar totalPercent={10000} percentfilled={percentFilled} />;
+    return <ProgressBar totalPercent={100} percentfilled={30} />;
   };
 
   //This function sorts TotalsArrays from largest category value
@@ -228,7 +220,13 @@ const AnalyzerDashboard = (props) => {
       <div>
         {activeComponent === 'budget' ? (
           <Box className={classes.lowerContainer}>
-            <Grid item xs={12}>
+            <Grid
+              style={{
+                margin: '2% 3%',
+              }}
+              item
+              xs={12}
+            >
               <Box className={classes.monthsButtonsBoxClass}>
                 <Button>May</Button>
                 <Button>Jun</Button>
@@ -240,6 +238,7 @@ const AnalyzerDashboard = (props) => {
                 <Button>Dec</Button>
               </Box>
             </Grid>
+            <Divider className={classes.divider} />
             <Grid item xs={12} className={classes.thirdContainer}>
               <Typography style={{ fontWeight: 'bold' }}>Blocks</Typography>
               <Box className={classes.blocksButtonsBoxClass}>
@@ -295,54 +294,34 @@ const AnalyzerDashboard = (props) => {
                 </Button>
               </Box>
             </Grid>
-            <Grid item xs={12}>
+            <Divider className={classes.divider} />
+            <Grid item xs={12} style={{ margin: '0 3%' }}>
               <Typography variant="h6">Income ${income}</Typography>
               {/* <Box className={classes.incomeBoxClass}>
-                <Typography>Category</Typography>
-                <Typography>Total</Typography>
-              </Box>
-              <ProgressBar totalPercent={40} percentfilled={100} />
-              <ProgressBar totalPercent={30} percentfilled={50} />
-              <ProgressBar totalPercent={20} percentfilled={20} />
-              <ProgressBar totalPercent={10} percentfilled={10} /> */}
-              <TableContainer component={Paper}>
-                <Table
-                  padding="none"
-                  style={{ width: '15%' }}
-                  className={classes.table}
-                  aria-label="simple table"
+                <Typography
+                  style={{
+                    fontWeight: 'bold',
+                  }}
                 >
-                  <TableHead>
-                    <TableRow style={{ width: '55%' }}>
-                      <TableCell>
-                        <Typography style={{ fontWeight: 'bold' }}>
-                          Category
-                        </Typography>
-                      </TableCell>
-                      <TableCell style={{ padding: '8%' }}>
-                        <Typography style={{ fontWeight: 'bold' }}>
-                          Total
-                        </Typography>
-                      </TableCell>
-                    </TableRow>
-                  </TableHead>
-                  <TableBody>
-                    {totalsArray.map((item) => (
-                      <TableRow key={item.category}>
-                        <TableCell component="th" scope="row">
-                          {item.category}
-                        </TableCell>
-                        <TableCell align="right" style={{ padding: '8%' }}>
-                          ${item.value}
-                        </TableCell>
-                        <TableCell style={{ paddingLeft: '4%' }}>
-                          {displayGraph(2000, item.value)}
-                        </TableCell>
-                      </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-              </TableContainer>
+                  Category
+                </Typography>
+                <Typography
+                  style={{
+                    fontWeight: 'bold',
+                  }}
+                >
+                  Total
+                </Typography>
+              </Box>
+              {totalsArray.map((item) => (
+                <Box style={{ display: 'flex', flexDirection: 'row' }}>
+                  <Typography>{item.category}</Typography>
+                  <Typography style={{ padding: '0 3%' }}>
+                    {item.value}
+                  </Typography>
+                  {displayGraph(2000, item.value)}
+                </Box>
+              ))} */}
             </Grid>
           </Box>
         ) : (

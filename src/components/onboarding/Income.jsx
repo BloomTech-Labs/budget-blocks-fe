@@ -217,7 +217,7 @@ const Income = ({ transaction }) => {
           type="submit"
           className={buttonClasses.nextButton}
           onClick={() => {
-            history.push('/onboarding/analyzerview');
+            history.push('/onboarding/budgetcategory');
           }}
         >
           Next {'>'}

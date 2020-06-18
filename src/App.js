@@ -8,7 +8,7 @@ import config from './components/okta/config';
 import Home from './components/Home';
 import Dashboard from './components/Dashboard';
 import Clickthrough from './components/Clickthrough';
-import Totals from './components/Totals'
+import Totals from './components/onboarding/Totals'
 
 // SECTION Onboarding Components
 import Onboarding from './components/onboarding/OnBoarding';

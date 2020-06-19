@@ -11,10 +11,13 @@ import Button from '@material-ui/core/Button';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import Grid from '@material-ui/core/Grid';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
 import { useStyles } from '../../styles/theme_provider';
+import IncomeSvg from '../../media/Income.svg';
 
 import { fetchTransactions } from '../../redux/actions/dashboardAction';
-import CategoryCard from './CategoryCard';
+
 
 const SERVER_HOST = process.env.REACT_APP_SERVER_HOST;
 
@@ -62,12 +65,17 @@ const customStyles = makeStyles({
     },
     categoriesContainer: {
         display: "flex",
-        flexWrap: "wrap"
+        flexWrap: "wrap",
+        justifyContent: "space-between",
+        margin: "21% 0% 0%"
     },
     backNextButtonWrapper: {
         display: "flex",
         justifyContent: "center",
         margin: "12% 0% 0%"
+    },
+    contentContainer: {
+        width: "48%",
     },
 });
 
@@ -81,7 +89,9 @@ const BudgetCategory =
     const classes = customStyles();
     const buttonClasses = useStyles();
     const history = useHistory()
-    const [totals, setTotals] = useState([])
+    const [categories, setCategories] = useState([])
+    const [values, setValues] = useState([])
+    const [goalsValue, setGoalsValue] = useState([])
 
     useEffect(() => {
         axios
@@ -90,7 +100,8 @@ const BudgetCategory =
                 axios
                 .post(`https://api.budgetblocks.org/transaction`, res.data)
                 .then(res => {
-                    setTotals(Object.entries(res.data.totals))
+                    setCategories(Object.keys(res.data.totals))
+                    setValues(Object.values(res.data.totals))
                 })
                 .catch(err => {
                     console.log("DS Trans", err.message)
@@ -101,7 +112,20 @@ const BudgetCategory =
         })
     }, []);
 
-    console.log(totals)
+    useEffect(() => {
+        axios
+            .get(`${SERVER_HOST}/api/goals/${user_id}`)
+            .then(res => {
+                setGoalsValue(Object.values(res.data))
+        })
+        .catch(err => {
+            console.log("goals", err.message)
+        })
+    }, []);
+
+    console.log(categories)
+    console.log(values)
+    console.log(goalsValue)
     
     return (
         <Container>
@@ -116,15 +140,137 @@ const BudgetCategory =
                 <Typography className={classes.sectionDescription}>All of your linked bank account transactions are automatically sorted into basic categories</Typography>
             </div>
             <div>
-                <Typography className={classes.subSectionTitle}>Set goals for basic expenses</Typography>
+                <Typography className={classes.subSectionTitle}>Set your budget goals for basic expenses</Typography>
             </div>
             <Grid className={classes.categoriesContainer}>
-            {totals.map((arr) => (
-                <CategoryCard
-                  catName={arr[0]}
-                  catValue={arr[1]}
-                />
-            ))}
+                {/* 1 */}
+                <Card className={classes.contentContainer}>
+                    <CardContent>
+                        <div>
+                        <img src={IncomeSvg} alt="Category Name Icon"></img>
+                        <Typography>{categories[5]}</Typography>
+                        </div>
+                        <Typography>Actual: {values[5]}</Typography>
+                        {goalsValue[2] === null ? (
+                        <Typography>Set Goal</Typography>
+                        ) : (
+                        <div>
+                            <Typography>Goal: {goalsValue[2]}</Typography>
+                        </div>)}
+                    </CardContent>
+                </Card>
+                {/* 2 */}
+                <Card className={classes.contentContainer}>
+                    <CardContent>
+                        <div>
+                        <img src={IncomeSvg} alt="Category Name Icon"></img>
+                        <Typography>{categories[1]}</Typography>
+                        </div>
+                        <Typography>Actual: {values[1]}</Typography>
+                        {goalsValue[1] === null ? (
+                        <Typography>Set Goal</Typography>
+                        ) : (
+                        <div>
+                            <Typography>Goal: {goalsValue[1]}</Typography>
+                        </div>)}
+                    </CardContent>
+                </Card>
+                {/* 3 */}
+                <Card className={classes.contentContainer}>
+                    <CardContent>
+                        <div>
+                        <img src={IncomeSvg} alt="Category Name Icon"></img>
+                        <Typography>{categories[6]}</Typography>
+                        </div>
+                        <Typography>Actual: {values[6]}</Typography>
+                        {goalsValue[9] === null ? (
+                        <Typography>Set Goal</Typography>
+                        ) : (
+                        <div>
+                            <Typography>Goal: {goalsValue[9]}</Typography>
+                        </div>)}
+                    </CardContent>
+                </Card>
+                {/* 4 */}
+                <Card className={classes.contentContainer}>
+                    <CardContent>
+                        <div>
+                        <img src={IncomeSvg} alt="Category Name Icon"></img>
+                        <Typography>{categories[0]}</Typography>
+                        </div>
+                        <Typography>Actual: {values[0]}</Typography>
+                        {goalsValue[3] === null ? (
+                        <Typography>Set Goal</Typography>
+                        ) : (
+                        <div>
+                            <Typography>Goal: {goalsValue[3]}</Typography>
+                        </div>)}
+                    </CardContent>
+                </Card>
+                {/* 5 */}
+                <Card className={classes.contentContainer}>
+                    <CardContent>
+                        <div>
+                        <img src={IncomeSvg} alt="Category Name Icon"></img>
+                        <Typography>{categories[4]}</Typography>
+                        </div>
+                        <Typography>Actual: {values[4]}</Typography>
+                        {goalsValue[4] === null ? (
+                        <Typography>Set Goal</Typography>
+                        ) : (
+                        <div>
+                            <Typography>Goal: {goalsValue[4]}</Typography>
+                        </div>)}
+                    </CardContent>
+                </Card>
+                {/* 6 */}
+                <Card className={classes.contentContainer}>
+                    <CardContent>
+                        <div>
+                        <img src={IncomeSvg} alt="Category Name Icon"></img>
+                        <Typography>{categories[2]}</Typography>
+                        </div>
+                        <Typography>Actual: {values[2]}</Typography>
+                        {goalsValue[7] === null ? (
+                        <Typography>Set Goal</Typography>
+                        ) : (
+                        <div>
+                            <Typography>Goal: {goalsValue[7]}</Typography>
+                        </div>)}
+                    </CardContent>
+                </Card>
+                {/* 7 */}
+                <Card className={classes.contentContainer}>
+                    <CardContent>
+                        <div>
+                        <img src={IncomeSvg} alt="Category Name Icon"></img>
+                        <Typography>{categories[8]}</Typography>
+                        </div>
+                        <Typography>Actual: {values[8]}</Typography>
+                        {goalsValue[6] === null ? (
+                        <Typography>Set Goal</Typography>
+                        ) : (
+                        <div>
+                            <Typography>Goal: {goalsValue[6]}</Typography>
+                        </div>)}
+                    </CardContent>
+                </Card>
+                {/* 8 */}
+                <Card className={classes.contentContainer}>
+                    <CardContent>
+                        <div>
+                        <img src={IncomeSvg} alt="Category Name Icon"></img>
+                        <Typography>{categories[7]}</Typography>
+                        </div>
+                        <Typography>Actual: {values[7]}</Typography>
+                        {goalsValue[8] === null ? (
+                        <Typography>Set Goal</Typography>
+                        ) : (
+                        <div>
+                            <Typography>Goal: {goalsValue[8]}</Typography>
+                        </div>)}
+                    </CardContent>
+                </Card>
             </Grid>
             <div className={classes.backNextButtonWrapper}>
                 <Button

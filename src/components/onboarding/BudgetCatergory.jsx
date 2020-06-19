@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useTransactions } from '../../hooks/useTransactions'
 import { Link, useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 
@@ -73,21 +74,10 @@ const BudgetCategory =
     const buttonClasses = useStyles();
     const history = useHistory()
     const [totals, setTotals] = useState([])
+    const total = useTransactions()
 
-    useEffect(() => {
-        fetchTransactions();
-    }, [location]);
-
-    console.log(transaction)
-
-    // let total = Object.entries(transaction.totals)
-
-    for (let property in transaction.totals) {
-        console.log(`${property}: ${transaction.totals[property]}`)
-        console.log(property)
-        // setTotals(Object.keys(transaction.totals))
-    }
-    console.log(totals)
+    console.log(total)
+    
     return (
         <Container>
             <div className={classes.budgetContainer}>
@@ -105,12 +95,16 @@ const BudgetCategory =
             </div>
 
             <div style={{textAlign: "center"}}>
-                <Card>
+            {total &&
+              total.map((data, index) => (
+                <Card key={index}>
                   <CardContent>
-                  <Typography style={{fontSize: "3rem"}}></Typography>
+                    <Typography style={{ fontSize: '3rem' }}>
+                      {data}
+                    </Typography>
                   </CardContent>
                 </Card>
-              
+              ))}
             </div>
             <div className={classes.backNextButtonWrapper}>
                 <Button

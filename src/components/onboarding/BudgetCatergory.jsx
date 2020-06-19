@@ -10,11 +10,15 @@ import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
+import Grid from '@material-ui/core/Grid';
 import { useStyles } from '../../styles/theme_provider';
 
 import { fetchTransactions } from '../../redux/actions/dashboardAction';
+import CategoryCard from './CategoryCard';
+
+const SERVER_HOST = process.env.REACT_APP_SERVER_HOST;
+
+const user_id = window.localStorage.getItem('user_id');
 
 const customStyles = makeStyles({
     budgetContainer: {
@@ -56,6 +60,10 @@ const customStyles = makeStyles({
         lineHeight: '2.4rem',
         fontWeight: '600',
     },
+    categoriesContainer: {
+        display: "flex",
+        flexWrap: "wrap"
+    },
     backNextButtonWrapper: {
         display: "flex",
         justifyContent: "center",
@@ -74,9 +82,26 @@ const BudgetCategory =
     const buttonClasses = useStyles();
     const history = useHistory()
     const [totals, setTotals] = useState([])
-    const total = useTransactions()
 
-    console.log(total)
+    useEffect(() => {
+        axios
+            .get(`${SERVER_HOST}/plaid/userTransactions/${user_id}`)
+            .then(res => {
+                axios
+                .post(`https://api.budgetblocks.org/transaction`, res.data)
+                .then(res => {
+                    setTotals(Object.entries(res.data.totals))
+                })
+                .catch(err => {
+                    console.log("DS Trans", err.message)
+                })
+        })
+        .catch(err => {
+            console.log("plaid_trans", err.message)
+        })
+    }, []);
+
+    console.log(totals)
     
     return (
         <Container>
@@ -93,19 +118,14 @@ const BudgetCategory =
             <div>
                 <Typography className={classes.subSectionTitle}>Set goals for basic expenses</Typography>
             </div>
-
-            <div style={{textAlign: "center"}}>
-            {total &&
-              total.map((data, index) => (
-                <Card key={index}>
-                  <CardContent>
-                    <Typography style={{ fontSize: '3rem' }}>
-                      {data}
-                    </Typography>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
+            <Grid className={classes.categoriesContainer}>
+            {totals.map((arr) => (
+                <CategoryCard
+                  catName={arr[0]}
+                  catValue={arr[1]}
+                />
+            ))}
+            </Grid>
             <div className={classes.backNextButtonWrapper}>
                 <Button
                 variant="contained"

@@ -7,7 +7,8 @@ const user_id = window.localStorage.getItem('user_id');
 
 export const useTransactions = (key, initialState) => {
 
-    const [total, setTotal] = useState()
+    const [category, setCategory] = useState()
+    const [value, setValue] = useState()
 
     useEffect(() => {
         axios
@@ -16,7 +17,8 @@ export const useTransactions = (key, initialState) => {
                 axios
                     .post(`https://api.budgetblocks.org/transaction`, res.data)
                     .then(res => {
-                        setTotal(Object.entries(res.data.totals))
+                        setCategory(Object.keys(res.data.totals))
+                        setValue(Object.values(res.data.totals))
                     })
                     .catch(err => {
                         console.log("DS Trans", err.message)
@@ -27,5 +29,5 @@ export const useTransactions = (key, initialState) => {
             })
       }, []);
 
-      return [total]
+      return [category, value]
 }

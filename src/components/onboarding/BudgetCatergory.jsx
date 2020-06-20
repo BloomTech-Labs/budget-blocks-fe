@@ -14,7 +14,14 @@ import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import { useStyles } from '../../styles/theme_provider';
-import IncomeSvg from '../../media/Income.svg';
+
+
+import carFade from '../../media/carFade.svg';
+import foodFade from '../../media/foodFade.svg';
+import houseFade from '../../media/houseFade.svg';
+import personalFade from '../../media/personalFade.svg';
+import editPencil from '../../media/pencil.svg';
+
 
 import { fetchTransactions } from '../../redux/actions/dashboardAction';
 
@@ -67,16 +74,57 @@ const customStyles = makeStyles({
         display: "flex",
         flexWrap: "wrap",
         justifyContent: "space-between",
-        margin: "21% 0% 0%"
+        margin: "12% 0% 0%"
     },
     backNextButtonWrapper: {
         display: "flex",
         justifyContent: "center",
         margin: "12% 0% 0%"
     },
-    contentContainer: {
+    cardContainer: {
         width: "48%",
+        background: "rgba(200, 216, 215, 0.1)",
+        border: "0px solid rgba(200, 216, 215, 0.46)",
+        boxSizing: "border-box",
+        borderRadius: "3px",
+        margin: "3% 0%",
+        height: "17vh",
+        fontFamily: "Poppins"
     },
+    goalSetContainer: {
+        width: "48%",
+        background: "#34D1C8",
+        border: "0px solid rgba(200, 216, 215, 0.46)",
+        boxSizing: "border-box",
+        borderRadius: "3px",
+        margin: "3% 0%",
+        height: "17vh",
+        fontFamily: "Poppins"
+    },
+    cardHeader: {
+        display: "flex"
+    },
+    cardTitle: {
+        margin: "4% 0% 0%",
+        fontSize: "1.5rem",
+        fontWeight: "lighter",
+        color: "rgba(33, 36, 44, 0.5)"
+    },
+    editIcon: {
+        display: "flex",
+        justifyContent: "right",
+        margin: "-10% -9% 0% 0%"
+    },
+    cardContent1: {
+        fontSize: "1.1rem",
+        color: "#959595",
+        margin: "3% 3% 0%"
+    },
+    cardContent2: {
+        fontSize: "1.2rem",
+        margin: "7% 3% 0%",
+        color: "#13B9AC"
+    }
 });
 
 const BudgetCategory = 
@@ -144,133 +192,121 @@ const BudgetCategory =
             </div>
             <Grid className={classes.categoriesContainer}>
                 {/* 1 */}
-                <Card className={classes.contentContainer}>
+                {goalsValue[2] === null ? (
+                <Card className={classes.cardContainer}>
                     <CardContent>
-                        <div>
-                        <img src={IncomeSvg} alt="Category Name Icon"></img>
-                        <Typography>{categories[5]}</Typography>
+                        <div className={classes.editIcon}>
+                            <img src={editPencil} alt="Edit Pencil"></img>
                         </div>
-                        <Typography>Actual: {values[5]}</Typography>
-                        {goalsValue[2] === null ? (
-                        <Typography>Set Goal</Typography>
-                        ) : (
-                        <div>
-                            <Typography>Goal: {goalsValue[2]}</Typography>
-                        </div>)}
+                        <div className={classes.cardHeader}>
+                            <img src={houseFade} alt="Category Name Icon"></img>
+                            <Typography className={classes.cardTitle}>{categories[5]}</Typography>
+                        </div>
+                        <Typography className={classes.cardContent1}>Actual ${values[5]}</Typography>
+                        <Typography className={classes.cardContent2}>Set Goal</Typography>
                     </CardContent>
                 </Card>
+                ) : (
+                <Card className={classes.cardContainer}>
+                    <CardContent>
+                        <div className={classes.editIcon}>
+                            <img src={editPencil} alt="Edit Pencil"></img>
+                        </div>
+                        <div className={classes.cardHeader}>
+                            <img src={houseFade} alt="Category Name Icon"></img>
+                            <Typography className={classes.cardTitle}>{categories[5]}</Typography>
+                        </div>
+                        <Typography className={classes.cardContent1}>Actual ${values[5]}</Typography>
+                        <Typography>Goal: {goalsValue[2]}</Typography>
+                    </CardContent>
+                </Card>)}
                 {/* 2 */}
-                <Card className={classes.contentContainer}>
+                {goalsValue[1] === null ? (
+                <Card className={classes.cardContainer}>
                     <CardContent>
-                        <div>
-                        <img src={IncomeSvg} alt="Category Name Icon"></img>
-                        <Typography>{categories[1]}</Typography>
+                        <div className={classes.editIcon}>
+                            <img src={editPencil} alt="Edit Pencil"></img>
                         </div>
-                        <Typography>Actual: {values[1]}</Typography>
-                        {goalsValue[1] === null ? (
-                        <Typography>Set Goal</Typography>
-                        ) : (
-                        <div>
-                            <Typography>Goal: {goalsValue[1]}</Typography>
-                        </div>)}
+                        <div className={classes.cardHeader}>
+                            <img src={foodFade} alt="Category Name Icon"></img>
+                            <Typography className={classes.cardTitle}>{categories[1]}</Typography>
+                        </div>
+                        <Typography className={classes.cardContent1}>Actual ${values[1]}</Typography>
+                        <Typography className={classes.cardContent2}>Set Goal</Typography>
                     </CardContent>
                 </Card>
+                ) : (
+                <Card className={classes.cardContainer}>
+                    <CardContent>
+                        <div className={classes.editIcon}>
+                            <img src={editPencil} alt="Edit Pencil"></img>
+                        </div>
+                        <div className={classes.cardHeader}>
+                            <img src={foodFade} alt="Category Name Icon"></img>
+                            <Typography className={classes.cardTitle}>{categories[1]}</Typography>
+                        </div>
+                        <Typography className={classes.cardContent1}>Actual ${values[1]}</Typography>
+                        <Typography>Goal: {goalsValue[1]}</Typography>
+                    </CardContent>
+                </Card>)}
                 {/* 3 */}
-                <Card className={classes.contentContainer}>
+                {goalsValue[9] === null ? (
+                <Card className={classes.cardContainer}>
                     <CardContent>
-                        <div>
-                        <img src={IncomeSvg} alt="Category Name Icon"></img>
-                        <Typography>{categories[6]}</Typography>
+                        <div className={classes.editIcon}>
+                            <img src={editPencil} alt="Edit Pencil"></img>
                         </div>
-                        <Typography>Actual: {values[6]}</Typography>
-                        {goalsValue[9] === null ? (
-                        <Typography>Set Goal</Typography>
-                        ) : (
-                        <div>
-                            <Typography>Goal: {goalsValue[9]}</Typography>
-                        </div>)}
+                        <div className={classes.cardHeader}>
+                            <img src={carFade} alt="Category Name Icon"></img>
+                            <Typography className={classes.cardTitle}>{categories[6]}</Typography>
+                        </div>
+                        <Typography className={classes.cardContent1}>Actual ${values[6]}</Typography>
+                        <Typography className={classes.cardContent2}>Set Goal</Typography>
                     </CardContent>
                 </Card>
+                ) : (
+                <Card className={classes.cardContainer}>
+                    <CardContent>
+                        <div className={classes.editIcon}>
+                            <img src={editPencil} alt="Edit Pencil"></img>
+                        </div>
+                        <div className={classes.cardHeader}>
+                            <img src={carFade} alt="Category Name Icon"></img>
+                            <Typography className={classes.cardTitle}>{categories[6]}</Typography>
+                        </div>
+                        <Typography className={classes.cardContent1}>Actual ${values[6]}</Typography>
+                        <Typography>Goal: {goalsValue[9]}</Typography>
+                    </CardContent>
+                </Card>)}
                 {/* 4 */}
-                <Card className={classes.contentContainer}>
+                {goalsValue[3] === null ? (
+                <Card className={classes.cardContainer}>
                     <CardContent>
-                        <div>
-                        <img src={IncomeSvg} alt="Category Name Icon"></img>
-                        <Typography>{categories[0]}</Typography>
+                        <div className={classes.editIcon}>
+                            <img src={editPencil} alt="Edit Pencil"></img>
                         </div>
-                        <Typography>Actual: {values[0]}</Typography>
-                        {goalsValue[3] === null ? (
-                        <Typography>Set Goal</Typography>
-                        ) : (
-                        <div>
-                            <Typography>Goal: {goalsValue[3]}</Typography>
-                        </div>)}
+                        <div className={classes.cardHeader}>
+                            <img src={personalFade} alt="Category Name Icon"></img>
+                            <Typography className={classes.cardTitle}>{categories[0]}</Typography>
+                        </div>
+                        <Typography className={classes.cardContent1}>Actual ${values[0]}</Typography>
+                        <Typography className={classes.cardContent2}>Set Goal</Typography>
                     </CardContent>
                 </Card>
-                {/* 5 */}
-                <Card className={classes.contentContainer}>
+                ) : (
+                <Card className={classes.cardContainer}>
                     <CardContent>
-                        <div>
-                        <img src={IncomeSvg} alt="Category Name Icon"></img>
-                        <Typography>{categories[4]}</Typography>
+                        <div className={classes.editIcon}>
+                            <img src={editPencil} alt="Edit Pencil"></img>
                         </div>
-                        <Typography>Actual: {values[4]}</Typography>
-                        {goalsValue[4] === null ? (
-                        <Typography>Set Goal</Typography>
-                        ) : (
-                        <div>
-                            <Typography>Goal: {goalsValue[4]}</Typography>
-                        </div>)}
-                    </CardContent>
-                </Card>
-                {/* 6 */}
-                <Card className={classes.contentContainer}>
-                    <CardContent>
-                        <div>
-                        <img src={IncomeSvg} alt="Category Name Icon"></img>
-                        <Typography>{categories[2]}</Typography>
+                        <div className={classes.cardHeader}>
+                            <img src={personalFade} alt="Category Name Icon"></img>
+                            <Typography className={classes.cardTitle}>{categories[0]}</Typography>
                         </div>
-                        <Typography>Actual: {values[2]}</Typography>
-                        {goalsValue[7] === null ? (
-                        <Typography>Set Goal</Typography>
-                        ) : (
-                        <div>
-                            <Typography>Goal: {goalsValue[7]}</Typography>
-                        </div>)}
+                        <Typography className={classes.cardContent1}>Actual ${values[0]}</Typography>
+                        <Typography>Goal: {goalsValue[3]}</Typography>
                     </CardContent>
-                </Card>
-                {/* 7 */}
-                <Card className={classes.contentContainer}>
-                    <CardContent>
-                        <div>
-                        <img src={IncomeSvg} alt="Category Name Icon"></img>
-                        <Typography>{categories[8]}</Typography>
-                        </div>
-                        <Typography>Actual: {values[8]}</Typography>
-                        {goalsValue[6] === null ? (
-                        <Typography>Set Goal</Typography>
-                        ) : (
-                        <div>
-                            <Typography>Goal: {goalsValue[6]}</Typography>
-                        </div>)}
-                    </CardContent>
-                </Card>
-                {/* 8 */}
-                <Card className={classes.contentContainer}>
-                    <CardContent>
-                        <div>
-                        <img src={IncomeSvg} alt="Category Name Icon"></img>
-                        <Typography>{categories[7]}</Typography>
-                        </div>
-                        <Typography>Actual: {values[7]}</Typography>
-                        {goalsValue[8] === null ? (
-                        <Typography>Set Goal</Typography>
-                        ) : (
-                        <div>
-                            <Typography>Goal: {goalsValue[8]}</Typography>
-                        </div>)}
-                    </CardContent>
-                </Card>
+                </Card>)}
             </Grid>
             <div className={classes.backNextButtonWrapper}>
                 <Button

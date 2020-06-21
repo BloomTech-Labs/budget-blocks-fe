@@ -21,6 +21,10 @@ import foodFade from '../../media/foodFade.svg';
 import houseFade from '../../media/houseFade.svg';
 import personalFade from '../../media/personalFade.svg';
 import editPencil from '../../media/pencil.svg';
+import car from '../../media/car.svg';
+import food from '../../media/food.svg';
+import house from '../../media/house.svg';
+import personal from '../../media/personal.svg';
 
 
 import { fetchTransactions } from '../../redux/actions/dashboardAction';
@@ -33,15 +37,8 @@ const user_id = window.localStorage.getItem('user_id');
 const customStyles = makeStyles({
     budgetContainer: {
         display: "flex",
-        justifyContent: "space-between",
-        margin: "5% 0% 0%"
-    },
-    budgetHeader: {
-        color: '#000000',
-        fontSize: '1.8rem',
-        lineHeight: '2.7rem',
-        fontWeight: '700',
-        marginBottom: '20%',
+        justifyContent: "right",
+        margin: "5% 0% 12%"
     },
     skipButton: {
         fontSize: "1rem",
@@ -79,7 +76,7 @@ const customStyles = makeStyles({
     backNextButtonWrapper: {
         display: "flex",
         justifyContent: "center",
-        margin: "12% 0% 0%"
+        margin: "12% 0%"
     },
     cardContainer: {
         width: "48%",
@@ -110,6 +107,12 @@ const customStyles = makeStyles({
         fontWeight: "lighter",
         color: "rgba(33, 36, 44, 0.5)"
     },
+    goalSetTitle: {
+        margin: "4% 0% 0%",
+        fontSize: "1.5rem",
+        fontWeight: "lighter",
+        color: "#FFFFFF"
+    },
     editIcon: {
         display: "flex",
         justifyContent: "right",
@@ -120,10 +123,21 @@ const customStyles = makeStyles({
         color: "#959595",
         margin: "3% 3% 0%"
     },
+    goalContent1: {
+        fontSize: "1.1rem",
+        color: "#FFFFFF",
+        margin: "3% 3% 0%"
+    },
     cardContent2: {
         fontSize: "1.2rem",
         margin: "7% 3% 0%",
         color: "#13B9AC"
+    },
+    goalContent2: {
+        fontSize: "1.4rem",
+        margin: "7% 3% 0%",
+        color: "#FFFFFF",
+        fontWeight: "bold"
     }
 });
 
@@ -178,7 +192,6 @@ const BudgetCategory =
     return (
         <Container>
             <div className={classes.budgetContainer}>
-            <Typography className={classes.budgetHeader}>Budget</Typography>
             <Typography className={classes.skipButton}>Skip</Typography>
             </div>
             <div style={{ margin: "0% 0% 7%" }}>
@@ -202,22 +215,22 @@ const BudgetCategory =
                             <img src={houseFade} alt="Category Name Icon"></img>
                             <Typography className={classes.cardTitle}>{categories[5]}</Typography>
                         </div>
-                        <Typography className={classes.cardContent1}>Actual ${values[5]}</Typography>
+                        <Typography className={classes.cardContent1}>Actual <span style={{ margin: "0% 0% 0% 5%" }}>${values[5]}</span></Typography>
                         <Typography className={classes.cardContent2}>Set Goal</Typography>
                     </CardContent>
                 </Card>
                 ) : (
-                <Card className={classes.cardContainer}>
+                <Card className={classes.goalSetContainer}>
                     <CardContent>
                         <div className={classes.editIcon}>
                             <img src={editPencil} alt="Edit Pencil"></img>
                         </div>
                         <div className={classes.cardHeader}>
-                            <img src={houseFade} alt="Category Name Icon"></img>
-                            <Typography className={classes.cardTitle}>{categories[5]}</Typography>
+                            <img src={house} alt="Category Name Icon"></img>
+                            <Typography className={classes.goalSetTitle}>{categories[5]}</Typography>
                         </div>
-                        <Typography className={classes.cardContent1}>Actual ${values[5]}</Typography>
-                        <Typography>Goal: {goalsValue[2]}</Typography>
+                        <Typography className={classes.goalContent1}>Actual <span style={{ margin: "0% 0% 0% 5%" }}>${values[5]}</span></Typography>
+                        <Typography className={classes.goalContent2}>Goal <span style={{ margin: "0% 0% 0% 4%" }}>${goalsValue[2]}</span></Typography>
                     </CardContent>
                 </Card>)}
                 {/* 2 */}
@@ -231,22 +244,22 @@ const BudgetCategory =
                             <img src={foodFade} alt="Category Name Icon"></img>
                             <Typography className={classes.cardTitle}>{categories[1]}</Typography>
                         </div>
-                        <Typography className={classes.cardContent1}>Actual ${values[1]}</Typography>
+                        <Typography className={classes.cardContent1}>Actual <span style={{ margin: "0% 0% 0% 5%" }}>${values[1]}</span></Typography>
                         <Typography className={classes.cardContent2}>Set Goal</Typography>
                     </CardContent>
                 </Card>
                 ) : (
-                <Card className={classes.cardContainer}>
+                <Card className={classes.goalSetContainer}>
                     <CardContent>
                         <div className={classes.editIcon}>
                             <img src={editPencil} alt="Edit Pencil"></img>
                         </div>
                         <div className={classes.cardHeader}>
-                            <img src={foodFade} alt="Category Name Icon"></img>
-                            <Typography className={classes.cardTitle}>{categories[1]}</Typography>
+                            <img src={food} alt="Category Name Icon"></img>
+                            <Typography className={classes.goalSetTitle}>{categories[1]}</Typography>
                         </div>
-                        <Typography className={classes.cardContent1}>Actual ${values[1]}</Typography>
-                        <Typography>Goal: {goalsValue[1]}</Typography>
+                        <Typography className={classes.goalContent1}>Actual <span style={{ margin: "0% 0% 0% 5%" }}>${values[1]}</span></Typography>
+                        <Typography className={classes.goalContent2}>Goal <span style={{ margin: "0% 0% 0% 4%" }}>${goalsValue[1]}</span></Typography>
                     </CardContent>
                 </Card>)}
                 {/* 3 */}
@@ -260,22 +273,22 @@ const BudgetCategory =
                             <img src={carFade} alt="Category Name Icon"></img>
                             <Typography className={classes.cardTitle}>{categories[6]}</Typography>
                         </div>
-                        <Typography className={classes.cardContent1}>Actual ${values[6]}</Typography>
+                        <Typography className={classes.cardContent1}>Actual <span style={{ margin: "0% 0% 0% 5%" }}>${values[6]}</span></Typography>
                         <Typography className={classes.cardContent2}>Set Goal</Typography>
                     </CardContent>
                 </Card>
                 ) : (
-                <Card className={classes.cardContainer}>
+                <Card className={classes.goalSetContainer}>
                     <CardContent>
                         <div className={classes.editIcon}>
                             <img src={editPencil} alt="Edit Pencil"></img>
                         </div>
                         <div className={classes.cardHeader}>
-                            <img src={carFade} alt="Category Name Icon"></img>
-                            <Typography className={classes.cardTitle}>{categories[6]}</Typography>
+                            <img src={car} alt="Category Name Icon"></img>
+                            <Typography className={classes.goalSetTitle}>{categories[6]}</Typography>
                         </div>
-                        <Typography className={classes.cardContent1}>Actual ${values[6]}</Typography>
-                        <Typography>Goal: {goalsValue[9]}</Typography>
+                        <Typography className={classes.goalContent1}>Actual <span style={{ margin: "0% 0% 0% 5%" }}>${values[6]}</span></Typography>
+                        <Typography className={classes.goalContent2}>Goal <span style={{ margin: "0% 0% 0% 4%" }}>${goalsValue[9]}</span></Typography>
                     </CardContent>
                 </Card>)}
                 {/* 4 */}
@@ -289,22 +302,22 @@ const BudgetCategory =
                             <img src={personalFade} alt="Category Name Icon"></img>
                             <Typography className={classes.cardTitle}>{categories[0]}</Typography>
                         </div>
-                        <Typography className={classes.cardContent1}>Actual ${values[0]}</Typography>
+                        <Typography className={classes.cardContent1}>Actual <span style={{ margin: "0% 0% 0% 5%" }}>${values[0]}</span></Typography>
                         <Typography className={classes.cardContent2}>Set Goal</Typography>
                     </CardContent>
                 </Card>
                 ) : (
-                <Card className={classes.cardContainer}>
+                <Card className={classes.goalSetContainer}>
                     <CardContent>
                         <div className={classes.editIcon}>
                             <img src={editPencil} alt="Edit Pencil"></img>
                         </div>
                         <div className={classes.cardHeader}>
-                            <img src={personalFade} alt="Category Name Icon"></img>
-                            <Typography className={classes.cardTitle}>{categories[0]}</Typography>
+                            <img src={personal} alt="Category Name Icon"></img>
+                            <Typography className={classes.goalSetTitle}>{categories[0]}</Typography>
                         </div>
-                        <Typography className={classes.cardContent1}>Actual ${values[0]}</Typography>
-                        <Typography>Goal: {goalsValue[3]}</Typography>
+                        <Typography className={classes.goalContent1}>Actual <span style={{ margin: "0% 0% 0% 5%" }}>${values[0]}</span></Typography>
+                        <Typography className={classes.goalContent2}>Goal <span style={{ margin: "0% 0% 0% 4%" }}>${goalsValue[3]}</span></Typography>
                     </CardContent>
                 </Card>)}
             </Grid>

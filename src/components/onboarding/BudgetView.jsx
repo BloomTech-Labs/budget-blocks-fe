@@ -68,28 +68,6 @@ const customStyles = makeStyles({
     justifyContent: 'center',
     marginBottom: '2%',
   },
-  monthButton: {
-    width: '17rem',
-    height: '3rem',
-    textTransform: 'capitalize',
-    fontSize: '1.4rem',
-    lineHeight: '2.1rem',
-    color: 'white',
-    background: '#13B9AC',
-    border: '1px solid #13B9AC',
-    '&:hover': {
-      background: '#13B9AC',
-    },
-  },
-  weekButton: {
-    width: '17rem',
-    height: '3rem',
-    textTransform: 'capitalize',
-    fontSize: '1.4rem',
-    lineHeight: '2.1rem',
-    color: '#959595',
-    border: '1px solid #13B9AC',
-  },
   goalExampleWrapper: {
     display: 'flex',
     justifyContent: 'center',
@@ -133,6 +111,37 @@ const customStyles = makeStyles({
     display: 'flex',
     justifyContent: 'center',
   },
+  toggleOn: {
+    background: '#13B9AC !important',
+    color: 'white !important',
+  },
+
+  toggleOff: {
+    background: 'white !important',
+    color: '#959595 !important',
+  },
+  monthButton: {
+    width: '17rem',
+    height: '3rem',
+    textTransform: 'capitalize',
+    fontSize: '1.4rem',
+    lineHeight: '2.1rem',
+    // color: 'white',
+    // background: '#13B9AC',
+    border: '1px solid #13B9AC',
+    '&:hover': {
+      background: '#13B9AC',
+    },
+  },
+  weekButton: {
+    width: '17rem',
+    height: '3rem',
+    textTransform: 'capitalize',
+    fontSize: '1.4rem',
+    lineHeight: '2.1rem',
+    // color: '#959595',
+    border: '1px solid #13B9AC',
+  },
 });
 
 const BudgetView = () => {
@@ -146,19 +155,13 @@ const BudgetView = () => {
 
   const [view, setView] = useState(false);
 
-  const toggleButton = (e) => {
-    console.log(e.target);
-    const monthButton = document.querySelector('.monthButton');
-    const weekButton = document.querySelector('weekButton');
+  const toggle = () => {
+    const month = document.querySelector('#month');
+    const week = document.querySelector('#week');
 
-    console.log(monthButton);
-    setView(!view);
+    week.classList.toggle(`${classes.toggleOn}`);
 
     if (view === false) {
-      // month background == green
-      // document.
-    } else {
-      // week background == green
     }
   };
 
@@ -177,11 +180,21 @@ const BudgetView = () => {
         <h2 className={classes.subHeader1}>Start setting goals</h2>
         <h2 className={classes.subHeader2}>View goals by month</h2>
       </div>
-      <ButtonGroup variant="outlined" className={classes.monthWeekWrapper}>
-        <Button className={classes.monthButton} onClick={toggleButton}>
+      <ButtonGroup className={classes.monthWeekWrapper}>
+        <Button
+          className={[classes.monthButton, classes.toggleOn].join(' ')}
+          id="month"
+          onClick={() => {}}
+          value="month"
+        >
           Month
         </Button>
-        <Button className={classes.weekButton} onClick={toggleButton}>
+        <Button
+          className={classes.weekButton}
+          id="week"
+          onClick={null}
+          value="week"
+        >
           Week
         </Button>
       </ButtonGroup>

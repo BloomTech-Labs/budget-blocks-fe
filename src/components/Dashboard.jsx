@@ -82,9 +82,9 @@ const Dashboard = ({
             Logout
           </Button>
           <div style={{ textAlign: 'center' }}>
-            {transaction &&
-              transaction.map((data) => (
-                <Card key={data.account_id}>
+            {transaction.transactions &&
+              transaction.transactions.map((data) => (
+                <Card key={data.transaction_id}>
                   <CardContent>
                     <Typography style={{ fontSize: '3rem' }}>
                       {data.budget_blocks_category}

@@ -133,7 +133,7 @@ const BudgetPreview = ({ transaction }) => {
             </div>
           </div>
         ) : (
-          transaction.slice(1, 4).map((item) => (
+          transaction.transactions.slice(1, 4).map((item) => (
             <>
               <Grid container spacing={3}>
                 <Grid item xs={3}>

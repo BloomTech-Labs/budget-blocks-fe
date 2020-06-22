@@ -22,6 +22,11 @@ import incomeFade from '../../../media/pencil.svg';
 import ProgressBar from './ProgressBar';
 import FooterComponent from './FooterComponent';
 
+import {
+  userAction,
+  notAuthenticated,
+} from '../../../redux/actions/userAction';
+
 //Styles using material UI 'makeStyles' function
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -68,7 +73,8 @@ const useStyles = makeStyles((theme) => ({
     margin: '2% 3% 2% 3%',
   },
   monthsButtonsBoxClass: {
-    border: '1px solid black',
+    display: 'flex',
+    justifyContent: 'space-between',
   },
   blocksButtonsBoxClass: {
     width: '57%',
@@ -94,9 +100,10 @@ const AnalyzerDashboard = (props) => {
   const classes = useStyles();
   let totalsArray = [];
 
-  const { authState } = useOktaAuth();
+  const { authState, authService } = useOktaAuth();
   const { accessToken } = authState;
 
+  const [name, setName] = useState('');
   const [activeComponent, setActiveComponent] = useState('budget');
   const [income, setIncome] = useState(0);
   const [categoriesNames, setCategoriesNames] = useState([]);
@@ -138,52 +145,6 @@ const AnalyzerDashboard = (props) => {
     }
     return null;
   };
-
-  useEffect(() => {
-    axios
-        .get(`${SERVER_HOST}/plaid/userTransactions/${user_id}`)
-        .then(res => {
-            axios
-            .post(`https://api.budgetblocks.org/transaction`, res.data)
-            .then(res => {
-                setCategoriesNames(Object.keys(res.data.totals))
-                setCategoriesValues(Object.values(res.data.totals))
-            })
-            .catch(err => {
-                console.log("DS Trans", err.message)
-            })
-    })
-    .catch(err => {
-        console.log("plaid_trans", err.message)
-    })
-  }, []);
-
-  useEffect(() => {
-    axios
-        .get(`${SERVER_HOST}/api/goals/${user_id}`,)
-        .then(res => {
-            setGoalsValue(Object.values(res.data))
-        })
-        .catch(err => {
-            console.log("goals", err.message)
-        })
-  }, []);
-
-  useEffect(() => {
-    axios
-      .get(`${SERVER_HOST}/plaid/userBalance/${user_id}`)
-      .then((res) => {
-        setBalance(res.data.BalanceResponse.accounts[0].balances.current);
-      })
-      .catch((err) => {
-        console.log('goals', err.message);
-      });
-  }, []);
-
-        console.log(categoriesNames)
-        console.log(categoriesValues)
-        console.log(goalsValue)
-        console.log(balance)
 
   const displayGraph = (spendValue, goalValue) => {
     const totalPercent = Math.round((goalValue / income) * 100);
@@ -237,7 +198,72 @@ const AnalyzerDashboard = (props) => {
     setButtonsClasses(false, false, false, false, true);
   };
 
-  console.log('user name', props.userInfo.name);
+  useEffect(() => {
+    axios
+      .get(`${SERVER_HOST}/plaid/userTransactions/${user_id}`)
+      .then((res) => {
+        axios
+          .post(`https://api.budgetblocks.org/transaction`, res.data)
+          .then((categorizedTransactions) => {
+            setIncome(9646);
+            delete categorizedTransactions.data.totals.Income;
+            setCategoriesNames(
+              Object.keys(categorizedTransactions.data.totals)
+            );
+            setCategoriesValues(
+              Object.values(categorizedTransactions.data.totals)
+            );
+          })
+          .catch((err) => {
+            console.log('error', err);
+          });
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  }, []);
+
+  useEffect(() => {
+    console.log('accessToken', accessToken);
+
+    axios
+      .get(`${SERVER_HOST}/api/goals/${user_id}`, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      })
+      .then((res) => {
+        setGoalsValue(Object.values(res.data));
+      })
+      .catch((err) => {
+        console.log('goals', err.message);
+      });
+  }, [authState, authService]);
+
+  useEffect(() => {
+    axios
+      .get(`${SERVER_HOST}/plaid/userBalance/${user_id}`, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      })
+      .then((res) => {
+        setBalance(res.data.BalanceResponse.accounts[0].balances.current);
+      })
+      .catch((err) => {
+        console.log('error:', err.message);
+      });
+  }, [authState, authService]);
+
+  useEffect(() => {
+    if (!authState.isAuthenticated) {
+      notAuthenticated();
+    } else {
+      authService.getUser().then((info) => {
+        setName(info.given_name);
+      });
+    }
+  }, [authState, authService]);
 
   combineCategoriesNamesWithValues();
   sortTotalsArray();
@@ -246,7 +272,7 @@ const AnalyzerDashboard = (props) => {
     <div className={classes.root}>
       <Grid container className={classes.topContainer}>
         <Grid item xs={12} className={classes.hiMessage}>
-          Hi {props.userInfo.name}!
+          Hi {name}!
         </Grid>
         <Grid item xs={12}>
           <Typography variant="h6">Your balance is</Typography>
@@ -276,14 +302,14 @@ const AnalyzerDashboard = (props) => {
               xs={12}
             >
               <Box className={classes.monthsButtonsBoxClass}>
-                <Button>May</Button>
-                <Button>Jun</Button>
-                <Button>Jul</Button>
-                <Button>Aug</Button>
-                <Button>Sep</Button>
-                <Button>Oct</Button>
-                <Button>Nov</Button>
-                <Button>Dec</Button>
+                <Button style={{ color: '#959595' }}>May</Button>
+                <Button style={{ color: '#959595' }}>Jun</Button>
+                <Button style={{ color: '#959595' }}>Jul</Button>
+                <Button style={{ color: '#959595' }}>Aug</Button>
+                <Button style={{ color: '#959595' }}>Sep</Button>
+                <Button style={{ color: '#959595' }}>Oct</Button>
+                <Button style={{ color: '#959595' }}>Nov</Button>
+                <Button style={{ color: '#959595' }}>Dec</Button>
               </Box>
             </Grid>
             <Divider className={classes.divider} />
@@ -366,7 +392,7 @@ const AnalyzerDashboard = (props) => {
             <Grid item xs={12} style={{ margin: '0 3%' }}>
               <Typography variant="h6">Income ${income}</Typography>
               <Grid container style={{ margin: '3% 0 2% 0' }}>
-                <Grid item style={{ width: '15%' }}>
+                <Grid item style={{ width: '17%' }}>
                   <Typography
                     style={{
                       fontWeight: 'bold',
@@ -395,10 +421,12 @@ const AnalyzerDashboard = (props) => {
                       marginBottom: '4%',
                     }}
                   >
-                    <Grid style={{ width: '15%' }}>
-                      <Typography>{item.category}</Typography>
+                    <Grid style={{ width: '17%' }}>
+                      <Typography style={{ fontWeight: 'bold' }}>
+                        {item.category}
+                      </Typography>
                     </Grid>
-                    <Grid item style={{ width: '7%' }}>
+                    <Grid item style={{ width: '8%' }}>
                       <Typography style={{ color: '#959595' }}>
                         ${item.value}
                       </Typography>
@@ -428,4 +456,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, {})(AnalyzerDashboard);
+export default connect(mapStateToProps, { userAction, notAuthenticated })(
+  AnalyzerDashboard
+);

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useTransactions } from '../../hooks/useTransactions'
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import Container from '@material-ui/core/Container';
@@ -116,7 +115,7 @@ const customStyles = makeStyles({
     editIcon: {
         display: "flex",
         justifyContent: "right",
-        margin: "-10% -9% 0% 0%"
+        margin: "-15% -22% 0% 0%"
     },
     cardContent1: {
         fontSize: "1.1rem",
@@ -209,7 +208,7 @@ const BudgetCategory =
                 <Card className={classes.cardContainer}>
                     <CardContent>
                         <div className={classes.editIcon}>
-                            <img src={editPencil} alt="Edit Pencil"></img>
+                        <Button style={{ padding: "-1px" }} onClick={() => {history.push('/goal/house');}}><img src={editPencil} alt="Edit Pencil"></img></Button>
                         </div>
                         <div className={classes.cardHeader}>
                             <img src={houseFade} alt="Category Name Icon"></img>
@@ -223,7 +222,7 @@ const BudgetCategory =
                 <Card className={classes.goalSetContainer}>
                     <CardContent>
                         <div className={classes.editIcon}>
-                            <img src={editPencil} alt="Edit Pencil"></img>
+                        <Button style={{ padding: "-1px" }} onClick={() => {history.push('/goal/house');}}><img src={editPencil} alt="Edit Pencil"></img></Button>
                         </div>
                         <div className={classes.cardHeader}>
                             <img src={house} alt="Category Name Icon"></img>
@@ -238,7 +237,7 @@ const BudgetCategory =
                 <Card className={classes.cardContainer}>
                     <CardContent>
                         <div className={classes.editIcon}>
-                            <img src={editPencil} alt="Edit Pencil"></img>
+                        <Button style={{ padding: "-1px" }} onClick={() => {history.push('/goal/house');}}><img src={editPencil} alt="Edit Pencil"></img></Button>
                         </div>
                         <div className={classes.cardHeader}>
                             <img src={foodFade} alt="Category Name Icon"></img>
@@ -252,7 +251,7 @@ const BudgetCategory =
                 <Card className={classes.goalSetContainer}>
                     <CardContent>
                         <div className={classes.editIcon}>
-                            <img src={editPencil} alt="Edit Pencil"></img>
+                        <Button style={{ padding: "-1px" }} onClick={() => {history.push('/goal/house');}}><img src={editPencil} alt="Edit Pencil"></img></Button>
                         </div>
                         <div className={classes.cardHeader}>
                             <img src={food} alt="Category Name Icon"></img>
@@ -267,7 +266,7 @@ const BudgetCategory =
                 <Card className={classes.cardContainer}>
                     <CardContent>
                         <div className={classes.editIcon}>
-                            <img src={editPencil} alt="Edit Pencil"></img>
+                        <Button style={{ padding: "-1px" }} onClick={() => {history.push('/goal/house');}}><img src={editPencil} alt="Edit Pencil"></img></Button>
                         </div>
                         <div className={classes.cardHeader}>
                             <img src={carFade} alt="Category Name Icon"></img>
@@ -281,7 +280,7 @@ const BudgetCategory =
                 <Card className={classes.goalSetContainer}>
                     <CardContent>
                         <div className={classes.editIcon}>
-                            <img src={editPencil} alt="Edit Pencil"></img>
+                        <Button style={{ padding: "-1px" }} onClick={() => {history.push('/goal/house');}}><img src={editPencil} alt="Edit Pencil"></img></Button>
                         </div>
                         <div className={classes.cardHeader}>
                             <img src={car} alt="Category Name Icon"></img>
@@ -296,7 +295,7 @@ const BudgetCategory =
                 <Card className={classes.cardContainer}>
                     <CardContent>
                         <div className={classes.editIcon}>
-                            <img src={editPencil} alt="Edit Pencil"></img>
+                        <Button style={{ padding: "-1px" }} onClick={() => {history.push('/goal/house');}}><img src={editPencil} alt="Edit Pencil"></img></Button>
                         </div>
                         <div className={classes.cardHeader}>
                             <img src={personalFade} alt="Category Name Icon"></img>
@@ -310,7 +309,7 @@ const BudgetCategory =
                 <Card className={classes.goalSetContainer}>
                     <CardContent>
                         <div className={classes.editIcon}>
-                            <img src={editPencil} alt="Edit Pencil"></img>
+                        <Button style={{ padding: "-1px" }} onClick={() => {history.push('/goal/house');}}><img src={editPencil} alt="Edit Pencil"></img></Button>
                         </div>
                         <div className={classes.cardHeader}>
                             <img src={personal} alt="Category Name Icon"></img>

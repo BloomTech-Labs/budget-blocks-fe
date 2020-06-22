@@ -21,6 +21,9 @@ import Income from './components/onboarding/Income';
 import AnalyzerDashboard from './components/onboarding/dashboard/AnalyzerDashboard'
 import BudgetCategory from './components/onboarding/BudgetCatergory'
 
+// SECTION Goals Components
+import HomeGoal from './components/onboarding/goals/HouseGoal'
+
 //SECTION CSS
 import './App.css';
 
@@ -45,6 +48,7 @@ const App = () => (
         <Route path="/onboarding/income" exact component={Income} />
         <Route path="/onboarding/analyzerview" exact component={AnalyzerDashboard} />
         <Route path="/onboarding/budgetcategory" exact component={BudgetCategory} />
+        <Route path="/goal/house" exact component={HomeGoal} />
         <Route path="/totals" exact component={Totals} />
       </Container>
     </Security>

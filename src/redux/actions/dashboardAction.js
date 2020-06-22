@@ -11,9 +11,6 @@ export const fetchTransactions = () => (dispatch) => {
   axios
     .get(`${SERVER_HOST}/plaid/userTransactions/${user_id}`)
     .then((res) => {
-      //FIXME Delete after testing
-      console.log('transactions action res: ', res.data);
-
       axios
         .post(`https://api.budgetblocks.org/transaction`, res.data)
         .then((categorizedTransactions) => {
@@ -23,7 +20,7 @@ export const fetchTransactions = () => (dispatch) => {
 
           dispatch({
             type: FETCH_TRANS_SUCCESS,
-            payload: categorizedTransactions.data.transactions,
+            payload: categorizedTransactions.data,
           });
         })
         .catch((err) => {

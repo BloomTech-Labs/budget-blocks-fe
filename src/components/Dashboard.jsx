@@ -51,14 +51,8 @@ const Dashboard = ({
     fetchTransactions();
   }, [location]);
 
-  // if (isFetching === true) {
-  //   return <p>Loading...</p>;
-  // } else {
-  // }
-
   return (
     <div>
-      {transaction && console.log(transaction)}
       {userInfo && userInfo.onboarding_complete === false ? (
         <Redirect to="/onboarding" />
       ) : (

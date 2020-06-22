@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
-import { connect } from 'react-redux';
+import { useOktaAuth } from '@okta/okta-react';
 
 import Container from '@material-ui/core/Container';
 import { Typography } from '@material-ui/core';
@@ -150,6 +150,8 @@ const BudgetCategory =
     const classes = customStyles();
     const buttonClasses = useStyles();
     const history = useHistory()
+    const { authState } = useOktaAuth();
+    const { accessToken } = authState;
     const [categories, setCategories] = useState([])
     const [values, setValues] = useState([])
     const [goalsValue, setGoalsValue] = useState([])
@@ -175,13 +177,18 @@ const BudgetCategory =
 
     useEffect(() => {
         axios
-            .get(`${SERVER_HOST}/api/goals/${user_id}`)
+            .get(`${SERVER_HOST}/api/goals/${user_id}`,
+            {
+                headers: {
+                Authorization: `Bearer ${accessToken}`,
+                },
+            })
             .then(res => {
                 setGoalsValue(Object.values(res.data))
-        })
-        .catch(err => {
-            console.log("goals", err.message)
-        })
+            })
+            .catch(err => {
+                console.log("goals", err.message)
+            })
     }, []);
 
     console.log(categories)
@@ -237,7 +244,7 @@ const BudgetCategory =
                 <Card className={classes.cardContainer}>
                     <CardContent>
                         <div className={classes.editIcon}>
-                        <Button style={{ padding: "-1px" }} onClick={() => {history.push('/goal/house');}}><img src={editPencil} alt="Edit Pencil"></img></Button>
+                        <Button style={{ padding: "-1px" }} onClick={() => {history.push('/goal/food');}}><img src={editPencil} alt="Edit Pencil"></img></Button>
                         </div>
                         <div className={classes.cardHeader}>
                             <img src={foodFade} alt="Category Name Icon"></img>
@@ -251,7 +258,7 @@ const BudgetCategory =
                 <Card className={classes.goalSetContainer}>
                     <CardContent>
                         <div className={classes.editIcon}>
-                        <Button style={{ padding: "-1px" }} onClick={() => {history.push('/goal/house');}}><img src={editPencil} alt="Edit Pencil"></img></Button>
+                        <Button style={{ padding: "-1px" }} onClick={() => {history.push('/goal/food');}}><img src={editPencil} alt="Edit Pencil"></img></Button>
                         </div>
                         <div className={classes.cardHeader}>
                             <img src={food} alt="Category Name Icon"></img>
@@ -266,7 +273,7 @@ const BudgetCategory =
                 <Card className={classes.cardContainer}>
                     <CardContent>
                         <div className={classes.editIcon}>
-                        <Button style={{ padding: "-1px" }} onClick={() => {history.push('/goal/house');}}><img src={editPencil} alt="Edit Pencil"></img></Button>
+                        <Button style={{ padding: "-1px" }} onClick={() => {history.push('/goal/transport');}}><img src={editPencil} alt="Edit Pencil"></img></Button>
                         </div>
                         <div className={classes.cardHeader}>
                             <img src={carFade} alt="Category Name Icon"></img>
@@ -280,7 +287,7 @@ const BudgetCategory =
                 <Card className={classes.goalSetContainer}>
                     <CardContent>
                         <div className={classes.editIcon}>
-                        <Button style={{ padding: "-1px" }} onClick={() => {history.push('/goal/house');}}><img src={editPencil} alt="Edit Pencil"></img></Button>
+                        <Button style={{ padding: "-1px" }} onClick={() => {history.push('/goal/transport');}}><img src={editPencil} alt="Edit Pencil"></img></Button>
                         </div>
                         <div className={classes.cardHeader}>
                             <img src={car} alt="Category Name Icon"></img>
@@ -295,7 +302,7 @@ const BudgetCategory =
                 <Card className={classes.cardContainer}>
                     <CardContent>
                         <div className={classes.editIcon}>
-                        <Button style={{ padding: "-1px" }} onClick={() => {history.push('/goal/house');}}><img src={editPencil} alt="Edit Pencil"></img></Button>
+                        <Button style={{ padding: "-1px" }} onClick={() => {history.push('/goal/personal');}}><img src={editPencil} alt="Edit Pencil"></img></Button>
                         </div>
                         <div className={classes.cardHeader}>
                             <img src={personalFade} alt="Category Name Icon"></img>
@@ -309,7 +316,7 @@ const BudgetCategory =
                 <Card className={classes.goalSetContainer}>
                     <CardContent>
                         <div className={classes.editIcon}>
-                        <Button style={{ padding: "-1px" }} onClick={() => {history.push('/goal/house');}}><img src={editPencil} alt="Edit Pencil"></img></Button>
+                        <Button style={{ padding: "-1px" }} onClick={() => {history.push('/goal/personal');}}><img src={editPencil} alt="Edit Pencil"></img></Button>
                         </div>
                         <div className={classes.cardHeader}>
                             <img src={personal} alt="Category Name Icon"></img>
@@ -326,7 +333,7 @@ const BudgetCategory =
                 type="submit"
                 className={buttonClasses.backButton}
                 onClick={() => {
-                    history.push('');
+                    history.push('/dashboard');
                 }}
                 >
                 <KeyboardArrowLeft /> Back
@@ -336,7 +343,7 @@ const BudgetCategory =
                 type="submit"
                 className={buttonClasses.nextButton}
                 onClick={() => {
-                    history.push('');
+                    history.push('/onboarding/income');
                   }}
                 >
                 Next <KeyboardArrowRight />
@@ -346,14 +353,4 @@ const BudgetCategory =
     )
 };
 
-const mapStateToProps = (state) => {
-    return {
-      transaction: state.trans.transaction,
-      isFetching: state.trans.isFetching,
-      errors: state.trans.errors,
-    };
-};
-
-export default connect(mapStateToProps, {
-    fetchTransactions
-  })(BudgetCategory)
+export default BudgetCategory

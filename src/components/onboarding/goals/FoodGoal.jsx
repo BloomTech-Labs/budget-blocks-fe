@@ -114,7 +114,7 @@ const ValidationTextField = withStyles({
     },
   })(TextField);
 
-const HouseGoal = 
+const FoodGoal = 
 ({
     transaction,
     fetchTransactions,
@@ -130,7 +130,7 @@ const HouseGoal =
     const [categories, setCategories] = useState([])
     const [values, setValues] = useState([])
     const [goalsValue, setGoalsValue] = useState([])
-    const [housing, setHousing] = useState(null);
+    const [food, setFood] = useState(null);
     const [editMode, setEditMode] = useState(true);
 
     useEffect(() => {
@@ -170,11 +170,11 @@ const HouseGoal =
     }, []);
 
     const formSubmit = (data) => {
-        setHousing(data.housing);
+        setFood(data.food);
         axios
           .put(
             `${SERVER_HOST}/api/goals/${user_id}`,
-            { housing: data.housing },
+            { food: data.food },
             {
               headers: {
                 Authorization: `Bearer ${accessToken}`,
@@ -201,11 +201,11 @@ const HouseGoal =
                 <Typography className={classes.sectionDescription}>Your income transactions are already tracked for you. Now you can set a goal for your income to track your progress.</Typography>
             </div>
             <div>
-                <Typography className={classes.subSectionTitle}>Set your Housing budget goal</Typography>
+                <Typography className={classes.subSectionTitle}>Set your Food budget goal</Typography>
             </div>
             <div className={classes.goalHeader}>
-                <Typography className={classes.goalTitle}>{categories[5]}</Typography>
-                <Typography className={classes.totalPreview}>Actual: ${values[5]}</Typography>
+                <Typography className={classes.goalTitle}>{categories[1]}</Typography>
+                <Typography className={classes.totalPreview}>Actual: ${values[1]}</Typography>
             </div>
             <div className={classes.goalInputContainer}>
               <>
@@ -216,15 +216,15 @@ const HouseGoal =
                 >
                   <Controller
                     as={ValidationTextField}
-                    name="housing"
+                    name="food"
                     placeholder="$"
                     control={control}
-                    defaultValue={housing || ''}
+                    defaultValue={food || ''}
                     inputRef={register}
                     id="outlined-basic"
                     label="$"
                     variant="outlined"
-                    className={classes.housingInput}
+                    className={classes.foodInput}
                   />
                   {errors.name && <p>{errors.name.message}</p>}
                   <Button className={classes.saveButton} type="submit">
@@ -259,4 +259,4 @@ const HouseGoal =
     )
 };
 
-export default HouseGoal
+export default FoodGoal

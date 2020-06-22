@@ -114,7 +114,7 @@ const ValidationTextField = withStyles({
     },
   })(TextField);
 
-const HouseGoal = 
+const PersonalGoal = 
 ({
     transaction,
     fetchTransactions,
@@ -130,7 +130,7 @@ const HouseGoal =
     const [categories, setCategories] = useState([])
     const [values, setValues] = useState([])
     const [goalsValue, setGoalsValue] = useState([])
-    const [housing, setHousing] = useState(null);
+    const [personal, setPersonal] = useState(null);
     const [editMode, setEditMode] = useState(true);
 
     useEffect(() => {
@@ -170,11 +170,11 @@ const HouseGoal =
     }, []);
 
     const formSubmit = (data) => {
-        setHousing(data.housing);
+        setPersonal(data.personal);
         axios
           .put(
             `${SERVER_HOST}/api/goals/${user_id}`,
-            { housing: data.housing },
+            { personal: data.personal },
             {
               headers: {
                 Authorization: `Bearer ${accessToken}`,
@@ -201,11 +201,11 @@ const HouseGoal =
                 <Typography className={classes.sectionDescription}>Your income transactions are already tracked for you. Now you can set a goal for your income to track your progress.</Typography>
             </div>
             <div>
-                <Typography className={classes.subSectionTitle}>Set your Housing budget goal</Typography>
+                <Typography className={classes.subSectionTitle}>Set your Personal budget goal</Typography>
             </div>
             <div className={classes.goalHeader}>
-                <Typography className={classes.goalTitle}>{categories[5]}</Typography>
-                <Typography className={classes.totalPreview}>Actual: ${values[5]}</Typography>
+                <Typography className={classes.goalTitle}>{categories[0]}</Typography>
+                <Typography className={classes.totalPreview}>Actual: ${values[0]}</Typography>
             </div>
             <div className={classes.goalInputContainer}>
               <>
@@ -216,10 +216,10 @@ const HouseGoal =
                 >
                   <Controller
                     as={ValidationTextField}
-                    name="housing"
+                    name="personal"
                     placeholder="$"
                     control={control}
-                    defaultValue={housing || ''}
+                    defaultValue={personal || ''}
                     inputRef={register}
                     id="outlined-basic"
                     label="$"
@@ -259,4 +259,4 @@ const HouseGoal =
     )
 };
 
-export default HouseGoal
+export default PersonalGoal

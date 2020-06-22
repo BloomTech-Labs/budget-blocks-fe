@@ -139,6 +139,52 @@ const AnalyzerDashboard = (props) => {
     return null;
   };
 
+  useEffect(() => {
+    axios
+        .get(`${SERVER_HOST}/plaid/userTransactions/${user_id}`)
+        .then(res => {
+            axios
+            .post(`https://api.budgetblocks.org/transaction`, res.data)
+            .then(res => {
+                setCategoriesNames(Object.keys(res.data.totals))
+                setCategoriesValues(Object.values(res.data.totals))
+            })
+            .catch(err => {
+                console.log("DS Trans", err.message)
+            })
+    })
+    .catch(err => {
+        console.log("plaid_trans", err.message)
+    })
+  }, []);
+
+  useEffect(() => {
+    axios
+        .get(`${SERVER_HOST}/api/goals/${user_id}`,)
+        .then(res => {
+            setGoalsValue(Object.values(res.data))
+        })
+        .catch(err => {
+            console.log("goals", err.message)
+        })
+  }, []);
+
+  useEffect(() => {
+    axios
+      .get(`${SERVER_HOST}/plaid/userBalance/${user_id}`)
+      .then((res) => {
+        setBalance(res.data.BalanceResponse.accounts[0].balances.current);
+      })
+      .catch((err) => {
+        console.log('goals', err.message);
+      });
+  }, []);
+
+        console.log(categoriesNames)
+        console.log(categoriesValues)
+        console.log(goalsValue)
+        console.log(balance)
+
   const displayGraph = (spendValue, goalValue) => {
     const totalPercent = Math.round((goalValue / income) * 100);
     const percentFilled = Math.round((spendValue / goalValue) * 100);
@@ -192,63 +238,6 @@ const AnalyzerDashboard = (props) => {
   };
 
   console.log('user name', props.userInfo.name);
-
-  useEffect(() => {
-    axios
-      .get(`${SERVER_HOST}/plaid/userTransactions/${user_id}`)
-      .then((res) => {
-        axios
-          .post(`https://api.budgetblocks.org/transaction`, res.data)
-          .then((categorizedTransactions) => {
-            setIncome(9646);
-            delete categorizedTransactions.data.totals.Income;
-            setCategoriesNames(
-              Object.keys(categorizedTransactions.data.totals)
-            );
-            setCategoriesValues(
-              Object.values(categorizedTransactions.data.totals)
-            );
-          })
-          .catch((err) => {
-            console.log('error', err);
-          });
-      })
-      .catch((err) => {
-        console.log(err.message);
-      });
-  }, []);
-
-  useEffect(() => {
-    console.log('accessToken', accessToken);
-
-    axios
-      .get(`${SERVER_HOST}/api/goals/${user_id}`, {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      })
-      .then((res) => {
-        setGoalsValue(Object.values(res.data));
-      })
-      .catch((err) => {
-        console.log('goals', err.message);
-      });
-  }, []);
-
-  useEffect(() => {
-    axios
-      .get(`${SERVER_HOST}/plaid/userBalance/${user_id}`, {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      })
-      .then((res) => {
-        setBalance(res.data.BalanceResponse.accounts[0].balances.current);
-      })
-      .catch((err) => {
-        console.log('goals', err.message);
-      });
-  }, []);
 
   combineCategoriesNamesWithValues();
   sortTotalsArray();

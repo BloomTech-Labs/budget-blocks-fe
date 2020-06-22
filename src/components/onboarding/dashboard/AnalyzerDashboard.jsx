@@ -4,6 +4,7 @@ import { Button, makeStyles, Grid, Box, Divider } from '@material-ui/core';
 import ProgressBar from './ProgressBar';
 import { connect } from 'react-redux';
 import axios from 'axios';
+import { useOktaAuth } from '@okta/okta-react';
 
 import carFade from '../../../media/carFade.svg';
 import foodFade from '../../../media/foodFade.svg';
@@ -78,10 +79,15 @@ const useStyles = makeStyles((theme) => ({
 const AnalyzerDashboard = (props) => {
   const classes = useStyles();
   let totalsArray = [];
+
+  const { authState } = useOktaAuth();
+  const { accessToken } = authState;
+
   const [activeComponent, setActiveComponent] = useState('budget');
   const [income, setIncome] = useState(0);
   const [categoriesNames, setCategoriesNames] = useState([]);
   const [categoriesValues, setCategoriesValues] = useState([]);
+  const [goalsValue, setGoalsValue] = useState([]);
 
   const [incomeButtonClass, setIncomeButtonClass] = useState(false);
   const [housingButtonClass, setHousingButtonClass] = useState(false);
@@ -118,9 +124,15 @@ const AnalyzerDashboard = (props) => {
     return null;
   };
 
-  const displayGraph = (totalValue, actualValue) => {
-    const percentFilled = Math.round(totalValue / actualValue);
-    return <ProgressBar totalPercent={100} percentfilled={30} />;
+  const displayGraph = (totalValue, goalValue) => {
+    console.log('total', totalValue);
+    console.log('goalValue', goalValue);
+
+    const totalPercent = Math.round((goalValue / income) * 100);
+    const percentFilled = Math.round((totalValue / goalValue) * 100);
+    return (
+      <ProgressBar totalPercent={totalPercent} percentfilled={percentFilled} />
+    );
   };
 
   //This function sorts TotalsArrays from largest category value
@@ -179,7 +191,7 @@ const AnalyzerDashboard = (props) => {
         axios
           .post(`https://api.budgetblocks.org/transaction`, res.data)
           .then((categorizedTransactions) => {
-            setIncome(categorizedTransactions.data.totals.Income);
+            setIncome(9646);
             delete categorizedTransactions.data.totals.Income;
             setCategoriesNames(
               Object.keys(categorizedTransactions.data.totals)
@@ -197,8 +209,33 @@ const AnalyzerDashboard = (props) => {
       });
   }, []);
 
+  useEffect(() => {
+    const user_id = window.localStorage.getItem('user_id');
+    const SERVER_HOST = process.env.REACT_APP_SERVER_HOST;
+
+    console.log('accessToken', accessToken);
+
+    setGoalsValue([7000, 2200, 1500, 12]);
+
+    // axios
+    //   .get(`${SERVER_HOST}/api/goals/${user_id}`, {
+    //     headers: {
+    //       Authorization: `Bearer ${accessToken}`,
+    //     },
+    //   })
+    //   .then((res) => {
+    //     setGoalsValue(Object.values(res.data));
+    //   })
+    //   .catch((err) => {
+    //     console.log('goals', err.message);
+    //   });
+  }, []);
+
   combineCategoriesNamesWithValues();
   sortTotalsArray();
+
+  console.log('goals', goalsValue);
+  console.log('totalArrays', totalsArray);
 
   return (
     <div className={classes.root}>
@@ -344,7 +381,7 @@ const AnalyzerDashboard = (props) => {
                 </Grid>
               </Grid>
               <Grid container>
-                {totalsArray.map((item) => (
+                {totalsArray.map((item, index) => (
                   <Grid
                     container
                     style={{
@@ -357,10 +394,12 @@ const AnalyzerDashboard = (props) => {
                       <Typography>{item.category}</Typography>
                     </Grid>
                     <Grid item style={{ width: '7%' }}>
-                      <Typography>${item.value}</Typography>
+                      <Typography style={{ color: '#959595' }}>
+                        ${item.value}
+                      </Typography>
                     </Grid>
                     <Grid item item xs={8}>
-                      {displayGraph()}
+                      {displayGraph(item.value, goalsValue[index])}
                     </Grid>
                   </Grid>
                 ))}
@@ -370,6 +409,7 @@ const AnalyzerDashboard = (props) => {
         ) : (
           <h1>Spending button was clicked</h1>
         )}
+        <Divider className={classes.divider} />
       </div>
     </div>
   );

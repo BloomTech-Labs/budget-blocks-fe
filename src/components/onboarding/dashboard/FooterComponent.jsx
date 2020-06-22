@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import { Button, makeStyles, Grid, Box, Typography } from '@material-ui/core';
+import { Button, makeStyles, Box } from '@material-ui/core';
 
 // Imports for images
 import barChartIcon from '../../../media/bar-chart.svg';

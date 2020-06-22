@@ -139,12 +139,9 @@ const AnalyzerDashboard = (props) => {
     return null;
   };
 
-  const displayGraph = (totalValue, goalValue) => {
-    console.log('total', totalValue);
-    console.log('goalValue', goalValue);
-
+  const displayGraph = (spendValue, goalValue) => {
     const totalPercent = Math.round((goalValue / income) * 100);
-    const percentFilled = Math.round((totalValue / goalValue) * 100);
+    const percentFilled = Math.round((spendValue / goalValue) * 100);
     return (
       <ProgressBar totalPercent={totalPercent} percentfilled={percentFilled} />
     );
@@ -246,10 +243,6 @@ const AnalyzerDashboard = (props) => {
         },
       })
       .then((res) => {
-        console.log(
-          'res',
-          res.data.BalanceResponse.accounts[0].balances.current
-        );
         setBalance(res.data.BalanceResponse.accounts[0].balances.current);
       })
       .catch((err) => {
@@ -259,10 +252,6 @@ const AnalyzerDashboard = (props) => {
 
   combineCategoriesNamesWithValues();
   sortTotalsArray();
-
-  console.log('goals', goalsValue);
-  console.log('totalArrays', totalsArray);
-  console.log('balance', balance);
 
   return (
     <div className={classes.root}>

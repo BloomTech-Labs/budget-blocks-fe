@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import {
   makeStyles,
@@ -15,6 +15,7 @@ import { useStyles } from '../../styles/theme_provider';
 
 //SECTION REDUX
 import { connect } from 'react-redux';
+import { fetchTransactions } from '../../redux/actions/dashboardAction';
 
 const customStyles = makeStyles({
   mainWrapper: {
@@ -95,7 +96,7 @@ const customStyles = makeStyles({
   },
 });
 
-const BudgetPreview = ({ transaction }) => {
+const BudgetPreview = ({ transaction, fetchTransactions }) => {
   const classes = customStyles();
   const buttonClasses = useStyles();
   const history = useHistory();
@@ -103,6 +104,10 @@ const BudgetPreview = ({ transaction }) => {
   const skipPage = (e) => {
     history.push('/onboarding/budgetview');
   };
+
+  useEffect(() => {
+    fetchTransactions();
+  }, []);
 
   console.log('tran', transaction);
 
@@ -151,7 +156,10 @@ const BudgetPreview = ({ transaction }) => {
                   </Paper>
                 </Grid>
                 <Grid item xs={3}>
-                  <Paper className={classes.tableSection}>{item.amount}</Paper>
+                  <Paper className={classes.tableSection}>
+                    {'$ '}
+                    {`${item.amount}`}
+                  </Paper>
                 </Grid>
               </Grid>
             </>
@@ -190,4 +198,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, {})(BudgetPreview);
+export default connect(mapStateToProps, { fetchTransactions })(BudgetPreview);

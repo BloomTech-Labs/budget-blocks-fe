@@ -8,7 +8,6 @@ import config from './components/okta/config';
 import Home from './components/Home';
 import Dashboard from './components/Dashboard';
 import Clickthrough from './components/Clickthrough';
-import Totals from './components/onboarding/Totals'
 
 // SECTION Onboarding Components
 import Onboarding from './components/onboarding/OnBoarding';
@@ -55,7 +54,6 @@ const App = () => (
         <Route path="/goal/food" exact component={FoodGoal} />
         <Route path="/goal/transport" exact component={TransportGoal} />
         <Route path="/goal/personal" exact component={PersonalGoal} />
-        <Route path="/totals" exact component={Totals} />
       </Container>
     </Security>
   </Router>

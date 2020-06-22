@@ -21,6 +21,12 @@ import Income from './components/onboarding/Income';
 import AnalyzerDashboard from './components/onboarding/dashboard/AnalyzerDashboard'
 import BudgetCategory from './components/onboarding/BudgetCatergory'
 
+// SECTION Goals Components
+import HomeGoal from './components/onboarding/goals/HouseGoal'
+import FoodGoal from './components/onboarding/goals/FoodGoal'
+import TransportGoal from './components/onboarding/goals/TransportGoal'
+import PersonalGoal from './components/onboarding/goals/PersonalGoal'
+
 //SECTION CSS
 import './App.css';
 
@@ -45,6 +51,10 @@ const App = () => (
         <Route path="/onboarding/income" exact component={Income} />
         <Route path="/onboarding/analyzerview" exact component={AnalyzerDashboard} />
         <Route path="/onboarding/budgetcategory" exact component={BudgetCategory} />
+        <Route path="/goal/house" exact component={HomeGoal} />
+        <Route path="/goal/food" exact component={FoodGoal} />
+        <Route path="/goal/transport" exact component={TransportGoal} />
+        <Route path="/goal/personal" exact component={PersonalGoal} />
         <Route path="/totals" exact component={Totals} />
       </Container>
     </Security>

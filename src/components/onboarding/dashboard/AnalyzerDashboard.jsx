@@ -1,17 +1,28 @@
 import React, { useState, useEffect } from 'react';
-import Typography from '@material-ui/core/Typography';
-import { Button, makeStyles, Grid, Box, Divider } from '@material-ui/core';
-import ProgressBar from './ProgressBar';
+import {
+  Button,
+  makeStyles,
+  Grid,
+  Box,
+  Divider,
+  Typography,
+} from '@material-ui/core';
 import { connect } from 'react-redux';
-import axios from 'axios';
 import { useOktaAuth } from '@okta/okta-react';
+import axios from 'axios';
 
+// Imports for images
 import carFade from '../../../media/carFade.svg';
 import foodFade from '../../../media/foodFade.svg';
 import houseFade from '../../../media/houseFade.svg';
 import personalFade from '../../../media/personalFade.svg';
 import incomeFade from '../../../media/pencil.svg';
 
+//Imports for components
+import ProgressBar from './ProgressBar';
+import FooterComponent from './FooterComponent';
+
+//Styles using material UI 'makeStyles' function
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
@@ -77,6 +88,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const AnalyzerDashboard = (props) => {
+  const user_id = window.localStorage.getItem('user_id');
+  const SERVER_HOST = process.env.REACT_APP_SERVER_HOST;
+
   const classes = useStyles();
   let totalsArray = [];
 
@@ -88,6 +102,7 @@ const AnalyzerDashboard = (props) => {
   const [categoriesNames, setCategoriesNames] = useState([]);
   const [categoriesValues, setCategoriesValues] = useState([]);
   const [goalsValue, setGoalsValue] = useState([]);
+  const [balance, setBalance] = useState(0);
 
   const [incomeButtonClass, setIncomeButtonClass] = useState(false);
   const [housingButtonClass, setHousingButtonClass] = useState(false);
@@ -182,9 +197,6 @@ const AnalyzerDashboard = (props) => {
   console.log('user name', props.userInfo.name);
 
   useEffect(() => {
-    const user_id = window.localStorage.getItem('user_id');
-    const SERVER_HOST = process.env.REACT_APP_SERVER_HOST;
-
     axios
       .get(`${SERVER_HOST}/plaid/userTransactions/${user_id}`)
       .then((res) => {
@@ -210,25 +222,39 @@ const AnalyzerDashboard = (props) => {
   }, []);
 
   useEffect(() => {
-    const user_id = window.localStorage.getItem('user_id');
-    const SERVER_HOST = process.env.REACT_APP_SERVER_HOST;
-
     console.log('accessToken', accessToken);
 
-    setGoalsValue([7000, 2200, 1500, 12]);
+    axios
+      .get(`${SERVER_HOST}/api/goals/${user_id}`, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      })
+      .then((res) => {
+        setGoalsValue(Object.values(res.data));
+      })
+      .catch((err) => {
+        console.log('goals', err.message);
+      });
+  }, []);
 
-    // axios
-    //   .get(`${SERVER_HOST}/api/goals/${user_id}`, {
-    //     headers: {
-    //       Authorization: `Bearer ${accessToken}`,
-    //     },
-    //   })
-    //   .then((res) => {
-    //     setGoalsValue(Object.values(res.data));
-    //   })
-    //   .catch((err) => {
-    //     console.log('goals', err.message);
-    //   });
+  useEffect(() => {
+    axios
+      .get(`${SERVER_HOST}/plaid/userBalance/${user_id}`, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      })
+      .then((res) => {
+        console.log(
+          'res',
+          res.data.BalanceResponse.accounts[0].balances.current
+        );
+        setBalance(res.data.BalanceResponse.accounts[0].balances.current);
+      })
+      .catch((err) => {
+        console.log('goals', err.message);
+      });
   }, []);
 
   combineCategoriesNamesWithValues();
@@ -236,6 +262,7 @@ const AnalyzerDashboard = (props) => {
 
   console.log('goals', goalsValue);
   console.log('totalArrays', totalsArray);
+  console.log('balance', balance);
 
   return (
     <div className={classes.root}>
@@ -247,7 +274,7 @@ const AnalyzerDashboard = (props) => {
           <Typography variant="h6">Your balance is</Typography>
         </Grid>
         <Grid item xs={12} className={classes.balance}>
-          <Typography variant="h3">${}</Typography>
+          <Typography variant="h3">${balance}</Typography>
         </Grid>
         <Grid item xs={12} classname={classes.buttonsClass}>
           <Button className={classes.componentButton} onClick={handleSpending}>
@@ -376,7 +403,7 @@ const AnalyzerDashboard = (props) => {
                       fontWeight: 'bold',
                     }}
                   >
-                    Total
+                    Goal
                   </Typography>
                 </Grid>
               </Grid>
@@ -410,6 +437,7 @@ const AnalyzerDashboard = (props) => {
           <h1>Spending button was clicked</h1>
         )}
         <Divider className={classes.divider} />
+        <FooterComponent />
       </div>
     </div>
   );

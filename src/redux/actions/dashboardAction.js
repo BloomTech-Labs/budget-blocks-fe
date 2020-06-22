@@ -20,7 +20,9 @@ export const fetchTransactions = () => (dispatch) => {
 
           dispatch({
             type: FETCH_TRANS_SUCCESS,
-            payload: categorizedTransactions.data.transactions,
+            payload: categorizedTransactions.data,
+            //might use:
+            //payload: categorizedTransactions.data.transactions
           });
         })
         .catch((err) => {

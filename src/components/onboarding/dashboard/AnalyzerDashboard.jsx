@@ -5,6 +5,12 @@ import ProgressBar from './ProgressBar';
 import { connect } from 'react-redux';
 import axios from 'axios';
 
+import carFade from '../../../media/carFade.svg';
+import foodFade from '../../../media/foodFade.svg';
+import houseFade from '../../../media/houseFade.svg';
+import personalFade from '../../../media/personalFade.svg';
+import incomeFade from '../../../media/pencil.svg';
+
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
@@ -53,7 +59,7 @@ const useStyles = makeStyles((theme) => ({
     border: '1px solid black',
   },
   blocksButtonsBoxClass: {
-    width: '58.5%',
+    width: '57%',
     display: 'flex',
     justifyContent: 'space-between',
   },
@@ -250,7 +256,11 @@ const AnalyzerDashboard = (props) => {
                   }
                   onClick={handleIncomeClick}
                 >
-                  Income
+                  {incomeButtonClass ? (
+                    'Income'
+                  ) : (
+                    <img src={incomeFade} alt="Category Name Icon"></img>
+                  )}
                 </Button>
                 <Button
                   className={
@@ -260,7 +270,11 @@ const AnalyzerDashboard = (props) => {
                   }
                   onClick={(e) => handleHousing(e)}
                 >
-                  House
+                  {housingButtonClass ? (
+                    'House'
+                  ) : (
+                    <img src={houseFade} alt="Category Name Icon"></img>
+                  )}
                 </Button>
                 <Button
                   className={
@@ -270,7 +284,11 @@ const AnalyzerDashboard = (props) => {
                   }
                   onClick={(e) => handleFood(e)}
                 >
-                  Food
+                  {foodBuButtonClass ? (
+                    'Food'
+                  ) : (
+                    <img src={foodFade} alt="Category Name Icon"></img>
+                  )}
                 </Button>
                 <Button
                   className={
@@ -280,7 +298,11 @@ const AnalyzerDashboard = (props) => {
                   }
                   onClick={(e) => handleCar(e)}
                 >
-                  Car
+                  {carBuButtonClass ? (
+                    'Car'
+                  ) : (
+                    <img src={carFade} alt="Category Name Icon"></img>
+                  )}
                 </Button>
                 <Button
                   className={
@@ -290,16 +312,18 @@ const AnalyzerDashboard = (props) => {
                   }
                   onClick={(e) => handlePersonal(e)}
                 >
-                  Personal
+                  {personalBuButtonClass ? (
+                    'Personal'
+                  ) : (
+                    <img src={personalFade} alt="Category Name Icon"></img>
+                  )}
                 </Button>
               </Box>
             </Grid>
             <Divider className={classes.divider} />
             <Grid item xs={12} style={{ margin: '0 3%' }}>
-              <Typography variant="h6" style={{ marginBootom: '2%' }}>
-                Income ${income}
-              </Typography>
-              <Grid container style={{ margin: '1% 0' }}>
+              <Typography variant="h6">Income ${income}</Typography>
+              <Grid container style={{ margin: '3% 0 2% 0' }}>
                 <Grid item style={{ width: '15%' }}>
                   <Typography
                     style={{
@@ -340,24 +364,6 @@ const AnalyzerDashboard = (props) => {
                     </Grid>
                   </Grid>
                 ))}
-                {/* <Grid item style={{ width: '8%', border: '1px solid black' }}>
-                  {totalsArray.map((item) => (
-                    <Typography
-                      style={{
-                        margin: '10% 0',
-                      }}
-                    >
-                      {item.value}
-                    </Typography>
-                  ))}
-                </Grid> */}
-                {/* <Grid item xs={8} style={{ border: '1px solid black' }}>
-                  {totalsArray.map((item) => (
-                    <Box style={{ margin: '2% 0', border: '1px solid black' }}>
-                      {displayGraph()}
-                    </Box>
-                  ))}
-                </Grid> */}
               </Grid>
             </Grid>
           </Box>

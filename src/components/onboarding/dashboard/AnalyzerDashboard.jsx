@@ -102,6 +102,7 @@ const AnalyzerDashboard = (props) => {
 
   const { authState, authService } = useOktaAuth();
   const { accessToken } = authState;
+
   const [name, setName] = useState('');
   const [activeComponent, setActiveComponent] = useState('budget');
   const [income, setIncome] = useState(0);

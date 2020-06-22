@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
 import { Button, makeStyles, Box } from '@material-ui/core';
 
@@ -23,19 +23,19 @@ const FooterComponent = () => {
     <div>
       <Box className={classes.BoxContainer}>
         <Button>
-          <img src={envelopeIcon} alt="Category Name Icon"></img>
+          <img src={envelopeIcon} alt="envelope icon"></img>
         </Button>
         <Button>
-          <img src={barChartIcon} alt="Category Name Icon"></img>
+          <img src={barChartIcon} alt="bar chart icon"></img>
         </Button>
         <Button>
-          <img src={userIcon} alt="Category Name Icon"></img>
+          <img src={userIcon} alt="user icon"></img>
         </Button>
         <Button>
-          <img src={bellIcon} alt="Category Name Icon"></img>
+          <img src={bellIcon} alt="bell icon"></img>
         </Button>
         <Button>
-          <img src={cupIcon} alt="Category Name Icon"></img>
+          <img src={cupIcon} alt="cup icon"></img>
         </Button>
       </Box>
     </div>

@@ -15,7 +15,14 @@ import App from './App';
 
 import rootReducer from './redux/reducers';
 
-const store = createStore(rootReducer, applyMiddleware(thunk));
+// NOTE Setup for Redux Dev Tools Extension
+const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
+const store = createStoreWithMiddleware(
+  rootReducer,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
+
+// const store = createStore(rootReducer, applyMiddleware(thunk));
 
 const options = {
   // you can also just use 'bottom center'

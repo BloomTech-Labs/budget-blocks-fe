@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { PlaidLink } from 'react-plaid-link';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useHistory, useLocation, withRouter } from 'react-router-dom';
 import { Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
@@ -99,6 +99,7 @@ const BankLink = (props) => {
   const userId = localStorage.getItem('user_id');
   const alert = useAlert();
   const location = useLocation();
+  const { userInfo, fetchTransactions, updateUser, transaction } = props;
   const [bankCreated, setBackCreated] = useState(false);
 
   const onSuccess = (publicToken, metadata) => {
@@ -121,15 +122,23 @@ const BankLink = (props) => {
       });
   };
 
-  console.log(props.userInfo);
+  console.log(userInfo);
 
   const onSubmit = () => {
-    const changes = { ...props.userInfo, onboarding_complete: true };
-    console.log('on submit: ', props.userInfo);
+    const changes = { ...userInfo, onboarding_complete: true };
+    console.log('on submit: ', userInfo);
     if (bankCreated === true) {
-      props.fetchTransactions();
-      props.updateUser(userId, changes, accessToken);
-      setTimeout(() => history.push('/onboarding/budgetpreview', 2000));
+      console.log('bank created: ', bankCreated);
+
+      fetchTransactions();
+
+      updateUser(userId, changes, accessToken);
+
+      setTimeout(() => {
+        history.push('/onboarding/budgetpreview');
+      }, 2000);
+
+      // setTimeout(() => history.push('/onboarding/budgetpreview', 2000));
     } else {
       alert.show('You did not connect your bank account!');
     }
@@ -212,6 +221,8 @@ const mapStateToProps = (state) => {
   };
 };
 
+const WithRouterBankLink = withRouter(BankLink);
+
 export default connect(mapStateToProps, { updateUser, fetchTransactions })(
-  BankLink
+  WithRouterBankLink
 );

@@ -1,5 +1,10 @@
 import React, { useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import {
+  useHistory,
+  useLocation,
+  withRouter,
+  useRouteMatch,
+} from 'react-router-dom';
 import {
   makeStyles,
   Button,
@@ -100,14 +105,18 @@ const BudgetPreview = ({ transaction, fetchTransactions }) => {
   const classes = customStyles();
   const buttonClasses = useStyles();
   const history = useHistory();
-
+  const location = useLocation();
+  const { url, path } = useRouteMatch();
   const skipPage = (e) => {
     history.push('/onboarding/budgetview');
   };
 
   useEffect(() => {
     fetchTransactions();
-  }, []);
+    return () => {
+      fetchTransactions();
+    };
+  }, [location]);
 
   console.log('tran', transaction);
 
@@ -138,8 +147,9 @@ const BudgetPreview = ({ transaction, fetchTransactions }) => {
             </div>
           </div>
         ) : (
-          transaction.transactions.slice(1, 4).map((item) => (
+          transaction.slice(1, 4).map((item) => (
             <>
+              {console.log('transaction: ', transaction)}
               <Grid container spacing={3}>
                 <Grid item xs={3}>
                   <Paper className={classes.tableSection}>{item.date}</Paper>
@@ -198,4 +208,8 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { fetchTransactions })(BudgetPreview);
+const WithRouterBudgetPreview = withRouter(BudgetPreview);
+
+export default connect(mapStateToProps, { fetchTransactions })(
+  WithRouterBudgetPreview
+);

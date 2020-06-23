@@ -150,7 +150,11 @@ const AnalyzerDashboard = (props) => {
     const totalPercent = Math.round((goalValue / income) * 100);
     const percentFilled = Math.round((spendValue / goalValue) * 100);
     return (
-      <ProgressBar totalPercent={totalPercent} percentfilled={percentFilled} />
+      <ProgressBar
+        spendValue={spendValue}
+        totalPercent={totalPercent}
+        percentfilled={percentFilled}
+      />
     );
   };
 
@@ -233,7 +237,8 @@ const AnalyzerDashboard = (props) => {
         },
       })
       .then((res) => {
-        setGoalsValue(Object.values(res.data));
+        // setGoalsValue(Object.values(res.data));
+        setGoalsValue([7000, 2500, 1500, 20]);
       })
       .catch((err) => {
         console.log('goals', err.message);

@@ -12,7 +12,17 @@ const useStyles = makeStyles((theme) => ({
 
 const ProgressBar = (props) => {
   return (
-    <div className="progressBar" style={{ width: `${props.totalPercent}%` }}>
+    <div
+      className="progressBar"
+      style={
+        props.percentfilled > 100
+          ? {
+              width: `${props.totalPercent}%`,
+              border: '1px dashed rgba(185, 19, 19, 0.37)',
+            }
+          : { width: `${props.totalPercent}%` }
+      }
+    >
       <Filler
         percentfilled={props.percentfilled}
         spendValue={props.spendValue}
@@ -27,12 +37,14 @@ const Filler = (props) => {
   return (
     <div
       className="filler"
-      style={{
-        width: `${props.percentfilled}%`,
-        display: 'flex',
-        justifyContent: 'flex-end',
-        alignContent: 'center',
-      }}
+      style={
+        props.percentfilled > 100
+          ? {
+              width: '100%',
+              backgroundColor: '#E4A66C',
+            }
+          : { width: `${props.percentfilled}%` }
+      }
     >
       <Typography className={classes.displayValue}>
         ${props.spendValue}

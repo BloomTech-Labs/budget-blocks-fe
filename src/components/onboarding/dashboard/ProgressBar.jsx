@@ -6,7 +6,7 @@ import { makeStyles, Typography } from '@material-ui/core';
 const useStyles = makeStyles((theme) => ({
   displayValue: {
     color: 'white',
-    marginRight: '4%',
+    marginRight: '7px',
   },
 }));
 

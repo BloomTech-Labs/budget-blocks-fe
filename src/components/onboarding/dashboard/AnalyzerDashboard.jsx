@@ -34,10 +34,15 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     wrap: 'nowrap',
   },
-  topContainer: {
+  topContainerGreen: {
     textAlign: 'center',
     backgroundColor: 'rgba(19, 185, 172, 0.7)',
     color: 'white',
+  },
+  topContainerWhite: {
+    textAlign: 'center',
+    backgroundColor: 'white',
+    color: 'black',
   },
   lowerContainer: {},
   componentButton: {
@@ -57,9 +62,11 @@ const useStyles = makeStyles((theme) => ({
     },
     [theme.breakpoints.down('sm')]: {
       marginTop: '3%',
+      marginBottom: '1%',
     },
   },
   balance: {
+    marginTop: '0.7%',
     marginBottom: '4%',
   },
   blocksButtonFalse: {
@@ -91,6 +98,10 @@ const useStyles = makeStyles((theme) => ({
   divider: {
     margin: theme.spacing(1, 0),
   },
+  dividerForSpendingComponent: {
+    padding: '1px',
+    backgroundColor: 'rgba(19, 185, 172, 0.33)',
+  },
 }));
 
 const AnalyzerDashboard = (props) => {
@@ -110,6 +121,7 @@ const AnalyzerDashboard = (props) => {
   const [categoriesValues, setCategoriesValues] = useState([]);
   const [goalsValue, setGoalsValue] = useState([]);
   const [balance, setBalance] = useState(0);
+  const [topContainer, setTopContainer] = useState(false);
 
   const [incomeButtonClass, setIncomeButtonClass] = useState(false);
   const [housingButtonClass, setHousingButtonClass] = useState(false);
@@ -139,7 +151,7 @@ const AnalyzerDashboard = (props) => {
         category: categoriesNames[i],
         value: Math.round(categoriesValues[i]),
       };
-      if (tempObj.value != 0) {
+      if (tempObj.value > 0) {
         totalsArray.push(tempObj);
       }
     }
@@ -150,7 +162,11 @@ const AnalyzerDashboard = (props) => {
     const totalPercent = Math.round((goalValue / income) * 100);
     const percentFilled = Math.round((spendValue / goalValue) * 100);
     return (
-      <ProgressBar totalPercent={totalPercent} percentfilled={percentFilled} />
+      <ProgressBar
+        spendValue={spendValue}
+        totalPercent={totalPercent}
+        percentfilled={percentFilled}
+      />
     );
   };
 
@@ -171,10 +187,12 @@ const AnalyzerDashboard = (props) => {
   };
 
   const handleSpending = () => {
+    setTopContainer(true);
     setActiveComponent('spending');
   };
 
   const handleBudget = () => {
+    setTopContainer(false);
     setActiveComponent('budget');
   };
 
@@ -233,7 +251,8 @@ const AnalyzerDashboard = (props) => {
         },
       })
       .then((res) => {
-        setGoalsValue(Object.values(res.data));
+        // setGoalsValue(Object.values(res.data));
+        setGoalsValue([7000, 2500, 1500, 500]);
       })
       .catch((err) => {
         console.log('goals', err.message);
@@ -270,27 +289,56 @@ const AnalyzerDashboard = (props) => {
 
   return (
     <div className={classes.root}>
-      <Grid container className={classes.topContainer}>
+      <Grid
+        container
+        className={
+          topContainer ? classes.topContainerWhite : classes.topContainerGreen
+        }
+      >
         <Grid item xs={12} className={classes.hiMessage}>
-          Hi {name}!
+          <Typography variant="h5">Hi {name}!</Typography>
         </Grid>
         <Grid item xs={12}>
-          <Typography variant="h6">Your balance is</Typography>
+          <Typography>Your balance is</Typography>
         </Grid>
         <Grid item xs={12} className={classes.balance}>
-          <Typography variant="h3">${balance}</Typography>
+          <Typography
+            variant="h3"
+            style={
+              topContainer
+                ? {
+                    color: '#13B9AC',
+                  }
+                : { color: 'white' }
+            }
+          >
+            ${balance}
+          </Typography>
         </Grid>
         <Grid item xs={12} classname={classes.buttonsClass}>
-          <Button className={classes.componentButton} onClick={handleSpending}>
+          <Button
+            className={classes.componentButton}
+            style={topContainer ? { color: '#13B9AC' } : { color: 'white' }}
+            onClick={handleSpending}
+          >
             {' '}
             Spending{' '}
           </Button>
-          <Button className={classes.componentButton} onClick={handleBudget}>
+          <Button
+            className={classes.componentButton}
+            style={topContainer ? { color: '#C4C4C4' } : { color: 'white' }}
+            onClick={handleBudget}
+          >
             {' '}
             Budget{' '}
           </Button>
         </Grid>
       </Grid>
+      {topContainer ? (
+        <Divider className={classes.dividerForSpendingComponent}></Divider>
+      ) : (
+        <></>
+      )}
       <div>
         {activeComponent === 'budget' ? (
           <Box className={classes.lowerContainer}>
@@ -415,6 +463,7 @@ const AnalyzerDashboard = (props) => {
                 {totalsArray.map((item, index) => (
                   <Grid
                     container
+                    key={index}
                     style={{
                       display: 'flex',
                       flexDirection: 'row',

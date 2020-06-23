@@ -242,8 +242,6 @@ const AnalyzerDashboard = (props) => {
   }, []);
 
   useEffect(() => {
-    console.log('accessToken', accessToken);
-
     axios
       .get(`${SERVER_HOST}/api/goals/${user_id}`, {
         headers: {
@@ -252,7 +250,7 @@ const AnalyzerDashboard = (props) => {
       })
       .then((res) => {
         // setGoalsValue(Object.values(res.data));
-        setGoalsValue([7000, 2500, 1500, 500]);
+        setGoalsValue([7000, 4000, 1700, 500]);
       })
       .catch((err) => {
         console.log('goals', err.message);

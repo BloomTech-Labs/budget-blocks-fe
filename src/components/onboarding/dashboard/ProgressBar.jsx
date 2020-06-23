@@ -18,6 +18,7 @@ const ProgressBar = (props) => {
         props.percentfilled > 100
           ? {
               width: `${props.totalPercent}%`,
+              backgroundColor: '#E4A66C',
               border: '1px dashed rgba(185, 19, 19, 0.37)',
             }
           : { width: `${props.totalPercent}%` }

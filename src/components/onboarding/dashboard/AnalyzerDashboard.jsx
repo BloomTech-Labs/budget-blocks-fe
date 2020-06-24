@@ -110,7 +110,7 @@ const AnalyzerDashboard = (props) => {
 
   const classes = useStyles();
   let totalsArray = [];
-  let goalsMap = new Map();
+  let goalsArray = [];
 
   const { authState, authService } = useOktaAuth();
   const { accessToken } = authState;
@@ -119,6 +119,7 @@ const AnalyzerDashboard = (props) => {
   const [activeComponent, setActiveComponent] = useState('budget');
   const [income, setIncome] = useState(0);
   const [balance, setBalance] = useState(0);
+
   const [categoriesNames, setCategoriesNames] = useState([]);
   const [categoriesValues, setCategoriesValues] = useState([]);
 
@@ -146,19 +147,26 @@ const AnalyzerDashboard = (props) => {
     setPersonalButtonClass(PersonalButtonOn);
   };
 
-  const combineCategoriesNamesWithValues = async () => {
-    let tempObj = {};
+  const getTheGoalValue = (categoryName) => {
+    for (let i = 0; i < goalsArray.length; i++) {
+      if (goalsArray[i].category == categoryName) {
+        console.log('here');
+        return goalsArray[i].value;
+      }
+    }
+  };
 
+  const combineCategoriesNamesWithValues = () => {
+    let tempObj = {};
     for (let i = 0; i < categoriesNames.length; i++) {
       let categoryName = categoriesNames[i];
-
-      let goalAmount = await goalsMap.get(categoryName);
 
       tempObj = {
         category: categoriesNames[i],
         value: Math.round(categoriesValues[i]),
-        goal: goalAmount,
+        // goal: tempGoalValue,
       };
+
       if (tempObj.value > 0) {
         totalsArray.push(tempObj);
       }
@@ -167,20 +175,18 @@ const AnalyzerDashboard = (props) => {
   };
 
   const combineGoalsNamesWithValues = () => {
+    let tempObj = {};
+
     for (let i = 0; i < goalsNames.length; i++) {
       const goalName =
         goalsNames[i].charAt(0).toUpperCase() + goalsNames[i].slice(1);
 
-      goalsMap.set(
-        goalName,
-        Math.round(
-          goalsValues[i] != undefined
-            ? goalsValues[i] > 0
-              ? goalsValues[i]
-              : 0
-            : 0
-        )
-      );
+      tempObj = {
+        category: goalName,
+        goal: goalsValues[i],
+      };
+
+      goalsArray.push(tempObj);
     }
     return null;
   };
@@ -282,7 +288,10 @@ const AnalyzerDashboard = (props) => {
         delete res.data.income;
 
         setGoalsNames(Object.keys(res.data));
-        setGoalsValues(Object.values(res.data));
+        // setGoalsValues(Object.values(res.data));
+        //dummy data was used just to see the result
+        //these values should come from budgetcategory component
+        setGoalsValues([1500, 0, 7000, 0, 0, 1900, 0, 200]);
       })
       .catch((err) => {
         console.log('goals', err.message);
@@ -318,7 +327,7 @@ const AnalyzerDashboard = (props) => {
   combineGoalsNamesWithValues();
   sortTotalsArray();
 
-  console.log(goalsMap);
+  console.log(goalsArray);
   console.log(totalsArray);
   return (
     <div className={classes.root}>

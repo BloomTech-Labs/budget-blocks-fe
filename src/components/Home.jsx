@@ -20,7 +20,7 @@ const Home = () => {
 
   // NOTE Change this to wherever we want the user to be redirected to after login
   const login = async () => {
-    authService.login('/dashboard');
+    authService.login('/test');
   };
 
   const logout = async () => {

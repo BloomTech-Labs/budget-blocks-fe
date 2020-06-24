@@ -46,11 +46,6 @@ const Dashboard = ({
     }
   }, [authState, authService]);
 
-  //FIXME FOR REFRESH BUTTON
-  useEffect(() => {
-    fetchTransactions();
-  }, [location]);
-
   return (
     <div>
       {userInfo && userInfo.onboarding_complete === false ? (

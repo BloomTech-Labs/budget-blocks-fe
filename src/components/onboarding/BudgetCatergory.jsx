@@ -333,7 +333,7 @@ const BudgetCategory =
                 type="submit"
                 className={buttonClasses.backButton}
                 onClick={() => {
-                    history.push('/dashboard');
+                    history.push('/onboarding/income');
                 }}
                 >
                 <KeyboardArrowLeft /> Back
@@ -343,7 +343,7 @@ const BudgetCategory =
                 type="submit"
                 className={buttonClasses.nextButton}
                 onClick={() => {
-                    history.push('/onboarding/income');
+                    history.push('/dashboard/analyzerview');
                   }}
                 >
                 Next <KeyboardArrowRight />

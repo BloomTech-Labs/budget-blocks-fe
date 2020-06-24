@@ -21,6 +21,7 @@ export const transactionReducer = (state = initialState, action) => {
     case FETCH_TRANS_SUCCESS:
       return {
         ...state,
+        ...action.payload,
         transaction: action.payload,
         isFetching: false,
         errors: '',

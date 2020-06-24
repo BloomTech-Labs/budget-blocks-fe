@@ -136,11 +136,11 @@ const Clickthrough = () => {
 
   // NOTE Change this to wherever we want the user to be redirected to after login
   const signup = async () => {
-    authService.login('/onboarding/welcome');
+    authService.login('/loadingpage');
   };
 
   const login = async () => {
-    authService.login('/dashboard');
+    authService.login('/loadingpage');
   };
 
   if (authState.isPending) {

@@ -3,27 +3,16 @@ import { useOktaAuth } from '@okta/okta-react';
 import { connect } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
 
-import { Button } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import Typography from '@material-ui/core/Typography';
-import Grid from '@material-ui/core/Grid';
-
-// import { transitions } from 'react-alert';
+import CircularProgress from '@material-ui/core/CircularProgress'
+import Button from '@material-ui/core/Button';
 
 // SECTION Redux Imports
-import { fetchTransactions } from '../redux/actions/dashboardAction';
 import { userAction, notAuthenticated } from '../redux/actions/userAction';
 
-const Dashboard = ({
+const LoadPage = ({
   userInfo,
-  transaction,
-  fetchTransactions,
   userAction,
-  notAuthenticated,
-  location,
-  isFetching,
+  notAuthenticated
 }) => {
   const { authState, authService } = useOktaAuth();
 
@@ -63,7 +52,7 @@ const Dashboard = ({
             }}
           >
             Message:
-            {`Hi, ${userInfo && userInfo.name}. Welcome to the dashboard.`}
+            {`Hi, ${userInfo && userInfo.name}. Welcome.`}
           </p>
           <p> USER INFO STATE: {userInfo && userInfo.email} </p>
           <Link to="/onboarding">
@@ -76,22 +65,7 @@ const Dashboard = ({
           <Button color="secondary" variant="contained" onClick={logout}>
             Logout
           </Button>
-          <div style={{ textAlign: 'center' }}>
-            {transaction.transactions &&
-              transaction.transactions.map((data) => (
-                <Card key={data.transaction_id}>
-                  <CardContent>
-                    <Typography style={{ fontSize: '3rem' }}>
-                      {data.budget_blocks_category}
-                    </Typography>
-                    <Typography style={{ fontSize: '2rem' }}>
-                      {data.amount}
-                    </Typography>
-                  </CardContent>
-                </Card>
-              ))}
           </div>
-        </div>
       )}
     </div>
   );
@@ -99,15 +73,11 @@ const Dashboard = ({
 
 const mapStateToProps = (state) => {
   return {
-    transaction: state.trans.transaction,
-    isFetching: state.trans.isFetching,
-    errors: state.trans.errors,
     userInfo: state.users.userInfo,
   };
 };
 
 export default connect(mapStateToProps, {
-  fetchTransactions,
   userAction,
   notAuthenticated,
-})(Dashboard);
+})(LoadPage);

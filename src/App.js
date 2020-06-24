@@ -6,7 +6,7 @@ import { Container } from 'semantic-ui-react';
 // SECTION Components
 import config from './components/okta/config';
 import Home from './components/Home';
-import Dashboard from './components/Dashboard';
+import LoadPage from './components/LoadPage';
 import Clickthrough from './components/Clickthrough';
 
 // SECTION Onboarding Components
@@ -33,9 +33,9 @@ const App = () => (
   <Router>
     <Security {...config.oidc}>
       <Container>
-        <SecureRoute path="/test" component={Dashboard} />
+        <SecureRoute path="/loadingpage" component={LoadPage} />
         <SecureRoute path="/onboarding" exact component={Onboarding} />
-        <Route path="/" component={Clickthrough} />
+        <Route exact path="/" exact component={Clickthrough} />
         <Route path="/implicit/callback" component={LoginCallback} />
         <SecureRoute path="/onboarding/welcome" component={Welcome} />
         <SecureRoute path="/onboarding/accountinfo" component={AccountInfo} />
@@ -52,7 +52,7 @@ const App = () => (
         <SecureRoute path="/goal/food" exact component={FoodGoal} />
         <SecureRoute path="/goal/transport" exact component={TransportGoal} />
         <SecureRoute path="/goal/personal" exact component={PersonalGoal} />
-        <SecureRoute exact path="/dashboard/analyzerview" exact component={AnalyzerDashboard} />
+        <SecureRoute exact path="/dashboard" exact component={AnalyzerDashboard} />
       </Container>
     </Security>
   </Router>

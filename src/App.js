@@ -6,7 +6,7 @@ import { Container } from 'semantic-ui-react';
 // SECTION Components
 import config from './components/okta/config';
 import Home from './components/Home';
-import Dashboard from './components/Dashboard';
+import LoadPage from './components/LoadPage';
 import Clickthrough from './components/Clickthrough';
 
 // SECTION Onboarding Components
@@ -33,27 +33,26 @@ const App = () => (
   <Router>
     <Security {...config.oidc}>
       <Container>
-        <SecureRoute path="/dashboard" component={Dashboard} />
+        <SecureRoute path="/loadingpage" component={LoadPage} />
         <SecureRoute path="/onboarding" exact component={Onboarding} />
-        <Route path="/" exact component={Home} />
-        <Route path="/clickthrough" component={Clickthrough} />
+        <Route exact path="/" exact component={Clickthrough} />
         <Route path="/implicit/callback" component={LoginCallback} />
-        <Route path="/onboarding/welcome" component={Welcome} />
-        <Route path="/onboarding/accountinfo" component={AccountInfo} />
-        <Route path="/onboarding/banklink" exact component={BankLink} />
-        <Route
+        <SecureRoute path="/onboarding/welcome" component={Welcome} />
+        <SecureRoute path="/onboarding/accountinfo" component={AccountInfo} />
+        <SecureRoute path="/onboarding/banklink" exact component={BankLink} />
+        <SecureRoute
           path="/onboarding/budgetpreview"
           exact
           component={BudgetPreview}
         />
-        <Route path="/onboarding/budgetview" exact component={BudgetView} />
-        <Route path="/onboarding/income" exact component={Income} />
-        <Route path="/onboarding/analyzerview" exact component={AnalyzerDashboard} />
-        <Route path="/onboarding/budgetcategory" exact component={BudgetCategory} />
-        <Route path="/goal/house" exact component={HomeGoal} />
-        <Route path="/goal/food" exact component={FoodGoal} />
-        <Route path="/goal/transport" exact component={TransportGoal} />
-        <Route path="/goal/personal" exact component={PersonalGoal} />
+        <SecureRoute path="/onboarding/budgetview" exact component={BudgetView} />
+        <SecureRoute path="/onboarding/income" exact component={Income} />
+        <SecureRoute path="/onboarding/budgetcategory" exact component={BudgetCategory} />
+        <SecureRoute path="/goal/house" exact component={HomeGoal} />
+        <SecureRoute path="/goal/food" exact component={FoodGoal} />
+        <SecureRoute path="/goal/transport" exact component={TransportGoal} />
+        <SecureRoute path="/goal/personal" exact component={PersonalGoal} />
+        <SecureRoute exact path="/dashboard" exact component={AnalyzerDashboard} />
       </Container>
     </Security>
   </Router>

@@ -22,7 +22,7 @@ export const fetchTransactions = () => (dispatch) => {
             type: FETCH_TRANS_SUCCESS,
             // payload: categorizedTransactions.data,
             //might use:
-            payload: categorizedTransactions.data.transactions,
+            payload: categorizedTransactions.data,
           });
         })
         .catch((err) => {

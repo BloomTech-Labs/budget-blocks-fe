@@ -3,17 +3,27 @@ import { Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { useOktaAuth } from '@okta/okta-react';
 
+import BudgetBlocksIcon from '../media/budgetblocksicon.svg'
+import PabloIcon from '../media/pablo-payment-processed.svg'
+
 const customStyles = makeStyles((theme) => ({
     topBar: {
       display: 'flex',
       justifyContent : 'space-between',
     },
+    topBarWrapper: {
+      width: "154%"
+    },
+    topBarImage: {
+      width: "51%",
+      margin: "-17% 0% -10% 4%"
+    },
     topBarRight: {
         display: 'flex',
-        justifyContent : 'flex-end',
-        paddingTop: '5%',
-        paddingRight: '5%',
-        width:'200px',
+        flexDirection: "row",
+        width: "118%",
+        justifyContent: "space-between",
+        margin: "3% 2% 0% 0%"
       },
     topBarLearn: {
         
@@ -126,11 +136,11 @@ const Clickthrough = () => {
 
   // NOTE Change this to wherever we want the user to be redirected to after login
   const signup = async () => {
-    authService.login('/onboarding/welcome');
+    authService.login('/loadingpage');
   };
 
   const login = async () => {
-    authService.login('/dashboard');
+    authService.login('/loadingpage');
   };
 
   if (authState.isPending) {
@@ -140,13 +150,15 @@ const Clickthrough = () => {
   return (
     <div>
       <div className={classes.topBar}>
-        <h1>Budget Blocks logo</h1>
+      <div className={classes.topBarWrapper}>
+        <img className={classes.topBarImage} src={BudgetBlocksIcon} alt="Budget Blocks Icon"></img>
+      </div>
         <div className={classes.topBarRight}>
             <div className={classes.topBarLearn}>Learn more</div>
             <div className={classes.topBarContact}>Contact us</div>
         </div>
       </div>
-      <p className={classes.ImgHolder}>Image placeholder</p>
+      <img style={{ margin: "0% 0% 0% 12%"}} src={PabloIcon} alt="Man relaxing with a bag of coins"></img>
       <h2 className={classes.CTA}>Financial freedom in a snap with Budget Blocks.</h2>
       <p className={classes.Description}>Automatically link your bank accounts and organize your spending into four basic spending blocks. 
       Check your cash flow and spending habits with a simple dashboard. We put financial freedom at your fingertips.</p>

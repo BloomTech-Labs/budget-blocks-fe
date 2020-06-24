@@ -106,7 +106,7 @@ const customStyles = makeStyles({
   backNextButtonWrapper: {
     display: 'flex',
     justifyContent: 'center',
-    marginTop: '50%',
+    marginTop: '24%',
     // marginLeft: '12%',
   },
 });

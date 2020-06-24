@@ -110,6 +110,7 @@ const AnalyzerDashboard = (props) => {
 
   const classes = useStyles();
   let totalsArray = [];
+  let goalsMap = new Map();
 
   const { authState, authService } = useOktaAuth();
   const { accessToken } = authState;
@@ -117,12 +118,14 @@ const AnalyzerDashboard = (props) => {
   const [name, setName] = useState('');
   const [activeComponent, setActiveComponent] = useState('budget');
   const [income, setIncome] = useState(0);
+  const [balance, setBalance] = useState(0);
   const [categoriesNames, setCategoriesNames] = useState([]);
   const [categoriesValues, setCategoriesValues] = useState([]);
-  const [goalsValue, setGoalsValue] = useState([]);
-  const [balance, setBalance] = useState(0);
-  const [topContainer, setTopContainer] = useState(false);
 
+  const [goalsNames, setGoalsNames] = useState([]);
+  const [goalsValues, setGoalsValues] = useState([]);
+
+  const [topContainer, setTopContainer] = useState(false);
   const [incomeButtonClass, setIncomeButtonClass] = useState(false);
   const [housingButtonClass, setHousingButtonClass] = useState(false);
   const [foodBuButtonClass, setFoodButtonClass] = useState(false);
@@ -143,13 +146,18 @@ const AnalyzerDashboard = (props) => {
     setPersonalButtonClass(PersonalButtonOn);
   };
 
-  const combineCategoriesNamesWithValues = () => {
+  const combineCategoriesNamesWithValues = async () => {
     let tempObj = {};
 
     for (let i = 0; i < categoriesNames.length; i++) {
+      let categoryName = categoriesNames[i];
+
+      let goalAmount = await goalsMap.get(categoryName);
+
       tempObj = {
         category: categoriesNames[i],
         value: Math.round(categoriesValues[i]),
+        goal: goalAmount,
       };
       if (tempObj.value > 0) {
         totalsArray.push(tempObj);
@@ -158,7 +166,26 @@ const AnalyzerDashboard = (props) => {
     return null;
   };
 
-  const displayGraph = (spendValue, goalValue) => {
+  const combineGoalsNamesWithValues = () => {
+    for (let i = 0; i < goalsNames.length; i++) {
+      const goalName =
+        goalsNames[i].charAt(0).toUpperCase() + goalsNames[i].slice(1);
+
+      goalsMap.set(
+        goalName,
+        Math.round(
+          goalsValues[i] != undefined
+            ? goalsValues[i] > 0
+              ? goalsValues[i]
+              : 0
+            : 0
+        )
+      );
+    }
+    return null;
+  };
+
+  const displayGraph = (spendValue = 0, goalValue = 0) => {
     const totalPercent = Math.round((goalValue / income) * 100);
     const percentFilled = Math.round((spendValue / goalValue) * 100);
     return (
@@ -225,6 +252,7 @@ const AnalyzerDashboard = (props) => {
           .then((categorizedTransactions) => {
             setIncome(9646);
             delete categorizedTransactions.data.totals.Income;
+            console.log(categorizedTransactions);
             setCategoriesNames(
               Object.keys(categorizedTransactions.data.totals)
             );
@@ -242,8 +270,6 @@ const AnalyzerDashboard = (props) => {
   }, []);
 
   useEffect(() => {
-    console.log('accessToken', accessToken);
-
     axios
       .get(`${SERVER_HOST}/api/goals/${user_id}`, {
         headers: {
@@ -251,8 +277,12 @@ const AnalyzerDashboard = (props) => {
         },
       })
       .then((res) => {
-        // setGoalsValue(Object.values(res.data));
-        setGoalsValue([7000, 2500, 1500, 500]);
+        delete res.data.id;
+        delete res.data.user_id;
+        delete res.data.income;
+
+        setGoalsNames(Object.keys(res.data));
+        setGoalsValues(Object.values(res.data));
       })
       .catch((err) => {
         console.log('goals', err.message);
@@ -285,8 +315,11 @@ const AnalyzerDashboard = (props) => {
   }, [authState, authService]);
 
   combineCategoriesNamesWithValues();
+  combineGoalsNamesWithValues();
   sortTotalsArray();
 
+  console.log(goalsMap);
+  console.log(totalsArray);
   return (
     <div className={classes.root}>
       <Grid
@@ -477,11 +510,11 @@ const AnalyzerDashboard = (props) => {
                     </Grid>
                     <Grid item style={{ width: '8%' }}>
                       <Typography style={{ color: '#959595' }}>
-                        ${item.value}
+                        ${item.goal}
                       </Typography>
                     </Grid>
                     <Grid item item xs={8}>
-                      {displayGraph(item.value, goalsValue[index])}
+                      {displayGraph(item.value, item.goal)}
                     </Grid>
                   </Grid>
                 ))}

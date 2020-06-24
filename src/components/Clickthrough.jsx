@@ -21,7 +21,7 @@ const customStyles = makeStyles((theme) => ({
     topBarRight: {
         display: 'flex',
         flexDirection: "row",
-        width: "100%",
+        width: "118%",
         justifyContent: "space-between",
         margin: "3% 2% 0% 0%"
       },
@@ -158,7 +158,7 @@ const Clickthrough = () => {
             <div className={classes.topBarContact}>Contact us</div>
         </div>
       </div>
-      <img style={{ margin: "0% 0% 0% 17%"}} src={PabloIcon} alt="Man relaxing with a bag of coins"></img>
+      <img style={{ margin: "0% 0% 0% 12%"}} src={PabloIcon} alt="Man relaxing with a bag of coins"></img>
       <h2 className={classes.CTA}>Financial freedom in a snap with Budget Blocks.</h2>
       <p className={classes.Description}>Automatically link your bank accounts and organize your spending into four basic spending blocks. 
       Check your cash flow and spending habits with a simple dashboard. We put financial freedom at your fingertips.</p>

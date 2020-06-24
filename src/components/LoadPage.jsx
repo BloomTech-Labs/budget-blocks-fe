@@ -38,9 +38,12 @@ const LoadPage = ({
   return (
     <div>
       {userInfo && userInfo.onboarding_complete === false ? (
+        <div>
         <Redirect to="/onboarding" />
+        </div>
       ) : (
         <div>
+          <Redirect to="/dashboard" />
           <h1> DASHBOARD </h1>
           <p>
             If you landed here, then you have successfully logged in with Okta!!

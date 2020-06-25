@@ -8,7 +8,7 @@ import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import { connect } from 'react-redux';
 
 // SECTION CUSTOM STYLES
-import { useStyles } from '../../styles/theme_provider';
+import { useStyles } from '../../styles/custom_button_styles';
 
 const customStyles = makeStyles({
   mainWrapper: {
@@ -144,8 +144,10 @@ const customStyles = makeStyles({
   },
 });
 
-const BudgetView = () => {
+// SECTION COMPONENT
+const BudgetView = (props) => {
   const classes = customStyles();
+  // NOTE Imported Styles from '../../styles/theme_provider'.
   const buttonClasses = useStyles();
   const history = useHistory();
 

@@ -15,7 +15,7 @@ import { connect } from 'react-redux';
 import { fetchTransactions } from '../../redux/actions/dashboardAction';
 
 // SECTION CUSTOM STYLES
-import { useStyles } from '../../styles/theme_provider';
+import { useStyles } from '../../styles/custom_button_styles';
 
 const customStyles = makeStyles({
   mainWrapper: {

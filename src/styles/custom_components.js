@@ -1,3 +1,5 @@
+// FIXME This needs to be deleted. It was going to be used to save space on the AccountInfo component, but we couldn't get it to function properly with react-hook-form. When imported into the form, the states would display in the material ui select, but the value wouldn't be accessible. To get this to work, you need to find a way to get the value out of this component and into the AccountInfo component.
+
 import React from 'react';
 import { Select, MenuItem } from '@material-ui/core';
 

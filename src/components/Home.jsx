@@ -1,7 +1,8 @@
+// NOTE This component can be deleted or saved for future testing purpose.(most likekly will never get used again)
+// NOTE This component was initially just used as a test landing page.
 import { useOktaAuth } from '@okta/okta-react';
 import React, { useState, useEffect } from 'react';
 import { Button } from '@material-ui/core';
-
 
 const Home = () => {
   const { authState, authService } = useOktaAuth();
@@ -48,12 +49,12 @@ const Home = () => {
         {/* //NOTE This is what is displayed prior to logging in */}
         {!authState.isAuthenticated && (
           <div>
-            <Button color='primary' variant='contained' onClick={login}>
+            <Button color="primary" variant="contained" onClick={login}>
               Login
             </Button>
             <br />
             <br />
-            <Button color='secondary' variant='contained' onClick={logout}>
+            <Button color="secondary" variant="contained" onClick={logout}>
               Logout
             </Button>
           </div>

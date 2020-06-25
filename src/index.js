@@ -15,6 +15,8 @@ import rootReducer from './redux/reducers';
 
 const store = createStore(rootReducer, applyMiddleware(thunk));
 
+// NOTE This object is for react-alerts library
+// NOTE More info here: https://www.npmjs.com/package/react-alert
 const options = {
   // you can also just use 'bottom center'
   position: positions.BOTTOM_CENTER,

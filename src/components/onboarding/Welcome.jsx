@@ -15,7 +15,7 @@ import { Link, useHistory } from 'react-router-dom';
 
 // SECTION CUSTOM STYLES
 import '../../App.css';
-import { useStyles } from '../../styles/theme_provider';
+import { useStyles } from '../../styles/custom_button_styles';
 
 export const customStyles = makeStyles({
   root: {

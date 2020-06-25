@@ -1,8 +1,6 @@
 import React from 'react';
 import ReactDOM, { render } from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
-import { ThemeProvider } from '@material-ui/core';
-import { theme } from './styles/theme_provider';
 
 import { transitions, positions, Provider as AlertProvider } from 'react-alert';
 import AlertTemplate from 'react-alert-template-basic';

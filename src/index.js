@@ -1,8 +1,6 @@
 import React from 'react';
-import ReactDOM, { render } from 'react-dom';
+import ReactDOM from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
-import { ThemeProvider } from '@material-ui/core';
-import { theme } from './styles/theme_provider';
 
 import { transitions, positions, Provider as AlertProvider } from 'react-alert';
 import AlertTemplate from 'react-alert-template-basic';
@@ -17,6 +15,8 @@ import rootReducer from './redux/reducers';
 
 const store = createStore(rootReducer, applyMiddleware(thunk));
 
+// NOTE This object is for react-alerts library
+// NOTE More info here: https://www.npmjs.com/package/react-alert
 const options = {
   // you can also just use 'bottom center'
   position: positions.BOTTOM_CENTER,

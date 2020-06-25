@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { makeStyles, Button, ButtonGroup } from '@material-ui/core';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
@@ -8,7 +8,7 @@ import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import { connect } from 'react-redux';
 
 // SECTION CUSTOM STYLES
-import { useStyles } from '../../styles/theme_provider';
+import { useStyles } from '../../styles/custom_button_styles';
 
 const customStyles = makeStyles({
   mainWrapper: {
@@ -144,8 +144,10 @@ const customStyles = makeStyles({
   },
 });
 
-const BudgetView = () => {
+// SECTION COMPONENT
+const BudgetView = (props) => {
   const classes = customStyles();
+  // NOTE Imported Styles from '../../styles/theme_provider'.
   const buttonClasses = useStyles();
   const history = useHistory();
 
@@ -153,12 +155,9 @@ const BudgetView = () => {
     history.push('/onboarding/income');
   };
 
-  const [view, setView] = useState(false);
-
   return (
     <div>
-      {view === false ? (
-        <div className={classes.mainWrapper}>
+      <div className={classes.mainWrapper}>
         <div>
           <h1 className={classes.budgetHeader}>Budget</h1>
           <p className={classes.skipButton} onClick={skipPage}>
@@ -166,12 +165,13 @@ const BudgetView = () => {
           </p>
           <h2 className={classes.mainHeader}>Build Your Budget</h2>
           <p className={classes.sectionDescription}>
-            Your income transactions are already tracked for you. Now you can set
-            a goal for your income to track your progress!
+            Your income transactions are already tracked for you. Now you can
+            set a goal for your income to track your progress!
           </p>
           <h2 className={classes.subHeader1}>Start setting goals</h2>
           <h2 className={classes.subHeader2}>View goals by month</h2>
         </div>
+        {/*   // FIXME The material UI button group is not functional. Needs to switch colors. */}
         <ButtonGroup className={classes.monthWeekWrapper}>
           <Button
             className={[classes.monthButton, classes.toggleOn].join(' ')}
@@ -203,6 +203,7 @@ const BudgetView = () => {
               </div>
             </div>
             <div className={classes.valueWrapper}>
+              {/* // FIXME The value below for income is hardcoded. Needs to be dynamic. */}
               <p>$600</p>
             </div>
           </div>
@@ -230,79 +231,6 @@ const BudgetView = () => {
           </Button>
         </div>
       </div>
-      ) : (
-      <div className={classes.mainWrapper}>
-        <div>
-          <h1 className={classes.budgetHeader}>Budget</h1>
-          <p className={classes.skipButton} onClick={skipPage}>
-            skip
-          </p>
-          <h2 className={classes.mainHeader}>Build Your Budget</h2>
-          <p className={classes.sectionDescription}>
-            Your income transactions are already tracked for you. Now you can set
-            a goal for your income to track your progress!
-          </p>
-          <h2 className={classes.subHeader1}>Start setting goals</h2>
-          <h2 className={classes.subHeader2}>View goals by month</h2>
-        </div>
-        <ButtonGroup className={classes.monthWeekWrapper}>
-          <Button
-            className={[classes.monthButton, classes.toggleOn].join(' ')}
-            id="month"
-            onClick={() => {}}
-            value="month"
-          >
-            Month
-          </Button>
-          <Button
-            className={classes.weekButton}
-            id="week"
-            onClick={null}
-            value="week"
-          >
-            Week
-          </Button>
-        </ButtonGroup>
-        <div className={classes.goalExampleWrapper}>
-          <div className={classes.goalExample}>
-            <div className={classes.houseIncomeWrapper}>
-              <img
-                className={classes.goalExampleImg}
-                src={require('../../media/house2.png')}
-                alt="A house drawing."
-              />
-              <div className={classes.incomeWrapper}>
-                <p>Income</p>
-              </div>
-            </div>
-            <div className={classes.valueWrapper}>
-              <p>$600</p>
-            </div>
-          </div>
-        </div>
-        <div className={classes.buttonWrapper}>
-          <Button
-            variant="contained"
-            type="submit"
-            className={buttonClasses.backButton}
-            onClick={() => {
-              history.push('/onboarding/budgetpreview');
-            }}
-          >
-            <KeyboardArrowLeft /> Back
-          </Button>
-          <Button
-            variant="contained"
-            type="submit"
-            className={buttonClasses.nextButton}
-            onClick={() => {
-              history.push('/onboarding/income');
-            }}
-          >
-            Next <KeyboardArrowRight />
-          </Button>
-        </div>
-      </div>)}
     </div>
   );
 };

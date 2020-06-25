@@ -8,15 +8,20 @@ import {
   Select,
   MenuItem,
 } from '@material-ui/core';
-import { useOktaAuth } from '@okta/okta-react';
-import { useHistory } from 'react-router-dom';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
-import { useStyles } from '../../styles/theme_provider';
+
+// SECTION OKTA
+import { useOktaAuth } from '@okta/okta-react';
+import { useHistory } from 'react-router-dom';
+
+// SECTION REDUX
 import { connect } from 'react-redux';
 import { updateUser, notAuthenticated } from '../../redux/actions/userAction';
 
-//SECTION Styles
+// SECTION Custom Styles
+import { useStyles } from '../../styles/custom_button_styles';
+
 const customStyles = makeStyles({
   mainWrapper: {
     margin: '5% 7%',
@@ -75,7 +80,7 @@ const customStyles = makeStyles({
     width: '22.5rem',
   },
   stateInput: {
-    //FIXME need to figure out how to override material ui's border color.. below isn't working.
+    //FIXME need to figure out how to override material ui's border color.. the code below isn't working.
     borderColor: '#13B9AC',
     marginTop: '2%',
     marginBottom: '8%',
@@ -89,7 +94,6 @@ const customStyles = makeStyles({
     color: 'white',
     background: '#13B9AC',
     width: '15rem',
-    // marginLeft: '10%',
     '&:hover': {
       background: '#13B9AC',
       textDecoration: 'underline',
@@ -97,7 +101,6 @@ const customStyles = makeStyles({
   },
   confirmButtonWrapper: {
     display: 'flex',
-    // justifyContent: 'center',
   },
   formWrapper: {
     display: 'flex',
@@ -107,10 +110,10 @@ const customStyles = makeStyles({
     display: 'flex',
     justifyContent: 'center',
     marginTop: '24%',
-    // marginLeft: '12%',
   },
 });
 
+// NOTE
 const ValidationTextField = withStyles({
   root: {
     '& input:valid + fieldset': {

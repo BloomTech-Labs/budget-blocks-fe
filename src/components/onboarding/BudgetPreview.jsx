@@ -10,12 +10,12 @@ import {
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 
-// SECTION CUSTOM STYLES
-import { useStyles } from '../../styles/theme_provider';
-
 //SECTION REDUX
 import { connect } from 'react-redux';
 import { fetchTransactions } from '../../redux/actions/dashboardAction';
+
+// SECTION CUSTOM STYLES
+import { useStyles } from '../../styles/custom_button_styles';
 
 const customStyles = makeStyles({
   mainWrapper: {
@@ -96,6 +96,7 @@ const customStyles = makeStyles({
   },
 });
 
+// SECTION COMPONENT
 const BudgetPreview = ({ transaction, fetchTransactions }) => {
   const classes = customStyles();
   const buttonClasses = useStyles();
@@ -105,11 +106,12 @@ const BudgetPreview = ({ transaction, fetchTransactions }) => {
     history.push('/onboarding/budgetview');
   };
 
+  // FIXME This useEffect needs to watch something so that it displays the transactions once you transition from the banklink component to this component. We were having trouble getting the useEffect to fire. It only fires and updates the transactions on refresh.
   useEffect(() => {
     fetchTransactions();
   }, []);
 
-  console.log('tran', transaction);
+  // console.log('budget preview transactions:', transaction);
 
   return (
     <div className={classes.mainWrapper}>

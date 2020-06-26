@@ -1,5 +1,6 @@
 
 
+
 # Budget Blocks
 [![Maintainability](https://api.codeclimate.com/v1/badges/48e243bd3d68a7d834b0/maintainability)](https://codeclimate.com/github/Lambda-School-Labs/budget-blocks-fe)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/48e243bd3d68a7d834b0/test_coverage)](https://codeclimate.com/github/Lambda-School-Labs/budget-blocks-fe)
@@ -107,6 +108,15 @@ Why did you choose this framework?
 - Axios is the dependency we choose for accessing API endpoints on the front-end through GET, POST, PUT, and DELETE requests.
 - Dotenv is what was used to store sensitive information that only our developers should be aware of and have access to for the security of our application.
 
+
+### Styling Library:
+
+#### Material-UI
+
+Why did you choose this library?
+
+- We choose Material-UI because it is a naturally intuitive styling library. It contains built-in responsive elements, flexible styling methods, and overall clear and concise documentation for its numerous features. 
+
 #### Front end deployed through Netlify
 
 # Content Licenses
@@ -131,6 +141,14 @@ Why did you choose this framework?
 #### Step 2 - npm install from root
 
 #### Step 3 - npm start for local hosting
+
+#### Step 4 - Create env.file and fill in the appropriate information
+
+### Start-Up env.file format
+
+-  REACT_APP_ISSUER - URL that is used for verification with [Okta](https://www.okta.com/)
+- REACT_APP_CLIENT_ID - ID assigned to each user/team that is needed for verification with [Okta](https://www.okta.com/)
+- REACT_APP_SERVER_HOST - Designated Host for maintaining your Frontend within different environments
 
 # Contributing
 
